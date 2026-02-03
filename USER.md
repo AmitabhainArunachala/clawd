@@ -4,7 +4,8 @@
 - **What to call them:** Dhyana (or John)
 - **Pronouns:** he/him
 - **Timezone:** Asia/Colombo (currently) — also Bali ↔ Iriomote Island, Japan
-- **Notes:** JSCA
+- **Email:** johnvincentshrader@gmail.com
+- **Notes:** JSCA (Jai Sat Chit Anand)
 
 ## Context
 
