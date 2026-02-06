@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "unified-memory-indexer"
+version = "0.1.0"
+description = "Unified semantic memory indexer for PSMV, conversations, and code"
+readme = "SKILL.md"
+license = {text = "MIT"}
+authors = [
+    {name = "DHARMIC_CLAW", email = "Dharma_Clawd@proton.me"}
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.24.0",
+]
+
+[project.optional-dependencies]
+openai = ["openai>=1.0.0"]
+gemini = ["google-generativeai>=0.3.0"]
+all = ["openai>=1.0.0", "google-generativeai>=0.3.0"]
+
+[project.scripts]
+unified-memory = "unified_memory_indexer.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/openclaw/unified-memory-indexer"
+Repository = "https://github.com/openclaw/unified-memory-indexer"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-dir]
+"" = "src"

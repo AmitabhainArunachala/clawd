@@ -1,0 +1,146 @@
+#!/usr/bin/env python3
+"""
+CLI for Unified Memory Indexer.
+"""
+
+import sys
+import json
+from pathlib import Path
+
+from .index import UnifiedIndex
+from .search import SearchQuery
+from .indexers import PSMVIndexer, ConversationIndexer, CodeIndexer
+
+
+def main():
+    import argparse
+    
+    parser = argparse.ArgumentParser(
+        description="Unified Memory Indexer - Search across PSMV, conversations, and code"
+    )
+    subparsers = parser.add_subparsers(dest="command", help="Commands")
+    
+    # Build command
+    build_parser = subparsers.add_parser("build", help="Build or update the index")
+    build_parser.add_argument("--all", action="store_true", help="Index all sources")
+    build_parser.add_argument("--psmv", action="store_true", help="Index PSMV")
+    build_parser.add_argument("--conversations", action="store_true", help="Index conversations")
+    build_parser.add_argument("--code", action="store_true", help="Index code")
+    build_parser.add_argument("--force", action="store_true", help="Force full rebuild")
+    build_parser.add_argument("--db", default=None, help="Database path")
+    
+    # Search command
+    search_parser = subparsers.add_parser("search", help="Search the index")
+    search_parser.add_argument("query", help="Search query")
+    search_parser.add_argument("--source", choices=["psmv", "conversation", "code", "all"],
+                               default="all", help="Source filter")
+    search_parser.add_argument("--min-relevance", type=float, default=0.0,
+                               help="Minimum relevance score")
+    search_parser.add_argument("--limit", type=int, default=10,
+                               help="Number of results")
+    search_parser.add_argument("--json", action="store_true",
+                               help="Output as JSON")
+    search_parser.add_argument("--db", default=None, help="Database path")
+    
+    # Status command
+    status_parser = subparsers.add_parser("status", help="Show index status")
+    status_parser.add_argument("--db", default=None, help="Database path")
+    status_parser.add_argument("--json", action="store_true",
+                               help="Output as JSON")
+    
+    args = parser.parse_args()
+    
+    if args.command is None:
+        parser.print_help()
+        sys.exit(1)
+    
+    # Initialize index
+    index = UnifiedIndex(args.db)
+    
+    if args.command == "build":
+        # Determine what to build
+        build_all = args.all or not (args.psmv or args.conversations or args.code)
+        
+        results = {}
+        
+        if build_all or args.psmv:
+            print("Building PSMV index...")
+            psmv_path = Path.home() / "Persistent-Semantic-Memory-Vault"
+            if psmv_path.exists():
+                indexer = PSMVIndexer(index, str(psmv_path))
+                results["psmv"] = indexer.index(force=args.force)
+                print(f"  Indexed {results['psmv']} PSMV documents")
+            else:
+                print(f"  PSMV not found at {psmv_path}")
+                results["psmv"] = 0
+        
+        if build_all or args.conversations:
+            print("Building conversation index...")
+            sessions_path = Path.home() / "clawd" / "sessions"
+            if sessions_path.exists():
+                indexer = ConversationIndexer(index, str(sessions_path))
+                results["conversations"] = indexer.index(force=args.force)
+                print(f"  Indexed {results['conversations']} conversations")
+            else:
+                print(f"  Sessions not found at {sessions_path}")
+                results["conversations"] = 0
+        
+        if build_all or args.code:
+            print("Building code index...")
+            code_paths = [
+                Path.home() / "clawd" / "skills",
+                Path.home() / "DHARMIC_GODEL_CLAW" / "src",
+            ]
+            indexer = CodeIndexer(index, [str(p) for p in code_paths if p.exists()])
+            results["code"] = indexer.index(force=args.force)
+            print(f"  Indexed {results['code']} code files")
+        
+        print(f"\nBuild complete: {sum(results.values())} total documents indexed")
+    
+    elif args.command == "search":
+        query = SearchQuery(
+            query=args.query,
+            sources=[args.source] if args.source != "all" else ["all"],
+            min_relevance=args.min_relevance,
+            limit=args.limit
+        )
+        
+        results = index.search(query)
+        
+        if args.json:
+            print(json.dumps([r.to_dict() for r in results], indent=2))
+        else:
+            print(f"Found {len(results)} results:\n")
+            for i, r in enumerate(results, 1):
+                print(f"{i}. [{r.score:.2f}] {r.title}")
+                print(f"   Source: {r.source} | {r.path}")
+                preview = r.content[:200].replace('\n', ' ')
+                print(f"   {preview}...\n")
+    
+    elif args.command == "status":
+        status = index.get_status()
+        
+        if args.json:
+            print(json.dumps(status, indent=2, default=str))
+        else:
+            print("Unified Memory Indexer Status")
+            print("=" * 40)
+            print(f"Database: {status['db_path']}")
+            print(f"Size: {status['db_size_mb']:.1f} MB")
+            print(f"\nTotal documents: {status['total_documents']}")
+            print(f"Total chunks: {status['total_chunks']}")
+            print("\nBy source:")
+            for source, count in status['by_source'].items():
+                print(f"  {source}: {count}")
+            
+            if status['sources']:
+                print("\nSource details:")
+                for src in status['sources']:
+                    print(f"  {src['name']}: {src['document_count']} docs, "
+                          f"last sync: {src['last_sync'] or 'never'}")
+    
+    index.close()
+
+
+if __name__ == "__main__":
+    main()
