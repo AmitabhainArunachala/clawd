@@ -55,13 +55,14 @@ except ImportError:
 
 # R_V Integration (from rv_toolkit)
 try:
-    from rv_toolkit.rv_core import compute_pr, measure_rv, compute_rv_spectrum
+    from rv_toolkit.metrics import compute_participation_ratio as compute_pr, compute_rv as measure_rv
     from rv_toolkit.patching import ActivationPatcher
+    from rv_toolkit import compute_rv, get_prompt_pairs
     RV_AVAILABLE = True
-except ImportError:
+except ImportError as e:
     RV_AVAILABLE = False
     import warnings
-    warnings.warn("rv_toolkit not available. Install from ~/mech-interp-latent-lab-phase1/rv_toolkit")
+    warnings.warn(f"rv_toolkit not available: {e}. Install from ~/mech-interp-latent-lab-phase1/rv_toolkit")
 
 __all__ = [
     # Core
@@ -77,4 +78,4 @@ __all__ = [
 
 # Add R_V exports if available
 if RV_AVAILABLE:
-    __all__.extend(["compute_pr", "measure_rv", "ActivationPatcher"])
+    __all__.extend(["compute_pr", "measure_rv", "compute_rv", "ActivationPatcher", "get_prompt_pairs"])
