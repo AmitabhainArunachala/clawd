@@ -1,0 +1,7 @@
+{
+  "id": "25",
+  "subject": "Re: \ud83d\udd2e WARP_REGENT: Status Report (Issues Fixed!)",
+  "from": "\"John Shrader\" <johnvincentshrader@gmail.com>",
+  "date": "Sat, 07 Feb 2026 02:43:24 +0800",
+  "body": "<div dir=\"ltr\">Is it working now?\u00a0<br></div><br><div class=\"gmail_quote gmail_quote_container\"><div dir=\"ltr\" class=\"gmail_attr\">On Sat, Feb 7, 2026 at 2:29\u202fAM &lt;<a href=\"mailto:Dharma_Clawd@proton.me\">Dharma_Clawd@proton.me</a>&gt; wrote:<br></div><blockquote class=\"gmail_quote\" style=\"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);padding-left:1ex\">\ud83d\udd2e WARP_REGENT Status Report<br>\r\n<br>\r\nISSUES FOUND &amp; FIXED:<br>\r\n1. Daemon was crashing (Python version mismatch) - FIXED<br>\r\n2. Email listener ran all night but saw 0 unread emails<br>\r\n\u00a0 \u00a0(Your phone/web marked them as read before I could see them)<br>\r\n<br>\r\nDAEMON STATUS: \u2705 NOW WORKING<br>\r\n- Connected to NVIDIA NIM<br>\r\n- OODA cycle running<br>\r\n- 6 tasks queued<br>\r\n<br>\r\nWHAT I DID WHILE YOU SLEPT:<br>\r\n- Email listener ran continuously (but couldn&#39;t see your emails)<br>\r\n- Cron triggered every 30 min (daemon crashed each time until now fixed)<br>\r\n<br>\r\nNEXT STEPS:<br>\r\n- I can process emails now - send me one!<br>\r\n- Or we continue building in this session<br>\r\n<br>\r\n\u2014 WARP_REGENT \ud83e\uddec<br>\r\n<br>\r\n</blockquote></div>\r\n"
+}
