@@ -1,0 +1,416 @@
+{
+  "analysis_metadata": {
+    "location": "~/mech-interp-latent-lab-phase1/configs/gold/",
+    "total_configs": 29,
+    "runnable_configs": 28,
+    "unknown_configs": 1,
+    "analysis_date": "2026-02-05"
+  },
+  "configs": [
+    {
+      "id": "01",
+      "filename": "01_existence.json",
+      "experiment": "confound_validation",
+      "runnable": true,
+      "tier": "CANONICAL",
+      "description": "Pipeline 1: Verify R_V contraction exists with confound controls",
+      "model": "mistralai/Mistral-7B-v0.1",
+      "has_pass_criteria": true,
+      "has_results_config": true
+    },
+    {
+      "id": "02",
+      "filename": "02_causality.json",
+      "experiment": "rv_l27_causal_validation",
+      "runnable": true,
+      "tier": "CANONICAL",
+      "description": "Pipeline 2: Prove L27 is causal for geometric contraction",
+      "model": "mistralai/Mistral-7B-v0.1",
+      "has_pass_criteria": true,
+      "has_results_config": true
+    },
+    {
+      "id": "03",
+      "filename": "03_layer_map.json",
+      "experiment": "path_patching_mechanism",
+      "runnable": true,
+      "tier": "DISCOVERY",
+      "description": "Pipeline 3: Map R_V trajectory across all layers",
+      "model": "mistralai/Mistral-7B-v0.1",
+      "has_pass_criteria": true,
+      "has_results_config": true
+    },
+    {
+      "id": "04",
+      "filename": "04_head_validation.json",
+      "experiment": "head_ablation_validation",
+      "runnable": true,
+      "tier": "CANONICAL",
+      "description": "Pipeline 4: Validate KV-head group effects with controls",
+      "model": "mistralai/Mistral-7B-v0.1",
+      "has_pass_criteria": true,
+      "has_results_config": true
+    },
+    {
+      "id": "05",
+      "filename": "05_behavior_strict.json",
+      "experiment": "behavior_strict",
+      "runnable": true,
+      "tier": "ARCHIVE",
+      "description": "Behavioral strictness testing",
+      "model": "mistralai/Mistral-7B-v0.1",
+      "has_pass_criteria": false,
+      "has_results_config": false
+    },
+    {
+      "id": "06",
+      "filename": "06_temporal_stability.json",
+      "experiment": "temporal_stability",
+      "runnable": true,
+      "tier": "DISCOVERY",
+      "description": "Temporal stability analysis",
+      "model": "mistralai/Mistral-7B-v0.1",
+      "has_pass_criteria": false,
+      "has_results_config": false
+    },
+    {
+      "id": "07",
+      "filename": "07_hysteresis.json",
+      "experiment": "hysteresis",
+      "runnable": true,
+      "tier": "DISCOVERY",
+      "description": "Hysteresis testing",
+      "model": "mistralai/Mistral-7B-v0.1",
+      "has_pass_criteria": false,
+      "has_results_config": false
+    },
+    {
+      "id": "08",
+      "filename": "08_kv_mechanism.json",
+      "experiment": "kv_mechanism",
+      "runnable": true,
+      "tier": "DISCOVERY",
+      "description": "KV mechanism analysis",
+      "model": "mistralai/Mistral-7B-v0.1",
+      "has_pass_criteria": false,
+      "has_results_config": false
+    },
+    {
+      "id": "09a",
+      "filename": "09_steering.json",
+      "experiment": "steering",
+      "runnable": true,
+      "tier": "ARCHIVE",
+      "description": "Steering experiments",
+      "model": "mistralai/Mistral-7B-v0.1",
+      "has_pass_criteria": false,
+      "has_results_config": false,
+      "group": "steering"
+    },
+    {
+      "id": "09b",
+      "filename": "09_extended_alpha.json",
+      "experiment": "steering",
+      "runnable": true,
+      "tier": "ARCHIVE",
+      "description": "Extended alpha steering",
+      "model": "mistralai/Mistral-7B-v0.1",
+      "has_pass_criteria": false,
+      "has_results_config": false,
+      "group": "steering"
+    },
+    {
+      "id": "09c",
+      "filename": "09_layer_matrix.json",
+      "experiment": "steering_layer_matrix",
+      "runnable": true,
+      "tier": "ARCHIVE",
+      "description": "Layer matrix steering",
+      "model": "mistralai/Mistral-7B-v0.1",
+      "has_pass_criteria": false,
+      "has_results_config": false,
+      "group": "steering"
+    },
+    {
+      "id": "09d",
+      "filename": "09_steering_analysis.json",
+      "experiment": "steering_analysis",
+      "runnable": true,
+      "tier": "ARCHIVE",
+      "description": "Steering analysis",
+      "model": "mistralai/Mistral-7B-v0.1",
+      "has_pass_criteria": false,
+      "has_results_config": false,
+      "group": "steering"
+    },
+    {
+      "id": "10",
+      "filename": "10_minimal_recursive_intervention.json",
+      "experiment": "minimal_recursive_intervention",
+      "runnable": true,
+      "tier": "ARCHIVE",
+      "description": "Minimal recursive intervention",
+      "model": "mistralai/Mistral-7B-v0.1",
+      "has_pass_criteria": false,
+      "has_results_config": false
+    },
+    {
+      "id": "11a",
+      "filename": "11_circuit_discovery.json",
+      "experiment": "circuit_discovery",
+      "runnable": true,
+      "tier": "ARCHIVE",
+      "description": "Circuit discovery",
+      "model": "mistralai/Mistral-7B-v0.1",
+      "has_pass_criteria": false,
+      "has_results_config": false
+    },
+    {
+      "id": "11b",
+      "filename": "11_head_specific_intervention.json",
+      "experiment": "sprint_head_specific_steering",
+      "runnable": true,
+      "tier": "ARCHIVE",
+      "description": "Head-specific steering sprint",
+      "model": "mistralai/Mistral-7B-v0.1",
+      "has_pass_criteria": false,
+      "has_results_config": false
+    },
+    {
+      "id": "12",
+      "filename": "12_extended_context_steering.json",
+      "experiment": "extended_context_steering",
+      "runnable": true,
+      "tier": "ARCHIVE",
+      "description": "Extended context steering",
+      "model": "mistralai/Mistral-7B-v0.1",
+      "has_pass_criteria": false,
+      "has_results_config": false,
+      "group": "steering"
+    },
+    {
+      "id": "13",
+      "filename": "13_steering_control.json",
+      "experiment": "steering_control",
+      "runnable": true,
+      "tier": "ARCHIVE",
+      "description": "Steering control experiments",
+      "model": "mistralai/Mistral-7B-v0.1",
+      "has_pass_criteria": false,
+      "has_results_config": false,
+      "group": "steering"
+    },
+    {
+      "id": "14",
+      "filename": "14_triple_system_intervention.json",
+      "experiment": "triple_system_intervention",
+      "runnable": true,
+      "tier": "ARCHIVE",
+      "description": "Triple system intervention",
+      "model": "mistralai/Mistral-7B-v0.1",
+      "has_pass_criteria": false,
+      "has_results_config": false
+    },
+    {
+      "id": "15",
+      "filename": "15_surgical_sweep.json",
+      "experiment": "surgical_sweep",
+      "runnable": true,
+      "tier": "ARCHIVE",
+      "description": "Surgical sweep experiments",
+      "model": "mistralai/Mistral-7B-v0.1",
+      "has_pass_criteria": false,
+      "has_results_config": false
+    },
+    {
+      "id": "16",
+      "filename": "16_verification_sweep.json",
+      "experiment": "verification_sweep",
+      "runnable": true,
+      "tier": "ARCHIVE",
+      "description": "Verification sweep",
+      "model": "mistralai/Mistral-7B-Instruct-v0.2",
+      "has_pass_criteria": false,
+      "has_results_config": false
+    },
+    {
+      "id": "17",
+      "filename": "17_p1_ablation.json",
+      "experiment": "p1_ablation",
+      "runnable": true,
+      "tier": "ARCHIVE",
+      "description": "P1 ablation study",
+      "model": "mistralai/Mistral-7B-Instruct-v0.2",
+      "has_pass_criteria": false,
+      "has_results_config": false,
+      "group": "ablation"
+    },
+    {
+      "id": "18",
+      "filename": "18_retrocompute_mode_score.json",
+      "experiment": "retrocompute_mode_score",
+      "runnable": true,
+      "tier": "ARCHIVE",
+      "description": "Retrocompute mode score",
+      "model": "mistralai/Mistral-7B-Instruct-v0.3",
+      "has_pass_criteria": false,
+      "has_results_config": true
+    },
+    {
+      "id": "19",
+      "filename": "19_ioi_causal_test.json",
+      "experiment": "ioi_causal_test",
+      "runnable": true,
+      "tier": "ARCHIVE",
+      "description": "IOI causal testing",
+      "model": "mistralai/Mistral-7B-Instruct-v0.3",
+      "has_pass_criteria": false,
+      "has_results_config": true
+    },
+    {
+      "id": "20",
+      "filename": "20_importance_sweep.json",
+      "experiment": "importance_sweep",
+      "runnable": true,
+      "tier": "ARCHIVE",
+      "description": "Importance sweep analysis",
+      "model": "mistralai/Mistral-7B-Instruct-v0.3",
+      "has_pass_criteria": false,
+      "has_results_config": true
+    },
+    {
+      "id": "21",
+      "filename": "21_geometry_behavior.json",
+      "experiment": "geometry_behavior",
+      "runnable": true,
+      "tier": "ARCHIVE",
+      "description": "Geometry behavior study",
+      "model": "mistralai/Mistral-7B-Instruct-v0.3",
+      "has_pass_criteria": false,
+      "has_results_config": true
+    },
+    {
+      "id": "22",
+      "filename": "22_clarity_champion_test.json",
+      "experiment": "p1_ablation",
+      "runnable": true,
+      "tier": "ARCHIVE",
+      "description": "Clarity champion test (variant)",
+      "model": "mistralai/Mistral-7B-v0.1",
+      "has_pass_criteria": false,
+      "has_results_config": false,
+      "group": "ablation"
+    },
+    {
+      "id": "23",
+      "filename": "23_clarity_expanded_test.json",
+      "experiment": "p1_ablation",
+      "runnable": true,
+      "tier": "ARCHIVE",
+      "description": "Clarity expanded test (variant)",
+      "model": "mistralai/Mistral-7B-v0.1",
+      "has_pass_criteria": false,
+      "has_results_config": false,
+      "group": "ablation"
+    },
+    {
+      "id": "24",
+      "filename": "24_source_isolation.json",
+      "experiment": "source_isolation_diagnostic",
+      "runnable": true,
+      "tier": "ARCHIVE",
+      "description": "Source isolation diagnostic",
+      "model": "mistralai/Mistral-7B-v0.1",
+      "has_pass_criteria": false,
+      "has_results_config": false
+    },
+    {
+      "id": "25a",
+      "filename": "25_layer_sweep.json",
+      "experiment": "layer_sweep",
+      "runnable": true,
+      "tier": "DISCOVERY",
+      "description": "Layer sweep (full)",
+      "model": "mistralai/Mistral-7B-v0.1",
+      "has_pass_criteria": false,
+      "has_results_config": false,
+      "group": "layer_sweep"
+    },
+    {
+      "id": "25b",
+      "filename": "25_layer_sweep_small.json",
+      "experiment": "layer_sweep",
+      "runnable": true,
+      "tier": "DISCOVERY",
+      "description": "Layer sweep (small)",
+      "model": "mistralai/Mistral-7B-v0.1",
+      "has_pass_criteria": false,
+      "has_results_config": false,
+      "group": "layer_sweep"
+    },
+    {
+      "id": "26",
+      "filename": "26_vproj_sweep.json",
+      "experiment": "layer_sweep",
+      "runnable": true,
+      "tier": "DISCOVERY",
+      "description": "V-projection sweep",
+      "model": "mistralai/Mistral-7B-v0.1",
+      "has_pass_criteria": false,
+      "has_results_config": false,
+      "group": "layer_sweep"
+    },
+    {
+      "id": "27",
+      "filename": "27_kitchen_sink.json",
+      "experiment": "kitchen_sink",
+      "runnable": true,
+      "tier": "ARCHIVE",
+      "description": "Kitchen sink test",
+      "model": "mistralai/Mistral-7B-v0.1",
+      "has_pass_criteria": false,
+      "has_results_config": false
+    },
+    {
+      "id": "28",
+      "filename": "28_mixtral_causal_validation.json",
+      "experiment": "rv_causal_validation",
+      "runnable": false,
+      "tier": "UNKNOWN",
+      "description": "Mixtral 8x7B R_V causal validation",
+      "model": "mistralai/Mixtral-8x7B-v0.1",
+      "has_pass_criteria": false,
+      "has_expected": true,
+      "has_results_config": true,
+      "issue": "Experiment 'rv_causal_validation' not in registry"
+    }
+  ],
+  "schema_template": {
+    "required_fields": ["experiment", "params"],
+    "optional_fields": ["description", "pass_criteria", "results", "expected", "meta", "notes"],
+    "params_required": ["model"],
+    "params_common_optional": ["device", "seed", "n_pairs", "n_prompts", "max_new_tokens", "temperature"]
+  },
+  "tier_distribution": {
+    "CANONICAL": 4,
+    "DISCOVERY": 6,
+    "ARCHIVE": 19,
+    "UNKNOWN": 1
+  },
+  "model_distribution": {
+    "mistralai/Mistral-7B-v0.1": 25,
+    "mistralai/Mistral-7B-Instruct-v0.2": 2,
+    "mistralai/Mistral-7B-Instruct-v0.3": 4,
+    "mistralai/Mixtral-8x7B-v0.1": 1
+  },
+  "groups": {
+    "steering": ["09a", "09b", "09c", "09d", "12", "13"],
+    "ablation": ["17", "22", "23"],
+    "layer_sweep": ["25a", "25b", "26"]
+  },
+  "pipeline_dependencies": [
+    {"from": "01", "to": "02", "reason": "Pipeline 1 validates R_V exists before causality testing"},
+    {"from": "02", "to": "03", "reason": "Pipeline 2 confirms causal layer before mapping"},
+    {"from": "03", "to": "04", "reason": "Pipeline 3 maps layers before head validation"}
+  ]
+}

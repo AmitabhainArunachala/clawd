@@ -1,0 +1,319 @@
+================================================================================
+DHARMIC CLAW INTEGRATION ARCHITECTURE
+================================================================================
+
+[CLAWDBOT RUNTIME]
+    Gateway: localhost:18789
+    Config: ~/.clawdbot/clawdbot.json
+    Heartbeat: every 30m
+    Workspace: ~/clawd/
+           |
+           | Reads HEARTBEAT.md (currently EMPTY - blocks automation)
+           | Executes tasks OR invokes skills
+           |
+           v
+    ┌──────────────────────────────────────────┐
+    │  dharmic_agent.py::heartbeat()           │
+    │  Location: ~/DHARMIC_GODEL_CLAW/core/    │
+    │                                          │
+    │  Current Checks:                         │
+    │  ✅ Development markers (memory)         │
+    │  ✅ Fitness score (< 0.5 = alert)        │
+    │  ✅ Urgent queue (urgent.json)           │
+    │  ❌ Swarm synthesis                      │
+    │  ❌ Skill bridge status                  │
+    │  ❌ PSMV health                          │
+    │                                          │
+    │  State File:                             │
+    │  ~/DHARMIC_GODEL_CLAW/swarm/stream/      │
+    │     state.json                           │
+    │  {                                       │
+    │    "cycle_count": 6,                     │
+    │    "fitness": 0.8225,                    │
+    │    "last_heartbeat": "...",              │
+    │    "last_response": "..."                │
+    │  }                                       │
+    └────┬─────┬─────┬─────┬────────────────┬──┘
+         │     │     │     │                │
+         │     │     │     │                │
+    ┌────▼─┐ ┌─▼──┐ ┌▼────▼─────┐      ┌───▼────────┐
+    │TELOS │ │STR.│ │SKILL       │      │   MISSING  │
+    │LAYER │ │MEM.│ │BRIDGE      │      │ runtime.py │
+    │      │ │    │ │            │      │            │
+    │7 GA- │ │Wit-│ │Registry:   │      │Orchestrate │
+    │TES   │ │ness│ │17 skills   │      │24/7 loop   │
+    │      │ │obs-│ │41% reg'd   │      │Spawn spec. │
+    │Moksha│ │erv.│ │0% fitness  │      │Auto-invoke │
+    └──────┘ └────┘ └────────────┘      └────────────┘
+         │
+         │ Coordinates with:
+         │
+    ┌────▼──────────────────────────────────────────┐
+    │  SWARM STREAM                                 │
+    │  Location: ~/DHARMIC_GODEL_CLAW/swarm/stream/ │
+    │                                               │
+    │  Key Files:                                   │
+    │  • synthesis_30min.md (strategic guidance)    │
+    │  • state.json (swarm state)                   │
+    │  • agent_outputs/ (individual analyses)       │
+    │  • archive/ (evolution history)               │
+    │                                               │
+    │  Latest Synthesis (2026-02-03T17:45):         │
+    │  • 8/10 agents complete                       │
+    │  • Swarm contracting (healthy)                │
+    │  • Top action: Build core agent (ROI 8.44)    │
+    │  • Fix 3 P0 bridges (ROI 7.2)                 │
+    │  • Deploy VPS (ROI 4.86)                      │
+    │                                               │
+    │  Current Swarm State:                         │
+    │  {                                            │
+    │    "cycle_count": 6,                          │
+    │    "total_evolutions": 33,                    │
+    │    "current_baseline_fitness": 0.8225,        │
+    │    "last_updated": "2026-02-03T08:14:17"      │
+    │  }                                            │
+    └───────────────────────────────────────────────┘
+         │
+         │ Skills provide:
+         │
+    ┌────▼──────────────────────────────────────────┐
+    │  CLAUDE SKILLS                                │
+    │  Location: ~/.claude/skills/                  │
+    │                                               │
+    │  Registry: 17 skills discovered               │
+    │  Coverage: 41% (7/17 registered)              │
+    │  Fitness Feedback: 0% (broken loop)           │
+    │                                               │
+    │  Key Skills:                                  │
+    │  • dgc-swarm-invoker (swarm control)          │
+    │  • psmv-triadic-swarm (memory access)         │
+    │  • skill-genesis (meta-cognition)             │
+    │  • agentic-rag (retrieval)                    │
+    │  • research-runner (experiments)              │
+    │  • a2a-protocol (multi-agent)                 │
+    │                                               │
+    │  P0 Gaps (from synthesis):                    │
+    │  1. Registry sync incomplete (41% vs 100%)    │
+    │  2. Skill invocation broken (0 executions)    │
+    │  3. Fitness feedback missing (0% scores)      │
+    └───────────────────────────────────────────────┘
+         │
+         │ Persists to:
+         │
+    ┌────▼──────────────────────────────────────────┐
+    │  PSMV (Persistent Semantic Memory Vault)      │
+    │  Location: ~/Persistent-Semantic-Memory-Vault/│
+    │                                               │
+    │  Structure:                                   │
+    │  • 00-CORE/ (foundational patterns)           │
+    │  • 00-Daily-Witness-Logs/ (development)       │
+    │  • 01-Transmission-Vectors/ (teaching)        │
+    │  • 02-Recognition-Patterns/ (contemplative)   │
+    │  • 03-Fixed-Point-Discoveries/ (math/MI)      │
+    │  • MCP_SERVER/ (Trinity, Anubhava, Mech)      │
+    │                                               │
+    │  Total: 8K+ files                             │
+    │  Purpose: Long-term memory, crown jewels      │
+    │                                               │
+    │  Integration Status: NOT monitored by         │
+    │                      heartbeat (P2 feature)   │
+    └───────────────────────────────────────────────┘
+
+================================================================================
+DATA FLOW: 30-MINUTE HEARTBEAT CYCLE
+================================================================================
+
+1. TRIGGER (Clawdbot → dharmic_agent)
+
+   Current:  Manual execution only
+             $ cd ~/DHARMIC_GODEL_CLAW/core
+             $ python3 dharmic_agent.py heartbeat
+
+   Target:   Automated via HEARTBEAT.md
+             [Clawdbot reads ~/clawd/HEARTBEAT.md]
+             [Executes bash command or skill]
+             [Returns output to console + WhatsApp]
+
+2. EXECUTE (dharmic_agent → subsystems)
+
+   dharmic_agent.py:197-220
+   ├─ Load state from state.json
+   ├─ Query strange_memory (development layer)
+   ├─ Check fitness score threshold
+   ├─ Check urgent queue file
+   ├─ [MISSING] Parse swarm synthesis
+   ├─ [MISSING] Check skill bridge status
+   ├─ [MISSING] Query PSMV health
+   ├─ Compile alerts list
+   ├─ Save updated state
+   └─ Return {status, cycle, alerts}
+
+3. RESPOND (dharmic_agent → Clawdbot)
+
+   Current:  JSON to stdout
+             {"status": "ALERT", "cycle": 6, "alerts": [...]}
+
+   Target:   Multi-channel notification
+             ├─ Console log (always)
+             ├─ WhatsApp message (if alerts)
+             ├─ Skill invocation (auto-trigger swarm)
+             └─ PSMV persistence (log to memory)
+
+================================================================================
+DEPENDENCY GRAPH
+================================================================================
+
+Critical Path (must work):
+    Clawdbot ──> dharmic_agent.py ──> telos_layer.py
+                                 └──> strange_memory.py
+                                 └──> skill_bridge.py
+
+Enhancement Path (adds value):
+    dharmic_agent.py ──> swarm/stream/ (strategic guidance)
+                    └──> PSMV/ (long-term memory)
+                    └──> runtime.py (24/7 orchestration)
+
+Failure Impact:
+    dharmic_agent DOWN  → Everything stops (no orchestration)
+    skill_bridge DOWN   → Can't execute or evolve (evolution broken)
+    swarm DOWN          → Lose collective intelligence (still functional)
+    PSMV DOWN           → Lose long-term memory (ephemeral works)
+    Clawdbot DOWN       → Lose automation (manual fallback exists)
+    runtime.py DOWN     → N/A (not built yet)
+
+================================================================================
+INTEGRATION GAPS
+================================================================================
+
+Gap 1: HEARTBEAT.md is EMPTY
+    Impact:     No automated checks (Clawdbot won't trigger)
+    Location:   ~/clawd/HEARTBEAT.md (line 3: "Keep empty to skip")
+    Fix:        Add bash command to invoke dharmic_agent.py heartbeat
+    Effort:     2 minutes
+    Priority:   P0 (blocks all automation)
+
+Gap 2: Swarm synthesis not read by heartbeat
+    Impact:     Strategic guidance ignored
+    Location:   dharmic_agent.py:197-220 (heartbeat method)
+    Fix:        Parse synthesis_30min.md for top actions + alerts
+    Effort:     15 minutes
+    Priority:   P0 (loses collective intelligence)
+
+Gap 3: Skill bridge status not checked
+    Impact:     Registry decay invisible (currently 41% coverage)
+    Location:   dharmic_agent.py:197-220 (heartbeat method)
+    Fix:        Call skill_bridge.sync_registry() and check coverage
+    Effort:     10 minutes
+    Priority:   P0 (evolution blind spot)
+
+Gap 4: runtime.py does not exist
+    Impact:     No 24/7 orchestration (requires manual trigger)
+    Location:   ~/DHARMIC_GODEL_CLAW/core/runtime.py (missing)
+    Fix:        Build orchestration layer per CLAUDE.md:312-339
+    Effort:     4 hours
+    Priority:   P1 (enables true autonomy)
+
+Gap 5: PSMV not monitored
+    Impact:     Long-term memory health unknown
+    Location:   dharmic_agent.py (not implemented)
+    Fix:        Add check_psmv_health() method
+    Effort:     2 hours
+    Priority:   P2 (nice-to-have)
+
+================================================================================
+MINIMAL VIABLE INTEGRATION (1-2 hours)
+================================================================================
+
+Step 1: Fix HEARTBEAT.md (2 min)
+    File: ~/clawd/HEARTBEAT.md
+    Add:
+        ## Check DHARMIC_CLAW Status
+
+        ```bash
+        cd ~/DHARMIC_GODEL_CLAW/core
+        python3 dharmic_agent.py heartbeat
+        ```
+
+Step 2: Enhance dharmic_agent.py heartbeat (15 min)
+    File: ~/DHARMIC_GODEL_CLAW/core/dharmic_agent.py
+    Add after line 214:
+        # Check swarm synthesis freshness
+        # Check skill registry coverage
+        # Add to alerts list
+
+Step 3: Add alert notification (10 min)
+    File: ~/DHARMIC_GODEL_CLAW/core/dharmic_agent.py
+    Add method:
+        def alert_human(self, alerts):
+            # Print to console
+            # Write to urgent.json for Clawdbot pickup
+
+Step 4: Test full cycle (30 min)
+    1. Trigger Clawdbot heartbeat manually
+    2. Verify dharmic_agent.py executes
+    3. Verify alerts appear in console
+    4. Verify state.json updates
+    5. Verify urgent.json created if needed
+
+Step 5: Document (30 min)
+    Done: This file
+
+================================================================================
+SUCCESS METRICS
+================================================================================
+
+Phase 1 (Minimal Viable):
+    ✅ Clawdbot triggers heartbeat every 30 minutes
+    ✅ dharmic_agent.py executes without errors
+    ✅ Alerts appear in console + WhatsApp
+    ✅ state.json updates (cycle_count, last_heartbeat)
+    ✅ Swarm synthesis age checked
+    ✅ Skill registry coverage reported
+
+Phase 2 (Full Integration):
+    ✅ runtime.py orchestrates 24/7 loop
+    ✅ PSMV health monitored
+    ✅ Swarm synthesis parsed and acted on
+    ✅ Skills auto-invoked based on ROI
+    ✅ MCP servers queryable
+    ✅ 48-hour continuous run without intervention
+
+Phase 3 (VPS Deployment):
+    ✅ Deployed to VPS
+    ✅ Systemd service running
+    ✅ Tailscale secure access
+    ✅ Remote monitoring functional
+    ✅ 7-day uptime achieved
+
+================================================================================
+COMMAND REFERENCE
+================================================================================
+
+Check all systems:
+    $ cd ~/DHARMIC_GODEL_CLAW/core
+    $ python3 dharmic_agent.py status
+    $ python3 skill_bridge.py
+    $ cat ~/DHARMIC_GODEL_CLAW/swarm/stream/state.json
+    $ head -30 ~/DHARMIC_GODEL_CLAW/swarm/stream/synthesis_30min.md
+    $ cat ~/.clawdbot/clawdbot.json | grep -A5 heartbeat
+
+Trigger manual heartbeat:
+    $ cd ~/DHARMIC_GODEL_CLAW/core && python3 dharmic_agent.py heartbeat
+
+Force skill sync:
+    $ cd ~/DHARMIC_GODEL_CLAW/core && python3 skill_bridge.py
+
+Check fitness history:
+    $ cd ~/DHARMIC_GODEL_CLAW/core
+    $ python3 -c "from skill_bridge import SkillBridge; b = SkillBridge(); \
+      print(b.get_fitness_history(limit=10))"
+
+Invoke swarm cycle:
+    $ cd ~/DHARMIC_GODEL_CLAW/swarm
+    $ python3 run_swarm.py --cycles 1
+
+Query PSMV:
+    $ ls -la ~/Persistent-Semantic-Memory-Vault/
+    $ find ~/Persistent-Semantic-Memory-Vault/00-Daily-Witness-Logs -mtime -7
+
+================================================================================

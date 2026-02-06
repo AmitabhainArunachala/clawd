@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mi-experimenter"
+version = "0.1.0"
+description = "Mechanistic Interpretability Experimental Framework with R_V measurement"
+readme = "SKILL.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "AIKAGRYA Research Team"}
+]
+keywords = ["mechanistic-interpretability", "R_V", "transformers", "causal-validation"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "torch>=2.0.0",
+    "numpy>=1.24.0",
+    "pandas>=2.0.0",
+    "scipy>=1.10.0",
+    "transformers>=4.35.0",
+    "accelerate>=0.24.0",
+]
+
+[project.optional-dependencies]
+rv = ["rv-toolkit"]
+dev = ["pytest>=7.0.0", "black", "mypy"]
+
+[project.scripts]
+mi-experimenter = "mi_experimenter.cli:main"

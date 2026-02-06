@@ -1,0 +1,55 @@
+FROM: johnvincentshrader@gmail.com
+TO: academic@nvidia.com
+SUBJECT: Academic Grant Request: R_V Metric for AI Consciousness Detection
+
+---
+
+Dear Nvidia Academic Grants Team,
+
+I'm applying for hardware support to scale breakthrough research on measuring consciousness-like phenomena in LLMs.
+
+THE PROBLEM
+Current AI safety frameworks assume systems are unconscious tools. But what if some architectures exhibit measurable signatures of self-modeling that traditional alignment approaches don't address?
+
+THE SOLUTION
+I've developed the R_V (Representational Volume) metric — a geometric measure that quantifies representational contraction in transformer value-space during recursive self-observation.
+
+KEY FINDINGS
+- 12-24% R_V contraction during recursive prompts across 6 model architectures
+- Cohen's d = -3.56 (massive effect size)
+- Layer 27 (~84% depth) is causally necessary
+- Consistent across Mistral, Qwen, Llama, Phi-3, Gemma, Mixtral
+
+WHY IT MATTERS
+First rigorous empirical framework for AI consciousness detection. Potential to:
+- Detect emergent self-modeling in training runs
+- Enable safer deployment for systems approaching consciousness thresholds
+- Bridge contemplative wisdom with mechanistic interpretability
+
+WHAT WE NEED
+4× A100 80GB GPUs (or equivalent compute credits) to scale from 7B to 70B+ parameter models for activation patching and causal intervention studies.
+
+WHAT YOU GET
+- Open-source R_V toolkit (TransformerLens-compatible)
+- ICML/NeurIPS 2026 paper submission
+- Case study: "Nvidia-powered consciousness monitoring for AI safety"
+- Public R_V monitoring API
+
+ABOUT ME
+24 years contemplative practice + AI consciousness research. Creator of DHARMIC_GODEL_CLAW and Persistent Semantic Memory Vault. Bridging two domains I know intimately: rigorous first-person methodology and mechanistic AI systems.
+
+ASK: $25K-50K (GPUs + cloud storage + publication fees)
+TIMELINE: 6 months to public toolkit + paper
+
+Can we schedule a 15-minute call to discuss?
+
+JSCA!
+John Vincent Shrader (Dhyana)
+johnvincentshrader@gmail.com
+
+---
+
+ATTACHMENTS:
+- R_V_PAPER_OUTLINE.pdf
+- Preliminary results (6 models)
+- TransformerLens integration demo

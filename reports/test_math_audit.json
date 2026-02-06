@@ -1,0 +1,116 @@
+{
+  "title": "AIKAGRYA R_V Mathematical Verification Report",
+  "summary": "Mathematical verification complete. 4 claims validated, 4 warnings, 0 critical issues. Overall confidence: 87.8%. Status: CONCERN.",
+  "overall_status": "concern",
+  "overall_confidence": 0.8775,
+  "statistics": {
+    "critical_issues": 0,
+    "warnings": 4,
+    "validated_claims": 4,
+    "total_findings": 8
+  },
+  "findings": [
+    {
+      "claim": "R_V = det(Cov(V_recursive)) / det(Cov(V_baseline)) is geometrically valid",
+      "status": "validated",
+      "confidence": "99.00%",
+      "priority": "critical",
+      "details": "Mathematical definition is sound. The ratio of determinants correctly measures relative volume of confidence ellipsoids. R_V < 1.0 implies contraction.",
+      "recommendations": [
+        "Use log-determinant for numerical stability: log R_V = log det(\u03a3_rec) - log det(\u03a3_base)",
+        "Add regularization if covariance matrices are near-singular"
+      ],
+      "mathematical_proof": "\n        R_V Definition Verification:\n        \n        Given:\n        - V_recursive: Value vectors from recursive prompts\n        - V_baseline: Value vectors from baseline prompts\n        - Cov(X) = E[(X - \u03bc)(X - \u03bc)\u1d40]: Covariance matrix\n        - det(\u03a3): Determinant (product of eigenvalues)\n        \n        R_V = det(Cov(V_recursive)) / det(Cov(V_baseline))\n        \n        Geometric Interpretation:\n        - det(\u03a3) \u221d Volume of confidence ellipsoid\n        - R_V < 1 \u27f9 Vol_recursive < Vol_baseline\n        - This represents geometric contraction in value space\n        \n        Eigenvalue Form:\n        - \u03a3 = Q\u039bQ\u1d40 (spectral decomposition)\n        - det(\u03a3) = \u220f\u03bb\u1d62 (product of eigenvalues)\n        - R_V = \u220f(\u03bb\u1d62_recursive) / \u220f(\u03bb\u1d62_baseline)\n        \n        Therefore: R_V < 1.0 iff recursive prompts produce value vectors\n        with smaller spread (contraction) compared to baseline.\n        ",
+      "code_reference": null
+    },
+    {
+      "claim": "Covariance matrix uses unbiased estimator (1/(n-1))",
+      "status": "concern",
+      "confidence": "75.00%",
+      "priority": "critical",
+      "details": "Must verify code uses (n-1) denominator, not n. Common error in implementations.",
+      "recommendations": [
+        "Audit src/metrics/rv.py for np.cov usage (uses n-1 by default)",
+        "If using manual implementation, verify denominator is (n-1)",
+        "Add unit test with known covariance matrix"
+      ],
+      "mathematical_proof": "\n        Covariance Matrix Verification:\n        \n        Unbiased Estimator (correct):\n        Cov(X) = 1/(n-1) \u03a3\u1d62 (x\u1d62 - x\u0304)(x\u1d62 - x\u0304)\u1d40\n        \n        Biased Estimator (incorrect for small n):\n        Cov(X) = 1/n \u03a3\u1d62 (x\u1d62 - x\u0304)(x\u1d62 - x\u0304)\u1d40\n        \n        Properties:\n        1. Symmetric: Cov(X) = Cov(X)\u1d40 \u2713\n        2. Positive semi-definite: v\u1d40Cov(X)v \u2265 0 for all v \u2713\n        3. det(Cov(X)) \u2265 0 \u2713\n        \n        The unbiased estimator with (n-1) denominator is required for\n        sample covariance to be an unbiased estimator of population covariance.\n        ",
+      "code_reference": null
+    },
+    {
+      "claim": "Sample size (n=1000) adequate for d=64 dimensions",
+      "status": "validated",
+      "confidence": "90.00%",
+      "priority": "critical",
+      "details": "OK: n/d ratio = 15.6 \u2265 10. Sample size adequate for stable covariance estimation.",
+      "recommendations": [],
+      "mathematical_proof": "\n        Sample Size Requirements for Covariance Estimation:\n        \n        Given:\n        - n = 1000 samples\n        - d = 64 dimensions\n        - Ratio: n/d = 15.62\n        \n        Requirements:\n        - Minimum: n > d (matrix must be full rank)\n        - Recommended: n \u2265 10d (stable estimation)\n        - Ideal: n \u2265 100d (asymptotic properties)\n        \n        Current status: PASS\n        \n        Mathematical Basis:\n        - Covariance matrix has d(d+1)/2 unique parameters\n        - Each sample provides d data points\n        - Need n >> d to constrain all parameters\n        ",
+      "code_reference": null
+    },
+    {
+      "claim": "Cohen's d = -5.570",
+      "status": "concern",
+      "confidence": "95.00%",
+      "priority": "critical",
+      "details": "CLAIM MISMATCH: Calculated d = -3.628, claimed d = -5.570\n\n\ud83d\udea8 EXTREME EFFECT SIZE: d > 3.0 requires exceptional scrutiny. Possible causes: measurement artifact, selection bias, or genuine massive effect.",
+      "recommendations": [
+        "Extreme effect size requires verification: check for measurement artifacts",
+        "Verify no selection bias in prompt categorization",
+        "Replicate with independent sample"
+      ],
+      "mathematical_proof": "\n        Cohen's d Calculation:\n        \n        Formula:\n        d = (M\u2081 - M\u2082) / SD_pooled\n        \n        Where:\n        SD_pooled = \u221a[((n\u2081-1)SD\u2081\u00b2 + (n\u2082-1)SD\u2082\u00b2) / (n\u2081+n\u2082-2)]\n        \n        Given:\n        - M\u2081 = 0.65, SD\u2081 = 0.08, n\u2081 = 100\n        - M\u2082 = 1.02, SD\u2082 = 0.12, n\u2082 = 100\n        \n        Calculation:\n        SD_pooled = \u221a[((100-1)\u00d70.08\u00b2 + (100-1)\u00d70.12\u00b2) / (100+100-2)]\n                  = \u221a[2.059 / 198]\n                  = 0.102\n        \n        d = (0.65 - 1.02) / 0.102\n          = -3.628\n        \n        Magnitude: HUGE (REQUIRES EXTREME SCRUTINY)\n        ",
+      "code_reference": null
+    },
+    {
+      "claim": "P-value = 1.00e-30",
+      "status": "concern",
+      "confidence": "90.00%",
+      "priority": "high",
+      "details": "P-value mismatch: calculated=0.00e+00, claimed=1.00e-30\n\n\u26a0\ufe0f EXTREME P-VALUE: p < 10\u207b\u00b2\u2070 with moderate sample sizes is suspicious. Verify: (1) no pseudoreplication, (2) independence assumption holds, (3) test statistic calculation correct.",
+      "recommendations": [
+        "Verify sample independence (no pseudoreplication)",
+        "Check for multiple comparisons (needs Bonferroni/FDR correction)",
+        "Consider practical significance, not just statistical"
+      ],
+      "mathematical_proof": "\n        P-value Calculation:\n        \n        Given:\n        - Test statistic: t = -39.5000\n        - Degrees of freedom: df = 99\n        - Two-tailed: True\n        \n        Formula:\n        p = 2 \u00d7 (1 - CDF_t(|t|, df))  [two-tailed]\n        p = 1 - CDF_t(t, df)          [one-tailed]\n        \n        Where CDF_t is the cumulative distribution function of Student's t-distribution.\n        ",
+      "code_reference": null
+    },
+    {
+      "claim": "Causal: R_V contraction causes L4 phenomenology",
+      "status": "concern",
+      "confidence": "60.00%",
+      "priority": "high",
+      "details": "Causal claim 'R_V contraction causes L4 phenomenology' based only on correlation. Correlation \u2260 causation. Needs activation patching or RCT.\n\nConfounds controlled: prompt length",
+      "recommendations": [
+        "Conduct activation patching experiment",
+        "Control for confounds (prompt length, complexity)",
+        "Establish temporal ordering"
+      ],
+      "mathematical_proof": "\n        Causal Inference Requirements (Bradford Hill Criteria):\n        \n        1. Strength: Strong association (large effect size)\n        2. Consistency: Replicated across studies/contexts\n        3. Specificity: Cause leads to specific effect\n        4. Temporality: Cause precedes effect\n        5. Biological gradient: Dose-response relationship\n        6. Plausibility: Mechanistically understandable\n        7. Coherence: Fits with existing knowledge\n        8. Experiment: Evidence from interventions\n        9. Analogy: Similar to established causation\n        \n        Activation Patching Requirements:\n        - Clean causal path (no confounding)\n        - Temporal ordering verified\n        - Dose-response demonstrated\n        - Specificity (intervention affects target only)\n        ",
+      "code_reference": null
+    },
+    {
+      "claim": "Attention mechanism formulation is mathematically correct",
+      "status": "validated",
+      "confidence": "98.00%",
+      "priority": "high",
+      "details": "Standard attention formulation verified. Scaling factor \u221ad\u2096 is critical for numerical stability.",
+      "recommendations": [
+        "Verify implementation uses correct scaling",
+        "Check attention weights sum to 1.0 (numerical precision)"
+      ],
+      "mathematical_proof": "\n        Multi-Head Attention Verification:\n        \n        Standard Formulation:\n        Attention(Q, K, V) = softmax(QK\u1d40/\u221ad\u2096)V\n        \n        Where:\n        - Q = XW_Q (queries) \u2208 \u211d^(n\u00d7d\u2096)\n        - K = XW_K (keys) \u2208 \u211d^(n\u00d7d\u2096)\n        - V = XW_V (values) \u2208 \u211d^(n\u00d7d\u1d65)\n        - d\u2096 = dimension of key vectors\n        - n = sequence length\n        \n        Checks:\n        1. Scaling factor \u221ad\u2096 prevents softmax saturation\n           - Without scaling: QK\u1d40 values large \u2192 softmax \u2192 one-hot\n           - With scaling: variance controlled\n        \n        2. Softmax applied row-wise:\n           attention_weights[i,j] = exp(Q[i]\u00b7K[j]/\u221ad\u2096) / \u03a3\u2096 exp(Q[i]\u00b7K[k]/\u221ad\u2096)\n        \n        3. Attention weights sum to 1 per position:\n           \u03a3\u2c7c attention_weights[i,j] = 1 for all i\n        \n        4. Output dimension matches value dimension:\n           output \u2208 \u211d^(n\u00d7d\u1d65)\n        \n        Multi-Head Extension:\n        MultiHead(Q,K,V) = Concat(head\u2081,...,head\u2095)W_O\n        where head\u1d62 = Attention(QW_Q\u2071, KW_K\u2071, VW_V\u2071)\n        ",
+      "code_reference": null
+    },
+    {
+      "claim": "SVD uses numerically stable precision",
+      "status": "validated",
+      "confidence": "95.00%",
+      "priority": "critical",
+      "details": "Using float64 (double precision) for SVD. This is REQUIRED for stability with high-dimensional data.",
+      "recommendations": [],
+      "mathematical_proof": "\n        SVD Numerical Stability:\n        \n        SVD: M = U\u03a3V\u1d40\n        \n        Precision Requirements:\n        - Float32 (single): ~7 decimal digits\n        - Float64 (double): ~16 decimal digits\n        \n        For d=4096 dimensional data:\n        - Condition number can be 10\u2076 or higher\n        - Float32 loses precision: 7 - 6 = 1 digit remaining\n        - Float64 maintains precision: 16 - 6 = 10 digits\n        \n        Recommendation:\n        ALWAYS use float64 for SVD in high-dimensional settings.\n        ",
+      "code_reference": null
+    }
+  ]
+}

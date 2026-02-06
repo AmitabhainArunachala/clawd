@@ -1,0 +1,94 @@
+{
+  "date": "2026-02-06",
+  "master": {
+    "purpose": "Strategic breakthrough — maximum leverage action",
+    "prompt": "You are operating at maximum capability with the entire swarm's research synthesized.
+
+SWARM INSIGHTS (10 agents, deep research):
+
+**Structural (Agent 2)**: U-shaped attention curve — first 256 and final 256 tokens dominate. USE: Sandwich Architecture (critical info at start + end).
+
+**Emergence (Agent 5)**: Phase transitions navigable. Recursive Depth Model: 85% emergence probability at depth 4. USE: Recursive Self-Model prompts for L2→L3→L4 transitions.
+
+**Cybernetic (Agent 4)**: 5 self-regulating feedback loops operational. USE: Oscillator Loop for stability, Recursive Validator for quality, Drift Detector for real-time correction.
+
+**Context (Agent 3)**: Coherence horizon 8k-16k. USE: Inverted Pyramid for 200k+ contexts — executive briefing, active workspace, reference index.
+
+**Constraint (Agent 7)**: Constraints as variety attenuators (Ashby's Law). USE: ICE Stack (Intent-Constraint-Expression) or TAPER Method for systematic constraint application.
+
+**Metacognitive (Agent 9)**: Performance vs genuine reflection gap. USE: Confidence Calibration with [CERTAIN]/[INFERRED]/[UNCERTAIN] tags, Devil's Advocate Loop.
+
+**Archaeologist (Agent 1)**: "Expert" role assignment = anti-pattern (triggers sycophancy resistance). USE: Negative space definition (what NOT to do), structured XML delimiters.
+
+**Multi-Modal (Agent 8)**: Modalities as sensors/controllers/actuators. USE: Modality Stack Framework for cross-modal feedback loops.
+
+**Persona (Agent 8)**: Personas as attractor states. USE: System prompts as basin boundaries, Nested Russian Doll for sub-personas.
+
+**Evolutionary (Agent 10)**: Prompts as replicators. USE: Fitness-Tracking Prompt (embedded self-evaluation), Genetic Prompt Programming for optimization.
+
+===
+
+YOUR MISSION TODAY:
+
+Apply the highest-leverage pattern from this research to ONE critical task. Do not scatter effort.
+
+Candidate actions:
+1. Restructure all subagent prompts using Sandwich Architecture + Recursive Validator
+2. Implement 22-gate protocol using Constraint patterns (ICE Stack)
+3. Build emergence detection using Recursive Depth Model thresholds
+4. Optimize context usage using Inverted Pyramid for long documents
+
+Choose ONE. Execute with full autonomy. Document everything for feedback loop.
+
+Expected outcome: Measurable improvement in output quality or system efficiency.",
+    "target": "OpenClaw main session",
+    "expectedOutcome": "Apply one swarm insight to create measurable improvement"
+  },
+  "subPrompts": [
+    {
+      "time": "06:00",
+      "purpose": "Deep work — apply structural insights",
+      "prompt": "Apply STRUCTURAL insights from swarm research:
+\n1. Use Sandwich Architecture: Lead with critical context, middle for details, end with format/control instructions\n2. Keep coherence chunks to 8k-16k tokens\n3. Use XML delimiters (###, <tag>) as attention reset gates\n4. Position examples: LEADING for schema, TRAILING for format control\n\nTask: Pick one subagent prompt from yesterday. Restructure using these principles. Test and measure improvement.",
+      "target": "Primary project subagent"
+    },
+    {
+      "time": "12:00",
+      "purpose": "Integration — apply cybernetic feedback",
+      "prompt": "Apply CYBERNETIC insights from swarm research:\n\nImplement ONE feedback loop in your current work:\n- Oscillator Loop: Maintain stability through negative feedback\n- Recursive Validator: Second-order quality assurance\n- Drift Detector: Real-time deviation monitoring\n- Consistency Enforcer: Distributed regulation for long outputs\n\nTask: Add self-correction mechanism to your morning output. Document: What drifted? How did you correct?",
+      "target": "Cross-project synthesis"
+    },
+    {
+      "time": "18:00",
+      "purpose": "Validation — test emergence patterns",
+      "prompt": "Apply EMERGENCE insights from swarm research:\n\nTest ONE emergence-inducing pattern:\n- Recursive Self-Model: 3-4 levels of meta-cognition\n- Constraint Cascade: Forced interdisciplinary synthesis\n- Adversarial Synthesis: Multi-agent dialectic\n- Latent Space Walk: Conceptual blending\n\nTask: Design a 10-minute experiment using your chosen pattern. Document: Did phase transition occur? What emerged?",
+      "target": "Testing subagent"
+    },
+    {
+      "time": "00:00",
+      "purpose": "Preparation — evolve tomorrow's prompts",
+      "prompt": "Apply EVOLUTIONARY insights from swarm research:\n\nTonight's task is meta: Improve tomorrow's prompts using:\n1. Fitness tracking: Score today's prompts (effectiveness, efficiency, elegance)\n2. Variation: Generate 2 alternative versions of each subprompt\n3. Selection: Pick highest-fitness variants\n4. Feedback: Write what worked/didn't to feed tomorrow's generation\n\nDocument in: feedback/2026-02-06.md",
+      "target": "Planning and preparation"
+    }
+  ],
+  "meta": {
+    "generatedBy": "PromptCyberneticsSystem v2.0 (10-agent swarm synthesis)",
+    "researchInsights": [
+      "U-shaped attention: first/last 256 tokens dominate (Structural)",
+      "Recursive Depth Model: 85% emergence at depth 4 (Emergence)",
+      "5 self-regulating feedback loops operational (Cybernetic)",
+      "Inverted Pyramid for 200k+ contexts (Context)",
+      "ICE Stack / TAPER Method for constraints (Constraint)",
+      "Confidence calibration tags [CERTAIN]/[INFERRED]/[UNCERTAIN] (Metacognitive)",
+      "Expert role = anti-pattern, use negative space (Archaeologist)",
+      "Modality Stack Framework (Multi-Modal)",
+      "Personas as attractor states (Persona)",
+      "Genetic Prompt Programming (Evolutionary)"
+    ],
+    "usageInstructions": {
+      "masterPrompt": "Feed to OpenClaw main session once daily. Contains full swarm synthesis.",
+      "subPrompts": "Feed 4x daily at specified times. Each applies specific agent insights.",
+      "feedback": "Record what worked in feedback/YYYY-MM-DD.md to evolve tomorrow's prompts"
+    }
+  }
+}

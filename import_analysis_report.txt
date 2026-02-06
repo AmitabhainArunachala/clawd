@@ -1,0 +1,448 @@
+================================================================================
+IMPORT GRAPH ANALYSIS REPORT
+================================================================================
+
+📊 SUMMARY
+----------------------------------------
+Total Python files: 80
+Internal modules: 49
+External dependencies: 77
+
+📦 EXTERNAL DEPENDENCIES
+----------------------------------------
+  • agentic_ai
+  • argparse
+  • ast
+  • asyncio
+  • collections
+  • concurrent.futures
+  • contextlib
+  • dataclasses
+  • datetime
+  • email
+  • email.header
+  • email.mime.multipart
+  • email.mime.text
+  • enum
+  • fastapi
+  • functools
+  • hashlib
+  • hmac
+  • httpx
+  • imaplib
+  • importlib
+  • inspect
+  • itertools
+  • json
+  • logging
+  • math
+  • mi_experimenter
+  • mi_experimenter.core.model_loader
+  • numpy
+  • openai
+  • os
+  • pandas
+  • pathlib
+  • psutil
+  • pytest
+  • random
+  • re
+  • requests
+  • rich.align
+  • rich.console
+  • rich.json
+  • rich.layout
+  • rich.panel
+  • rich.syntax
+  • rich.table
+  • rich.text
+  • scipy
+  • secrets
+  • setuptools
+  • smtplib
+  • sqlite3
+  • statistics
+  • subprocess
+  • sys
+  • textual.app
+  • textual.binding
+  • textual.color
+  • textual.containers
+  • textual.coordinate
+  • textual.reactive
+  • textual.screen
+  • textual.widgets
+  • textual.worker
+  • threading
+  • time
+  • torch
+  • torch.nn
+  • traceback
+  • transformers
+  • triton
+  • triton.language
+  • typing
+  • unittest
+  • unittest.mock
+  • uuid
+  • warnings
+  • yaml
+
+🔗 INTERNAL IMPORT GRAPH
+----------------------------------------
+
+  dgc_backup_models_test
+    → dgc_backup_models
+
+  dgc_tui_demo
+    → DHARMIC_GODEL_CLAW.src.core.presence_pulse
+    → dgc_tui_v2
+
+  dgc_tui_v2
+    → DHARMIC_GODEL_CLAW.src.core.presence_pulse
+
+  oacp.core
+    → oacp.attestation
+    → oacp.capability
+    → oacp.sandbox
+
+  oacp.core.sandbox
+    → oacp.core.attestation
+    → oacp.core.capability
+
+  oacp.protocol
+    → oacp.a2a_adapter
+    → oacp.mcp_bridge
+
+  oacp.protocol.a2a_adapter
+    → oacp.core.attestation
+    → oacp.core.capability
+    → oacp.core.sandbox
+
+  oacp.protocol.mcp_bridge
+    → oacp.core.attestation
+    → oacp.core.capability
+    → oacp.core.sandbox
+
+  oacp.runtime
+    → oacp.executor
+
+  oacp.runtime.executor
+    → oacp.core.capability
+    → oacp.core.sandbox
+
+  skills.mi-auditor
+    → skills.auditors.causal_validity
+    → skills.auditors.cross_architecture
+    → skills.auditors.literature_positioning
+    → skills.auditors.statistical_rigor
+    → skills.knowledge_base
+    → skills.report_generator
+
+  skills.mi-auditor.auditors
+    → skills.mi-auditor.causal_validity
+    → skills.mi-auditor.cross_architecture
+    → skills.mi-auditor.literature_positioning
+    → skills.mi-auditor.statistical_rigor
+
+  skills.mi-experimenter
+    → rv_toolkit.patching
+    → rv_toolkit.rv_core
+    → skills.core.hook_manager
+    → skills.core.model_loader
+    → skills.experiments.cross_arch_suite
+    → skills.experiments.mlp_ablator
+    → skills.experiments.rv_causal_validator
+
+  skills.mi-experimenter.core
+    → skills.mi-experimenter.hook_manager
+    → skills.mi-experimenter.model_loader
+
+  skills.mi-experimenter.experiments.cross_arch_suite
+    → rv_toolkit
+    → rv_toolkit.rv_hooks
+    → skills.mi-experimenter.core.model_loader
+
+  skills.mi-experimenter.experiments.mlp_ablator
+    → rv_toolkit
+    → rv_toolkit.rv_hooks
+    → skills.mi-experimenter.core.hook_manager
+    → skills.mi-experimenter.core.model_loader
+
+  skills.mi-experimenter.experiments.rv_causal_validator
+    → rv_toolkit
+    → rv_toolkit.metrics
+    → rv_toolkit.model_loader
+    → rv_toolkit.patching
+    → rv_toolkit.prompts
+
+  skills.mi-experimenter.smoke_test
+    → rv_toolkit.rv_core
+
+  skills.mi-experimenter.tests.test_imports
+    → rv_toolkit
+
+  skills.mi-experimenter.tests.test_rv_causal
+    → rv_toolkit.rv_core
+
+  skills.mi_auditor
+    → skills.auditors.causal_validity
+    → skills.auditors.cross_architecture
+    → skills.auditors.literature_positioning
+    → skills.auditors.statistical_rigor
+    → skills.knowledge_base
+    → skills.report_generator
+
+  skills.mi_auditor.auditors
+    → skills.mi_auditor.causal_validity
+    → skills.mi_auditor.cross_architecture
+    → skills.mi_auditor.literature_positioning
+    → skills.mi_auditor.statistical_rigor
+
+  skills.rv_toolkit
+    → skills.rv_core
+    → skills.rv_hooks
+    → skills.rv_triton
+
+  skills.rv_toolkit.rv_hooks
+    → skills.rv_toolkit.rv_core
+
+  test_17_gates_critical
+    → agno_council_v2
+
+  test_consent_concrete
+    → agno_council_v2
+
+  test_security
+    → dharmic_security
+    → unified_gates
+
+  unified_gates
+    → dharmic_security
+
+🔄 CIRCULAR DEPENDENCIES
+----------------------------------------
+  ✅ No circular dependencies detected
+
+⚠️  POTENTIALLY UNUSED IMPORTS
+----------------------------------------
+
+  DHARMIC_GODEL_CLAW/src/core/presence_pulse.py
+    Line 17: timedelta
+
+  agno_council_v2.py
+    Line 53: Union
+    Line 55: ThreadPoolExecutor
+
+  dgc_backup_models.py
+    Line 32: Callable
+    Line 32: Coroutine
+    Line 33: wraps
+
+  dgc_backup_models_test.py
+    Line 13: AsyncMock
+
+  dgc_tui_demo.py
+    Line 24: DashboardScreen
+
+  dgc_tui_v2.py
+    Line []: threading
+    Line 20: asdict
+    Line 21: timedelta
+    Line 23: Callable
+    Line 23: Tuple
+    Line 24: deque
+    Line 29: Grid
+    Line 38: Worker
+    Line 38: get_current_worker
+    Line 39: Color
+    Line 41: Coordinate
+    Line 44: Console
+    Line 49: Layout
+    Line 50: Syntax
+
+  dharmic_security.py
+    Line []: hmac
+    Line 19: timedelta
+    Line 22: Union
+
+  import_graph_analyzer.py
+    Line []: sys
+
+  night_cycle.py
+    Line 43: timedelta
+    Line 44: auto
+    Line 45: Callable
+    Line 45: Set
+
+  oacp/core/attestation.py
+    Line []: hashlib
+    Line 12: asdict
+
+  oacp/core/capability.py
+    Line 10: Union
+
+  oacp/protocol/a2a_adapter.py
+    Line []: json
+    Line 26: Capability
+    Line 26: CapabilitySet
+
+  oacp/protocol/mcp_bridge.py
+    Line []: asyncio
+    Line 23: Callable
+
+  oacp/runtime/executor.py
+    Line 12: TimeoutError
+    Line 14: ExecutionStatus
+
+  scripts/dharmic_heartbeat.py
+    Line []: sys
+
+  scripts/email_interface.py
+    Line []: sys
+    Line 23: datetime
+
+  skills/agentic-ai/CLAWHUB_PACKAGE/examples/02_spawn_specialist.py
+    Line []: json
+
+  skills/agentic-ai/commercial-package/install.py
+    Line []: json
+
+  skills/cosmic-krishna-coder/proactive_risk_detector.py
+    Line []: time
+    Line 15: Set
+    Line 15: Dict
+    Line 15: Any
+    Line 15: Optional
+
+  skills/cosmic-krishna-coder/yolo_gate_weaver.py
+    Line 15: field
+    Line 16: Callable
+    Line []: json
+    Line []: sys
+
+  skills/dharmic-swarm/coordinator.py
+    Line []: hashlib
+
+  skills/math-auditor/verify_rv.py
+    Line []: numpy
+    Line 14: Tuple
+    Line 14: Any
+    Line []: json
+
+  skills/mi-auditor/auditors/causal_validity.py
+    Line 6: Optional
+
+  skills/mi-auditor/auditors/statistical_rigor.py
+    Line 6: Optional
+    Line 6: Tuple
+    Line []: math
+
+  skills/mi-auditor/knowledge_base.py
+    Line 6: Any
+    Line 9: Path
+    Line []: json
+
+  skills/mi-experimenter/core/hook_manager.py
+    Line 23: Any
+    Line 23: Union
+    Line 23: Tuple
+
+  skills/mi-experimenter/core/model_loader.py
+    Line 24: Optional
+    Line 24: Literal
+
+  skills/mi-experimenter/examples/minimal_working_example.py
+    Line []: numpy
+
+  skills/mi-experimenter/experiments/cross_arch_suite.py
+    Line []: numpy
+    Line []: warnings
+    Line 42: measure_rv
+    Line 42: compute_pr
+    Line 43: RVHookManager
+
+  skills/mi-experimenter/experiments/mlp_ablator.py
+    Line []: numpy
+    Line 29: field
+    Line []: warnings
+    Line 46: RVHookManager
+
+  skills/mi-experimenter/experiments/rv_causal_validator.py
+    Line []: pandas
+    Line 34: Union
+
+  skills/mi-experimenter/smoke_test.py
+    Line 45: compute_pr
+
+  skills/mi-experimenter/tests/pre_gpu_gate.py
+    Line []: importlib
+
+  skills/mi-experimenter/tests/test_rv_causal.py
+    Line []: numpy
+
+  skills/mi_auditor/auditors/causal_validity.py
+    Line 6: Optional
+
+  skills/mi_auditor/auditors/statistical_rigor.py
+    Line 6: Optional
+    Line 6: Tuple
+    Line []: math
+
+  skills/mi_auditor/knowledge_base.py
+    Line 6: Any
+    Line 9: Path
+    Line []: json
+
+  skills/mi_auditor/unified_papers_db.py
+    Line 28: asdict
+    Line 29: Any
+    Line 31: datetime
+
+  skills/rv_toolkit/rv_core.py
+    Line 42: List
+
+  skills/rv_toolkit/rv_hooks.py
+    Line 39: compute_pr
+
+  skills/rv_toolkit/rv_triton.py
+    Line 21: Optional
+
+  test_17_gates_critical.py
+    Line 36: AgnoCouncilV2
+    Line 36: DHARMIC_GATES
+
+  test_security.py
+    Line []: time
+
+  unified_gates.py
+    Line 17: Union
+
+  witness_threshold_detector.py
+    Line []: json
+    Line 22: asdict
+    Line 23: timedelta
+    Line 25: Union
+    Line 27: Path
+    Line []: math
+
+🏗️  ARCHITECTURAL ISSUES
+----------------------------------------
+  • Duplicate module name 'tests' in 3 locations
+  • Duplicate module name 'knowledge_base' in 2 locations
+  • Duplicate module name 'report_generator' in 2 locations
+  • Duplicate module name 'core' in 2 locations
+  • Duplicate module name 'statistical_rigor' in 2 locations
+  • Duplicate module name 'cross_architecture' in 2 locations
+  • Duplicate module name 'auditors' in 2 locations
+  • Duplicate module name 'literature_positioning' in 2 locations
+  • Duplicate module name 'causal_validity' in 2 locations
+
+📊 CROSS-MODULE DEPENDENCIES
+----------------------------------------
+
+  dgc_tui_demo imports from:
+    • DHARMIC_GODEL_CLAW
+
+  dgc_tui_v2 imports from:
+    • DHARMIC_GODEL_CLAW

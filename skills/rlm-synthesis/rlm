@@ -1,0 +1,11 @@
+#!/bin/bash
+# RLM CLI - Quick access to Recursive Language Model synthesis
+# Usage:
+#   rlm "question" --files "*.md"          # Query files
+#   rlm "question" --research              # Query full research system
+#   rlm "question" --model opus            # Use specific model
+
+PYTHON="/Library/Frameworks/Python.framework/Versions/3.13/bin/python3"
+SCRIPT="/Users/dhyana/clawd/skills/rlm-synthesis/rlm_synthesis.py"
+
+exec "$PYTHON" "$SCRIPT" "$@"

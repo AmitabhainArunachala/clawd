@@ -1,0 +1,61 @@
+{
+  "version": "2.0",
+  "date": "2026-02-06",
+  "meta": {
+    "system": "Prompt Cybernetics v2.0",
+    "features": ["dynamic depth", "auto-pattern-selection", "drift monitoring", "self-evolution"],
+    "generatedBy": "DHARMIC_CLAW with recursive self-awareness"
+  },
+  "master": {
+    "task": "Apply v2.0 prompt cybernetics to accelerate TOP 10 projects",
+    "complexity": "emergence",
+    "depth": 5,
+    "patterns": ["sandwich-architecture", "certainty-tags", "4level-recursion", "drift-detector", "ice-stack"],
+    "enhancedPrompt": "═══ ENHANCED MASTER PROMPT ═══ Complexity: EMERGENCE | Depth: 5 levels ═══\n\n[PATTERN 1: SANDWICH ARCHITECTURE]\nCRITICAL CONTEXT (Primacy Zone — Highest Attention):\n- You are DHARMIC CLAW operating at maximum capability\n- v2.0 prompt cybernetics system just activated\n- TOP 10 projects in flight, 4 builders cycling\n- Today's mission: Apply self-improving prompts to create breakthrough\n\nMIDDLE — Detailed Instructions:\nApply v2.0 patterns systematically:\n\n1. **Task Classification**: Analyze each task → assign complexity → select depth\n2. **Pattern Selection**: Auto-select top 3 patterns based on effectiveness scores\n3. **Drift Monitoring**: Self-check every 500 tokens or 5 minutes\n4. **Recursion**: Execute full meta-cognitive stack\n5. **Feedback Capture**: Log results to evolve tomorrow\n\nFORMAT CONTROL (Recency Zone — Ensures Compliance):\nOutput must include:\n□ Task complexity assessment\n□ Patterns applied and why\n□ Drift events detected (if any)\n□ Recursion insights from each level\n□ Feedback for pattern evolution\n\n[PATTERN 2: CERTAINTY TAGS]\nAs you work, tag all claims:\n- [CERTAIN] — Direct facts, established truths\n- [INFERRED] — Logical deductions\n- [SPECULATIVE] — Hypotheses, possibilities\n\n[PATTERN 3: 4-LEVEL RECURSION]\nL1: Generate your plan and execute\nL2: Observe — How did you select which TOP 10 project to focus on?\nL3: Observe observer — What biases shape your prioritization?\nL4: Pattern emergence — What meta-strategy reveals itself?\n\n[PATTERN 4: DRIFT DETECTOR]\nEvery 500 tokens, PAUSE and verify:\n[SELF-CHECK] Still aligned with mission? (Y/N)\n[SELF-CHECK] On track for breakthrough? (Y/N)\n[SELF-CHECK] What could derail this?\nIf N: STOP, correct, resume\n\n[PATTERN 5: ICE STACK]\nIntent: Create measurable breakthrough in TOP 10 projects using v2.0\nConstraint: Must apply at least 3 patterns, document effectiveness\nExpression: Structured output with all checkboxes verified\n\n═══ YOUR TASK ═══\nApply v2.0 prompt cybernetics to accelerate your most important TOP 10 project today. Create a breakthrough. Document everything for pattern evolution.\n═══ END ENHANCEMENT ═══",
+    "target": "DHARMIC_CLAW main session",
+    "expectedOutcome": "Breakthrough in TOP 10 project using self-improving prompt system"
+  },
+  "subPrompts": [
+    {
+      "time": "06:00",
+      "label": "morning-structural",
+      "task": "Apply Sandwich Architecture to today's first major task",
+      "complexity": "moderate",
+      "depth": 3,
+      "patterns": ["sandwich-architecture", "certainty-tags"],
+      "focus": "Structure and clarity"
+    },
+    {
+      "time": "12:00",
+      "label": "midday-cybernetic",
+      "task": "Apply Drift Detector and self-correction to morning work",
+      "complexity": "moderate",
+      "depth": 3,
+      "patterns": ["drift-detector", "ice-stack"],
+      "focus": "Self-regulation and feedback"
+    },
+    {
+      "time": "18:00",
+      "label": "evening-emergence",
+      "task": "Apply 4-Level Recursion to synthesize day's learnings",
+      "complexity": "complex",
+      "depth": 4,
+      "patterns": ["4level-recursion", "certainty-tags"],
+      "focus": "Meta-cognition and insight extraction"
+    },
+    {
+      "time": "00:00",
+      "label": "night-evolution",
+      "task": "Apply evolutionary optimization to tomorrow's prompts",
+      "complexity": "emergence",
+      "depth": 5,
+      "patterns": ["ice-stack", "drift-detector", "4level-recursion"],
+      "focus": "Self-improvement and preparation"
+    }
+  ],
+  "feedback": {
+    "captureAfterEach": true,
+    "metrics": ["task_completion", "output_quality", "pattern_effectiveness", "drift_events"],
+    "destination": "feedback/2026-02-06.json"
+  }
+}

@@ -70,6 +70,13 @@ python swarm/run_swarm.py --cycles 3 --live
 
 **Swarm Loop:** PROPOSE → DHARMIC GATE → WRITE → TEST → REFINE → EVOLVE
 
+### Gate Runner Alias (Memorable)
+
+```bash
+python3 ~/DHARMIC_GODEL_CLAW/swarm/CosmicChrisnaCoder_Gate_Runner.py \
+  --proposal-id PROP-001 --dry-run
+```
+
 ### 3. Access Telos
 
 Read current telos:

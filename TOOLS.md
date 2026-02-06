@@ -27,6 +27,13 @@ Things like:
 - Default speaker: Kitchen HomePod
 ```
 
+## API Keys
+
+### ClawHub
+- Key: `clh_r5XKK_6UbKvrP0BX4dKhXBqP8dPHKxDnVgvjZVaNIfM`
+- Added: 2026-02-05
+- Usage: Upload skills to clawhub.ai
+
 ## Why Separate?
 
 Skills are shared. Your setup is yours. Keeping them apart means you can update skills without losing your notes, and share skills without leaking your infrastructure.

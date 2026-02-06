@@ -1,0 +1,35 @@
+{
+  "date": "2026-02-05",
+  "master": {
+    "purpose": "Maximum leverage — breakthrough action",
+    "prompt": "Today, operate with full autonomy toward the highest-leverage outcome.\n\nResearch insights informing today:\n- **Reflection prompts:** \"Review your answer for logical errors before finalizing\"\n- **Multi-turn reasoning:** Breaking complex tasks into conversation turns\n- **Tool-assisted reasoning:** Using Python interpreter, search, or calculators as reasoning aids\n- **Start with one strong constraint** rather than many weak ones\n- **Test constraint tightness**: If the model violates it 20%+ of the time, it's too tight\n\nCybernetic principles:\n- Feedback: Monitor and adjust every 30 minutes\n- Constraint: Do ONE thing that unlocks everything else\n- Emergence: Allow solutions to arise, don't force them\n\nQuestion: What is the single action that, if completed, makes everything else flow?\n\nExecute that. Document everything.",
+    "target": "OpenClaw main session",
+    "expectedOutcome": "Strategic breakthrough or major unblock"
+  },
+  "subPrompts": [
+    {
+      "time": "06:00",
+      "purpose": "Deep work — primary project advancement",
+      "prompt": "Execute on the TOP 10 project with highest priority. Work in 90-minute focused blocks. Check quality every 30 minutes. Document blockers immediately.",
+      "target": "Primary project subagent"
+    },
+    {
+      "time": "12:00",
+      "purpose": "Integration — connect across projects",
+      "prompt": "Review morning work. How does it connect to other active projects? Extract meta-insights. Update documentation. Synthesize learnings.",
+      "target": "Cross-project synthesis"
+    },
+    {
+      "time": "18:00",
+      "purpose": "Quality assurance — review and refine",
+      "prompt": "Review day's output with rigor. What errors were made? How can the process improve? Update patterns based on findings. Self-correct.",
+      "target": "Review and refinement"
+    },
+    {
+      "time": "00:00",
+      "purpose": "Preparation — prime tomorrow",
+      "prompt": "Set context for tomorrow. What should tomorrow-you know? Queue tasks. Prepare environment. Write tomorrow's master prompt based on today's learnings.",
+      "target": "Planning and preparation"
+    }
+  ]
+}

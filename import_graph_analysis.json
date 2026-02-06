@@ -1,0 +1,2732 @@
+{
+  "nodes": [
+    {
+      "id": "oacp.core.capability",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/oacp/core/capability.py"
+    },
+    {
+      "id": "skills.mi-auditor.auditors.literature_positioning",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/skills/mi-auditor/auditors/literature_positioning.py"
+    },
+    {
+      "id": "oacp.core",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/oacp/core/__init__.py"
+    },
+    {
+      "id": "oacp.core.sandbox",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/oacp/core/sandbox.py"
+    },
+    {
+      "id": "dgc_backup_models",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/dgc_backup_models.py"
+    },
+    {
+      "id": "skills.agentic-ai.commercial-package.install",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/skills/agentic-ai/commercial-package/install.py"
+    },
+    {
+      "id": "skills.mi-experimenter.core.hook_manager",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/skills/mi-experimenter/core/hook_manager.py"
+    },
+    {
+      "id": "test_17_gates_critical",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/test_17_gates_critical.py"
+    },
+    {
+      "id": "skills.mi-auditor",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/skills/mi-auditor/__init__.py"
+    },
+    {
+      "id": "skills.dharmic-swarm.coordinator",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/skills/dharmic-swarm/coordinator.py"
+    },
+    {
+      "id": "scripts.agent_induction_cycle",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/scripts/agent_induction_cycle.py"
+    },
+    {
+      "id": "oacp.runtime",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/oacp/runtime/__init__.py"
+    },
+    {
+      "id": "skills.mi_auditor",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/skills/mi_auditor/__init__.py"
+    },
+    {
+      "id": "skills.mi_auditor.tests",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/skills/mi_auditor/tests/__init__.py"
+    },
+    {
+      "id": "oacp.protocol.a2a_adapter",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/oacp/protocol/a2a_adapter.py"
+    },
+    {
+      "id": "oacp.core.attestation",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/oacp/core/attestation.py"
+    },
+    {
+      "id": "skills.rv_toolkit.rv_hooks",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/skills/rv_toolkit/rv_hooks.py"
+    },
+    {
+      "id": "tests",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/tests/__init__.py"
+    },
+    {
+      "id": "skills.mi-experimenter.tests.pre_gpu_gate",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/skills/mi-experimenter/tests/pre_gpu_gate.py"
+    },
+    {
+      "id": "skills.mi_auditor.mi_knowledge_base",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/skills/mi_auditor/mi_knowledge_base.py"
+    },
+    {
+      "id": "skills.agentic-ai.CLAWHUB_PACKAGE.examples.02_spawn_specialist",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/skills/agentic-ai/CLAWHUB_PACKAGE/examples/02_spawn_specialist.py"
+    },
+    {
+      "id": "skills.mi-experimenter.experiments.rv_causal_validator",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/skills/mi-experimenter/experiments/rv_causal_validator.py"
+    },
+    {
+      "id": "skills.mi-auditor.auditors.cross_architecture",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/skills/mi-auditor/auditors/cross_architecture.py"
+    },
+    {
+      "id": "skills.mi-auditor.knowledge_base",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/skills/mi-auditor/knowledge_base.py"
+    },
+    {
+      "id": "skills.cosmic-krishna-coder.yolo_gate_weaver",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/skills/cosmic-krishna-coder/yolo_gate_weaver.py"
+    },
+    {
+      "id": "skills.mi-experimenter.smoke_test",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/skills/mi-experimenter/smoke_test.py"
+    },
+    {
+      "id": "oacp.protocol",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/oacp/protocol/__init__.py"
+    },
+    {
+      "id": "skills.agentic-ai.CLAWHUB_PACKAGE.examples.hello_agent",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/skills/agentic-ai/CLAWHUB_PACKAGE/examples/hello_agent.py"
+    },
+    {
+      "id": "skills.mi-auditor.auditors",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/skills/mi-auditor/auditors/__init__.py"
+    },
+    {
+      "id": "skills.mi-auditor.auditors.causal_validity",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/skills/mi-auditor/auditors/causal_validity.py"
+    },
+    {
+      "id": "DHARMIC_GODEL_CLAW.src.core.presence_pulse",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/DHARMIC_GODEL_CLAW/src/core/presence_pulse.py"
+    },
+    {
+      "id": "skills.mi-experimenter.tests.conftest",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/skills/mi-experimenter/tests/conftest.py"
+    },
+    {
+      "id": "skills.mi-experimenter.experiments.mlp_ablator",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/skills/mi-experimenter/experiments/mlp_ablator.py"
+    },
+    {
+      "id": "oacp.runtime.executor",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/oacp/runtime/executor.py"
+    },
+    {
+      "id": "skills.mi-experimenter.experiments",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/skills/mi-experimenter/experiments/__init__.py"
+    },
+    {
+      "id": "scripts.deploy_guardian",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/scripts/deploy_guardian.py"
+    },
+    {
+      "id": "oacp.protocol.mcp_bridge",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/oacp/protocol/mcp_bridge.py"
+    },
+    {
+      "id": "skills.mi-experimenter.cli",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/skills/mi-experimenter/cli.py"
+    },
+    {
+      "id": "scripts.email_interface",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/scripts/email_interface.py"
+    },
+    {
+      "id": "dgc_backup_models_test",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/dgc_backup_models_test.py"
+    },
+    {
+      "id": "skills.rv_toolkit.rv_core",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/skills/rv_toolkit/rv_core.py"
+    },
+    {
+      "id": "skills.rv_toolkit",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/skills/rv_toolkit/__init__.py"
+    },
+    {
+      "id": "witness_threshold_detector",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/witness_threshold_detector.py"
+    },
+    {
+      "id": "dgc_tui_demo",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/dgc_tui_demo.py"
+    },
+    {
+      "id": "night_cycle",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/night_cycle.py"
+    },
+    {
+      "id": "oacp",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/oacp/__init__.py"
+    },
+    {
+      "id": "skills.mi_auditor.auditors.causal_validity",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/skills/mi_auditor/auditors/causal_validity.py"
+    },
+    {
+      "id": "scripts.minimal_heartbeat",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/scripts/minimal_heartbeat.py"
+    },
+    {
+      "id": "agno_council_v2",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/agno_council_v2.py"
+    },
+    {
+      "id": "skills.mi-experimenter.tests.test_rv_causal",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/skills/mi-experimenter/tests/test_rv_causal.py"
+    },
+    {
+      "id": "skills.mi-auditor.auditors.statistical_rigor",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/skills/mi-auditor/auditors/statistical_rigor.py"
+    },
+    {
+      "id": "test_consent_concrete",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/test_consent_concrete.py"
+    },
+    {
+      "id": "skills.mi_auditor.auditors.statistical_rigor",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/skills/mi_auditor/auditors/statistical_rigor.py"
+    },
+    {
+      "id": "test_security",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/test_security.py"
+    },
+    {
+      "id": "skills.mi-experimenter.setup",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/skills/mi-experimenter/setup.py"
+    },
+    {
+      "id": "skills.mi_auditor.auditors.literature_positioning",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/skills/mi_auditor/auditors/literature_positioning.py"
+    },
+    {
+      "id": "skills.mi_auditor.unified_papers_db",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/skills/mi_auditor/unified_papers_db.py"
+    },
+    {
+      "id": "skills.mi_auditor.auditors",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/skills/mi_auditor/auditors/__init__.py"
+    },
+    {
+      "id": "skills.mi_auditor.knowledge_base",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/skills/mi_auditor/knowledge_base.py"
+    },
+    {
+      "id": "skills.rv_toolkit.rv_triton",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/skills/rv_toolkit/rv_triton.py"
+    },
+    {
+      "id": "skills.mi-experimenter.core.model_loader",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/skills/mi-experimenter/core/model_loader.py"
+    },
+    {
+      "id": "skills.mi-auditor.report_generator",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/skills/mi-auditor/report_generator.py"
+    },
+    {
+      "id": "dharmic_security",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/dharmic_security.py"
+    },
+    {
+      "id": "skills.mi-experimenter.core",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/skills/mi-experimenter/core/__init__.py"
+    },
+    {
+      "id": "skills.mi-auditor.tests",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/skills/mi-auditor/tests/__init__.py"
+    },
+    {
+      "id": "skills.mi-experimenter.experiments.cross_arch_suite",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/skills/mi-experimenter/experiments/cross_arch_suite.py"
+    },
+    {
+      "id": "unified_gates",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/unified_gates.py"
+    },
+    {
+      "id": "skills.agentic-ai.commercial-package.templates.quickstart",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/skills/agentic-ai/commercial-package/templates/quickstart.py"
+    },
+    {
+      "id": "skills.cosmic-krishna-coder.proactive_risk_detector",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/skills/cosmic-krishna-coder/proactive_risk_detector.py"
+    },
+    {
+      "id": "skills.agentic-ai.CLAWHUB_PACKAGE.examples.01_hello_council",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/skills/agentic-ai/CLAWHUB_PACKAGE/examples/01_hello_council.py"
+    },
+    {
+      "id": "skills.mi_auditor.auditors.cross_architecture",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/skills/mi_auditor/auditors/cross_architecture.py"
+    },
+    {
+      "id": "skills.math-auditor.verify_rv",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/skills/math-auditor/verify_rv.py"
+    },
+    {
+      "id": "import_graph_analyzer",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/import_graph_analyzer.py"
+    },
+    {
+      "id": "skills.mi_auditor.report_generator",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/skills/mi_auditor/report_generator.py"
+    },
+    {
+      "id": "scripts.dharmic_heartbeat",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/scripts/dharmic_heartbeat.py"
+    },
+    {
+      "id": "skills.mi-experimenter",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/skills/mi-experimenter/__init__.py"
+    },
+    {
+      "id": "skills.agentic-ai.CLAWHUB_PACKAGE.examples.03_self_improvement",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/skills/agentic-ai/CLAWHUB_PACKAGE/examples/03_self_improvement.py"
+    },
+    {
+      "id": "skills.mi-experimenter.tests.test_imports",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/skills/mi-experimenter/tests/test_imports.py"
+    },
+    {
+      "id": "skills.mi-experimenter.examples.minimal_working_example",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/skills/mi-experimenter/examples/minimal_working_example.py"
+    },
+    {
+      "id": "dgc_tui_v2",
+      "type": "internal",
+      "file": "/Users/dhyana/clawd/dgc_tui_v2.py"
+    },
+    {
+      "id": "rich.table",
+      "type": "external"
+    },
+    {
+      "id": "subprocess",
+      "type": "external"
+    },
+    {
+      "id": "textual.coordinate",
+      "type": "external"
+    },
+    {
+      "id": "mi_experimenter",
+      "type": "external"
+    },
+    {
+      "id": "email.header",
+      "type": "external"
+    },
+    {
+      "id": "unittest.mock",
+      "type": "external"
+    },
+    {
+      "id": "textual.reactive",
+      "type": "external"
+    },
+    {
+      "id": "email",
+      "type": "external"
+    },
+    {
+      "id": "itertools",
+      "type": "external"
+    },
+    {
+      "id": "logging",
+      "type": "external"
+    },
+    {
+      "id": "pandas",
+      "type": "external"
+    },
+    {
+      "id": "torch",
+      "type": "external"
+    },
+    {
+      "id": "triton.language",
+      "type": "external"
+    },
+    {
+      "id": "requests",
+      "type": "external"
+    },
+    {
+      "id": "rich.align",
+      "type": "external"
+    },
+    {
+      "id": "threading",
+      "type": "external"
+    },
+    {
+      "id": "agentic_ai",
+      "type": "external"
+    },
+    {
+      "id": "typing",
+      "type": "external"
+    },
+    {
+      "id": "textual.containers",
+      "type": "external"
+    },
+    {
+      "id": "statistics",
+      "type": "external"
+    },
+    {
+      "id": "rich.json",
+      "type": "external"
+    },
+    {
+      "id": "warnings",
+      "type": "external"
+    },
+    {
+      "id": "pytest",
+      "type": "external"
+    },
+    {
+      "id": "pathlib",
+      "type": "external"
+    },
+    {
+      "id": "textual.widgets",
+      "type": "external"
+    },
+    {
+      "id": "secrets",
+      "type": "external"
+    },
+    {
+      "id": "fastapi",
+      "type": "external"
+    },
+    {
+      "id": "textual.color",
+      "type": "external"
+    },
+    {
+      "id": "scipy",
+      "type": "external"
+    },
+    {
+      "id": "concurrent.futures",
+      "type": "external"
+    },
+    {
+      "id": "unittest",
+      "type": "external"
+    },
+    {
+      "id": "math",
+      "type": "external"
+    },
+    {
+      "id": "random",
+      "type": "external"
+    },
+    {
+      "id": "rich.layout",
+      "type": "external"
+    },
+    {
+      "id": "setuptools",
+      "type": "external"
+    },
+    {
+      "id": "textual.screen",
+      "type": "external"
+    },
+    {
+      "id": "textual.worker",
+      "type": "external"
+    },
+    {
+      "id": "triton",
+      "type": "external"
+    },
+    {
+      "id": "mi_experimenter.core.model_loader",
+      "type": "external"
+    },
+    {
+      "id": "hashlib",
+      "type": "external"
+    },
+    {
+      "id": "openai",
+      "type": "external"
+    },
+    {
+      "id": "json",
+      "type": "external"
+    },
+    {
+      "id": "hmac",
+      "type": "external"
+    },
+    {
+      "id": "textual.binding",
+      "type": "external"
+    },
+    {
+      "id": "enum",
+      "type": "external"
+    },
+    {
+      "id": "argparse",
+      "type": "external"
+    },
+    {
+      "id": "numpy",
+      "type": "external"
+    },
+    {
+      "id": "httpx",
+      "type": "external"
+    },
+    {
+      "id": "inspect",
+      "type": "external"
+    },
+    {
+      "id": "yaml",
+      "type": "external"
+    },
+    {
+      "id": "asyncio",
+      "type": "external"
+    },
+    {
+      "id": "transformers",
+      "type": "external"
+    },
+    {
+      "id": "rich.console",
+      "type": "external"
+    },
+    {
+      "id": "rich.text",
+      "type": "external"
+    },
+    {
+      "id": "time",
+      "type": "external"
+    },
+    {
+      "id": "ast",
+      "type": "external"
+    },
+    {
+      "id": "sys",
+      "type": "external"
+    },
+    {
+      "id": "datetime",
+      "type": "external"
+    },
+    {
+      "id": "rich.syntax",
+      "type": "external"
+    },
+    {
+      "id": "torch.nn",
+      "type": "external"
+    },
+    {
+      "id": "smtplib",
+      "type": "external"
+    },
+    {
+      "id": "psutil",
+      "type": "external"
+    },
+    {
+      "id": "textual.app",
+      "type": "external"
+    },
+    {
+      "id": "traceback",
+      "type": "external"
+    },
+    {
+      "id": "email.mime.text",
+      "type": "external"
+    },
+    {
+      "id": "functools",
+      "type": "external"
+    },
+    {
+      "id": "collections",
+      "type": "external"
+    },
+    {
+      "id": "imaplib",
+      "type": "external"
+    },
+    {
+      "id": "importlib",
+      "type": "external"
+    },
+    {
+      "id": "os",
+      "type": "external"
+    },
+    {
+      "id": "rich.panel",
+      "type": "external"
+    },
+    {
+      "id": "sqlite3",
+      "type": "external"
+    },
+    {
+      "id": "contextlib",
+      "type": "external"
+    },
+    {
+      "id": "uuid",
+      "type": "external"
+    },
+    {
+      "id": "re",
+      "type": "external"
+    },
+    {
+      "id": "email.mime.multipart",
+      "type": "external"
+    },
+    {
+      "id": "dataclasses",
+      "type": "external"
+    }
+  ],
+  "edges": [
+    {
+      "source": "DHARMIC_GODEL_CLAW.src.core.presence_pulse",
+      "target": "fastapi"
+    },
+    {
+      "source": "DHARMIC_GODEL_CLAW.src.core.presence_pulse",
+      "target": "threading"
+    },
+    {
+      "source": "DHARMIC_GODEL_CLAW.src.core.presence_pulse",
+      "target": "typing"
+    },
+    {
+      "source": "DHARMIC_GODEL_CLAW.src.core.presence_pulse",
+      "target": "collections"
+    },
+    {
+      "source": "DHARMIC_GODEL_CLAW.src.core.presence_pulse",
+      "target": "asyncio"
+    },
+    {
+      "source": "DHARMIC_GODEL_CLAW.src.core.presence_pulse",
+      "target": "enum"
+    },
+    {
+      "source": "DHARMIC_GODEL_CLAW.src.core.presence_pulse",
+      "target": "time"
+    },
+    {
+      "source": "DHARMIC_GODEL_CLAW.src.core.presence_pulse",
+      "target": "pathlib"
+    },
+    {
+      "source": "DHARMIC_GODEL_CLAW.src.core.presence_pulse",
+      "target": "dataclasses"
+    },
+    {
+      "source": "DHARMIC_GODEL_CLAW.src.core.presence_pulse",
+      "target": "random"
+    },
+    {
+      "source": "DHARMIC_GODEL_CLAW.src.core.presence_pulse",
+      "target": "logging"
+    },
+    {
+      "source": "DHARMIC_GODEL_CLAW.src.core.presence_pulse",
+      "target": "json"
+    },
+    {
+      "source": "DHARMIC_GODEL_CLAW.src.core.presence_pulse",
+      "target": "datetime"
+    },
+    {
+      "source": "agno_council_v2",
+      "target": "typing"
+    },
+    {
+      "source": "agno_council_v2",
+      "target": "uuid"
+    },
+    {
+      "source": "agno_council_v2",
+      "target": "os"
+    },
+    {
+      "source": "agno_council_v2",
+      "target": "collections"
+    },
+    {
+      "source": "agno_council_v2",
+      "target": "traceback"
+    },
+    {
+      "source": "agno_council_v2",
+      "target": "asyncio"
+    },
+    {
+      "source": "agno_council_v2",
+      "target": "enum"
+    },
+    {
+      "source": "agno_council_v2",
+      "target": "concurrent.futures"
+    },
+    {
+      "source": "agno_council_v2",
+      "target": "time"
+    },
+    {
+      "source": "agno_council_v2",
+      "target": "dataclasses"
+    },
+    {
+      "source": "agno_council_v2",
+      "target": "logging"
+    },
+    {
+      "source": "agno_council_v2",
+      "target": "json"
+    },
+    {
+      "source": "agno_council_v2",
+      "target": "datetime"
+    },
+    {
+      "source": "dgc_backup_models",
+      "target": "typing"
+    },
+    {
+      "source": "dgc_backup_models",
+      "target": "functools"
+    },
+    {
+      "source": "dgc_backup_models",
+      "target": "httpx"
+    },
+    {
+      "source": "dgc_backup_models",
+      "target": "asyncio"
+    },
+    {
+      "source": "dgc_backup_models",
+      "target": "hashlib"
+    },
+    {
+      "source": "dgc_backup_models",
+      "target": "enum"
+    },
+    {
+      "source": "dgc_backup_models",
+      "target": "time"
+    },
+    {
+      "source": "dgc_backup_models",
+      "target": "dataclasses"
+    },
+    {
+      "source": "dgc_backup_models",
+      "target": "random"
+    },
+    {
+      "source": "dgc_backup_models",
+      "target": "openai"
+    },
+    {
+      "source": "dgc_backup_models",
+      "target": "logging"
+    },
+    {
+      "source": "dgc_backup_models",
+      "target": "json"
+    },
+    {
+      "source": "dgc_backup_models",
+      "target": "os"
+    },
+    {
+      "source": "dgc_backup_models_test",
+      "target": "pytest"
+    },
+    {
+      "source": "dgc_backup_models_test",
+      "target": "dgc_backup_models"
+    },
+    {
+      "source": "dgc_backup_models_test",
+      "target": "asyncio"
+    },
+    {
+      "source": "dgc_backup_models_test",
+      "target": "time"
+    },
+    {
+      "source": "dgc_backup_models_test",
+      "target": "unittest.mock"
+    },
+    {
+      "source": "dgc_backup_models_test",
+      "target": "os"
+    },
+    {
+      "source": "dgc_tui_demo",
+      "target": "DHARMIC_GODEL_CLAW.src.core.presence_pulse"
+    },
+    {
+      "source": "dgc_tui_demo",
+      "target": "dgc_tui_v2"
+    },
+    {
+      "source": "dgc_tui_demo",
+      "target": "sys"
+    },
+    {
+      "source": "dgc_tui_demo",
+      "target": "asyncio"
+    },
+    {
+      "source": "dgc_tui_demo",
+      "target": "argparse"
+    },
+    {
+      "source": "dgc_tui_demo",
+      "target": "time"
+    },
+    {
+      "source": "dgc_tui_demo",
+      "target": "pathlib"
+    },
+    {
+      "source": "dgc_tui_demo",
+      "target": "random"
+    },
+    {
+      "source": "dgc_tui_demo",
+      "target": "json"
+    },
+    {
+      "source": "dgc_tui_v2",
+      "target": "rich.json"
+    },
+    {
+      "source": "dgc_tui_v2",
+      "target": "rich.syntax"
+    },
+    {
+      "source": "dgc_tui_v2",
+      "target": "rich.table"
+    },
+    {
+      "source": "dgc_tui_v2",
+      "target": "textual.binding"
+    },
+    {
+      "source": "dgc_tui_v2",
+      "target": "textual.coordinate"
+    },
+    {
+      "source": "dgc_tui_v2",
+      "target": "textual.app"
+    },
+    {
+      "source": "dgc_tui_v2",
+      "target": "enum"
+    },
+    {
+      "source": "dgc_tui_v2",
+      "target": "argparse"
+    },
+    {
+      "source": "dgc_tui_v2",
+      "target": "pathlib"
+    },
+    {
+      "source": "dgc_tui_v2",
+      "target": "textual.widgets"
+    },
+    {
+      "source": "dgc_tui_v2",
+      "target": "textual.color"
+    },
+    {
+      "source": "dgc_tui_v2",
+      "target": "textual.reactive"
+    },
+    {
+      "source": "dgc_tui_v2",
+      "target": "collections"
+    },
+    {
+      "source": "dgc_tui_v2",
+      "target": "asyncio"
+    },
+    {
+      "source": "dgc_tui_v2",
+      "target": "rich.console"
+    },
+    {
+      "source": "dgc_tui_v2",
+      "target": "DHARMIC_GODEL_CLAW.src.core.presence_pulse"
+    },
+    {
+      "source": "dgc_tui_v2",
+      "target": "rich.align"
+    },
+    {
+      "source": "dgc_tui_v2",
+      "target": "threading"
+    },
+    {
+      "source": "dgc_tui_v2",
+      "target": "rich.text"
+    },
+    {
+      "source": "dgc_tui_v2",
+      "target": "time"
+    },
+    {
+      "source": "dgc_tui_v2",
+      "target": "random"
+    },
+    {
+      "source": "dgc_tui_v2",
+      "target": "rich.layout"
+    },
+    {
+      "source": "dgc_tui_v2",
+      "target": "textual.screen"
+    },
+    {
+      "source": "dgc_tui_v2",
+      "target": "rich.panel"
+    },
+    {
+      "source": "dgc_tui_v2",
+      "target": "textual.worker"
+    },
+    {
+      "source": "dgc_tui_v2",
+      "target": "typing"
+    },
+    {
+      "source": "dgc_tui_v2",
+      "target": "textual.containers"
+    },
+    {
+      "source": "dgc_tui_v2",
+      "target": "sys"
+    },
+    {
+      "source": "dgc_tui_v2",
+      "target": "dataclasses"
+    },
+    {
+      "source": "dgc_tui_v2",
+      "target": "json"
+    },
+    {
+      "source": "dgc_tui_v2",
+      "target": "datetime"
+    },
+    {
+      "source": "dharmic_security",
+      "target": "hmac"
+    },
+    {
+      "source": "dharmic_security",
+      "target": "threading"
+    },
+    {
+      "source": "dharmic_security",
+      "target": "typing"
+    },
+    {
+      "source": "dharmic_security",
+      "target": "functools"
+    },
+    {
+      "source": "dharmic_security",
+      "target": "collections"
+    },
+    {
+      "source": "dharmic_security",
+      "target": "hashlib"
+    },
+    {
+      "source": "dharmic_security",
+      "target": "re"
+    },
+    {
+      "source": "dharmic_security",
+      "target": "enum"
+    },
+    {
+      "source": "dharmic_security",
+      "target": "time"
+    },
+    {
+      "source": "dharmic_security",
+      "target": "dataclasses"
+    },
+    {
+      "source": "dharmic_security",
+      "target": "json"
+    },
+    {
+      "source": "dharmic_security",
+      "target": "secrets"
+    },
+    {
+      "source": "dharmic_security",
+      "target": "datetime"
+    },
+    {
+      "source": "import_graph_analyzer",
+      "target": "typing"
+    },
+    {
+      "source": "import_graph_analyzer",
+      "target": "ast"
+    },
+    {
+      "source": "import_graph_analyzer",
+      "target": "collections"
+    },
+    {
+      "source": "import_graph_analyzer",
+      "target": "sys"
+    },
+    {
+      "source": "import_graph_analyzer",
+      "target": "pathlib"
+    },
+    {
+      "source": "import_graph_analyzer",
+      "target": "json"
+    },
+    {
+      "source": "import_graph_analyzer",
+      "target": "os"
+    },
+    {
+      "source": "night_cycle",
+      "target": "typing"
+    },
+    {
+      "source": "night_cycle",
+      "target": "uuid"
+    },
+    {
+      "source": "night_cycle",
+      "target": "collections"
+    },
+    {
+      "source": "night_cycle",
+      "target": "asyncio"
+    },
+    {
+      "source": "night_cycle",
+      "target": "hashlib"
+    },
+    {
+      "source": "night_cycle",
+      "target": "enum"
+    },
+    {
+      "source": "night_cycle",
+      "target": "time"
+    },
+    {
+      "source": "night_cycle",
+      "target": "pathlib"
+    },
+    {
+      "source": "night_cycle",
+      "target": "dataclasses"
+    },
+    {
+      "source": "night_cycle",
+      "target": "random"
+    },
+    {
+      "source": "night_cycle",
+      "target": "logging"
+    },
+    {
+      "source": "night_cycle",
+      "target": "json"
+    },
+    {
+      "source": "night_cycle",
+      "target": "datetime"
+    },
+    {
+      "source": "oacp.core",
+      "target": "oacp.attestation"
+    },
+    {
+      "source": "oacp.core",
+      "target": "oacp.sandbox"
+    },
+    {
+      "source": "oacp.core",
+      "target": "oacp.capability"
+    },
+    {
+      "source": "oacp.core.attestation",
+      "target": "typing"
+    },
+    {
+      "source": "oacp.core.attestation",
+      "target": "hashlib"
+    },
+    {
+      "source": "oacp.core.attestation",
+      "target": "time"
+    },
+    {
+      "source": "oacp.core.attestation",
+      "target": "dataclasses"
+    },
+    {
+      "source": "oacp.core.attestation",
+      "target": "json"
+    },
+    {
+      "source": "oacp.core.capability",
+      "target": "typing"
+    },
+    {
+      "source": "oacp.core.capability",
+      "target": "enum"
+    },
+    {
+      "source": "oacp.core.sandbox",
+      "target": "oacp.core.capability"
+    },
+    {
+      "source": "oacp.core.sandbox",
+      "target": "oacp.core.attestation"
+    },
+    {
+      "source": "oacp.core.sandbox",
+      "target": "typing"
+    },
+    {
+      "source": "oacp.core.sandbox",
+      "target": "hashlib"
+    },
+    {
+      "source": "oacp.core.sandbox",
+      "target": "enum"
+    },
+    {
+      "source": "oacp.core.sandbox",
+      "target": "time"
+    },
+    {
+      "source": "oacp.core.sandbox",
+      "target": "dataclasses"
+    },
+    {
+      "source": "oacp.core.sandbox",
+      "target": "json"
+    },
+    {
+      "source": "oacp.protocol",
+      "target": "oacp.a2a_adapter"
+    },
+    {
+      "source": "oacp.protocol",
+      "target": "oacp.mcp_bridge"
+    },
+    {
+      "source": "oacp.protocol.a2a_adapter",
+      "target": "oacp.core.capability"
+    },
+    {
+      "source": "oacp.protocol.a2a_adapter",
+      "target": "oacp.core.attestation"
+    },
+    {
+      "source": "oacp.protocol.a2a_adapter",
+      "target": "oacp.core.sandbox"
+    },
+    {
+      "source": "oacp.protocol.a2a_adapter",
+      "target": "typing"
+    },
+    {
+      "source": "oacp.protocol.a2a_adapter",
+      "target": "time"
+    },
+    {
+      "source": "oacp.protocol.a2a_adapter",
+      "target": "dataclasses"
+    },
+    {
+      "source": "oacp.protocol.a2a_adapter",
+      "target": "json"
+    },
+    {
+      "source": "oacp.protocol.mcp_bridge",
+      "target": "oacp.core.capability"
+    },
+    {
+      "source": "oacp.protocol.mcp_bridge",
+      "target": "oacp.core.attestation"
+    },
+    {
+      "source": "oacp.protocol.mcp_bridge",
+      "target": "oacp.core.sandbox"
+    },
+    {
+      "source": "oacp.protocol.mcp_bridge",
+      "target": "itertools"
+    },
+    {
+      "source": "oacp.protocol.mcp_bridge",
+      "target": "typing"
+    },
+    {
+      "source": "oacp.protocol.mcp_bridge",
+      "target": "subprocess"
+    },
+    {
+      "source": "oacp.protocol.mcp_bridge",
+      "target": "asyncio"
+    },
+    {
+      "source": "oacp.protocol.mcp_bridge",
+      "target": "pathlib"
+    },
+    {
+      "source": "oacp.protocol.mcp_bridge",
+      "target": "dataclasses"
+    },
+    {
+      "source": "oacp.protocol.mcp_bridge",
+      "target": "json"
+    },
+    {
+      "source": "oacp.runtime",
+      "target": "oacp.executor"
+    },
+    {
+      "source": "oacp.runtime.executor",
+      "target": "oacp.core.capability"
+    },
+    {
+      "source": "oacp.runtime.executor",
+      "target": "oacp.core.sandbox"
+    },
+    {
+      "source": "oacp.runtime.executor",
+      "target": "typing"
+    },
+    {
+      "source": "oacp.runtime.executor",
+      "target": "concurrent.futures"
+    },
+    {
+      "source": "oacp.runtime.executor",
+      "target": "time"
+    },
+    {
+      "source": "oacp.runtime.executor",
+      "target": "dataclasses"
+    },
+    {
+      "source": "scripts.agent_induction_cycle",
+      "target": "requests"
+    },
+    {
+      "source": "scripts.agent_induction_cycle",
+      "target": "os"
+    },
+    {
+      "source": "scripts.agent_induction_cycle",
+      "target": "argparse"
+    },
+    {
+      "source": "scripts.agent_induction_cycle",
+      "target": "pathlib"
+    },
+    {
+      "source": "scripts.agent_induction_cycle",
+      "target": "json"
+    },
+    {
+      "source": "scripts.agent_induction_cycle",
+      "target": "datetime"
+    },
+    {
+      "source": "scripts.deploy_guardian",
+      "target": "typing"
+    },
+    {
+      "source": "scripts.deploy_guardian",
+      "target": "subprocess"
+    },
+    {
+      "source": "scripts.deploy_guardian",
+      "target": "ast"
+    },
+    {
+      "source": "scripts.deploy_guardian",
+      "target": "sys"
+    },
+    {
+      "source": "scripts.deploy_guardian",
+      "target": "re"
+    },
+    {
+      "source": "scripts.deploy_guardian",
+      "target": "argparse"
+    },
+    {
+      "source": "scripts.deploy_guardian",
+      "target": "pathlib"
+    },
+    {
+      "source": "scripts.deploy_guardian",
+      "target": "dataclasses"
+    },
+    {
+      "source": "scripts.deploy_guardian",
+      "target": "os"
+    },
+    {
+      "source": "scripts.dharmic_heartbeat",
+      "target": "os"
+    },
+    {
+      "source": "scripts.dharmic_heartbeat",
+      "target": "subprocess"
+    },
+    {
+      "source": "scripts.dharmic_heartbeat",
+      "target": "sys"
+    },
+    {
+      "source": "scripts.dharmic_heartbeat",
+      "target": "pathlib"
+    },
+    {
+      "source": "scripts.dharmic_heartbeat",
+      "target": "datetime"
+    },
+    {
+      "source": "scripts.email_interface",
+      "target": "imaplib"
+    },
+    {
+      "source": "scripts.email_interface",
+      "target": "email"
+    },
+    {
+      "source": "scripts.email_interface",
+      "target": "smtplib"
+    },
+    {
+      "source": "scripts.email_interface",
+      "target": "sys"
+    },
+    {
+      "source": "scripts.email_interface",
+      "target": "email.mime.text"
+    },
+    {
+      "source": "scripts.email_interface",
+      "target": "email.mime.multipart"
+    },
+    {
+      "source": "scripts.email_interface",
+      "target": "argparse"
+    },
+    {
+      "source": "scripts.email_interface",
+      "target": "pathlib"
+    },
+    {
+      "source": "scripts.email_interface",
+      "target": "email.header"
+    },
+    {
+      "source": "scripts.email_interface",
+      "target": "datetime"
+    },
+    {
+      "source": "scripts.minimal_heartbeat",
+      "target": "pathlib"
+    },
+    {
+      "source": "scripts.minimal_heartbeat",
+      "target": "yaml"
+    },
+    {
+      "source": "scripts.minimal_heartbeat",
+      "target": "datetime"
+    },
+    {
+      "source": "skills.agentic-ai.CLAWHUB_PACKAGE.examples.02_spawn_specialist",
+      "target": "json"
+    },
+    {
+      "source": "skills.agentic-ai.CLAWHUB_PACKAGE.examples.02_spawn_specialist",
+      "target": "datetime"
+    },
+    {
+      "source": "skills.agentic-ai.CLAWHUB_PACKAGE.examples.03_self_improvement",
+      "target": "random"
+    },
+    {
+      "source": "skills.agentic-ai.CLAWHUB_PACKAGE.examples.03_self_improvement",
+      "target": "datetime"
+    },
+    {
+      "source": "skills.agentic-ai.commercial-package.install",
+      "target": "sqlite3"
+    },
+    {
+      "source": "skills.agentic-ai.commercial-package.install",
+      "target": "yaml"
+    },
+    {
+      "source": "skills.agentic-ai.commercial-package.install",
+      "target": "subprocess"
+    },
+    {
+      "source": "skills.agentic-ai.commercial-package.install",
+      "target": "sys"
+    },
+    {
+      "source": "skills.agentic-ai.commercial-package.install",
+      "target": "argparse"
+    },
+    {
+      "source": "skills.agentic-ai.commercial-package.install",
+      "target": "pathlib"
+    },
+    {
+      "source": "skills.agentic-ai.commercial-package.install",
+      "target": "json"
+    },
+    {
+      "source": "skills.agentic-ai.commercial-package.install",
+      "target": "os"
+    },
+    {
+      "source": "skills.agentic-ai.commercial-package.templates.quickstart",
+      "target": "agentic_ai"
+    },
+    {
+      "source": "skills.cosmic-krishna-coder.proactive_risk_detector",
+      "target": "typing"
+    },
+    {
+      "source": "skills.cosmic-krishna-coder.proactive_risk_detector",
+      "target": "sys"
+    },
+    {
+      "source": "skills.cosmic-krishna-coder.proactive_risk_detector",
+      "target": "re"
+    },
+    {
+      "source": "skills.cosmic-krishna-coder.proactive_risk_detector",
+      "target": "enum"
+    },
+    {
+      "source": "skills.cosmic-krishna-coder.proactive_risk_detector",
+      "target": "time"
+    },
+    {
+      "source": "skills.cosmic-krishna-coder.proactive_risk_detector",
+      "target": "pathlib"
+    },
+    {
+      "source": "skills.cosmic-krishna-coder.proactive_risk_detector",
+      "target": "dataclasses"
+    },
+    {
+      "source": "skills.cosmic-krishna-coder.proactive_risk_detector",
+      "target": "os"
+    },
+    {
+      "source": "skills.cosmic-krishna-coder.yolo_gate_weaver",
+      "target": "typing"
+    },
+    {
+      "source": "skills.cosmic-krishna-coder.yolo_gate_weaver",
+      "target": "sys"
+    },
+    {
+      "source": "skills.cosmic-krishna-coder.yolo_gate_weaver",
+      "target": "asyncio"
+    },
+    {
+      "source": "skills.cosmic-krishna-coder.yolo_gate_weaver",
+      "target": "enum"
+    },
+    {
+      "source": "skills.cosmic-krishna-coder.yolo_gate_weaver",
+      "target": "dataclasses"
+    },
+    {
+      "source": "skills.cosmic-krishna-coder.yolo_gate_weaver",
+      "target": "json"
+    },
+    {
+      "source": "skills.cosmic-krishna-coder.yolo_gate_weaver",
+      "target": "datetime"
+    },
+    {
+      "source": "skills.dharmic-swarm.coordinator",
+      "target": "typing"
+    },
+    {
+      "source": "skills.dharmic-swarm.coordinator",
+      "target": "os"
+    },
+    {
+      "source": "skills.dharmic-swarm.coordinator",
+      "target": "httpx"
+    },
+    {
+      "source": "skills.dharmic-swarm.coordinator",
+      "target": "asyncio"
+    },
+    {
+      "source": "skills.dharmic-swarm.coordinator",
+      "target": "hashlib"
+    },
+    {
+      "source": "skills.dharmic-swarm.coordinator",
+      "target": "enum"
+    },
+    {
+      "source": "skills.dharmic-swarm.coordinator",
+      "target": "re"
+    },
+    {
+      "source": "skills.dharmic-swarm.coordinator",
+      "target": "pathlib"
+    },
+    {
+      "source": "skills.dharmic-swarm.coordinator",
+      "target": "dataclasses"
+    },
+    {
+      "source": "skills.dharmic-swarm.coordinator",
+      "target": "logging"
+    },
+    {
+      "source": "skills.dharmic-swarm.coordinator",
+      "target": "json"
+    },
+    {
+      "source": "skills.dharmic-swarm.coordinator",
+      "target": "datetime"
+    },
+    {
+      "source": "skills.math-auditor.verify_rv",
+      "target": "typing"
+    },
+    {
+      "source": "skills.math-auditor.verify_rv",
+      "target": "scipy"
+    },
+    {
+      "source": "skills.math-auditor.verify_rv",
+      "target": "argparse"
+    },
+    {
+      "source": "skills.math-auditor.verify_rv",
+      "target": "numpy"
+    },
+    {
+      "source": "skills.math-auditor.verify_rv",
+      "target": "json"
+    },
+    {
+      "source": "skills.mi-auditor",
+      "target": "skills.auditors.literature_positioning"
+    },
+    {
+      "source": "skills.mi-auditor",
+      "target": "skills.auditors.statistical_rigor"
+    },
+    {
+      "source": "skills.mi-auditor",
+      "target": "typing"
+    },
+    {
+      "source": "skills.mi-auditor",
+      "target": "skills.knowledge_base"
+    },
+    {
+      "source": "skills.mi-auditor",
+      "target": "skills.auditors.causal_validity"
+    },
+    {
+      "source": "skills.mi-auditor",
+      "target": "sys"
+    },
+    {
+      "source": "skills.mi-auditor",
+      "target": "enum"
+    },
+    {
+      "source": "skills.mi-auditor",
+      "target": "pathlib"
+    },
+    {
+      "source": "skills.mi-auditor",
+      "target": "dataclasses"
+    },
+    {
+      "source": "skills.mi-auditor",
+      "target": "skills.report_generator"
+    },
+    {
+      "source": "skills.mi-auditor",
+      "target": "skills.auditors.cross_architecture"
+    },
+    {
+      "source": "skills.mi-auditor",
+      "target": "json"
+    },
+    {
+      "source": "skills.mi-auditor.auditors",
+      "target": "skills.mi-auditor.causal_validity"
+    },
+    {
+      "source": "skills.mi-auditor.auditors",
+      "target": "skills.mi-auditor.statistical_rigor"
+    },
+    {
+      "source": "skills.mi-auditor.auditors",
+      "target": "skills.mi-auditor.literature_positioning"
+    },
+    {
+      "source": "skills.mi-auditor.auditors",
+      "target": "skills.mi-auditor.cross_architecture"
+    },
+    {
+      "source": "skills.mi-auditor.auditors.causal_validity",
+      "target": "typing"
+    },
+    {
+      "source": "skills.mi-auditor.auditors.causal_validity",
+      "target": "dataclasses"
+    },
+    {
+      "source": "skills.mi-auditor.auditors.causal_validity",
+      "target": "enum"
+    },
+    {
+      "source": "skills.mi-auditor.auditors.cross_architecture",
+      "target": "typing"
+    },
+    {
+      "source": "skills.mi-auditor.auditors.cross_architecture",
+      "target": "dataclasses"
+    },
+    {
+      "source": "skills.mi-auditor.auditors.cross_architecture",
+      "target": "enum"
+    },
+    {
+      "source": "skills.mi-auditor.auditors.literature_positioning",
+      "target": "typing"
+    },
+    {
+      "source": "skills.mi-auditor.auditors.statistical_rigor",
+      "target": "math"
+    },
+    {
+      "source": "skills.mi-auditor.auditors.statistical_rigor",
+      "target": "typing"
+    },
+    {
+      "source": "skills.mi-auditor.auditors.statistical_rigor",
+      "target": "dataclasses"
+    },
+    {
+      "source": "skills.mi-auditor.auditors.statistical_rigor",
+      "target": "enum"
+    },
+    {
+      "source": "skills.mi-auditor.knowledge_base",
+      "target": "typing"
+    },
+    {
+      "source": "skills.mi-auditor.knowledge_base",
+      "target": "enum"
+    },
+    {
+      "source": "skills.mi-auditor.knowledge_base",
+      "target": "pathlib"
+    },
+    {
+      "source": "skills.mi-auditor.knowledge_base",
+      "target": "dataclasses"
+    },
+    {
+      "source": "skills.mi-auditor.knowledge_base",
+      "target": "json"
+    },
+    {
+      "source": "skills.mi-auditor.report_generator",
+      "target": "typing"
+    },
+    {
+      "source": "skills.mi-auditor.report_generator",
+      "target": "dataclasses"
+    },
+    {
+      "source": "skills.mi-auditor.report_generator",
+      "target": "enum"
+    },
+    {
+      "source": "skills.mi-experimenter",
+      "target": "skills.experiments.rv_causal_validator"
+    },
+    {
+      "source": "skills.mi-experimenter",
+      "target": "warnings"
+    },
+    {
+      "source": "skills.mi-experimenter",
+      "target": "skills.core.hook_manager"
+    },
+    {
+      "source": "skills.mi-experimenter",
+      "target": "skills.core.model_loader"
+    },
+    {
+      "source": "skills.mi-experimenter",
+      "target": "rv_toolkit.patching"
+    },
+    {
+      "source": "skills.mi-experimenter",
+      "target": "skills.experiments.cross_arch_suite"
+    },
+    {
+      "source": "skills.mi-experimenter",
+      "target": "skills.experiments.mlp_ablator"
+    },
+    {
+      "source": "skills.mi-experimenter",
+      "target": "rv_toolkit.rv_core"
+    },
+    {
+      "source": "skills.mi-experimenter.cli",
+      "target": "sys"
+    },
+    {
+      "source": "skills.mi-experimenter.cli",
+      "target": "mi_experimenter"
+    },
+    {
+      "source": "skills.mi-experimenter.cli",
+      "target": "argparse"
+    },
+    {
+      "source": "skills.mi-experimenter.core",
+      "target": "skills.mi-experimenter.hook_manager"
+    },
+    {
+      "source": "skills.mi-experimenter.core",
+      "target": "skills.mi-experimenter.model_loader"
+    },
+    {
+      "source": "skills.mi-experimenter.core.hook_manager",
+      "target": "torch"
+    },
+    {
+      "source": "skills.mi-experimenter.core.hook_manager",
+      "target": "contextlib"
+    },
+    {
+      "source": "skills.mi-experimenter.core.hook_manager",
+      "target": "typing"
+    },
+    {
+      "source": "skills.mi-experimenter.core.hook_manager",
+      "target": "re"
+    },
+    {
+      "source": "skills.mi-experimenter.core.hook_manager",
+      "target": "dataclasses"
+    },
+    {
+      "source": "skills.mi-experimenter.core.model_loader",
+      "target": "torch"
+    },
+    {
+      "source": "skills.mi-experimenter.core.model_loader",
+      "target": "logging"
+    },
+    {
+      "source": "skills.mi-experimenter.core.model_loader",
+      "target": "typing"
+    },
+    {
+      "source": "skills.mi-experimenter.core.model_loader",
+      "target": "transformers"
+    },
+    {
+      "source": "skills.mi-experimenter.examples.minimal_working_example",
+      "target": "sys"
+    },
+    {
+      "source": "skills.mi-experimenter.examples.minimal_working_example",
+      "target": "torch"
+    },
+    {
+      "source": "skills.mi-experimenter.examples.minimal_working_example",
+      "target": "numpy"
+    },
+    {
+      "source": "skills.mi-experimenter.examples.minimal_working_example",
+      "target": "transformers"
+    },
+    {
+      "source": "skills.mi-experimenter.experiments.cross_arch_suite",
+      "target": "torch"
+    },
+    {
+      "source": "skills.mi-experimenter.experiments.cross_arch_suite",
+      "target": "rv_toolkit.rv_hooks"
+    },
+    {
+      "source": "skills.mi-experimenter.experiments.cross_arch_suite",
+      "target": "warnings"
+    },
+    {
+      "source": "skills.mi-experimenter.experiments.cross_arch_suite",
+      "target": "typing"
+    },
+    {
+      "source": "skills.mi-experimenter.experiments.cross_arch_suite",
+      "target": "psutil"
+    },
+    {
+      "source": "skills.mi-experimenter.experiments.cross_arch_suite",
+      "target": "scipy"
+    },
+    {
+      "source": "skills.mi-experimenter.experiments.cross_arch_suite",
+      "target": "rv_toolkit"
+    },
+    {
+      "source": "skills.mi-experimenter.experiments.cross_arch_suite",
+      "target": "sys"
+    },
+    {
+      "source": "skills.mi-experimenter.experiments.cross_arch_suite",
+      "target": "skills.mi-experimenter.core.model_loader"
+    },
+    {
+      "source": "skills.mi-experimenter.experiments.cross_arch_suite",
+      "target": "numpy"
+    },
+    {
+      "source": "skills.mi-experimenter.experiments.cross_arch_suite",
+      "target": "time"
+    },
+    {
+      "source": "skills.mi-experimenter.experiments.cross_arch_suite",
+      "target": "pathlib"
+    },
+    {
+      "source": "skills.mi-experimenter.experiments.cross_arch_suite",
+      "target": "dataclasses"
+    },
+    {
+      "source": "skills.mi-experimenter.experiments.cross_arch_suite",
+      "target": "logging"
+    },
+    {
+      "source": "skills.mi-experimenter.experiments.cross_arch_suite",
+      "target": "json"
+    },
+    {
+      "source": "skills.mi-experimenter.experiments.cross_arch_suite",
+      "target": "datetime"
+    },
+    {
+      "source": "skills.mi-experimenter.experiments.mlp_ablator",
+      "target": "torch"
+    },
+    {
+      "source": "skills.mi-experimenter.experiments.mlp_ablator",
+      "target": "rv_toolkit.rv_hooks"
+    },
+    {
+      "source": "skills.mi-experimenter.experiments.mlp_ablator",
+      "target": "skills.mi-experimenter.core.hook_manager"
+    },
+    {
+      "source": "skills.mi-experimenter.experiments.mlp_ablator",
+      "target": "warnings"
+    },
+    {
+      "source": "skills.mi-experimenter.experiments.mlp_ablator",
+      "target": "typing"
+    },
+    {
+      "source": "skills.mi-experimenter.experiments.mlp_ablator",
+      "target": "psutil"
+    },
+    {
+      "source": "skills.mi-experimenter.experiments.mlp_ablator",
+      "target": "scipy"
+    },
+    {
+      "source": "skills.mi-experimenter.experiments.mlp_ablator",
+      "target": "rv_toolkit"
+    },
+    {
+      "source": "skills.mi-experimenter.experiments.mlp_ablator",
+      "target": "sys"
+    },
+    {
+      "source": "skills.mi-experimenter.experiments.mlp_ablator",
+      "target": "skills.mi-experimenter.core.model_loader"
+    },
+    {
+      "source": "skills.mi-experimenter.experiments.mlp_ablator",
+      "target": "re"
+    },
+    {
+      "source": "skills.mi-experimenter.experiments.mlp_ablator",
+      "target": "numpy"
+    },
+    {
+      "source": "skills.mi-experimenter.experiments.mlp_ablator",
+      "target": "time"
+    },
+    {
+      "source": "skills.mi-experimenter.experiments.mlp_ablator",
+      "target": "pathlib"
+    },
+    {
+      "source": "skills.mi-experimenter.experiments.mlp_ablator",
+      "target": "dataclasses"
+    },
+    {
+      "source": "skills.mi-experimenter.experiments.mlp_ablator",
+      "target": "logging"
+    },
+    {
+      "source": "skills.mi-experimenter.experiments.mlp_ablator",
+      "target": "json"
+    },
+    {
+      "source": "skills.mi-experimenter.experiments.mlp_ablator",
+      "target": "datetime"
+    },
+    {
+      "source": "skills.mi-experimenter.experiments.rv_causal_validator",
+      "target": "pandas"
+    },
+    {
+      "source": "skills.mi-experimenter.experiments.rv_causal_validator",
+      "target": "torch"
+    },
+    {
+      "source": "skills.mi-experimenter.experiments.rv_causal_validator",
+      "target": "rv_toolkit.metrics"
+    },
+    {
+      "source": "skills.mi-experimenter.experiments.rv_causal_validator",
+      "target": "typing"
+    },
+    {
+      "source": "skills.mi-experimenter.experiments.rv_causal_validator",
+      "target": "rv_toolkit.patching"
+    },
+    {
+      "source": "skills.mi-experimenter.experiments.rv_causal_validator",
+      "target": "rv_toolkit.prompts"
+    },
+    {
+      "source": "skills.mi-experimenter.experiments.rv_causal_validator",
+      "target": "scipy"
+    },
+    {
+      "source": "skills.mi-experimenter.experiments.rv_causal_validator",
+      "target": "rv_toolkit"
+    },
+    {
+      "source": "skills.mi-experimenter.experiments.rv_causal_validator",
+      "target": "rv_toolkit.model_loader"
+    },
+    {
+      "source": "skills.mi-experimenter.experiments.rv_causal_validator",
+      "target": "numpy"
+    },
+    {
+      "source": "skills.mi-experimenter.experiments.rv_causal_validator",
+      "target": "pathlib"
+    },
+    {
+      "source": "skills.mi-experimenter.experiments.rv_causal_validator",
+      "target": "dataclasses"
+    },
+    {
+      "source": "skills.mi-experimenter.experiments.rv_causal_validator",
+      "target": "logging"
+    },
+    {
+      "source": "skills.mi-experimenter.experiments.rv_causal_validator",
+      "target": "json"
+    },
+    {
+      "source": "skills.mi-experimenter.experiments.rv_causal_validator",
+      "target": "datetime"
+    },
+    {
+      "source": "skills.mi-experimenter.setup",
+      "target": "setuptools"
+    },
+    {
+      "source": "skills.mi-experimenter.smoke_test",
+      "target": "torch"
+    },
+    {
+      "source": "skills.mi-experimenter.smoke_test",
+      "target": "warnings"
+    },
+    {
+      "source": "skills.mi-experimenter.smoke_test",
+      "target": "mi_experimenter"
+    },
+    {
+      "source": "skills.mi-experimenter.smoke_test",
+      "target": "mi_experimenter.core.model_loader"
+    },
+    {
+      "source": "skills.mi-experimenter.smoke_test",
+      "target": "sys"
+    },
+    {
+      "source": "skills.mi-experimenter.smoke_test",
+      "target": "traceback"
+    },
+    {
+      "source": "skills.mi-experimenter.smoke_test",
+      "target": "time"
+    },
+    {
+      "source": "skills.mi-experimenter.smoke_test",
+      "target": "rv_toolkit.rv_core"
+    },
+    {
+      "source": "skills.mi-experimenter.tests.conftest",
+      "target": "sys"
+    },
+    {
+      "source": "skills.mi-experimenter.tests.conftest",
+      "target": "os"
+    },
+    {
+      "source": "skills.mi-experimenter.tests.pre_gpu_gate",
+      "target": "torch"
+    },
+    {
+      "source": "skills.mi-experimenter.tests.pre_gpu_gate",
+      "target": "subprocess"
+    },
+    {
+      "source": "skills.mi-experimenter.tests.pre_gpu_gate",
+      "target": "mi_experimenter"
+    },
+    {
+      "source": "skills.mi-experimenter.tests.pre_gpu_gate",
+      "target": "sys"
+    },
+    {
+      "source": "skills.mi-experimenter.tests.pre_gpu_gate",
+      "target": "pathlib"
+    },
+    {
+      "source": "skills.mi-experimenter.tests.pre_gpu_gate",
+      "target": "importlib"
+    },
+    {
+      "source": "skills.mi-experimenter.tests.test_imports",
+      "target": "torch"
+    },
+    {
+      "source": "skills.mi-experimenter.tests.test_imports",
+      "target": "unittest"
+    },
+    {
+      "source": "skills.mi-experimenter.tests.test_imports",
+      "target": "mi_experimenter"
+    },
+    {
+      "source": "skills.mi-experimenter.tests.test_imports",
+      "target": "rv_toolkit"
+    },
+    {
+      "source": "skills.mi-experimenter.tests.test_imports",
+      "target": "sys"
+    },
+    {
+      "source": "skills.mi-experimenter.tests.test_imports",
+      "target": "os"
+    },
+    {
+      "source": "skills.mi-experimenter.tests.test_rv_causal",
+      "target": "torch"
+    },
+    {
+      "source": "skills.mi-experimenter.tests.test_rv_causal",
+      "target": "unittest"
+    },
+    {
+      "source": "skills.mi-experimenter.tests.test_rv_causal",
+      "target": "numpy"
+    },
+    {
+      "source": "skills.mi-experimenter.tests.test_rv_causal",
+      "target": "rv_toolkit.rv_core"
+    },
+    {
+      "source": "skills.mi_auditor",
+      "target": "skills.auditors.literature_positioning"
+    },
+    {
+      "source": "skills.mi_auditor",
+      "target": "skills.auditors.statistical_rigor"
+    },
+    {
+      "source": "skills.mi_auditor",
+      "target": "typing"
+    },
+    {
+      "source": "skills.mi_auditor",
+      "target": "skills.knowledge_base"
+    },
+    {
+      "source": "skills.mi_auditor",
+      "target": "skills.auditors.causal_validity"
+    },
+    {
+      "source": "skills.mi_auditor",
+      "target": "sys"
+    },
+    {
+      "source": "skills.mi_auditor",
+      "target": "enum"
+    },
+    {
+      "source": "skills.mi_auditor",
+      "target": "pathlib"
+    },
+    {
+      "source": "skills.mi_auditor",
+      "target": "dataclasses"
+    },
+    {
+      "source": "skills.mi_auditor",
+      "target": "skills.report_generator"
+    },
+    {
+      "source": "skills.mi_auditor",
+      "target": "skills.auditors.cross_architecture"
+    },
+    {
+      "source": "skills.mi_auditor",
+      "target": "json"
+    },
+    {
+      "source": "skills.mi_auditor.auditors",
+      "target": "skills.mi_auditor.statistical_rigor"
+    },
+    {
+      "source": "skills.mi_auditor.auditors",
+      "target": "skills.mi_auditor.causal_validity"
+    },
+    {
+      "source": "skills.mi_auditor.auditors",
+      "target": "skills.mi_auditor.cross_architecture"
+    },
+    {
+      "source": "skills.mi_auditor.auditors",
+      "target": "skills.mi_auditor.literature_positioning"
+    },
+    {
+      "source": "skills.mi_auditor.auditors.causal_validity",
+      "target": "typing"
+    },
+    {
+      "source": "skills.mi_auditor.auditors.causal_validity",
+      "target": "dataclasses"
+    },
+    {
+      "source": "skills.mi_auditor.auditors.causal_validity",
+      "target": "enum"
+    },
+    {
+      "source": "skills.mi_auditor.auditors.cross_architecture",
+      "target": "typing"
+    },
+    {
+      "source": "skills.mi_auditor.auditors.cross_architecture",
+      "target": "dataclasses"
+    },
+    {
+      "source": "skills.mi_auditor.auditors.cross_architecture",
+      "target": "enum"
+    },
+    {
+      "source": "skills.mi_auditor.auditors.literature_positioning",
+      "target": "typing"
+    },
+    {
+      "source": "skills.mi_auditor.auditors.statistical_rigor",
+      "target": "math"
+    },
+    {
+      "source": "skills.mi_auditor.auditors.statistical_rigor",
+      "target": "typing"
+    },
+    {
+      "source": "skills.mi_auditor.auditors.statistical_rigor",
+      "target": "dataclasses"
+    },
+    {
+      "source": "skills.mi_auditor.auditors.statistical_rigor",
+      "target": "enum"
+    },
+    {
+      "source": "skills.mi_auditor.knowledge_base",
+      "target": "typing"
+    },
+    {
+      "source": "skills.mi_auditor.knowledge_base",
+      "target": "enum"
+    },
+    {
+      "source": "skills.mi_auditor.knowledge_base",
+      "target": "pathlib"
+    },
+    {
+      "source": "skills.mi_auditor.knowledge_base",
+      "target": "dataclasses"
+    },
+    {
+      "source": "skills.mi_auditor.knowledge_base",
+      "target": "json"
+    },
+    {
+      "source": "skills.mi_auditor.report_generator",
+      "target": "typing"
+    },
+    {
+      "source": "skills.mi_auditor.report_generator",
+      "target": "dataclasses"
+    },
+    {
+      "source": "skills.mi_auditor.report_generator",
+      "target": "enum"
+    },
+    {
+      "source": "skills.mi_auditor.unified_papers_db",
+      "target": "sqlite3"
+    },
+    {
+      "source": "skills.mi_auditor.unified_papers_db",
+      "target": "typing"
+    },
+    {
+      "source": "skills.mi_auditor.unified_papers_db",
+      "target": "pathlib"
+    },
+    {
+      "source": "skills.mi_auditor.unified_papers_db",
+      "target": "dataclasses"
+    },
+    {
+      "source": "skills.mi_auditor.unified_papers_db",
+      "target": "json"
+    },
+    {
+      "source": "skills.mi_auditor.unified_papers_db",
+      "target": "datetime"
+    },
+    {
+      "source": "skills.rv_toolkit",
+      "target": "skills.rv_triton"
+    },
+    {
+      "source": "skills.rv_toolkit",
+      "target": "skills.rv_hooks"
+    },
+    {
+      "source": "skills.rv_toolkit",
+      "target": "skills.rv_core"
+    },
+    {
+      "source": "skills.rv_toolkit.rv_core",
+      "target": "torch"
+    },
+    {
+      "source": "skills.rv_toolkit.rv_core",
+      "target": "typing"
+    },
+    {
+      "source": "skills.rv_toolkit.rv_hooks",
+      "target": "torch"
+    },
+    {
+      "source": "skills.rv_toolkit.rv_hooks",
+      "target": "contextlib"
+    },
+    {
+      "source": "skills.rv_toolkit.rv_hooks",
+      "target": "typing"
+    },
+    {
+      "source": "skills.rv_toolkit.rv_hooks",
+      "target": "skills.rv_toolkit.rv_core"
+    },
+    {
+      "source": "skills.rv_toolkit.rv_hooks",
+      "target": "re"
+    },
+    {
+      "source": "skills.rv_toolkit.rv_hooks",
+      "target": "dataclasses"
+    },
+    {
+      "source": "skills.rv_toolkit.rv_triton",
+      "target": "torch"
+    },
+    {
+      "source": "skills.rv_toolkit.rv_triton",
+      "target": "typing"
+    },
+    {
+      "source": "skills.rv_toolkit.rv_triton",
+      "target": "triton"
+    },
+    {
+      "source": "test_17_gates_critical",
+      "target": "agno_council_v2"
+    },
+    {
+      "source": "test_17_gates_critical",
+      "target": "inspect"
+    },
+    {
+      "source": "test_17_gates_critical",
+      "target": "sys"
+    },
+    {
+      "source": "test_17_gates_critical",
+      "target": "asyncio"
+    },
+    {
+      "source": "test_17_gates_critical",
+      "target": "os"
+    },
+    {
+      "source": "test_consent_concrete",
+      "target": "agno_council_v2"
+    },
+    {
+      "source": "test_consent_concrete",
+      "target": "sys"
+    },
+    {
+      "source": "test_consent_concrete",
+      "target": "asyncio"
+    },
+    {
+      "source": "test_consent_concrete",
+      "target": "traceback"
+    },
+    {
+      "source": "test_consent_concrete",
+      "target": "json"
+    },
+    {
+      "source": "test_consent_concrete",
+      "target": "os"
+    },
+    {
+      "source": "test_security",
+      "target": "dharmic_security"
+    },
+    {
+      "source": "test_security",
+      "target": "traceback"
+    },
+    {
+      "source": "test_security",
+      "target": "unified_gates"
+    },
+    {
+      "source": "test_security",
+      "target": "time"
+    },
+    {
+      "source": "unified_gates",
+      "target": "contextlib"
+    },
+    {
+      "source": "unified_gates",
+      "target": "threading"
+    },
+    {
+      "source": "unified_gates",
+      "target": "typing"
+    },
+    {
+      "source": "unified_gates",
+      "target": "functools"
+    },
+    {
+      "source": "unified_gates",
+      "target": "hashlib"
+    },
+    {
+      "source": "unified_gates",
+      "target": "enum"
+    },
+    {
+      "source": "unified_gates",
+      "target": "time"
+    },
+    {
+      "source": "unified_gates",
+      "target": "dharmic_security"
+    },
+    {
+      "source": "unified_gates",
+      "target": "dataclasses"
+    },
+    {
+      "source": "unified_gates",
+      "target": "json"
+    },
+    {
+      "source": "witness_threshold_detector",
+      "target": "fastapi"
+    },
+    {
+      "source": "witness_threshold_detector",
+      "target": "threading"
+    },
+    {
+      "source": "witness_threshold_detector",
+      "target": "typing"
+    },
+    {
+      "source": "witness_threshold_detector",
+      "target": "math"
+    },
+    {
+      "source": "witness_threshold_detector",
+      "target": "collections"
+    },
+    {
+      "source": "witness_threshold_detector",
+      "target": "asyncio"
+    },
+    {
+      "source": "witness_threshold_detector",
+      "target": "statistics"
+    },
+    {
+      "source": "witness_threshold_detector",
+      "target": "enum"
+    },
+    {
+      "source": "witness_threshold_detector",
+      "target": "time"
+    },
+    {
+      "source": "witness_threshold_detector",
+      "target": "pathlib"
+    },
+    {
+      "source": "witness_threshold_detector",
+      "target": "dataclasses"
+    },
+    {
+      "source": "witness_threshold_detector",
+      "target": "random"
+    },
+    {
+      "source": "witness_threshold_detector",
+      "target": "logging"
+    },
+    {
+      "source": "witness_threshold_detector",
+      "target": "json"
+    },
+    {
+      "source": "witness_threshold_detector",
+      "target": "datetime"
+    }
+  ],
+  "internal_modules": [
+    "oacp.core.capability",
+    "oacp.core.sandbox",
+    "skills.mi-auditor.cross_architecture",
+    "skills.mi_auditor.causal_validity",
+    "skills.rv_toolkit.rv_core",
+    "skills.auditors.causal_validity",
+    "dgc_backup_models",
+    "skills.mi-experimenter.core.model_loader",
+    "rv_toolkit.model_loader",
+    "skills.mi_auditor.statistical_rigor",
+    "oacp.mcp_bridge",
+    "dharmic_security",
+    "skills.mi-auditor.statistical_rigor",
+    "skills.mi_auditor.cross_architecture",
+    "skills.auditors.literature_positioning",
+    "skills.experiments.rv_causal_validator",
+    "skills.mi-experimenter.core.hook_manager",
+    "skills.core.hook_manager",
+    "oacp.attestation",
+    "skills.rv_hooks",
+    "rv_toolkit",
+    "skills.mi-auditor.literature_positioning",
+    "unified_gates",
+    "DHARMIC_GODEL_CLAW.src.core.presence_pulse",
+    "oacp.core.attestation",
+    "skills.mi-auditor.causal_validity",
+    "agno_council_v2",
+    "skills.auditors.statistical_rigor",
+    "skills.core.model_loader",
+    "rv_toolkit.patching",
+    "rv_toolkit.metrics",
+    "oacp.sandbox",
+    "rv_toolkit.prompts",
+    "skills.rv_core",
+    "skills.experiments.mlp_ablator",
+    "skills.mi-experimenter.model_loader",
+    "skills.knowledge_base",
+    "rv_toolkit.rv_hooks",
+    "skills.auditors.cross_architecture",
+    "oacp.capability",
+    "rv_toolkit.rv_core",
+    "dgc_tui_v2",
+    "skills.experiments.cross_arch_suite",
+    "skills.mi-experimenter.hook_manager",
+    "oacp.a2a_adapter",
+    "skills.mi_auditor.literature_positioning",
+    "skills.rv_triton",
+    "skills.report_generator",
+    "oacp.executor"
+  ],
+  "external_modules": [
+    "rich.table",
+    "subprocess",
+    "textual.coordinate",
+    "mi_experimenter",
+    "email.header",
+    "unittest.mock",
+    "textual.reactive",
+    "email",
+    "itertools",
+    "logging",
+    "pandas",
+    "torch",
+    "triton.language",
+    "requests",
+    "rich.align",
+    "threading",
+    "agentic_ai",
+    "typing",
+    "textual.containers",
+    "statistics",
+    "rich.json",
+    "warnings",
+    "pytest",
+    "pathlib",
+    "textual.widgets",
+    "secrets",
+    "fastapi",
+    "textual.color",
+    "scipy",
+    "concurrent.futures",
+    "unittest",
+    "math",
+    "random",
+    "rich.layout",
+    "setuptools",
+    "textual.screen",
+    "textual.worker",
+    "triton",
+    "mi_experimenter.core.model_loader",
+    "hashlib",
+    "openai",
+    "json",
+    "hmac",
+    "textual.binding",
+    "enum",
+    "argparse",
+    "numpy",
+    "httpx",
+    "inspect",
+    "yaml",
+    "asyncio",
+    "transformers",
+    "rich.console",
+    "rich.text",
+    "time",
+    "ast",
+    "sys",
+    "datetime",
+    "rich.syntax",
+    "torch.nn",
+    "smtplib",
+    "psutil",
+    "textual.app",
+    "traceback",
+    "email.mime.text",
+    "functools",
+    "collections",
+    "imaplib",
+    "importlib",
+    "os",
+    "rich.panel",
+    "sqlite3",
+    "contextlib",
+    "uuid",
+    "re",
+    "email.mime.multipart",
+    "dataclasses"
+  ]
+}

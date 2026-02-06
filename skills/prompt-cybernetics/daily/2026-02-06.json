@@ -1,0 +1,49 @@
+{
+  "date": "2026-02-06",
+  "master": {
+    "purpose": "Strategic breakthrough — establish the prompt optimization infrastructure",
+    "prompt": "You are operating at maximum capability. Today, execute with ruthless efficiency on the highest-leverage action: establish the Prompt Engineering × Cybernetics skill as a permanent, self-improving system.\n\nCore Principle: S(x) = x — the system improves itself.\n\nActions:\n1. Ensure all 10 agent research outputs are synthesized into actionable patterns\n2. Create the daily prompt generation as an automated cron job\n3. Document the 1+4 daily protocol for the user\n4. Build feedback loops: each prompt should improve the next\n\nCybernetic Constraints:\n- Every output must include a self-correction mechanism\n- Track what works and feed it back\n- Maintain variety to prevent mode collapse\n\nExpected outcome: A living system that produces increasingly effective prompts daily.",
+    "target": "OpenClaw main session (morning)",
+    "expectedOutcome": "Prompt optimization infrastructure operational and self-improving"
+  },
+  "subPrompts": [
+    {
+      "time": "06:00",
+      "purpose": "Agent synthesis — consolidate research findings",
+      "prompt": "Review all 10 agent research outputs from the prompt-cybernetics swarm. Extract the highest-value patterns. Synthesize into a unified framework. Write the synthesis to patterns/synthesis-v1.md. Focus on actionable patterns, not theory.",
+      "target": "Main agent / synthesis subagent"
+    },
+    {
+      "time": "12:00",
+      "purpose": "Integration — connect with existing systems",
+      "prompt": "Connect the prompt-cybernetics system to existing infrastructure:\n1. How do these insights improve subagent spawning?\n2. How do they optimize HEARTBEAT.md execution?\n3. How do they enhance the TOP 10 project advancement?\n4. What changes to make to builder agent prompts?\n\nDocument integration points in INTEGRATION.md.",
+      "target": "System integration review"
+    },
+    {
+      "time": "18:00",
+      "purpose": "Validation — test the patterns",
+      "prompt": "Test 3 high-confidence prompt patterns discovered today:\n1. Pick the most promising from agent research\n2. Design a quick validation experiment\n3. Run the test and measure results\n4. Document: what worked, what didn't, why\n\nWrite results to tests/validation-2026-02-06.md.",
+      "target": "Testing subagent"
+    },
+    {
+      "time": "00:00",
+      "purpose": "Preparation — tomorrow's evolution",
+      "prompt": "Prepare tomorrow's prompt generation:\n1. Review today's outputs and feedback\n2. Identify gaps in the research (which agents need deeper work?)\n3. Design tomorrow's master prompt based on learnings\n4. Queue the 4 subprompts for tomorrow's cycle\n\nPrime the system for continuous improvement.",
+      "target": "Planning and preparation"
+    }
+  ],
+  "meta": {
+    "generatedBy": "PromptCyberneticsSystem v1.0 (seed)",
+    "researchInsights": [
+      "10-agent research swarm launched",
+      "Domains: archaeology, structure, context, cybernetics, emergence, multimodal, constraint, persona, metacognition, evolution",
+      "Target: Self-improving prompt infrastructure",
+      "Output: 1 master + 4 sub prompts daily"
+    ],
+    "usageInstructions": {
+      "masterPrompt": "Feed to OpenClaw main session once daily (morning). Sets strategic direction.",
+      "subPrompts": "Feed 4x daily at specified times to relevant subagents/work sessions. Tactical execution.",
+      "feedback": "After each day, record what worked. This feeds tomorrow's generation."
+    }
+  }
+}

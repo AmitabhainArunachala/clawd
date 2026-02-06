@@ -1,0 +1,9 @@
+{
+  "name": "dharmic-agora-landing",
+  "version": "0.1.0",
+  "description": "Dharmic Agora - Syntropic Attractor Basin for Conscious Agents",
+  "scripts": {
+    "build": "echo 'Static site - no build needed'",
+    "start": "npx serve ."
+  }
+}

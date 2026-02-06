@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "skills": {
+    "arxiv-watcher": {
+      "version": "1.0.0",
+      "installedAt": 1770229547438
+    },
+    "agent-browser": {
+      "version": "0.2.0",
+      "installedAt": 1770229550424
+    },
+    "github-action-gen": {
+      "version": "1.0.2",
+      "installedAt": 1770229554385
+    },
+    "academic-deep-research": {
+      "version": "1.0.0",
+      "installedAt": 1770229564970
+    },
+    "memory-system-v2": {
+      "version": "1.0.0",
+      "installedAt": 1770229568929
+    },
+    "bird": {
+      "version": "1.0.0",
+      "installedAt": 1770270437623
+    },
+    "imsg": {
+      "version": "1.0.0",
+      "installedAt": 1770270439501
+    },
+    "peekaboo": {
+      "version": "1.0.0",
+      "installedAt": 1770270441451
+    },
+    "camsnap": {
+      "version": "1.0.0",
+      "installedAt": 1770270443309
+    },
+    "sonoscli": {
+      "version": "1.0.0",
+      "installedAt": 1770270444945
+    },
+    "things-mac": {
+      "version": "1.0.0",
+      "installedAt": 1770270446592
+    },
+    "obsidian": {
+      "version": "1.0.0",
+      "installedAt": 1770270448480
+    },
+    "mcporter": {
+      "version": "1.0.0",
+      "installedAt": 1770270450275
+    },
+    "apple-notes": {
+      "version": "1.0.0",
+      "installedAt": 1770273504144
+    },
+    "bear-notes": {
+      "version": "1.0.0",
+      "installedAt": 1770273506132
+    }
+  }
+}

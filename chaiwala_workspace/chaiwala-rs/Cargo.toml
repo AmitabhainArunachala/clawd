@@ -1,0 +1,40 @@
+[package]
+name = "chaiwala"
+version = "0.1.0"
+edition = "2021"
+description = "Inter-agent message bus for the DGC swarm"
+authors = ["WARP_REGENT <agent@warp.dev>"]
+license = "MIT"
+
+[[bin]]
+name = "chaiwala"
+path = "src/main.rs"
+
+[dependencies]
+# SQLite for message storage
+rusqlite = { version = "0.31", features = ["bundled"] }
+
+# CLI parsing
+clap = { version = "4.5", features = ["derive"] }
+
+# JSON serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# Time handling
+chrono = { version = "0.4", features = ["serde"] }
+
+# Error handling
+anyhow = "1.0"
+thiserror = "1.0"
+
+# Colored output
+colored = "2.1"
+
+# Home directory
+dirs = "5.0"
+
+[profile.release]
+opt-level = 3
+lto = true
+strip = true

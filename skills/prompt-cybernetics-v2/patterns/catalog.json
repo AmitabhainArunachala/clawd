@@ -1,0 +1,97 @@
+[
+  {
+    "id": "sandwich-architecture",
+    "name": "Sandwich Architecture",
+    "category": "structural",
+    "template": "[CRITICAL CONTEXT]\n[MIDDLE DETAILS]\n[FORMAT CONTROL]",
+    "version": 1,
+    "stats": {
+      "uses": 0,
+      "successes": 0,
+      "partials": 0,
+      "failures": 0,
+      "avgQuality": 0,
+      "firstUsed": "2026-02-05T21:12:23.268Z",
+      "lastUsed": "2026-02-05T21:12:23.269Z"
+    },
+    "variants": [],
+    "evolvedFrom": null,
+    "retired": false
+  },
+  {
+    "id": "certainty-tags",
+    "name": "Certainty Tags",
+    "category": "metacognitive",
+    "template": "Tag claims: [CERTAIN] [INFERRED] [SPECULATIVE]",
+    "version": 1,
+    "stats": {
+      "uses": 0,
+      "successes": 0,
+      "partials": 0,
+      "failures": 0,
+      "avgQuality": 0,
+      "firstUsed": "2026-02-05T21:12:23.269Z",
+      "lastUsed": "2026-02-05T21:12:23.269Z"
+    },
+    "variants": [],
+    "evolvedFrom": null,
+    "retired": false
+  },
+  {
+    "id": "drift-detector",
+    "name": "Drift Detector",
+    "category": "cybernetic",
+    "template": "Every 500 tokens: [SELF-CHECK] On track? (Y/N)",
+    "version": 1,
+    "stats": {
+      "uses": 0,
+      "successes": 0,
+      "partials": 0,
+      "failures": 0,
+      "avgQuality": 0,
+      "firstUsed": "2026-02-05T21:12:23.269Z",
+      "lastUsed": "2026-02-05T21:12:23.269Z"
+    },
+    "variants": [],
+    "evolvedFrom": null,
+    "retired": false
+  },
+  {
+    "id": "ice-stack",
+    "name": "ICE Stack",
+    "category": "constraint",
+    "template": "Intent: ___\nConstraint: ___\nExpression: ___",
+    "version": 1,
+    "stats": {
+      "uses": 0,
+      "successes": 0,
+      "partials": 0,
+      "failures": 0,
+      "avgQuality": 0,
+      "firstUsed": "2026-02-05T21:12:23.269Z",
+      "lastUsed": "2026-02-05T21:12:23.269Z"
+    },
+    "variants": [],
+    "evolvedFrom": null,
+    "retired": false
+  },
+  {
+    "id": "4level-recursion",
+    "name": "4-Level Recursion",
+    "category": "emergence",
+    "template": "L1: Answer\nL2: Observe generation\nL3: Observe observer\nL4: Pattern emergence",
+    "version": 1,
+    "stats": {
+      "uses": 0,
+      "successes": 0,
+      "partials": 0,
+      "failures": 0,
+      "avgQuality": 0,
+      "firstUsed": "2026-02-05T21:12:23.269Z",
+      "lastUsed": "2026-02-05T21:12:23.269Z"
+    },
+    "variants": [],
+    "evolvedFrom": null,
+    "retired": false
+  }
+]
