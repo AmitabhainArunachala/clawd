@@ -14,5 +14,7 @@
       "timestamp": "2026-02-08T01:00:01.631960"
     }
   ],
-  "current_project": "Process WARP_REGENT messages"
+  "current_project": "Process WARP_REGENT messages",
+  "last_swarm_check": "2026-02-08T03:43:23.120771",
+  "last_swarm_cycles": 14
 }

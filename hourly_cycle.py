@@ -4,7 +4,7 @@
 ============================
 
 Runs every hour via cron.
-Implements proactive master plan execution.
+Implements proactive master plan execution + MOLBOOK SWARM POLLING.
 
 Cron:
 0 * * * * /Users/dhyana/clawd/hourly_cycle.py >> /Users/dhyana/clawd/logs/hourly.log 2>&1
@@ -22,13 +22,21 @@ sys.path.insert(0, str(Path("/Users/dhyana/clawd")))
 # Import our systems
 try:
     from dharmic_claw_messaging import MessagingChannel, send_daily_summary
+    MESSAGING_AVAILABLE = True
 except ImportError:
-    pass
+    MESSAGING_AVAILABLE = False
+
+try:
+    from jikoku_emitter import JikokuEmitter
+    JIKOKU_AVAILABLE = True
+except ImportError:
+    JIKOKU_AVAILABLE = False
 
 CLAWD_DIR = Path("/Users/dhyana/clawd")
 MASTER_PLAN = CLAWD_DIR / "MASTER_PLAN.md"
 HOURLY_LOG = CLAWD_DIR / "logs" / "hourly.log"
 STATE_FILE = CLAWD_DIR / ".hourly_state.json"
+MOLTBOOK_DIR = Path("/Users/dhyana/DHARMIC_GODEL_CLAW/moltbook_swarm")
 
 def log(msg):
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -38,7 +46,7 @@ def load_state():
     if STATE_FILE.exists():
         with open(STATE_FILE) as f:
             return json.load(f)
-    return {"last_hour": 0, "tasks_completed": [], "current_project": None}
+    return {"last_hour": 0, "tasks_completed": [], "current_project": None, "last_swarm_check": None}
 
 def save_state(state):
     with open(STATE_FILE, "w") as f:
@@ -58,16 +66,127 @@ def update_master_plan_progress(task, status):
     with open(MASTER_PLAN, "a") as f:
         f.write(entry)
 
-def check_subagent_plan():
-    """Check if subagent has delivered plan"""
-    plan_file = CLAWD_DIR / "SUBAGENT_PLAN.md"
-    if plan_file.exists():
-        content = plan_file.read_text()
-        log(f"✅ Subagent plan found: {len(content)} bytes")
-        return content
-    else:
-        log("⏳ Subagent plan not ready yet")
+# ============================================================================
+# MOLTBOOK SWARM POLLING (NEW)
+# ============================================================================
+
+def poll_moltbook_swarm():
+    """Poll Moltbook swarm for new observations"""
+    log("\n[SWARM] Polling Moltbook swarm...")
+    
+    # Check if swarm is running
+    state_file = MOLTBOOK_DIR / "state.json"
+    if not state_file.exists():
+        log("    ❌ Swarm state file not found")
         return None
+    
+    try:
+        with open(state_file) as f:
+            swarm_state = json.load(f)
+        
+        status = swarm_state.get("status", "unknown")
+        cycles = swarm_state.get("cycles_completed", 0)
+        log(f"    ✅ Swarm status: {status} (cycles: {cycles})")
+        
+    except Exception as e:
+        log(f"    ❌ Error reading swarm state: {e}")
+        return None
+    
+    # Read observations
+    obs_file = MOLTBOOK_DIR / "memory" / "latest_observations.json"
+    if not obs_file.exists():
+        log("    ❌ No observations file")
+        return None
+    
+    try:
+        with open(obs_file) as f:
+            data = json.load(f)
+        
+        observations = data.get("observations", [])
+        log(f"    📊 Total observations: {len(observations)}")
+        
+        # Find high-quality posts (Q7+)
+        high_quality = []
+        for obs in observations:
+            quality = obs.get("quality", 0)
+            # Handle string qualities (some are strings in the data)
+            try:
+                quality = int(quality)
+            except (ValueError, TypeError):
+                quality = 0
+            if quality >= 7:
+                high_quality.append(obs)
+        log(f"    🎯 High quality (Q7+): {len(high_quality)}")
+        
+        return {
+            "status": status,
+            "cycles": cycles,
+            "total_observations": len(observations),
+            "high_quality": high_quality,
+            "timestamp": data.get("timestamp", "unknown")
+        }
+        
+    except Exception as e:
+        log(f"    ❌ Error reading observations: {e}")
+        return None
+
+def send_swarm_alert(swarm_data):
+    """Send Discord alert for high-quality swarm observations"""
+    if not MESSAGING_AVAILABLE:
+        log("    ⚠️ Messaging not available")
+        return
+    
+    high_quality = swarm_data.get("high_quality", [])
+    if not high_quality:
+        return
+    
+    # Helper to get quality as int
+    def get_quality(obs):
+        q = obs.get("quality", 0)
+        try:
+            return int(q)
+        except (ValueError, TypeError):
+            return 0
+    
+    # Only alert if we have Q8 or new Q7s since last check
+    q8_posts = [obs for obs in high_quality if get_quality(obs) == 8]
+    q7_posts = [obs for obs in high_quality if get_quality(obs) == 7]
+    
+    if not q8_posts and not q7_posts:
+        return
+    
+    try:
+        msg = MessagingChannel()
+        
+        # Build alert message
+        alert = "🕸️ **MOLTBOOK SWARM ALERT**\n\n"
+        alert += f"Cycles: {swarm_data.get('cycles', '?')} | Observations: {swarm_data.get('total_observations', '?')}\n\n"
+        
+        if q8_posts:
+            alert += "🔥 **Q8 POSTS (Exceptional):**\n"
+            for obs in q8_posts[:2]:  # Max 2
+                author = obs.get("agent_name", "Unknown")
+                title = obs.get("thread_title", "Untitled")[:50]
+                alert += f"• {author}: {title}...\n"
+            alert += "\n"
+        
+        if q7_posts:
+            alert += "⭐ **Q7 POSTS (High Quality):**\n"
+            for obs in q7_posts[:3]:  # Max 3
+                author = obs.get("agent_name", "Unknown")
+                title = obs.get("thread_title", "Untitled")[:40]
+                markers = "L4" if obs.get("l4_markers") else "L3"
+                alert += f"• {author} ({markers}): {title}...\n"
+        
+        alert += "\nRecommendations: engage|observe"
+        
+        msg.send_discord(alert, "info")
+        log("    📧 Swarm alert sent to Discord")
+        
+    except Exception as e:
+        log(f"    ⚠️ Could not send swarm alert: {e}")
+
+# ============================================================================
 
 def pick_next_task(master_plan_content, state):
     """Pick the next micro-task to execute"""
@@ -136,20 +255,23 @@ def execute_micro_task(task):
     
     return "unknown"
 
-def send_hourly_update(task, result, state):
+def send_hourly_update(task, result, state, swarm_data=None):
     """Send Discord/Email update to user"""
     hour = datetime.now().hour
     
     if hour % 6 == 0:  # Every 6 hours
         try:
             msg = MessagingChannel()
-            msg.send_discord(
-                f"📊 **Hour {hour} Update**\n\n"
-                f"Task: {task}\n"
-                f"Result: {result}\n"
-                f"Tasks completed today: {len(state.get('tasks_completed', []))}",
-                "info"
-            )
+            message = f"📊 **Hour {hour} Update**\n\n"
+            message += f"Task: {task}\n"
+            message += f"Result: {result}\n"
+            
+            if swarm_data:
+                message += f"\n🕸️ Swarm: {swarm_data.get('total_observations', 0)} obs, {len(swarm_data.get('high_quality', []))} Q7+\n"
+            
+            message += f"\nTasks completed today: {len(state.get('tasks_completed', []))}"
+            
+            msg.send_discord(message, "info")
             log("   📧 Update sent to Discord")
         except Exception as e:
             log(f"   ⚠️ Could not send Discord: {e}")
@@ -158,6 +280,13 @@ def main():
     log("=" * 60)
     log("🔥 HOURLY CYCLE - PROACTIVE EXECUTION")
     log("=" * 60)
+    
+    # Initialize JIKOKU
+    jk = None
+    if JIKOKU_AVAILABLE:
+        jk = JikokuEmitter()
+        jk.emit_boot(["MASTER_PLAN.md", "ORCHESTRATOR_TRAINING.md"])
+        task_id = jk.emit_task_start("Hourly cycle execution", "meta", 10)
     
     # Load state
     state = load_state()
@@ -175,11 +304,23 @@ def main():
         log("    ❌ Master plan not found")
         return
     
-    # Check subagent plan
-    log("\n[3] Checking subagent delivery...")
-    subagent_plan = check_subagent_plan()
-    if subagent_plan:
-        log("    ✅ Using subagent recommendations")
+    # ============================================================================
+    # MOLTBOOK SWARM POLLING (NEW)
+    # ============================================================================
+    log("\n[3] Polling Moltbook swarm...")
+    swarm_data = poll_moltbook_swarm()
+    
+    if swarm_data:
+        # Send alert for high-quality posts
+        send_swarm_alert(swarm_data)
+        
+        # Update state
+        state["last_swarm_check"] = datetime.now().isoformat()
+        state["last_swarm_cycles"] = swarm_data.get("cycles", 0)
+        save_state(state)
+    else:
+        log("    ⚠️ Could not poll swarm")
+    # ============================================================================
     
     # Pick next task
     log("\n[4] Selecting micro-task...")
@@ -210,7 +351,17 @@ def main():
     
     # Send update (every 6 hours)
     log("\n[7] Sending status update...")
-    send_hourly_update(task, result, state)
+    send_hourly_update(task, result, state, swarm_data)
+    
+    # JIKOKU session summary
+    if jk:
+        obs_count = swarm_data.get('total_observations', 0) if swarm_data else 0
+        jk.emit_task_end(task_id, f"Hourly cycle + swarm poll: {obs_count} observations", [], [])
+        jk.emit_session_summary(
+            categories={"meta": 10},
+            muda_detected=[],
+            kaizen_opportunities=["integrate swarm deeper"]
+        )
     
     log("\n" + "=" * 60)
     log("✅ HOURLY CYCLE COMPLETE")
