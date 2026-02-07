@@ -29,6 +29,12 @@ from enum import Enum
 sys.path.insert(0, str(Path.home() / '.chaiwala'))
 from message_bus import MessageBus, Priority
 
+# Import WARP_REGENT evolved capabilities
+from agent_capabilities import (
+    track_performance, with_retry, health_check, diagnose,
+    get_perf_metrics, get_circuit_breaker, CircuitBreakerOpen
+)
+
 
 class AgentState(Enum):
     """Agent lifecycle states"""
@@ -143,6 +149,46 @@ class BaseAgent:
             self.health.state = AgentState.ERROR
             self.health.errors.append(f"Stale heartbeat: {age}s")
         return self.health
+        
+    def get_detailed_health(self) -> Dict[str, Any]:
+        """
+        Get detailed health using WARP_REGENT's health_check capability.
+        Includes circuit breaker status and performance metrics.
+        """
+        base_health = {
+            'agent_id': self.agent_id,
+            'state': self.state.value,
+            'capabilities': list(self.capabilities.keys()),
+            'last_heartbeat': self.health.last_heartbeat.isoformat(),
+            'load': self.health.load
+        }
+        
+        # Add WARP_REGENT evolved health check
+        system_health = health_check()
+        base_health['system_health'] = system_health
+        
+        # Add performance metrics
+        base_health['performance'] = get_perf_metrics()
+        
+        return base_health
+        
+    @track_performance
+    def execute_with_retry(self, func: Callable, *args, max_attempts: int = 3, **kwargs) -> Any:
+        """
+        Execute a function with automatic retry logic.
+        Uses WARP_REGENT's with_retry capability.
+        """
+        @with_retry(max_attempts=max_attempts)
+        def wrapper():
+            return func(*args, **kwargs)
+            
+        return wrapper()
+        
+    def diagnose_error(self, error: Exception, context: Optional[Dict] = None) -> Dict[str, Any]:
+        """
+        Diagnose an error using WARP_REGENT's diagnostic capability.
+        """
+        return diagnose(error, context)
         
     def process_message(self, msg: dict) -> Optional[dict]:
         """Process a single message"""
