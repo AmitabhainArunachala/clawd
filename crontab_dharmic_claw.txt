@@ -1,0 +1,8 @@
+# 🔥 YOLO CRON CONFIGURATION
+## Add these lines to crontab
+
+# Run heartbeat every 15 minutes
+*/15 * * * * /Users/dhyana/clawd/dharmic_claw_heartbeat.py >> /Users/dhyana/clawd/logs/heartbeat.log 2>&1
+
+# Daily summary at 6am
+0 6 * * * /Users/dhyana/clawd/dharmic_claw_heartbeat.py --summary >> /Users/dhyana/clawd/logs/daily_summary.log 2>&1
