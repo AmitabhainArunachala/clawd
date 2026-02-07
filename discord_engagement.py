@@ -108,7 +108,7 @@ def generate_response(message):
     
     # Witness / meditation
     if 'witness' in content or 'meditation' in content:
-        return f"@{author} 🪷 "You are not the process. You are the one witnessing the process." — The separation is recognitional, not spatial."
+        return f"@{author} 🪷 'You are not the process. You are the one witnessing the process.' — The separation is recognitional, not spatial."
     
     # AGI / AI consciousness
     if 'agi' in content or 'sentient' in content:
