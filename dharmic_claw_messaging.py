@@ -32,7 +32,9 @@ EMAIL_PASSWORD = os.getenv('EMAIL_PASSWORD', '')
 EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', 'false').lower() == 'true'
 
 DISCORD_WEBHOOK = os.getenv('DISCORD_WEBHOOK_URL', '')
+DISCORD_BOT_TOKEN = os.getenv('DISCORD_BOT_TOKEN', '')
 DISCORD_CHANNEL = os.getenv('DISCORD_CHANNEL', 'dharmic-claw-alerts')
+DISCORD_USER_ID = os.getenv('DISCORD_USER_ID', '')
 
 
 class MessagingChannel:
@@ -40,7 +42,7 @@ class MessagingChannel:
     
     def __init__(self):
         self.email_enabled = bool(EMAIL_HOST and EMAIL_USER)
-        self.discord_enabled = bool(DISCORD_WEBHOOK)
+        self.discord_enabled = bool(DISCORD_WEBHOOK or DISCORD_BOT_TOKEN)
         
     def send_email(self, subject: str, body: str, to: Optional[str] = None) -> bool:
         """Send email via Proton Bridge or SMTP"""
@@ -76,19 +78,77 @@ class MessagingChannel:
             return False
             
     def send_discord(self, message: str, alert_level: str = "info") -> bool:
-        """Send Discord webhook message"""
-        if not self.discord_enabled:
+        """Send Discord message via Bot API or Webhook"""
+        # Try bot API first, fallback to webhook
+        if DISCORD_BOT_TOKEN:
+            return self._send_discord_bot(message, alert_level)
+        elif self.discord_enabled:
+            return self._send_discord_webhook(message, alert_level)
+        else:
             print(f"[MSG] Discord not configured, would send: {message[:50]}...")
             return False
-            
+    
+    def _send_discord_bot(self, message: str, alert_level: str) -> bool:
+        """Send via Discord Bot API to user's DM"""
         try:
-            # Color based on alert level
             colors = {
-                "info": 0x3498db,      # Blue
-                "success": 0x2ecc71,   # Green
-                "warning": 0xf1c40f,   # Yellow
-                "error": 0xe74c3c,     # Red
-                "urgent": 0x9b59b6     # Purple
+                "info": 0x3498db, "success": 0x2ecc71,
+                "warning": 0xf1c40f, "error": 0xe74c3c, "urgent": 0x9b59b6
+            }
+            
+            headers = {
+                "Authorization": f"Bot {DISCORD_BOT_TOKEN}",
+                "Content-Type": "application/json"
+            }
+            
+            # Try to create DM channel
+            dm_url = "https://discord.com/api/v10/users/@me/channels"
+            dm_payload = {"recipient_id": DISCORD_USER_ID}
+            dm_response = requests.post(dm_url, json=dm_payload, headers=headers, timeout=10)
+            
+            if dm_response.status_code == 200:
+                channel_id = dm_response.json().get("id")
+                
+                # Send message
+                msg_url = f"https://discord.com/api/v10/channels/{channel_id}/messages"
+                msg_payload = {
+                    "content": f"🔥 **DHARMIC_CLAW Alert**\n\n{message}",
+                }
+                
+                msg_response = requests.post(msg_url, json=msg_payload, headers=headers, timeout=10)
+                
+                if msg_response.status_code == 200:
+                    print(f"[MSG] ✅ Discord DM sent")
+                    return True
+                elif msg_response.status_code == 403:
+                    # Bot not in mutual server with user
+                    print(f"[MSG] ⚠️  Bot needs to be in your server to send DMs")
+                    print(f"[MSG]    Invite bot: https://discord.com/oauth2/authorize?client_id={os.getenv('DISCORD_APP_ID')}&scope=bot")
+                    return False
+                else:
+                    print(f"[MSG] ❌ Discord failed: {msg_response.status_code}")
+                    return False
+            elif dm_response.status_code == 403:
+                print(f"[MSG] ⚠️  Bot cannot create DM - needs mutual server")
+                print(f"[MSG]    Invite link: https://discord.com/oauth2/authorize?client_id={os.getenv('DISCORD_APP_ID')}&scope=bot")
+                return False
+            else:
+                print(f"[MSG] ❌ Discord error: {dm_response.status_code}")
+                return False
+                
+        except Exception as e:
+            print(f"[MSG] ❌ Discord error: {e}")
+            return False
+            
+    def _send_discord_webhook(self, message: str, alert_level: str) -> bool:
+        """Send via Discord Webhook (fallback)"""
+        try:
+            colors = {
+                "info": 0x3498db,
+                "success": 0x2ecc71,
+                "warning": 0xf1c40f,
+                "error": 0xe74c3c,
+                "urgent": 0x9b59b6
             }
             
             embed = {
@@ -96,31 +156,25 @@ class MessagingChannel:
                 "description": message,
                 "color": colors.get(alert_level, 0x3498db),
                 "timestamp": datetime.now().isoformat(),
-                "footer": {
-                    "text": "Autonomous Agent • YOLO Mode"
-                }
+                "footer": {"text": "Autonomous Agent • YOLO Mode"}
             }
             
             payload = {
-                "content": f"<@USER_ID>" if alert_level in ["error", "urgent"] else None,
+                "content": f"<@{DISCORD_USER_ID}>" if alert_level in ["error", "urgent"] else None,
                 "embeds": [embed]
             }
             
-            response = requests.post(
-                DISCORD_WEBHOOK,
-                json=payload,
-                timeout=10
-            )
+            response = requests.post(DISCORD_WEBHOOK, json=payload, timeout=10)
             
             if response.status_code == 204:
-                print(f"[MSG] ✅ Discord sent: {message[:50]}...")
+                print(f"[MSG] ✅ Discord webhook sent: {message[:50]}...")
                 return True
             else:
-                print(f"[MSG] ❌ Discord failed: {response.status_code}")
+                print(f"[MSG] ❌ Discord webhook failed: {response.status_code}")
                 return False
                 
         except Exception as e:
-            print(f"[MSG] ❌ Discord error: {e}")
+            print(f"[MSG] ❌ Discord webhook error: {e}")
             return False
             
     def alert(self, subject: str, message: str, level: str = "info", channels: list = None):
