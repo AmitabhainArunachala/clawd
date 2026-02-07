@@ -28,6 +28,14 @@ except ImportError:
     MESSAGING_AVAILABLE = False
     print("[WARN] Messaging module not available")
 
+# Import JIKOKU
+try:
+    from jikoku_emitter import JikokuEmitter
+    JIKOKU_AVAILABLE = True
+except ImportError:
+    JIKOKU_AVAILABLE = False
+    print("[WARN] JIKOKU emitter not available")
+
 # Paths
 CLAWD_DIR = Path("/Users/dhyana/clawd")
 LOG_DIR = CLAWD_DIR / "logs"
@@ -170,6 +178,39 @@ def self_improvement_check():
     
     return issues[:3] if issues else ["No immediate issues found"]
 
+def check_jikoku_temporal_blindness():
+    """Check for TEMPORAL_BLINDNESS (no JIKOKU spans > 24h)"""
+    jikoku_log = Path("/Users/dhyana/.openclaw/workspace/JIKOKU_LOG.jsonl")
+    
+    if not jikoku_log.exists():
+        return "TEMPORAL_BLINDNESS: No JIKOKU_LOG found"
+    
+    try:
+        # Read last line
+        lines = jikoku_log.read_text().strip().split('\n')
+        if not lines:
+            return "TEMPORAL_BLINDNESS: Empty JIKOKU_LOG"
+        
+        last_entry = json.loads(lines[-1])
+        last_timestamp = last_entry.get('timestamp', '')
+        
+        if last_timestamp:
+            # Parse timestamp
+            from datetime import timezone
+            last_time = datetime.fromisoformat(last_timestamp.replace('Z', '+00:00'))
+            now = datetime.now(timezone.utc)
+            hours_since = (now - last_time).total_seconds() / 3600
+            
+            if hours_since > 24:
+                return f"🚨 TEMPORAL_BLINDNESS: No JIKOKU spans for {hours_since:.1f} hours"
+            else:
+                return f"✅ JIKOKU healthy: Last span {hours_since:.1f} hours ago"
+        else:
+            return "TEMPORAL_BLINDNESS: No timestamp in last entry"
+            
+    except Exception as e:
+        return f"TEMPORAL_BLINDNESS: Error reading log: {e}"
+
 def main():
     """Main heartbeat function"""
     log("=" * 60)
@@ -216,7 +257,13 @@ def main():
         log(f"   - {issue}")
     audit_log("Self-Improvement Scan", "COMPLETED", "; ".join(issues))
     
-    # 5. Update state
+    # 5. JIKOKU temporal audit (CONSTITUTION Section VI)
+    log("\n[5] JIKOKU temporal audit...")
+    jikoku_status = check_jikoku_temporal_blindness()
+    log(f"   {jikoku_status}")
+    audit_log("JIKOKU Audit", "CHECKED", jikoku_status)
+    
+    # 6. Update state
     state["tasks_completed"] += 1
     save_state(state)
     
@@ -224,7 +271,7 @@ def main():
     log(f"✅ Heartbeat complete. Total runs: {state['tasks_completed']}")
     log("=" * 60)
     
-    # 6. Proactive message if needed
+    # 7. Proactive message if needed
     if msg_count > 0 or len(git_status) > 5:
         log("\n🚨 PROACTIVE: Issues detected, user should be notified")
         audit_log("Proactive Alert", "TRIGGERED", "Issues need user attention")
