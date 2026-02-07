@@ -17,6 +17,17 @@ import subprocess
 from pathlib import Path
 from datetime import datetime
 
+# Add dharmic_claw to path
+sys.path.insert(0, str(Path("/Users/dhyana/clawd")))
+
+# Import messaging
+try:
+    from dharmic_claw_messaging import MessagingChannel, send_warp_regent_alert, send_git_commit_alert
+    MESSAGING_AVAILABLE = True
+except ImportError:
+    MESSAGING_AVAILABLE = False
+    print("[WARN] Messaging module not available")
+
 # Paths
 CLAWD_DIR = Path("/Users/dhyana/clawd")
 LOG_DIR = CLAWD_DIR / "logs"
@@ -216,8 +227,24 @@ def main():
     # 6. Proactive message if needed
     if msg_count > 0 or len(git_status) > 5:
         log("\n🚨 PROACTIVE: Issues detected, user should be notified")
-        # In full implementation, this would send email/Discord
         audit_log("Proactive Alert", "TRIGGERED", "Issues need user attention")
+        
+        # Send actual alerts!
+        if MESSAGING_AVAILABLE:
+            msg = MessagingChannel()
+            
+            # Alert about WARP_REGENT messages
+            if msg_count > 0:
+                log("   📧 Sending WARP_REGENT alert...")
+                send_warp_regent_alert(msg_count)
+            
+            # Alert about git commits
+            if len(git_status) > 0 and state.get("last_commit_alert") != datetime.now().strftime("%Y%m%d"):
+                log("   📧 Sending git commit alert...")
+                send_git_commit_alert([g.split()[-1] for g in git_status[:5]])
+                state["last_commit_alert"] = datetime.now().strftime("%Y%m%d")
+        else:
+            log("   ⚠️  Messaging not configured, alerts logged only")
 
 if __name__ == "__main__":
     try:

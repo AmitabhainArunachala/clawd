@@ -1,0 +1,19 @@
+# Discord Webhook Setup for DHARMIC_CLAW
+
+## Instructions:
+
+1. Open Discord
+2. Go to your server
+3. Create a channel called "dharmic-claw-alerts" (or use existing)
+4. Right-click channel → Integrations → Webhooks → New Webhook
+5. Name it "DHARMIC_CLAW"
+6. Copy the webhook URL
+7. Paste it below:
+
+WEBHOOK_URL=https://discord.com/api/webhooks/YOUR_WEBHOOK_HERE
+
+## Then run:
+# echo "DISCORD_WEBHOOK_URL=https://discord.com/api/webhooks/YOUR_WEBHOOK_HERE" >> ~/.openclaw/.env
+
+## To test:
+# cd ~/clawd && python3 dharmic_claw_messaging.py
