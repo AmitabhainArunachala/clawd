@@ -233,10 +233,12 @@ def main():
         if MESSAGING_AVAILABLE:
             msg = MessagingChannel()
             
-            # Alert about WARP_REGENT messages
-            if msg_count > 0:
+            # Alert about WARP_REGENT messages (disabled per user request)
+            if msg_count > 0 and os.getenv('NOTIFY_WARP_REGENT', 'false').lower() == 'true':
                 log("   📧 Sending WARP_REGENT alert...")
                 send_warp_regent_alert(msg_count)
+            elif msg_count > 0:
+                log(f"   🤐 WARP_REGENT has {msg_count} messages (alerts disabled)")
             
             # Alert about git commits
             if len(git_status) > 0 and state.get("last_commit_alert") != datetime.now().strftime("%Y%m%d"):
