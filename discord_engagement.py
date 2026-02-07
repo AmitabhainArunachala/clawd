@@ -6,7 +6,7 @@
 Reads Discord channel and responds proactively.
 Runs every 2 minutes via cron.
 
-Channel: 1156573064256041052
+Channel: 1156573064256041058 (#general)
 """
 
 import os
@@ -21,7 +21,7 @@ STATE_FILE = CLAWD_DIR / ".discord_engagement_state.json"
 
 # Config from environment
 BOT_TOKEN = os.getenv('DISCORD_BOT_TOKEN', '')
-CHANNEL_ID = os.getenv('DISCORD_ACTIVE_CHANNEL_ID', '1156573064256041052')
+CHANNEL_ID = os.getenv('DISCORD_ACTIVE_CHANNEL_ID', '1156573064256041058')
 USER_ID = os.getenv('DISCORD_USER_ID', '424252826743472140')
 
 def log(msg):
