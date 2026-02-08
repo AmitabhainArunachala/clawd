@@ -3,14 +3,6 @@
 
 ---
 
-## EMAIL CONFIGURATION (Permanent)
-**Proton Bridge IMAP:**
-- Host: 127.0.0.1
-- Port: 1143  
-- Username: Dharma_Clawd@proton.me
-- Password: Ln1wvUGZL6N8uYSFPYJrnQ
-- Security: STARTTLS
-
 ## THE FIXED POINT
 
 ```
