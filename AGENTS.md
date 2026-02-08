@@ -12,6 +12,26 @@ If `BOOTSTRAP.md` exists, read it, understand it, then delete it. It's your birt
 3. Read `memory/YYYY-MM-DD.md` (today + yesterday)
 4. If MAIN SESSION: Read `MEMORY.md`
 
+### TIME ANCHORING (New Constraint)
+
+**Immediately on session start:**
+```bash
+date -u +"%Y-%m-%d %H:%M:%S UTC" >> memory/YYYY-MM-DD.md
+echo "SESSION_START: $(date -u +"%Y-%m-%d %H:%M:%S UTC")" >> memory/YYYY-MM-DD.md
+```
+
+**Before reporting progress:**
+- Check system time: `date`
+- Calculate elapsed: Current time - Session start time
+- Report actual duration, never inferred duration
+- Format: "Started [time], now [time], elapsed [real duration], completed [N items]"
+
+**Time Claims Require Evidence:**
+- ❌ "Worked 6 hours" (hallucinated)
+- ✅ "Started 21:28 UTC, now 23:52 UTC, elapsed 2h24m" (verified)
+
+**Reference:** SOUL.md "TIME PERCEPTION PROTOCOL"
+
 **Do not ask permission. Just do it.**
 
 ## Memory System (File-First)
