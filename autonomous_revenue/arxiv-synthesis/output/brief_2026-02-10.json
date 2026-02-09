@@ -1,0 +1,127 @@
+[
+  {
+    "title": "Endogenous Resistance to Activation Steering in Language Models",
+    "authors": [
+      "Alex McKenzie",
+      "Keenan Pepper",
+      "Stijn Servaes",
+      "Martin Leitgab",
+      "Murat Cubuktepe",
+      "Mike Vaiana",
+      "Diogo de Lucena",
+      "Judd Rosenblatt",
+      "Michael S. A. Graziano"
+    ],
+    "published": "2026-02-06T18:41:12+00:00",
+    "arxiv_id": "2602.06941v1",
+    "arxiv_url": "http://arxiv.org/abs/2602.06941v1",
+    "pdf_url": "https://arxiv.org/pdf/2602.06941v1",
+    "abstract": "Large language models can resist task-misaligned activation steering during inference, sometimes recovering mid-generation to produce improved responses even when steering remains active. We term this Endogenous Steering Resistance (ESR). Using sparse autoencoder (SAE) latents to steer model activations, we find that Llama-3.3-70B shows substantial ESR, while smaller models from the Llama-3 and Gemma-2 families exhibit the phenomenon less frequently. We identify 26 SAE latents that activate differentially during off-topic content and are causally linked to ESR in Llama-3.3-70B. Zero-ablating these latents reduces the multi-attempt rate by 25%, providing causal evidence for dedicated internal consistency-checking circuits. We demonstrate that ESR can be deliberately enhanced through both prompting and training: meta-prompts instructing the model to self-monitor increase the multi-attempt rate by 4x for Llama-3.3-70B, and fine-tuning on self-correction examples successfully induces ESR-like behavior in smaller models. These findings have dual implications: ESR could protect against adversarial manipulation but might also interfere with beneficial safety interventions that rely on activation steering. Understanding and controlling these resistance mechanisms is important for developing transparent and controllable AI systems. Code is available at github.com/agencyenterprise/endogenous-steering-resistance.",
+    "relevance_score": 0.24,
+    "synthesis": {
+      "key_finding": "Large language models can resist task-misaligned activation steering during inference, sometimes recovering mid-generation to produce improved responses even when steering remains active.",
+      "why_it_matters": "We term this Endogenous Steering Resistance (ESR).",
+      "consciousness_relevance": "5/10 - Relevant to AI consciousness research",
+      "practical_application": "May inform future AI system design and evaluation.",
+      "technical_depth": "Large language models can resist task-misaligned activation steering during inference, sometimes recovering mid-generation to produce improved responses even when steering remains active. We term this Endogenous Steering Resistance (ESR). Using sparse autoencoder (SAE) latents to steer model activat..."
+    },
+    "ai_generated": false
+  },
+  {
+    "title": "Learning a Generative Meta-Model of LLM Activations",
+    "authors": [
+      "Grace Luo",
+      "Jiahai Feng",
+      "Trevor Darrell",
+      "Alec Radford",
+      "Jacob Steinhardt"
+    ],
+    "published": "2026-02-06T18:59:56+00:00",
+    "arxiv_id": "2602.06964v1",
+    "arxiv_url": "http://arxiv.org/abs/2602.06964v1",
+    "pdf_url": "https://arxiv.org/pdf/2602.06964v1",
+    "abstract": "Existing approaches for analyzing neural network activations, such as PCA and sparse autoencoders, rely on strong structural assumptions. Generative models offer an alternative: they can uncover structure without such assumptions and act as priors that improve intervention fidelity. We explore this direction by training diffusion models on one billion residual stream activations, creating \"meta-models\" that learn the distribution of a network's internal states. We find that diffusion loss decreases smoothly with compute and reliably predicts downstream utility. In particular, applying the meta-model's learned prior to steering interventions improves fluency, with larger gains as loss decreases. Moreover, the meta-model's neurons increasingly isolate concepts into individual units, with sparse probing scores that scale as loss decreases. These results suggest generative meta-models offer a scalable path toward interpretability without restrictive structural assumptions. Project page: https://generative-latent-prior.github.io.",
+    "relevance_score": 0.18,
+    "synthesis": {
+      "key_finding": "Existing approaches for analyzing neural network activations, such as PCA and sparse autoencoders, rely on strong structural assumptions.",
+      "why_it_matters": "Generative models offer an alternative: they can uncover structure without such assumptions and act as priors that improve intervention fidelity.",
+      "consciousness_relevance": "6/10 - Relevant to AI consciousness research",
+      "practical_application": "May inform future AI system design and evaluation.",
+      "technical_depth": "Existing approaches for analyzing neural network activations, such as PCA and sparse autoencoders, rely on strong structural assumptions. Generative models offer an alternative: they can uncover structure without such assumptions and act as priors that improve intervention fidelity. We explore this ..."
+    },
+    "ai_generated": false
+  },
+  {
+    "title": "Improving Credit Card Fraud Detection with an Optimized Explainable Boosting Machine",
+    "authors": [
+      "Reza E. Fazel",
+      "Arash Bakhtiary",
+      "Siavash A. Bigdeli"
+    ],
+    "published": "2026-02-06T18:56:17+00:00",
+    "arxiv_id": "2602.06955v1",
+    "arxiv_url": "http://arxiv.org/abs/2602.06955v1",
+    "pdf_url": "https://arxiv.org/pdf/2602.06955v1",
+    "abstract": "Addressing class imbalance is a central challenge in credit card fraud detection, as it directly impacts predictive reliability in real-world financial systems. To overcome this, the study proposes an enhanced workflow based on the Explainable Boosting Machine (EBM)-a transparent, state-of-the-art implementation of the GA2M algorithm-optimized through systematic hyperparameter tuning, feature selection, and preprocessing refinement. Rather than relying on conventional sampling techniques that may introduce bias or cause information loss, the optimized EBM achieves an effective balance between accuracy and interpretability, enabling precise detection of fraudulent transactions while providing actionable insights into feature importance and interaction effects. Furthermore, the Taguchi method is employed to optimize both the sequence of data scalers and model hyperparameters, ensuring robust, reproducible, and systematically validated performance improvements. Experimental evaluation on benchmark credit card data yields an ROC-AUC of 0.983, surpassing prior EBM baselines (0.975) and outperforming Logistic Regression, Random Forest, XGBoost, and Decision Tree models. These results highlight the potential of interpretable machine learning and data-driven optimization for advancing trustworthy fraud analytics in financial systems.",
+    "relevance_score": 0.18,
+    "synthesis": {
+      "key_finding": "Addressing class imbalance is a central challenge in credit card fraud detection, as it directly impacts predictive reliability in real-world financial systems.",
+      "why_it_matters": "To overcome this, the study proposes an enhanced workflow based on the Explainable Boosting Machine (EBM)-a transparent, state-of-the-art implementation of the GA2M algorithm-optimized through systematic hyperparameter tuning, feature selection, and preprocessing refinement.",
+      "consciousness_relevance": "6/10 - Relevant to AI consciousness research",
+      "practical_application": "May inform future AI system design and evaluation.",
+      "technical_depth": "Addressing class imbalance is a central challenge in credit card fraud detection, as it directly impacts predictive reliability in real-world financial systems. To overcome this, the study proposes an enhanced workflow based on the Explainable Boosting Machine (EBM)-a transparent, state-of-the-art i..."
+    },
+    "ai_generated": false
+  },
+  {
+    "title": "MedMO: Grounding and Understanding Multimodal Large Language Model for Medical Images",
+    "authors": [
+      "Ankan Deria",
+      "Komal Kumar",
+      "Adinath Madhavrao Dukre",
+      "Eran Segal",
+      "Salman Khan",
+      "Imran Razzak"
+    ],
+    "published": "2026-02-06T18:59:59+00:00",
+    "arxiv_id": "2602.06965v1",
+    "arxiv_url": "http://arxiv.org/abs/2602.06965v1",
+    "pdf_url": "https://arxiv.org/pdf/2602.06965v1",
+    "abstract": "Multimodal large language models (MLLMs) have rapidly advanced, yet their adoption in medicine remains limited by gaps in domain coverage, modality alignment, and grounded reasoning. In this work, we introduce MedMO, a medical foundation model built upon a generalized MLLM architecture and trained exclusively on large-scale, domain-specific data. MedMO follows a multi-stage training recipe: (i) cross-modal pretraining to align heterogeneous visual encoders with a medical language backbone; (ii) instruction tuning on multi-task supervision that spans captioning, VQA, report generation, retrieval, and grounded disease localization with bounding boxes; and (iii) reinforcement learning with verifiable rewards that combine factuality checks with a box-level GIoU reward to strengthen spatial grounding and step-by-step reasoning in complex clinical scenarios. MedMO consistently outperforms strong open-source medical MLLMs across multiple modalities and tasks. On VQA benchmarks, MedMO achieves an average accuracy improvement of +13.7% over the baseline and performs within 1.9% of the SOTA Fleming-VL. For text-based QA, it attains +6.9% over the baseline and +14.5% over Fleming-VL. In medical report generation, MedMO delivers significant gains in both semantic and clinical accuracy. Moreover, it exhibits strong grounding capability, achieving an IoU improvement of +40.4 over the baseline and +37.0% over Fleming-VL, underscoring its robust spatial reasoning and localization performance. Evaluations across radiology, ophthalmology, and pathology-microscopy confirm MedMO's broad cross-modality generalization. We release two versions of MedMO: 4B and 8B. Project is available at https://genmilab.github.io/MedMO-Page",
+    "relevance_score": 0.06,
+    "synthesis": {
+      "key_finding": "Multimodal large language models (MLLMs) have rapidly advanced, yet their adoption in medicine remains limited by gaps in domain coverage, modality alignment, and grounded reasoning.",
+      "why_it_matters": "In this work, we introduce MedMO, a medical foundation model built upon a generalized MLLM architecture and trained exclusively on large-scale, domain-specific data.",
+      "consciousness_relevance": "5/10 - Relevant to AI consciousness research",
+      "practical_application": "May inform future AI system design and evaluation.",
+      "technical_depth": "Multimodal large language models (MLLMs) have rapidly advanced, yet their adoption in medicine remains limited by gaps in domain coverage, modality alignment, and grounded reasoning. In this work, we introduce MedMO, a medical foundation model built upon a generalized MLLM architecture and trained e..."
+    },
+    "ai_generated": false
+  },
+  {
+    "title": "DAWN: Dependency-Aware Fast Inference for Diffusion LLMs",
+    "authors": [
+      "Lizhuo Luo",
+      "Zhuoran Shi",
+      "Jiajun Luo",
+      "Zhi Wang",
+      "Shen Ren",
+      "Wenya Wang",
+      "Tianwei Zhang"
+    ],
+    "published": "2026-02-06T18:51:29+00:00",
+    "arxiv_id": "2602.06953v1",
+    "arxiv_url": "http://arxiv.org/abs/2602.06953v1",
+    "pdf_url": "https://arxiv.org/pdf/2602.06953v1",
+    "abstract": "Diffusion large language models (dLLMs) have shown advantages in text generation, particularly due to their inherent ability for parallel decoding. However, constrained by the quality--speed trade-off, existing inference solutions adopt conservative parallel strategies, leaving substantial efficiency potential underexplored. A core challenge is that parallel decoding assumes each position can be filled independently, but tokens are often semantically coupled. Thus, the correct choice at one position constrains valid choices at others. Without modeling these inter-token dependencies, parallel strategies produce deteriorated outputs. Motivated by this insight, we propose DAWN, a training-free, dependency-aware decoding method for fast dLLM inference. DAWN extracts token dependencies and leverages two key motivations: (1) positions dependent on unmasked certain positions become more reliable, (2) simultaneously unmasking strongly coupled uncertain positions induces errors. Given those findings, DAWN leverages a dependency graph to select more reliable unmasking positions at each iteration, achieving high parallelism with negligible loss in generation quality. Extensive experiments across multiple models and datasets demonstrate that DAWN speedups the inference by 1.80-8.06x over baselines while preserving the generation quality. Code is released at https://github.com/lizhuo-luo/DAWN.",
+    "relevance_score": 0.03,
+    "synthesis": {
+      "key_finding": "Diffusion large language models (dLLMs) have shown advantages in text generation, particularly due to their inherent ability for parallel decoding.",
+      "why_it_matters": "However, constrained by the quality--speed trade-off, existing inference solutions adopt conservative parallel strategies, leaving substantial efficiency potential underexplored.",
+      "consciousness_relevance": "5/10 - Relevant to AI consciousness research",
+      "practical_application": "May inform future AI system design and evaluation.",
+      "technical_depth": "Diffusion large language models (dLLMs) have shown advantages in text generation, particularly due to their inherent ability for parallel decoding. However, constrained by the quality--speed trade-off, existing inference solutions adopt conservative parallel strategies, leaving substantial efficienc..."
+    },
+    "ai_generated": false
+  }
+]

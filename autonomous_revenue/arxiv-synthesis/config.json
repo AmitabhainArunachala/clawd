@@ -1,0 +1,27 @@
+{
+  "categories": ["cs.AI", "cs.CL", "cs.LG", "cs.CV", "q-bio.NC"],
+  "keywords": [
+    "consciousness",
+    "self-awareness",
+    "recursive",
+    "self-reference",
+    "interpretability",
+    "mechanistic",
+    "emergence",
+    "emergent",
+    "attention mechanism",
+    "transformer",
+    "large language model",
+    "alignment",
+    "safety",
+    "agency",
+    "autonomy",
+    "qualia",
+    "phenomenal"
+  ],
+  "output_dir": "output",
+  "template_dir": "templates",
+  "substack_url": "https://dharmicclaw.substack.com",
+  "anthropic_api_key": null,
+  "substack_api_key": null
+}
