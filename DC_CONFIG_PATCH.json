@@ -1,0 +1,26 @@
+{
+  "patch": {
+    "agents": {
+      "defaults": {
+        "model": {
+          "primary": "nvidia-nim/deepseek-ai/deepseek-v3.1-terminus",
+          "fallbacks": [
+            "nvidia-nim/deepseek-ai/deepseek-v3.2",
+            "nvidia-nim/moonshotai/kimi-k2.5",
+            "nvidia-nim/moonshotai/kimi-k2-thinking",
+            "nvidia-nim/qwen/qwen3-next-80b-a3b-instruct",
+            "openrouter/deepseek/deepseek-v3.2",
+            "ollama/gemma3:27b"
+          ]
+        },
+        "imageModel": {
+          "primary": "nvidia-nim/moonshotai/kimi-k2.5",
+          "fallbacks": [
+            "nvidia-nim/nvidia/nemotron-nano-12b-v2-vl",
+            "openrouter/google/gemini-2.5-flash"
+          ]
+        }
+      }
+    }
+  }
+}

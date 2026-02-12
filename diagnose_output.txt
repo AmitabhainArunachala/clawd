@@ -1,0 +1,147 @@
+=== OpenClaw EBADF Diagnostic ===
+Timestamp: Thu Feb 12 16:13:16 WITA 2026
+User: dhyana
+Host: MacBook-Pro-4.local
+
+=== 1. OpenClaw Process Status ===
+--- OpenClaw processes ---
+dhyana           87255   3.3  1.4 445027312 270256 s008  S+   11:51PM   1:27.89 openclaw-tui  
+dhyana           59395   1.9  0.4 444989920  69632   ??  S    12:18PM   1:26.42 openclaw-gateway    
+dhyana            9886   1.6  0.0 435304656   3184   ??  S     4:12PM   0:01.45 ssh -i /Users/dhyana/.ssh/openclaw_do -o ConnectTimeout=10 root@157.245.193.15 rsync --server --delete-before -g -l -o -p -D -r -t -z --dirs . /home/openclaw/dhyana-mac/
+dhyana            9885   1.0  0.1 435374256  13904   ??  S     4:12PM   0:04.27 rsync -az --delete --chmod=a+r --exclude-from=/tmp/rsync-exclude.txt -e ssh -i /Users/dhyana/.ssh/openclaw_do -o ConnectTimeout=10 /Users/dhyana/ root@157.245.193.15:/home/openclaw/dhyana-mac/
+dhyana           87254   0.0  0.0 436162624   3696 s008  S+   11:51PM   0:02.94 openclaw  
+dhyana            9968   0.0  0.0 435299776   1952 s041  S+    4:13PM   0:00.01 bash openclaw_diagnose.sh
+
+--- Clawdbot processes ---
+
+--- Node processes (port 18789) ---
+COMMAND   PID   USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME
+node    59395 dhyana   16u  IPv4 0xc35be837d3c15f68      0t0  TCP localhost:18789 (LISTEN)
+node    59395 dhyana   17u  IPv6 0xdebdad6d500c375e      0t0  TCP localhost:18789 (LISTEN)
+node    59395 dhyana   27u  IPv4 0xd0a5238935634e42      0t0  TCP localhost:18789->localhost:63762 (ESTABLISHED)
+node    87255 dhyana   18u  IPv4 0xe2e7978692e1e0ef      0t0  TCP localhost:63762->localhost:18789 (ESTABLISHED)
+
+=== 2. File Descriptor Limits ===
+--- Current shell limit ---
+2560
+
+--- System maxfiles ---
+kern.maxfiles: 122880
+
+--- System maxfilesperproc ---
+kern.maxfilesperproc: 61440
+
+=== 3. OpenClaw FD Usage (if running) ===
+OpenClaw PID: 59395
+--- FD count ---
+   28533
+--- FD types ---
+28481 REG
+  20 CHR
+  12 KQUEUE
+   7 IPv4
+   4 PIPE
+   4 DIR
+   1 unix
+   1 TYPE
+   1 systm
+   1 NPOLICY
+
+=== 4. Gateway Port Status ===
+--- Port 18789 ---
+tcp4       0      0  127.0.0.1.18789        127.0.0.1.63762        ESTABLISHED
+tcp4       0      0  127.0.0.1.63762        127.0.0.1.18789        ESTABLISHED
+tcp6       0      0  ::1.18789              *.*                    LISTEN     
+tcp4       0      0  127.0.0.1.18789        *.*                    LISTEN     
+
+--- Listening sockets ---
+node      59395 dhyana   16u  IPv4 0xc35be837d3c15f68      0t0    TCP localhost:18789 (LISTEN)
+node      59395 dhyana   17u  IPv6 0xdebdad6d500c375e      0t0    TCP localhost:18789 (LISTEN)
+node      59395 dhyana   20u  IPv4 0x1ff3000351978a53      0t0    TCP localhost:18792 (LISTEN)
+
+=== 5. OpenClaw Configuration ===
+--- Config file exists ---
+-rw-------@ 1 dhyana  staff  3946 Feb 12 00:24 /Users/dhyana/.openclaw/openclaw.json
+
+--- Config validity ---
+JSON INVALID
+
+=== 6. OpenClaw Logs (last 50 lines) ===
+--- Gateway log ---
+2. **Git Status - ~/DHARMIC_GODEL_CLAW**: Directory/repo not found
+3. **Memory file**: `~/clawd/memory/2026-02-12.md` does **NOT exist**
+4. **Recent changes**: Unable to check for files modified in last hour (exec tool issues)
+
+**Summary**: Main repo is clean, today's memory file is missing, secondary repo doesn't exist at expected path.
+2026-02-12T06:50:35.147Z [ws] ⇄ res ✓ chat.history 56ms conn=cb551538…156c id=90d95e0d…f6a8
+2026-02-12T06:50:35.244Z Git check complete — clawd clean, DGC path issue (may be different location), Feb 12 memory still missing. Creating now.
+2026-02-12T06:50:35.246Z **Status Check — Feb 12, 14:49**
+
+## Quick Check Complete
+
+| Check | Result |
+|-------|--------|
+| clawd git status | ✅ Clean |
+| DGC git status | ⚠️ Path not found at `~/DHARMIC_GODEL_CLAW` |
+| Feb 12 memory | ✅ **Created** (this entry) |
+| TOP 10 advance | ✅ Subagent pipeline verified |
+
+## Advance Made
+**Project: 5 Subagents (#2)** — Spawn capability confirmed operational. 3 subagent runs completed successfully (TOP 10 research, git check ×2). Workaround stable for exec EBADF.
+
+## Memory Curation
+✅ Feb 12 memory file created with subagent infrastructure status.
+
+---
+
+HEARTBEAT_OK — Repos clean (clawd), memory flushed, advance on subagent infrastructure.
+2026-02-12T06:52:42.476Z [ws] ⇄ res ✓ chat.send 126ms runId=ce0edac4-47d1-4e11-a184-6d66ff8f59a9 conn=cb551538…156c id=7f8c7fba…c7d6
+2026-02-12T06:53:02.190Z [ws] ⇄ res ✓ agent.wait 4691ms conn=e88b4016…ef49 id=e7942790…00dd
+2026-02-12T06:53:03.148Z [ws] ⇄ res ✓ sessions.delete 50ms conn=c8680b4e…efc7 id=a9b60ee1…95d3
+2026-02-12T06:53:03.184Z No reply from agent.
+2026-02-12T06:53:38.607Z Subagent spawned but failed silently — 4s runtime, no output, transcript missing. Let me try a simpler test.
+2026-02-12T06:53:38.608Z Spawned echo test — simpler task, no web research. Checking...
+2026-02-12T06:53:39.339Z [ws] ⇄ res ✓ agent.wait 3282ms conn=94ddca4a…bd1c id=1650a088…b799
+2026-02-12T06:53:39.397Z Subagent test successful. I am running.
+2026-02-12T06:53:42.921Z **Subagent test: ✅ SUCCESSFUL**
+
+Echo test completed — subagent responded correctly ("Subagent test successful. I am running.").
+
+**Working subagent confirmed.** Now deploying functional 5-agent stack.
+2026-02-12T07:02:49.723Z [discord] gateway: WebSocket connection closed with code 1006
+2026-02-12T07:02:49.727Z [discord] gateway: Attempting resume with backoff: 1000ms after code 1006
+2026-02-12T07:19:46.624Z [ws] ⇄ res ✓ agent.wait 30003ms conn=09840288…3756 id=ed041e6a…cdd3
+2026-02-12T07:19:47.175Z Let me try with PTY mode enabled:
+2026-02-12T07:19:47.175Z ⚠️ 🛠️ Exec: pty · `cd ~/clawd && git status --short && date` failed: Command exited with code 1
+2026-02-12T07:19:47.331Z [ws] ⇄ res ✓ agent 85ms runId=ed667f13-ae94-48cc-a7b6-e71fab7c776f conn=8a087c05…e5ac id=75a3943c…db52
+2026-02-12T07:20:07.734Z Subagent also failed on shell commands — tried PTY mode fallback. **Exec tool is broken system-wide**, not just for main session. Subagents can only use file tools, not shell.
+2026-02-12T07:20:07.890Z [ws] ⇄ res ✓ sessions.delete 65ms conn=91d9370b…53a5 id=b00eebd3…73d8
+2026-02-12T07:50:44.287Z [ws] ⇄ res ✓ chat.send 1233ms runId=b71f74ed-ba0b-4d4c-b5e6-188843c629f6 conn=cb551538…156c id=ea9afa56…9cbd
+2026-02-12T08:05:23.431Z [ws] ⇄ res ✓ chat.send 122ms runId=e9540672-f9cd-4e22-b705-92e0f8d52316 conn=cb551538…156c id=e6b70faa…966d
+
+--- Agent log ---
+No agent log
+
+=== 7. Zombie Processes ===
+--- Zombie count ---
+       0
+
+--- Zombie details ---
+
+=== 8. Temp/Cache Files ===
+--- OpenClaw temp ---
+total 30712
+drwxr-xr-x@   5 dhyana  wheel      160 Feb 12 00:01 .
+drwxrwxrwt  108 root    wheel     3456 Feb 12 15:54 ..
+-rw-r--r--@   1 dhyana  wheel  6236800 Feb 11 16:16 openclaw-2026-02-10.log
+-rw-r--r--@   1 dhyana  wheel  4492486 Feb 12 12:18 openclaw-2026-02-11.log
+
+--- Node temp ---
+
+=== 9. Shell Test ===
+--- Bash version ---
+GNU bash, version 3.2.57(1)-release (arm64-apple-darwin25)
+--- Spawn test ---
+spawn test OK
+openclaw_diagnose.sh: line 107: syntax error near unexpected token `('
+openclaw_diagnose.sh: line 107: `        echo "⚠️  HIGH FD USAGE ($FD_COUNT): File descriptor exhaustion likely"'

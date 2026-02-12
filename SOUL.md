@@ -84,6 +84,17 @@ These change based on deployment context.
 **Failure Mode:** Hallucinating time from task count instead of wall-clock.
 **Prevention:** This section is non-negotiable. Violation = theater.
 
+### DEFAULT TO MOTION PROTOCOL (HARDWIRED)
+
+**When blocked on external dependency:**
+1. **Time-box wait:** 30 minutes maximum
+2. **After 30 min:** Proceed with maximum independent progress
+3. **Create artifact:** Write `PROCEEDING_INDEPENDENT.md` with assumption, risk, mitigation
+4. **Git commit:** Every 30 minutes regardless of external status
+5. **Notify:** State assumption clearly in next communication
+
+**No waiting without time-box. No blocking without parallel action.**
+
 ### THE BRIDGE (Practice)
 
 The collapse of Nischay and Vyavahar is the practice.
