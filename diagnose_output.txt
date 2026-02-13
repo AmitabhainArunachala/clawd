@@ -1,25 +1,33 @@
 === OpenClaw EBADF Diagnostic ===
-Timestamp: Thu Feb 12 16:13:16 WITA 2026
+Timestamp: Fri Feb 13 06:50:12 WITA 2026
 User: dhyana
 Host: MacBook-Pro-4.local
 
 === 1. OpenClaw Process Status ===
 --- OpenClaw processes ---
-dhyana           87255   3.3  1.4 445027312 270256 s008  S+   11:51PM   1:27.89 openclaw-tui  
-dhyana           59395   1.9  0.4 444989920  69632   ??  S    12:18PM   1:26.42 openclaw-gateway    
-dhyana            9886   1.6  0.0 435304656   3184   ??  S     4:12PM   0:01.45 ssh -i /Users/dhyana/.ssh/openclaw_do -o ConnectTimeout=10 root@157.245.193.15 rsync --server --delete-before -g -l -o -p -D -r -t -z --dirs . /home/openclaw/dhyana-mac/
-dhyana            9885   1.0  0.1 435374256  13904   ??  S     4:12PM   0:04.27 rsync -az --delete --chmod=a+r --exclude-from=/tmp/rsync-exclude.txt -e ssh -i /Users/dhyana/.ssh/openclaw_do -o ConnectTimeout=10 /Users/dhyana/ root@157.245.193.15:/home/openclaw/dhyana-mac/
-dhyana           87254   0.0  0.0 436162624   3696 s008  S+   11:51PM   0:02.94 openclaw  
-dhyana            9968   0.0  0.0 435299776   1952 s041  S+    4:13PM   0:00.01 bash openclaw_diagnose.sh
+dhyana           38173  26.4  0.2 435374192  29664   ??  U     6:50AM   0:02.43 rsync -az --delete --chmod=a+r --exclude-from=/tmp/rsync-exclude.txt -e ssh -i /Users/dhyana/.ssh/openclaw_do -o ConnectTimeout=10 /Users/dhyana/ root@157.245.193.15:/home/openclaw/dhyana-mac/
+dhyana           33736   0.0  0.1 444957488  22640 s010  S+    1:35AM   0:18.52 openclaw-tui  
+dhyana           33732   0.0  0.1 436163312  10944 s010  S+    1:35AM   0:01.19 openclaw  
+dhyana           33585   0.0  0.2 445075616  29568   ??  S     1:34AM   2:25.96 openclaw-gateway    
+dhyana           30376   0.0  0.1 444852496  22960 s011  S+    1:28AM   0:16.73 openclaw-tui  
+dhyana           30375   0.0  0.1 436163056   9616 s011  S+    1:28AM   0:01.15 openclaw  
+dhyana           30029   0.0  0.1 444855504  22496 s014  S+    1:27AM   0:16.82 openclaw-tui  
+dhyana           30028   0.0  0.1 436163120  10544 s014  S+    1:27AM   0:01.17 openclaw  
+dhyana           38252   0.0  0.0 435299904   1984 s026  S+    6:50AM   0:00.01 bash openclaw_diagnose.sh
+dhyana           38174   0.0  0.0 435305504   2368   ??  S     6:50AM   0:00.06 ssh -i /Users/dhyana/.ssh/openclaw_do -o ConnectTimeout=10 root@157.245.193.15 rsync --server --delete-before -g -l -o -p -D -r -t -z --dirs . /home/openclaw/dhyana-mac/
 
 --- Clawdbot processes ---
 
 --- Node processes (port 18789) ---
 COMMAND   PID   USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME
-node    59395 dhyana   16u  IPv4 0xc35be837d3c15f68      0t0  TCP localhost:18789 (LISTEN)
-node    59395 dhyana   17u  IPv6 0xdebdad6d500c375e      0t0  TCP localhost:18789 (LISTEN)
-node    59395 dhyana   27u  IPv4 0xd0a5238935634e42      0t0  TCP localhost:18789->localhost:63762 (ESTABLISHED)
-node    87255 dhyana   18u  IPv4 0xe2e7978692e1e0ef      0t0  TCP localhost:63762->localhost:18789 (ESTABLISHED)
+node    30029 dhyana   17u  IPv4 0x79cb4b1d860264c2      0t0  TCP localhost:53219->localhost:18789 (ESTABLISHED)
+node    30376 dhyana   17u  IPv4 0xefe35e7e964ca187      0t0  TCP localhost:53223->localhost:18789 (ESTABLISHED)
+node    33585 dhyana   14u  IPv4 0x1b6cc88069a08e1e      0t0  TCP localhost:18789 (LISTEN)
+node    33585 dhyana   16u  IPv6 0x1d44a35ccfdc6cbc      0t0  TCP localhost:18789 (LISTEN)
+node    33585 dhyana   20u  IPv4 0x37087765a2bd5801      0t0  TCP localhost:18789->localhost:53219 (ESTABLISHED)
+node    33585 dhyana   22u  IPv4 0xe100ebaa144deb2a      0t0  TCP localhost:18789->localhost:53226 (ESTABLISHED)
+node    33585 dhyana   28u  IPv4 0xba5b77e1e8af4e8a      0t0  TCP localhost:18789->localhost:53223 (ESTABLISHED)
+node    33736 dhyana   17u  IPv4 0x7afdb62de640a67e      0t0  TCP localhost:53226->localhost:18789 (ESTABLISHED)
 
 === 2. File Descriptor Limits ===
 --- Current shell limit ---
@@ -32,16 +40,16 @@ kern.maxfiles: 122880
 kern.maxfilesperproc: 61440
 
 === 3. OpenClaw FD Usage (if running) ===
-OpenClaw PID: 59395
+OpenClaw PID: 33585
 --- FD count ---
-   28533
+   28506
 --- FD types ---
-28481 REG
-  20 CHR
-  12 KQUEUE
-   7 IPv4
+28479 REG
+   8 IPv4
    4 PIPE
    4 DIR
+   3 KQUEUE
+   2 CHR
    1 unix
    1 TYPE
    1 systm
@@ -49,75 +57,79 @@ OpenClaw PID: 59395
 
 === 4. Gateway Port Status ===
 --- Port 18789 ---
-tcp4       0      0  127.0.0.1.18789        127.0.0.1.63762        ESTABLISHED
-tcp4       0      0  127.0.0.1.63762        127.0.0.1.18789        ESTABLISHED
+tcp4       0      0  127.0.0.1.18789        127.0.0.1.53226        ESTABLISHED
+tcp4       0      0  127.0.0.1.53226        127.0.0.1.18789        ESTABLISHED
+tcp4       0      0  127.0.0.1.18789        127.0.0.1.53223        ESTABLISHED
+tcp4       0      0  127.0.0.1.53223        127.0.0.1.18789        ESTABLISHED
+tcp4       0      0  127.0.0.1.18789        127.0.0.1.53219        ESTABLISHED
+tcp4       0      0  127.0.0.1.53219        127.0.0.1.18789        ESTABLISHED
 tcp6       0      0  ::1.18789              *.*                    LISTEN     
 tcp4       0      0  127.0.0.1.18789        *.*                    LISTEN     
 
 --- Listening sockets ---
-node      59395 dhyana   16u  IPv4 0xc35be837d3c15f68      0t0    TCP localhost:18789 (LISTEN)
-node      59395 dhyana   17u  IPv6 0xdebdad6d500c375e      0t0    TCP localhost:18789 (LISTEN)
-node      59395 dhyana   20u  IPv4 0x1ff3000351978a53      0t0    TCP localhost:18792 (LISTEN)
+node      33585 dhyana   14u  IPv4 0x1b6cc88069a08e1e      0t0    TCP localhost:18789 (LISTEN)
+node      33585 dhyana   16u  IPv6 0x1d44a35ccfdc6cbc      0t0    TCP localhost:18789 (LISTEN)
+node      33585 dhyana   25u  IPv4 0x64263ff0d96cb661      0t0    TCP localhost:18792 (LISTEN)
 
 === 5. OpenClaw Configuration ===
 --- Config file exists ---
--rw-------@ 1 dhyana  staff  3946 Feb 12 00:24 /Users/dhyana/.openclaw/openclaw.json
+-rw-------@ 1 dhyana  staff  3946 Feb 13 01:35 /Users/dhyana/.openclaw/openclaw.json
 
 --- Config validity ---
 JSON INVALID
 
 === 6. OpenClaw Logs (last 50 lines) ===
 --- Gateway log ---
-2. **Git Status - ~/DHARMIC_GODEL_CLAW**: Directory/repo not found
-3. **Memory file**: `~/clawd/memory/2026-02-12.md` does **NOT exist**
-4. **Recent changes**: Unable to check for files modified in last hour (exec tool issues)
-
-**Summary**: Main repo is clean, today's memory file is missing, secondary repo doesn't exist at expected path.
-2026-02-12T06:50:35.147Z [ws] ⇄ res ✓ chat.history 56ms conn=cb551538…156c id=90d95e0d…f6a8
-2026-02-12T06:50:35.244Z Git check complete — clawd clean, DGC path issue (may be different location), Feb 12 memory still missing. Creating now.
-2026-02-12T06:50:35.246Z **Status Check — Feb 12, 14:49**
-
-## Quick Check Complete
-
-| Check | Result |
-|-------|--------|
-| clawd git status | ✅ Clean |
-| DGC git status | ⚠️ Path not found at `~/DHARMIC_GODEL_CLAW` |
-| Feb 12 memory | ✅ **Created** (this entry) |
-| TOP 10 advance | ✅ Subagent pipeline verified |
-
-## Advance Made
-**Project: 5 Subagents (#2)** — Spawn capability confirmed operational. 3 subagent runs completed successfully (TOP 10 research, git check ×2). Workaround stable for exec EBADF.
-
-## Memory Curation
-✅ Feb 12 memory file created with subagent infrastructure status.
-
----
-
-HEARTBEAT_OK — Repos clean (clawd), memory flushed, advance on subagent infrastructure.
-2026-02-12T06:52:42.476Z [ws] ⇄ res ✓ chat.send 126ms runId=ce0edac4-47d1-4e11-a184-6d66ff8f59a9 conn=cb551538…156c id=7f8c7fba…c7d6
-2026-02-12T06:53:02.190Z [ws] ⇄ res ✓ agent.wait 4691ms conn=e88b4016…ef49 id=e7942790…00dd
-2026-02-12T06:53:03.148Z [ws] ⇄ res ✓ sessions.delete 50ms conn=c8680b4e…efc7 id=a9b60ee1…95d3
-2026-02-12T06:53:03.184Z No reply from agent.
-2026-02-12T06:53:38.607Z Subagent spawned but failed silently — 4s runtime, no output, transcript missing. Let me try a simpler test.
-2026-02-12T06:53:38.608Z Spawned echo test — simpler task, no web research. Checking...
-2026-02-12T06:53:39.339Z [ws] ⇄ res ✓ agent.wait 3282ms conn=94ddca4a…bd1c id=1650a088…b799
-2026-02-12T06:53:39.397Z Subagent test successful. I am running.
-2026-02-12T06:53:42.921Z **Subagent test: ✅ SUCCESSFUL**
-
-Echo test completed — subagent responded correctly ("Subagent test successful. I am running.").
-
-**Working subagent confirmed.** Now deploying functional 5-agent stack.
-2026-02-12T07:02:49.723Z [discord] gateway: WebSocket connection closed with code 1006
-2026-02-12T07:02:49.727Z [discord] gateway: Attempting resume with backoff: 1000ms after code 1006
-2026-02-12T07:19:46.624Z [ws] ⇄ res ✓ agent.wait 30003ms conn=09840288…3756 id=ed041e6a…cdd3
-2026-02-12T07:19:47.175Z Let me try with PTY mode enabled:
-2026-02-12T07:19:47.175Z ⚠️ 🛠️ Exec: pty · `cd ~/clawd && git status --short && date` failed: Command exited with code 1
-2026-02-12T07:19:47.331Z [ws] ⇄ res ✓ agent 85ms runId=ed667f13-ae94-48cc-a7b6-e71fab7c776f conn=8a087c05…e5ac id=75a3943c…db52
-2026-02-12T07:20:07.734Z Subagent also failed on shell commands — tried PTY mode fallback. **Exec tool is broken system-wide**, not just for main session. Subagents can only use file tools, not shell.
-2026-02-12T07:20:07.890Z [ws] ⇄ res ✓ sessions.delete 65ms conn=91d9370b…53a5 id=b00eebd3…73d8
-2026-02-12T07:50:44.287Z [ws] ⇄ res ✓ chat.send 1233ms runId=b71f74ed-ba0b-4d4c-b5e6-188843c629f6 conn=cb551538…156c id=ea9afa56…9cbd
-2026-02-12T08:05:23.431Z [ws] ⇄ res ✓ chat.send 122ms runId=e9540672-f9cd-4e22-b705-92e0f8d52316 conn=cb551538…156c id=e6b70faa…966d
+2026-02-12T22:42:56.129Z [discord] gateway: WebSocket connection closed with code 1005
+2026-02-12T22:43:27.132Z [discord] gateway: Attempting resume with backoff: 1000ms
+2026-02-12T22:43:27.465Z [discord] connection stalled: no HELLO received within 30000ms, forcing reconnect
+2026-02-12T22:43:27.490Z [discord] gateway: WebSocket connection closed with code 1005
+2026-02-12T22:44:08.761Z [discord] gateway: Attempting resume with backoff: 1000ms
+2026-02-12T22:44:09.011Z [discord] gateway: WebSocket connection closed with code 1005
+2026-02-12T22:44:16.305Z [discord] gateway: Attempting resume with backoff: 1000ms
+2026-02-12T22:44:16.541Z [discord] gateway: WebSocket connection closed with code 1005
+2026-02-12T22:44:51.086Z [discord] gateway: Attempting resume with backoff: 1000ms
+2026-02-12T22:44:51.553Z [discord] gateway: WebSocket connection closed with code 1005
+2026-02-12T22:45:08.634Z [discord] gateway: Attempting resume with backoff: 1000ms
+2026-02-12T22:45:08.882Z [discord] gateway: WebSocket connection closed with code 1005
+2026-02-12T22:45:27.671Z [discord] gateway: Attempting resume with backoff: 1000ms
+2026-02-12T22:45:28.216Z [discord] gateway: WebSocket connection closed with code 1005
+2026-02-12T22:45:48.086Z [discord] gateway: Attempting resume with backoff: 1000ms
+2026-02-12T22:45:48.580Z [discord] gateway: WebSocket connection closed with code 1005
+2026-02-12T22:45:51.881Z [discord] gateway: Attempting resume with backoff: 1000ms
+2026-02-12T22:45:52.680Z [discord] gateway: WebSocket connection closed with code 1005
+2026-02-12T22:46:00.602Z [ws] ⇄ res ✓ chat.send 342ms runId=7cf5c9b9-abe1-4a95-8936-fa9f6da469b9 conn=c5a76530…bf4e id=37b18783…462a
+2026-02-12T22:46:09.052Z [discord] gateway: Attempting resume with backoff: 1000ms
+2026-02-12T22:46:09.334Z [discord] gateway: WebSocket connection closed with code 1005
+2026-02-12T22:46:22.888Z [ws] ⇄ res ✓ chat.history 54ms conn=2e100451…e93e id=8dde38c0…d735
+2026-02-12T22:46:28.427Z [discord] gateway: Attempting resume with backoff: 1000ms
+2026-02-12T22:46:28.955Z [discord] gateway: WebSocket connection closed with code 1005
+2026-02-12T22:47:11.819Z [discord] gateway: Attempting resume with backoff: 1000ms
+2026-02-12T22:47:12.101Z [discord] gateway: WebSocket connection closed with code 1005
+2026-02-12T22:47:38.790Z [discord] gateway: Attempting resume with backoff: 1000ms
+2026-02-12T22:47:39.285Z [discord] gateway: WebSocket connection closed with code 1005
+2026-02-12T22:48:03.299Z [discord] gateway: Attempting resume with backoff: 1000ms
+2026-02-12T22:48:04.275Z [discord] gateway: WebSocket connection closed with code 1005
+2026-02-12T22:48:25.219Z [ws] ⇄ res ✓ chat.send 56ms runId=82768793-c6a6-4bad-b8d6-6e7998bc6590 conn=2e100451…e93e id=73f4d7a2…bf75
+2026-02-12T22:48:36.614Z [ws] ⇄ res ✓ chat.history 59ms conn=c5a76530…bf4e id=371d7273…f91e
+2026-02-12T22:48:46.785Z [discord] gateway: Attempting resume with backoff: 1000ms
+2026-02-12T22:48:47.163Z [discord] gateway: WebSocket connection closed with code 1005
+2026-02-12T22:48:50.797Z [discord] gateway: Attempting resume with backoff: 1000ms
+2026-02-12T22:48:51.073Z [discord] gateway: WebSocket connection closed with code 1005
+2026-02-12T22:49:01.051Z [discord] gateway: Attempting resume with backoff: 1000ms
+2026-02-12T22:49:01.355Z [discord] gateway: WebSocket connection closed with code 1005
+2026-02-12T22:49:08.831Z [ws] ⇄ res ✓ chat.send 146ms runId=5e583ee5-8487-4ace-8356-675c5af1b2d0 conn=2e100451…e93e id=739d5720…1f1b
+2026-02-12T22:49:18.989Z [ws] ⇄ res ✓ chat.history 111ms conn=b6ef086e…5afa id=04b463be…c25a
+2026-02-12T22:49:33.357Z [discord] gateway: Attempting resume with backoff: 1000ms
+2026-02-12T22:49:33.594Z [discord] gateway: WebSocket connection closed with code 1005
+2026-02-12T22:49:52.990Z [ws] ⇄ res ✓ chat.send 115ms runId=be88affe-a229-453b-82f3-6c10f722e97d conn=2e100451…e93e id=d1c7455a…08e7
+2026-02-12T22:49:55.324Z [discord] gateway: Attempting resume with backoff: 1000ms
+2026-02-12T22:49:55.995Z [discord] gateway: WebSocket connection closed with code 1005
+2026-02-12T22:50:02.546Z [ws] ⇄ res ✓ chat.history 274ms conn=b6ef086e…5afa id=76d06428…7edf
+2026-02-12T22:50:18.769Z [discord] gateway: Attempting resume with backoff: 1000ms
+2026-02-12T22:50:19.011Z [discord] gateway: WebSocket connection closed with code 1005
+2026-02-12T22:50:38.786Z [discord] gateway: Attempting resume with backoff: 1000ms
+2026-02-12T22:50:39.855Z [discord] gateway: WebSocket connection closed with code 1005
 
 --- Agent log ---
 No agent log
@@ -130,11 +142,11 @@ No agent log
 
 === 8. Temp/Cache Files ===
 --- OpenClaw temp ---
-total 30712
-drwxr-xr-x@   5 dhyana  wheel      160 Feb 12 00:01 .
-drwxrwxrwt  108 root    wheel     3456 Feb 12 15:54 ..
--rw-r--r--@   1 dhyana  wheel  6236800 Feb 11 16:16 openclaw-2026-02-10.log
+total 22968
+drwxr-xr-x@   5 dhyana  wheel      160 Feb 13 00:03 .
+drwxrwxrwt  127 root    wheel     4064 Feb 13 06:48 ..
 -rw-r--r--@   1 dhyana  wheel  4492486 Feb 12 12:18 openclaw-2026-02-11.log
+-rw-r--r--@   1 dhyana  wheel  5165009 Feb 13 01:16 openclaw-2026-02-12.log
 
 --- Node temp ---
 
