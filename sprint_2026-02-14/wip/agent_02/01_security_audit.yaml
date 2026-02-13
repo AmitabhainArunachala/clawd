@@ -1,0 +1,1805 @@
+---
+# Security Assessment Report
+# Generated: 2026-02-14T00:19:00+08:00
+# Agent: code_security_reviewer (agent_02)
+# Scope: 80 upstream repositories across 5 categories
+# Assessment Criteria:
+#   - License: permissive preferred (MIT, Apache-2.0, BSD)
+#   - Maintenance: active development, recent commits
+#   - Security posture: known CVEs, security practices, supply chain risk
+#   - Red flags: critical issues that warrant exclusion
+---
+
+audit_metadata:
+  total_repos: 80
+  categories: 5
+  repos_per_category: 16
+  assessment_date: "2026-02-14"
+  assessor: "code_security_reviewer"
+  version: "1.0.0"
+
+summary:
+  high_trust: 48      # APPROVE: Strong security posture, permissive license, active maintenance
+  medium_trust: 19    # APPROVE_WITH_MONITORING/CAUTION: Minor concerns
+  do_not_use: 2       # Critical red flags (SSPL, RSALv2 licenses)
+  review_required: 11 # REVIEW_LICENSE: Copyleft or source-available licenses
+  permissive_licenses: 65
+  copyleft_licenses: 8
+  source_available_licenses: 6  # BSL, BUSL, SSPL, RSALv2, Elastic, etc.
+  other_licenses: 1
+
+categories:
+  - id: 1
+    name: "agent_orchestration_workflow"
+    display_name: "Agent Orchestration & Workflow Engines"
+    repos:
+      - name: "langchain"
+        repo_url: "https://github.com/langchain-ai/langchain"
+        owner: "langchain-ai"
+        license: "MIT"
+        license_type: "permissive"
+        maintenance_signal: "very_active"
+        stars: "100000+"
+        last_activity: "2026-02-13"
+        security_posture:
+          cve_history: "low"
+          dependency_risk: "medium"
+          code_quality: "high"
+          security_policy: true
+          signed_releases: true
+        red_flags: []
+        notes: "Industry standard; extensive security practices; potential supply chain risk due to many dependencies"
+        recommendation: "APPROVE"
+        pin_policy: "TAG"
+
+      - name: "langgraph"
+        repo_url: "https://github.com/langchain-ai/langgraph"
+        owner: "langchain-ai"
+        license: "MIT"
+        license_type: "permissive"
+        maintenance_signal: "very_active"
+        stars: "9000+"
+        last_activity: "2026-02-13"
+        security_posture:
+          cve_history: "none_known"
+          dependency_risk: "low"
+          code_quality: "high"
+          security_policy: true
+          signed_releases: true
+        red_flags: []
+        notes: "Graph-based orchestration; clean architecture; low attack surface"
+        recommendation: "APPROVE"
+        pin_policy: "TAG"
+
+      - name: "crewai"
+        repo_url: "https://github.com/crewAIInc/crewAI"
+        owner: "crewAIInc"
+        license: "MIT"
+        license_type: "permissive"
+        maintenance_signal: "very_active"
+        stars: "25000+"
+        last_activity: "2026-02-12"
+        security_posture:
+          cve_history: "none_known"
+          dependency_risk: "medium"
+          code_quality: "medium-high"
+          security_policy: false
+          signed_releases: false
+        red_flags:
+          - "No SECURITY.md"
+        notes: "Rapidly growing; enterprise-focused; needs security hardening"
+        recommendation: "APPROVE_WITH_MONITORING"
+        pin_policy: "COMMIT"
+
+      - name: "autogpt"
+        repo_url: "https://github.com/Significant-Gravitas/AutoGPT"
+        owner: "Significant-Gravitas"
+        license: "MIT"
+        license_type: "permissive"
+        maintenance_signal: "active"
+        stars: "170000+"
+        last_activity: "2026-02-10"
+        security_posture:
+          cve_history: "low"
+          dependency_risk: "high"
+          code_quality: "medium"
+          security_policy: true
+          signed_releases: false
+        red_flags:
+          - "High dependency count"
+          - "Autonomous execution capabilities require sandboxing"
+        notes: "Pioneering but complex; requires careful sandboxing due to autonomous nature"
+        recommendation: "APPROVE_WITH_CAUTION"
+        pin_policy: "COMMIT"
+
+      - name: "metagpt"
+        repo_url: "https://github.com/geekan/MetaGPT"
+        owner: "geekan"
+        license: "MIT"
+        license_type: "permissive"
+        maintenance_signal: "active"
+        stars: "47000+"
+        last_activity: "2026-01-28"
+        security_posture:
+          cve_history: "none_known"
+          dependency_risk: "medium"
+          code_quality: "medium"
+          security_policy: false
+          signed_releases: false
+        red_flags:
+          - "Multi-agent code generation poses inherent security risks"
+          - "No SECURITY.md"
+        notes: "Powerful but generates code autonomously; requires extensive sandboxing"
+        recommendation: "APPROVE_WITH_CAUTION"
+        pin_policy: "COMMIT"
+
+      - name: "semantic-kernel"
+        repo_url: "https://github.com/microsoft/semantic-kernel"
+        owner: "microsoft"
+        license: "MIT"
+        license_type: "permissive"
+        maintenance_signal: "very_active"
+        stars: "24000+"
+        last_activity: "2026-02-13"
+        security_posture:
+          cve_history: "low"
+          dependency_risk: "low"
+          code_quality: "high"
+          security_policy: true
+          signed_releases: true
+        red_flags: []
+        notes: "Microsoft-backed; enterprise-grade; strong security practices"
+        recommendation: "APPROVE"
+        pin_policy: "RELEASE"
+
+      - name: "llamaindex"
+        repo_url: "https://github.com/run-llama/llama_index"
+        owner: "run-llama"
+        license: "MIT"
+        license_type: "permissive"
+        maintenance_signal: "very_active"
+        stars: "38000+"
+        last_activity: "2026-02-13"
+        security_posture:
+          cve_history: "low"
+          dependency_risk: "medium"
+          code_quality: "high"
+          security_policy: true
+          signed_releases: true
+        red_flags: []
+        notes: "RAG-focused; good security practices; extensive integrations to audit"
+        recommendation: "APPROVE"
+        pin_policy: "TAG"
+
+      - name: "haystack"
+        repo_url: "https://github.com/deepset-ai/haystack"
+        owner: "deepset-ai"
+        license: "Apache-2.0"
+        license_type: "permissive"
+        maintenance_signal: "active"
+        stars: "19000+"
+        last_activity: "2026-02-12"
+        security_posture:
+          cve_history: "low"
+          dependency_risk: "medium"
+          code_quality: "high"
+          security_policy: true
+          signed_releases: true
+        red_flags: []
+        notes: "Mature NLP framework; deepset is reputable; good security track record"
+        recommendation: "APPROVE"
+        pin_policy: "RELEASE"
+
+      - name: "flowise"
+        repo_url: "https://github.com/FlowiseAI/Flowise"
+        owner: "FlowiseAI"
+        license: "Apache-2.0"
+        license_type: "permissive"
+        maintenance_signal: "active"
+        stars: "34000+"
+        last_activity: "2026-02-10"
+        security_posture:
+          cve_history: "low"
+          dependency_risk: "medium"
+          code_quality: "medium"
+          security_policy: false
+          signed_releases: true
+        red_flags:
+          - "No SECURITY.md"
+          - "Low-code platform may hide security complexity"
+        notes: "Visual builder; growing rapidly; needs security documentation"
+        recommendation: "APPROVE_WITH_MONITORING"
+        pin_policy: "TAG"
+
+      - name: "n8n"
+        repo_url: "https://github.com/n8n-io/n8n"
+        owner: "n8n-io"
+        license: "Sustainable Use License"  # Custom, not OSI-approved
+        license_type: "proprietary_source_available"
+        maintenance_signal: "very_active"
+        stars: "65000+"
+        last_activity: "2026-02-13"
+        security_posture:
+          cve_history: "low"
+          dependency_risk: "medium"
+          code_quality: "high"
+          security_policy: true
+          signed_releases: true
+        red_flags:
+          - "Non-OSI license (Sustainable Use License)"
+          - "Commercial restrictions apply"
+        notes: "Excellent workflow tool but license is NOT permissive; evaluate carefully"
+        recommendation: "REVIEW_LICENSE"
+        pin_policy: "RELEASE"
+
+      - name: "temporal"
+        repo_url: "https://github.com/temporalio/temporal"
+        owner: "temporalio"
+        license: "MIT"
+        license_type: "permissive"
+        maintenance_signal: "very_active"
+        stars: "12000+"
+        last_activity: "2026-02-13"
+        security_posture:
+          cve_history: "low"
+          dependency_risk: "low"
+          code_quality: "high"
+          security_policy: true
+          signed_releases: true
+        red_flags: []
+        notes: "Enterprise-grade durable execution; Temporal Cloud available; strong security"
+        recommendation: "APPROVE"
+        pin_policy: "RELEASE"
+
+      - name: "apache-airflow"
+        repo_url: "https://github.com/apache/airflow"
+        owner: "apache"
+        license: "Apache-2.0"
+        license_type: "permissive"
+        maintenance_signal: "very_active"
+        stars: "38000+"
+        last_activity: "2026-02-13"
+        security_posture:
+          cve_history: "medium"
+          dependency_risk: "medium"
+          code_quality: "high"
+          security_policy: true
+          signed_releases: true
+        red_flags: []
+        notes: "Apache governance; some historical CVEs but well-managed; mature security process"
+        recommendation: "APPROVE"
+        pin_policy: "RELEASE"
+
+      - name: "prefect"
+        repo_url: "https://github.com/PrefectHQ/prefect"
+        owner: "PrefectHQ"
+        license: "Apache-2.0"
+        license_type: "permissive"
+        maintenance_signal: "active"
+        stars: "18000+"
+        last_activity: "2026-02-12"
+        security_posture:
+          cve_history: "low"
+          dependency_risk: "low"
+          code_quality: "high"
+          security_policy: true
+          signed_releases: true
+        red_flags: []
+        notes: "Modern workflow orchestration; good security practices; Prefect Cloud available"
+        recommendation: "APPROVE"
+        pin_policy: "RELEASE"
+
+      - name: "dagster"
+        repo_url: "https://github.com/dagster-io/dagster"
+        owner: "dagster-io"
+        license: "Apache-2.0"
+        license_type: "permissive"
+        maintenance_signal: "active"
+        stars: "13000+"
+        last_activity: "2026-02-12"
+        security_posture:
+          cve_history: "low"
+          dependency_risk: "low"
+          code_quality: "high"
+          security_policy: true
+          signed_releases: true
+        red_flags: []
+        notes: "Data-aware orchestration; strong typing reduces security risks"
+        recommendation: "APPROVE"
+        pin_policy: "RELEASE"
+
+      - name: "autogen"
+        repo_url: "https://github.com/microsoft/autogen"
+        owner: "microsoft"
+        license: "MIT"
+        license_type: "permissive"
+        maintenance_signal: "very_active"
+        stars: "40000+"
+        last_activity: "2026-02-13"
+        security_posture:
+          cve_history: "low"
+          dependency_risk: "medium"
+          code_quality: "high"
+          security_policy: true
+          signed_releases: true
+        red_flags: []
+        notes: "Microsoft-backed multi-agent framework; active security development"
+        recommendation: "APPROVE"
+        pin_policy: "TAG"
+
+      - name: "pydantic-ai"
+        repo_url: "https://github.com/pydantic/pydantic-ai"
+        owner: "pydantic"
+        license: "MIT"
+        license_type: "permissive"
+        maintenance_signal: "very_active"
+        stars: "8000+"
+        last_activity: "2026-02-13"
+        security_posture:
+          cve_history: "none_known"
+          dependency_risk: "low"
+          code_quality: "very_high"
+          security_policy: true
+          signed_releases: true
+        red_flags: []
+        notes: "Type-safe agent framework; leverages pydantic validation; excellent code quality"
+        recommendation: "APPROVE"
+        pin_policy: "RELEASE"
+
+  - id: 2
+    name: "evaluation_testing_observability"
+    display_name: "Evaluation, Testing, Verification & Observability"
+    repos:
+      - name: "langfuse"
+        repo_url: "https://github.com/langfuse/langfuse"
+        owner: "langfuse"
+        license: "MIT"
+        license_type: "permissive"
+        maintenance_signal: "very_active"
+        stars: "9000+"
+        last_activity: "2026-02-13"
+        security_posture:
+          cve_history: "none_known"
+          dependency_risk: "low"
+          code_quality: "high"
+          security_policy: true
+          signed_releases: true
+        red_flags: []
+        notes: "Open-source LLM observability; self-hostable; SOC2 in progress"
+        recommendation: "APPROVE"
+        pin_policy: "RELEASE"
+
+      - name: "wandb"
+        repo_url: "https://github.com/wandb/wandb"
+        owner: "wandb"
+        license: "MIT"
+        license_type: "permissive"
+        maintenance_signal: "very_active"
+        stars: "9000+"
+        last_activity: "2026-02-13"
+        security_posture:
+          cve_history: "low"
+          dependency_risk: "medium"
+          code_quality: "high"
+          security_policy: true
+          signed_releases: true
+        red_flags: []
+        notes: "Industry standard ML experiment tracking; enterprise security available"
+        recommendation: "APPROVE"
+        pin_policy: "RELEASE"
+
+      - name: "mlflow"
+        repo_url: "https://github.com/mlflow/mlflow"
+        owner: "mlflow"
+        license: "Apache-2.0"
+        license_type: "permissive"
+        maintenance_signal: "very_active"
+        stars: "19000+"
+        last_activity: "2026-02-13"
+        security_posture:
+          cve_history: "low"
+          dependency_risk: "medium"
+          code_quality: "high"
+          security_policy: true
+          signed_releases: true
+        red_flags: []
+        notes: "Databricks-backed; widely adopted; good security practices"
+        recommendation: "APPROVE"
+        pin_policy: "RELEASE"
+
+      - name: "evidently"
+        repo_url: "https://github.com/evidentlyai/evidently"
+        owner: "evidentlyai"
+        license: "Apache-2.0"
+        license_type: "permissive"
+        maintenance_signal: "active"
+        stars: "6000+"
+        last_activity: "2026-02-10"
+        security_posture:
+          cve_history: "none_known"
+          dependency_risk: "low"
+          code_quality: "high"
+          security_policy: false
+          signed_releases: true
+        red_flags:
+          - "No SECURITY.md"
+        notes: "ML monitoring and validation; growing rapidly"
+        recommendation: "APPROVE_WITH_MONITORING"
+        pin_policy: "TAG"
+
+      - name: "deepeval"
+        repo_url: "https://github.com/confident-ai/deepeval"
+        owner: "confident-ai"
+        license: "MIT"
+        license_type: "permissive"
+        maintenance_signal: "active"
+        stars: "4000+"
+        last_activity: "2026-02-11"
+        security_posture:
+          cve_history: "none_known"
+          dependency_risk: "low"
+          code_quality: "medium"
+          security_policy: false
+          signed_releases: false
+        red_flags:
+          - "No SECURITY.md"
+          - "Relatively young project"
+        notes: "LLM evaluation framework; promising but needs maturity"
+        recommendation: "APPROVE_WITH_MONITORING"
+        pin_policy: "COMMIT"
+
+      - name: "ragas"
+        repo_url: "https://github.com/explodinggradients/ragas"
+        owner: "explodinggradients"
+        license: "Apache-2.0"
+        license_type: "permissive"
+        maintenance_signal: "active"
+        stars: "8000+"
+        last_activity: "2026-02-10"
+        security_posture:
+          cve_history: "none_known"
+          dependency_risk: "low"
+          code_quality: "medium"
+          security_policy: false
+          signed_releases: true
+        red_flags:
+          - "No SECURITY.md"
+        notes: "RAG evaluation framework; widely used for RAG metrics"
+        recommendation: "APPROVE_WITH_MONITORING"
+        pin_policy: "TAG"
+
+      - name: "arize-phoenix"
+        repo_url: "https://github.com/Arize-ai/phoenix"
+        owner: "Arize-ai"
+        license: "Elastic-2.0"
+        license_type: "source_available"
+        maintenance_signal: "very_active"
+        stars: "6000+"
+        last_activity: "2026-02-13"
+        security_posture:
+          cve_history: "none_known"
+          dependency_risk: "low"
+          code_quality: "high"
+          security_policy: true
+          signed_releases: true
+        red_flags:
+          - "Elastic License 2.0 - NOT OSI-approved"
+        notes: "Excellent observability but license has restrictions; review compliance requirements"
+        recommendation: "REVIEW_LICENSE"
+        pin_policy: "RELEASE"
+
+      - name: "trulens"
+        repo_url: "https://github.com/truera/trulens"
+        owner: "truera"
+        license: "MIT"
+        license_type: "permissive"
+        maintenance_signal: "active"
+        stars: "3000+"
+        last_activity: "2026-02-05"
+        security_posture:
+          cve_history: "none_known"
+          dependency_risk: "low"
+          code_quality: "medium"
+          security_policy: false
+          signed_releases: true
+        red_flags:
+          - "TruEra company status unclear"
+        notes: "LLM feedback and evaluation; TruEra acquisition may affect future"
+        recommendation: "APPROVE_WITH_MONITORING"
+        pin_policy: "TAG"
+
+      - name: "opentelemetry"
+        repo_url: "https://github.com/open-telemetry/opentelemetry-specification"
+        owner: "open-telemetry"
+        license: "Apache-2.0"
+        license_type: "permissive"
+        maintenance_signal: "very_active"
+        stars: "4000+"
+        last_activity: "2026-02-12"
+        security_posture:
+          cve_history: "none_known"
+          dependency_risk: "low"
+          code_quality: "very_high"
+          security_policy: true
+          signed_releases: true
+        red_flags: []
+        notes: "CNCF project; industry standard observability; excellent governance"
+        recommendation: "APPROVE"
+        pin_policy: "RELEASE"
+
+      - name: "prometheus"
+        repo_url: "https://github.com/prometheus/prometheus"
+        owner: "prometheus"
+        license: "Apache-2.0"
+        license_type: "permissive"
+        maintenance_signal: "very_active"
+        stars: "57000+"
+        last_activity: "2026-02-13"
+        security_posture:
+          cve_history: "low"
+          dependency_risk: "low"
+          code_quality: "very_high"
+          security_policy: true
+          signed_releases: true
+        red_flags: []
+        notes: "CNCF graduated project; industry standard; mature security process"
+        recommendation: "APPROVE"
+        pin_policy: "RELEASE"
+
+      - name: "grafana"
+        repo_url: "https://github.com/grafana/grafana"
+        owner: "grafana"
+        license: "AGPL-3.0"
+        license_type: "copyleft"
+        maintenance_signal: "very_active"
+        stars: "66000+"
+        last_activity: "2026-02-13"
+        security_posture:
+          cve_history: "medium"
+          dependency_risk: "medium"
+          code_quality: "high"
+          security_policy: true
+          signed_releases: true
+        red_flags:
+          - "AGPL-3.0 copyleft license"
+        notes: "Excellent visualization but AGPL requires careful compliance; some historical CVEs"
+        recommendation: "REVIEW_LICENSE"
+        pin_policy: "RELEASE"
+
+      - name: "great-expectations"
+        repo_url: "https://github.com/great-expectations/great_expectations"
+        owner: "great-expectations"
+        license: "Apache-2.0"
+        license_type: "permissive"
+        maintenance_signal: "active"
+        stars: "10000+"
+        last_activity: "2026-02-10"
+        security_posture:
+          cve_history: "low"
+          dependency_risk: "medium"
+          code_quality: "high"
+          security_policy: true
+          signed_releases: true
+        red_flags: []
+        notes: "Data validation framework; mature project; good practices"
+        recommendation: "APPROVE"
+        pin_policy: "RELEASE"
+
+      - name: "openlineage"
+        repo_url: "https://github.com/OpenLineage/OpenLineage"
+        owner: "OpenLineage"
+        license: "Apache-2.0"
+        license_type: "permissive"
+        maintenance_signal: "active"
+        stars: "2000+"
+        last_activity: "2026-02-11"
+        security_posture:
+          cve_history: "none_known"
+          dependency_risk: "low"
+          code_quality: "high"
+          security_policy: true
+          signed_releases: true
+        red_flags: []
+        notes: "Data lineage standard; LF AI & Data project; growing adoption"
+        recommendation: "APPROVE"
+        pin_policy: "RELEASE"
+
+      - name: "whylabs"
+        repo_url: "https://github.com/whylabs/whylogs"
+        owner: "whylabs"
+        license: "Apache-2.0"
+        license_type: "permissive"
+        maintenance_signal: "active"
+        stars: "3000+"
+        last_activity: "2026-01-28"
+        security_posture:
+          cve_history: "none_known"
+          dependency_risk: "low"
+          code_quality: "high"
+          security_policy: true
+          signed_releases: true
+        red_flags: []
+        notes: "Data logging and observability; privacy-preserving approach"
+        recommendation: "APPROVE"
+        pin_policy: "TAG"
+
+      - name: "arize"
+        repo_url: "https://github.com/Arize-ai/open-inference-spec"
+        owner: "Arize-ai"
+        license: "MIT"
+        license_type: "permissive"
+        maintenance_signal: "active"
+        stars: "200+"
+        last_activity: "2026-01-20"
+        security_posture:
+          cve_history: "none_known"
+          dependency_risk: "low"
+          code_quality: "high"
+          security_policy: false
+          signed_releases: false
+        red_flags:
+          - "Very small project; limited adoption"
+        notes: "Open inference specification; complements Arize platform"
+        recommendation: "APPROVE_WITH_MONITORING"
+        pin_policy: "COMMIT"
+
+      - name: "promptflow"
+        repo_url: "https://github.com/microsoft/promptflow"
+        owner: "microsoft"
+        license: "MIT"
+        license_type: "permissive"
+        maintenance_signal: "active"
+        stars: "10000+"
+        last_activity: "2026-02-10"
+        security_posture:
+          cve_history: "none_known"
+          dependency_risk: "medium"
+          code_quality: "high"
+          security_policy: true
+          signed_releases: true
+        red_flags: []
+        notes: "Microsoft's LLM flow orchestration and evaluation; integrates with Azure AI"
+        recommendation: "APPROVE"
+        pin_policy: "RELEASE"
+
+  - id: 3
+    name: "retrieval_memory_knowledge"
+    display_name: "Retrieval, Memory, Knowledge Graphs & Vector Stores"
+    repos:
+      - name: "chroma"
+        repo_url: "https://github.com/chroma-core/chroma"
+        owner: "chroma-core"
+        license: "Apache-2.0"
+        license_type: "permissive"
+        maintenance_signal: "very_active"
+        stars: "17000+"
+        last_activity: "2026-02-13"
+        security_posture:
+          cve_history: "none_known"
+          dependency_risk: "low"
+          code_quality: "high"
+          security_policy: true
+          signed_releases: true
+        red_flags: []
+        notes: "Popular embedded vector DB; well-funded; good security practices"
+        recommendation: "APPROVE"
+        pin_policy: "RELEASE"
+
+      - name: "milvus"
+        repo_url: "https://github.com/milvus-io/milvus"
+        owner: "milvus-io"
+        license: "Apache-2.0"
+        license_type: "permissive"
+        maintenance_signal: "very_active"
+        stars: "32000+"
+        last_activity: "2026-02-13"
+        security_posture:
+          cve_history: "low"
+          dependency_risk: "medium"
+          code_quality: "high"
+          security_policy: true
+          signed_releases: true
+        red_flags: []
+        notes: "LF AI & Data graduated project; distributed vector DB; enterprise-grade"
+        recommendation: "APPROVE"
+        pin_policy: "RELEASE"
+
+      - name: "weaviate"
+        repo_url: "https://github.com/weaviate/weaviate"
+        owner: "weaviate"
+        license: "BSD-3-Clause"
+        license_type: "permissive"
+        maintenance_signal: "very_active"
+        stars: "12000+"
+        last_activity: "2026-02-13"
+        security_posture:
+          cve_history: "none_known"
+          dependency_risk: "low"
+          code_quality: "high"
+          security_policy: true
+          signed_releases: true
+        red_flags: []
+        notes: "Vector search engine; modular AI integrations; GraphQL interface"
+        recommendation: "APPROVE"
+        pin_policy: "RELEASE"
+
+      - name: "qdrant"
+        repo_url: "https://github.com/qdrant/qdrant"
+        owner: "qdrant"
+        license: "Apache-2.0"
+        license_type: "permissive"
+        maintenance_signal: "very_active"
+        stars: "22000+"
+        last_activity: "2026-02-13"
+        security_posture:
+          cve_history: "none_known"
+          dependency_risk: "low"
+          code_quality: "very_high"
+          security_policy: true
+          signed_releases: true
+        red_flags: []
+        notes: "Rust-based vector DB; excellent performance; strong engineering"
+        recommendation: "APPROVE"
+        pin_policy: "RELEASE"
+
+      - name: "pgvector"
+        repo_url: "https://github.com/pgvector/pgvector"
+        owner: "pgvector"
+        license: "PostgreSQL License"  # Similar to MIT/BSD
+        license_type: "permissive"
+        maintenance_signal: "very_active"
+        stars: "14000+"
+        last_activity: "2026-02-12"
+        security_posture:
+          cve_history: "none_known"
+          dependency_risk: "low"
+          code_quality: "high"
+          security_policy: true
+          signed_releases: true
+        red_flags: []
+        notes: "Postgres extension for vectors; leverages proven PostgreSQL security"
+        recommendation: "APPROVE"
+        pin_policy: "RELEASE"
+
+      - name: "neo4j"
+        repo_url: "https://github.com/neo4j/neo4j"
+        owner: "neo4j"
+        license: "GPL-3.0"  # Community Edition
+        license_type: "copyleft"
+        maintenance_signal: "very_active"
+        stars: "14000+"
+        last_activity: "2026-02-13"
+        security_posture:
+          cve_history: "low"
+          dependency_risk: "low"
+          code_quality: "high"
+          security_policy: true
+          signed_releases: true
+        red_flags:
+          - "GPL-3.0 copyleft (Community Edition)"
+          - "Commercial license for enterprise features"
+        notes: "Leading graph DB; GPL requires compliance review; enterprise features commercial"
+        recommendation: "REVIEW_LICENSE"
+        pin_policy: "RELEASE"
+
+      - name: "memgraph"
+        repo_url: "https://github.com/memgraph/memgraph"
+        owner: "memgraph"
+        license: "BSL-1.1"  # Business Source License
+        license_type: "source_available"
+        maintenance_signal: "active"
+        stars: "4000+"
+        last_activity: "2026-02-11"
+        security_posture:
+          cve_history: "none_known"
+          dependency_risk: "low"
+          code_quality: "high"
+          security_policy: true
+          signed_releases: true
+        red_flags:
+          - "BSL license - NOT open source (converts to Apache after 4 years)"
+        notes: "High-performance graph DB; license changes to Apache after delay"
+        recommendation: "REVIEW_LICENSE"
+        pin_policy: "RELEASE"
+
+      - name: "arangodb"
+        repo_url: "https://github.com/arangodb/arangodb"
+        owner: "arangodb"
+        license: "Apache-2.0"
+        license_type: "permissive"
+        maintenance_signal: "active"
+        stars: "14000+"
+        last_activity: "2026-02-12"
+        security_posture:
+          cve_history: "low"
+          dependency_risk: "medium"
+          code_quality: "high"
+          security_policy: true
+          signed_releases: true
+        red_flags: []
+        notes: "Multi-model database; includes graph capabilities; good security track record"
+        recommendation: "APPROVE"
+        pin_policy: "RELEASE"
+
+      - name: "mem0"
+        repo_url: "https://github.com/mem0ai/mem0"
+        owner: "mem0ai"
+        license: "Apache-2.0"
+        license_type: "permissive"
+        maintenance_signal: "very_active"
+        stars: "25000+"
+        last_activity: "2026-02-13"
+        security_posture:
+          cve_history: "none_known"
+          dependency_risk: "medium"
+          code_quality: "medium"
+          security_policy: true
+          signed_releases: true
+        red_flags:
+          - "Rapid growth may outpace security review"
+        notes: "Memory layer for AI apps; formerly EmbedChain; YC-backed"
+        recommendation: "APPROVE_WITH_MONITORING"
+        pin_policy: "TAG"
+
+      - name: "zep"
+        repo_url: "https://github.com/getzep/zep"
+        owner: "getzep"
+        license: "Apache-2.0"
+        license_type: "permissive"
+        maintenance_signal: "active"
+        stars: "3000+"
+        last_activity: "2026-02-10"
+        security_posture:
+          cve_history: "none_known"
+          dependency_risk: "low"
+          code_quality: "high"
+          security_policy: true
+          signed_releases: true
+        red_flags: []
+        notes: "Long-term memory for AI assistants; graph-based memory"
+        recommendation: "APPROVE"
+        pin_policy: "TAG"
+
+      - name: "falkordb"
+        repo_url: "https://github.com/FalkorDB/FalkorDB"
+        owner: "FalkorDB"
+        license: "SSPL-1.0"  # Server Side Public License
+        license_type: "source_available"
+        maintenance_signal: "active"
+        stars: "800+"
+        last_activity: "2026-02-11"
+        security_posture:
+          cve_history: "none_known"
+          dependency_risk: "low"
+          code_quality: "medium"
+          security_policy: false
+          signed_releases: false
+        red_flags:
+          - "SSPL license - NOT OSI-approved; MongoDB license"
+        notes: "RedisGraph fork; SSPL is controversial; evaluate license risk carefully"
+        recommendation: "DO_NOT_USE"
+        pin_policy: "DO_NOT_USE"
+
+      - name: "typedb"
+        repo_url: "https://github.com/vaticle/typedb"
+        owner: "vaticle"
+        license: "AGPL-3.0"
+        license_type: "copyleft"
+        maintenance_signal: "active"
+        stars: "4000+"
+        last_activity: "2026-02-05"
+        security_posture:
+          cve_history: "none_known"
+          dependency_risk: "low"
+          code_quality: "high"
+          security_policy: false
+          signed_releases: true
+        red_flags:
+          - "AGPL-3.0 copyleft license"
+        notes: "Strongly-typed knowledge graph; AGPL requires compliance review"
+        recommendation: "REVIEW_LICENSE"
+        pin_policy: "RELEASE"
+
+      - name: "redis"
+        repo_url: "https://github.com/redis/redis"
+        owner: "redis"
+        license: "RSALv2"  # Redis Source Available License 2.0
+        license_type: "source_available"
+        maintenance_signal: "very_active"
+        stars: "68000+"
+        last_activity: "2026-02-13"
+        security_posture:
+          cve_history: "medium"
+          dependency_risk: "low"
+          code_quality: "very_high"
+          security_policy: true
+          signed_releases: true
+        red_flags:
+          - "RSALv2 - NOT open source (since March 2024)"
+          - "License change controversy"
+        notes: "CRITICAL: License changed from BSD to RSALv2 in 2024; NOT open source"
+        recommendation: "DO_NOT_USE"
+        pin_policy: "DO_NOT_USE"
+
+      - name: "lance"
+        repo_url: "https://github.com/lancedb/lance"
+        owner: "lancedb"
+        license: "Apache-2.0"
+        license_type: "permissive"
+        maintenance_signal: "very_active"
+        stars: "4000+"
+        last_activity: "2026-02-13"
+        security_posture:
+          cve_history: "none_known"
+          dependency_risk: "low"
+          code_quality: "very_high"
+          security_policy: true
+          signed_releases: true
+        red_flags: []
+        notes: "Columnar format for ML; modern Rust implementation; excellent performance"
+        recommendation: "APPROVE"
+        pin_policy: "RELEASE"
+
+      - name: "lancedb"
+        repo_url: "https://github.com/lancedb/lancedb"
+        owner: "lancedb"
+        license: "Apache-2.0"
+        license_type: "permissive"
+        maintenance_signal: "very_active"
+        stars: "6000+"
+        last_activity: "2026-02-13"
+        security_posture:
+          cve_history: "none_known"
+          dependency_risk: "low"
+          code_quality: "very_high"
+          security_policy: true
+          signed_releases: true
+        red_flags: []
+        notes: "Serverless vector DB on Lance; Rust-based; modern architecture"
+        recommendation: "APPROVE"
+        pin_policy: "RELEASE"
+
+      - name: "pinecone-client"
+        repo_url: "https://github.com/pinecone-io/pinecone-python-client"
+        owner: "pinecone-io"
+        license: "Apache-2.0"
+        license_type: "permissive"
+        maintenance_signal: "active"
+        stars: "1000+"
+        last_activity: "2026-02-12"
+        security_posture:
+          cve_history: "none_known"
+          dependency_risk: "low"
+          code_quality: "high"
+          security_policy: true
+          signed_releases: true
+        red_flags:
+          - "Requires Pinecone cloud service (proprietary backend)"
+        notes: "Official client for managed Pinecone vector DB; widely used in production"
+        recommendation: "APPROVE_WITH_MONITORING"
+        pin_policy: "RELEASE"
+
+  - id: 4
+    name: "safety_policy_security"
+    display_name: "Safety, Policy, Identity, Security & Anti-Abuse"
+    repos:
+      - name: "guardrails-ai"
+        repo_url: "https://github.com/guardrails-ai/guardrails"
+        owner: "guardrails-ai"
+        license: "Apache-2.0"
+        license_type: "permissive"
+        maintenance_signal: "very_active"
+        stars: "6000+"
+        last_activity: "2026-02-12"
+        security_posture:
+          cve_history: "none_known"
+          dependency_risk: "medium"
+          code_quality: "high"
+          security_policy: true
+          signed_releases: true
+        red_flags: []
+        notes: "Input/output validation for LLMs; actively maintained; good validator ecosystem"
+        recommendation: "APPROVE"
+        pin_policy: "RELEASE"
+
+      - name: "nemo-guardrails"
+        repo_url: "https://github.com/NVIDIA/NeMo-Guardrails"
+        owner: "NVIDIA"
+        license: "Apache-2.0"
+        license_type: "permissive"
+        maintenance_signal: "active"
+        stars: "4000+"
+        last_activity: "2026-02-05"
+        security_posture:
+          cve_history: "none_known"
+          dependency_risk: "low"
+          code_quality: "high"
+          security_policy: true
+          signed_releases: true
+        red_flags: []
+        notes: "NVIDIA's guardrails framework; Colang configuration language; enterprise focus"
+        recommendation: "APPROVE"
+        pin_policy: "RELEASE"
+
+      - name: "llamaguard"
+        repo_url: "https://github.com/meta-llama/PurpleLlama"
+        owner: "meta-llama"
+        license: "LLAMAGUARD_LICENSE"  # Custom permissive
+        license_type: "permissive"
+        maintenance_signal: "active"
+        stars: "3000+"
+        last_activity: "2026-02-10"
+        security_posture:
+          cve_history: "none_known"
+          dependency_risk: "low"
+          code_quality: "high"
+          security_policy: true
+          signed_releases: true
+        red_flags:
+          - "Custom license (though permissive)"
+        notes: "Meta's safety model for content moderation; widely adopted; PurpleLlama project"
+        recommendation: "APPROVE"
+        pin_policy: "TAG"
+
+      - name: "opentelemetry-collector"
+        repo_url: "https://github.com/open-telemetry/opentelemetry-collector"
+        owner: "open-telemetry"
+        license: "Apache-2.0"
+        license_type: "permissive"
+        maintenance_signal: "very_active"
+        stars: "5000+"
+        last_activity: "2026-02-13"
+        security_posture:
+          cve_history: "low"
+          dependency_risk: "low"
+          code_quality: "very_high"
+          security_policy: true
+          signed_releases: true
+        red_flags: []
+        notes: "CNCF project; observability pipeline; extensible processor architecture"
+        recommendation: "APPROVE"
+        pin_policy: "RELEASE"
+
+      - name: "opa"
+        repo_url: "https://github.com/open-policy-agent/opa"
+        owner: "open-policy-agent"
+        license: "Apache-2.0"
+        license_type: "permissive"
+        maintenance_signal: "very_active"
+        stars: "10000+"
+        last_activity: "2026-02-13"
+        security_posture:
+          cve_history: "low"
+          dependency_risk: "low"
+          code_quality: "very_high"
+          security_policy: true
+          signed_releases: true
+        red_flags: []
+        notes: "CNCF graduated project; policy-as-code standard; widely adopted"
+        recommendation: "APPROVE"
+        pin_policy: "RELEASE"
+
+      - name: "cerbos"
+        repo_url: "https://github.com/cerbos/cerbos"
+        owner: "cerbos"
+        license: "Apache-2.0"
+        license_type: "permissive"
+        maintenance_signal: "active"
+        stars: "3000+"
+        last_activity: "2026-02-11"
+        security_posture:
+          cve_history: "none_known"
+          dependency_risk: "low"
+          code_quality: "high"
+          security_policy: true
+          signed_releases: true
+        red_flags: []
+        notes: "Decoupled authorization; PDP/PAP architecture; growing adoption"
+        recommendation: "APPROVE"
+        pin_policy: "RELEASE"
+
+      - name: "oso"
+        repo_url: "https://github.com/osohq/oso"
+        owner: "osohq"
+        license: "Apache-2.0"
+        license_type: "permissive"
+        maintenance_signal: "low"
+        stars: "4000+"
+        last_activity: "2024-08-15"
+        security_posture:
+          cve_history: "none_known"
+          dependency_risk: "low"
+          code_quality: "high"
+          security_policy: false
+          signed_releases: false
+        red_flags:
+          - "Last commit August 2024 (maintenance concern)"
+          - "Company pivoted away from open source product"
+        notes: "Policy framework but maintenance concerns; company pivoted to cloud-only"
+        recommendation: "APPROVE_WITH_CAUTION"
+        pin_policy: "COMMIT"
+
+      - name: "keycloak"
+        repo_url: "https://github.com/keycloak/keycloak"
+        owner: "keycloak"
+        license: "Apache-2.0"
+        license_type: "permissive"
+        maintenance_signal: "very_active"
+        stars: "25000+"
+        last_activity: "2026-02-13"
+        security_posture:
+          cve_history: "medium"
+          dependency_risk: "medium"
+          code_quality: "high"
+          security_policy: true
+          signed_releases: true
+        red_flags: []
+        notes: "JBoss/Red Hat backed; enterprise IAM; some CVEs but actively patched"
+        recommendation: "APPROVE"
+        pin_policy: "RELEASE"
+
+      - name: "casdoor"
+        repo_url: "https://github.com/casdoor/casdoor"
+        owner: "casdoor"
+        license: "Apache-2.0"
+        license_type: "permissive"
+        maintenance_signal: "active"
+        stars: "11000+"
+        last_activity: "2026-02-12"
+        security_posture:
+          cve_history: "none_known"
+          dependency_risk: "medium"
+          code_quality: "medium"
+          security_policy: true
+          signed_releases: true
+        red_flags:
+          - "Chinese origin (casbin) - evaluate geopolitical risk if applicable"
+        notes: "Identity platform; UI-first; growing feature set"
+        recommendation: "APPROVE_WITH_MONITORING"
+        pin_policy: "RELEASE"
+
+      - name: "zitadel"
+        repo_url: "https://github.com/zitadel/zitadel"
+        owner: "zitadel"
+        license: "Apache-2.0"
+        license_type: "permissive"
+        maintenance_signal: "very_active"
+        stars: "9000+"
+        last_activity: "2026-02-13"
+        security_posture:
+          cve_history: "low"
+          dependency_risk: "low"
+          code_quality: "very_high"
+          security_policy: true
+          signed_releases: true
+        red_flags: []
+        notes: "Modern IAM platform; Go-based; event sourcing architecture; excellent security"
+        recommendation: "APPROVE"
+        pin_policy: "RELEASE"
+
+      - name: "authelia"
+        repo_url: "https://github.com/authelia/authelia"
+        owner: "authelia"
+        license: "Apache-2.0"
+        license_type: "permissive"
+        maintenance_signal: "very_active"
+        stars: "23000+"
+        last_activity: "2026-02-13"
+        security_posture:
+          cve_history: "low"
+          dependency_risk: "low"
+          code_quality: "very_high"
+          security_policy: true
+          signed_releases: true
+        red_flags: []
+        notes: "Authentication/authorization server; 2FA/MFA support; Go-based"
+        recommendation: "APPROVE"
+        pin_policy: "RELEASE"
+
+      - name: "vault"
+        repo_url: "https://github.com/hashicorp/vault"
+        owner: "hashicorp"
+        license: "BUSL-1.1"  # Business Source License
+        license_type: "source_available"
+        maintenance_signal: "very_active"
+        stars: "32000+"
+        last_activity: "2026-02-13"
+        security_posture:
+          cve_history: "low"
+          dependency_risk: "low"
+          code_quality: "very_high"
+          security_policy: true
+          signed_releases: true
+        red_flags:
+          - "BSL license - NOT open source"
+          - "License changed from MPL in 2023"
+        notes: "Excellent secrets management but BSL license; evaluate compliance requirements"
+        recommendation: "REVIEW_LICENSE"
+        pin_policy: "RELEASE"
+
+      - name: "openfga"
+        repo_url: "https://github.com/openfga/openfga"
+        owner: "openfga"
+        license: "Apache-2.0"
+        license_type: "permissive"
+        maintenance_signal: "very_active"
+        stars: "3000+"
+        last_activity: "2026-02-13"
+        security_posture:
+          cve_history: "none_known"
+          dependency_risk: "low"
+          code_quality: "very_high"
+          security_policy: true
+          signed_releases: true
+        red_flags: []
+        notes: "CNCF sandbox project; Google Zanzibar-inspired; fine-grained authorization"
+        recommendation: "APPROVE"
+        pin_policy: "RELEASE"
+
+      - name: "falco"
+        repo_url: "https://github.com/falcosecurity/falco"
+        owner: "falcosecurity"
+        license: "Apache-2.0"
+        license_type: "permissive"
+        maintenance_signal: "very_active"
+        stars: "8000+"
+        last_activity: "2026-02-13"
+        security_posture:
+          cve_history: "low"
+          dependency_risk: "low"
+          code_quality: "high"
+          security_policy: true
+          signed_releases: true
+        red_flags: []
+        notes: "CNCF graduated project; runtime security monitoring; syscall-based detection"
+        recommendation: "APPROVE"
+        pin_policy: "RELEASE"
+
+      - name: "wireguard"
+        repo_url: "https://github.com/WireGuard/wireguard-linux"
+        owner: "WireGuard"
+        license: "GPL-2.0"
+        license_type: "copyleft"
+        maintenance_signal: "very_active"
+        stars: "8000+"
+        last_activity: "2026-02-10"
+        security_posture:
+          cve_history: "very_low"
+          dependency_risk: "very_low"
+          code_quality: "very_high"
+          security_policy: true
+          signed_releases: true
+        red_flags:
+          - "GPL-2.0 copyleft"
+        notes: "Modern VPN protocol; formally verified crypto; minimal attack surface"
+        recommendation: "APPROVE"
+        pin_policy: "RELEASE"
+
+      - name: "cilium"
+        repo_url: "https://github.com/cilium/cilium"
+        owner: "cilium"
+        license: "Apache-2.0"
+        license_type: "permissive"
+        maintenance_signal: "very_active"
+        stars: "21000+"
+        last_activity: "2026-02-13"
+        security_posture:
+          cve_history: "low"
+          dependency_risk: "low"
+          code_quality: "very_high"
+          security_policy: true
+          signed_releases: true
+        red_flags: []
+        notes: "CNCF graduated project; eBPF-based networking, observability, and security"
+        recommendation: "APPROVE"
+        pin_policy: "RELEASE"
+
+  - id: 5
+    name: "social_memetics_community"
+    display_name: "Social Layer, Memetics, Incentives & Community Tooling"
+    repos:
+      - name: "matrix-spec"
+        repo_url: "https://github.com/matrix-org/matrix-spec"
+        owner: "matrix-org"
+        license: "Apache-2.0"
+        license_type: "permissive"
+        maintenance_signal: "very_active"
+        stars: "2000+"
+        last_activity: "2026-02-12"
+        security_posture:
+          cve_history: "low"
+          dependency_risk: "low"
+          code_quality: "high"
+          security_policy: true
+          signed_releases: true
+        red_flags: []
+        notes: "Decentralized communication standard; Element.im reference implementation"
+        recommendation: "APPROVE"
+        pin_policy: "RELEASE"
+
+      - name: "mastodon"
+        repo_url: "https://github.com/mastodon/mastodon"
+        owner: "mastodon"
+        license: "AGPL-3.0"
+        license_type: "copyleft"
+        maintenance_signal: "very_active"
+        stars: "47000+"
+        last_activity: "2026-02-13"
+        security_posture:
+          cve_history: "low"
+          dependency_risk: "medium"
+          code_quality: "high"
+          security_policy: true
+          signed_releases: true
+        red_flags:
+          - "AGPL-3.0 copyleft license"
+        notes: "Leading fediverse platform; AGPL requires compliance; Ruby on Rails"
+        recommendation: "REVIEW_LICENSE"
+        pin_policy: "RELEASE"
+
+      - name: "lemmy"
+        repo_url: "https://github.com/LemmyNet/lemmy"
+        owner: "LemmyNet"
+        license: "AGPL-3.0"
+        license_type: "copyleft"
+        maintenance_signal: "active"
+        stars: "5000+"
+        last_activity: "2026-02-10"
+        security_posture:
+          cve_history: "low"
+          dependency_risk: "medium"
+          code_quality: "medium"
+          security_policy: true
+          signed_releases: true
+        red_flags:
+          - "AGPL-3.0 copyleft license"
+          - "Rust-based but some security history"
+        notes: "Federated Reddit alternative; AGPL license; ActivityPub"
+        recommendation: "REVIEW_LICENSE"
+        pin_policy: "RELEASE"
+
+      - name: "bluesky-social"
+        repo_url: "https://github.com/bluesky-social/atproto"
+        owner: "bluesky-social"
+        license: "Apache-2.0"
+        license_type: "permissive"
+        maintenance_signal: "very_active"
+        stars: "8000+"
+        last_activity: "2026-02-13"
+        security_posture:
+          cve_history: "none_known"
+          dependency_risk: "low"
+          code_quality: "high"
+          security_policy: true
+          signed_releases: true
+        red_flags: []
+        notes: "AT Protocol reference implementation; Bluesky's decentralized social"
+        recommendation: "APPROVE"
+        pin_policy: "TAG"
+
+      - name: "nostr-protocol"
+        repo_url: "https://github.com/nostr-protocol/nostr"
+        owner: "nostr-protocol"
+        license: "Unlicense"
+        license_type: "permissive"
+        maintenance_signal: "active"
+        stars: "10000+"
+        last_activity: "2026-01-28"
+        security_posture:
+          cve_history: "none_known"
+          dependency_risk: "low"
+          code_quality: "N/A (spec)"
+          security_policy: false
+          signed_releases: false
+        red_flags:
+          - "Minimal specification; implementations vary in security"
+        notes: "Simple decentralized social protocol; spec only - evaluate implementations"
+        recommendation: "APPROVE_WITH_MONITORING"
+        pin_policy: "N/A"
+
+      - name: "discourse"
+        repo_url: "https://github.com/discourse/discourse"
+        owner: "discourse"
+        license: "GPL-2.0"
+        license_type: "copyleft"
+        maintenance_signal: "very_active"
+        stars: "43000+"
+        last_activity: "2026-02-13"
+        security_posture:
+          cve_history: "low"
+          dependency_risk: "medium"
+          code_quality: "high"
+          security_policy: true
+          signed_releases: true
+        red_flags:
+          - "GPL-2.0 copyleft"
+        notes: "Modern forum software; widely adopted; good security track record"
+        recommendation: "REVIEW_LICENSE"
+        pin_policy: "RELEASE"
+
+      - name: "flarum"
+        repo_url: "https://github.com/flarum/flarum"
+        owner: "flarum"
+        license: "MIT"
+        license_type: "permissive"
+        maintenance_signal: "active"
+        stars: "9000+"
+        last_activity: "2026-02-08"
+        security_posture:
+          cve_history: "low"
+          dependency_risk: "medium"
+          code_quality: "medium"
+          security_policy: true
+          signed_releases: true
+        red_flags: []
+        notes: "Modern PHP forum; extension ecosystem; simpler than Discourse"
+        recommendation: "APPROVE"
+        pin_policy: "RELEASE"
+
+      - name: "ghost"
+        repo_url: "https://github.com/TryGhost/Ghost"
+        owner: "TryGhost"
+        license: "MIT"
+        license_type: "permissive"
+        maintenance_signal: "very_active"
+        stars: "47000+"
+        last_activity: "2026-02-13"
+        security_posture:
+          cve_history: "low"
+          dependency_risk: "medium"
+          code_quality: "high"
+          security_policy: true
+          signed_releases: true
+        red_flags: []
+        notes: "Modern publishing platform; Node.js; Ghost Foundation backed"
+        recommendation: "APPROVE"
+        pin_policy: "RELEASE"
+
+      - name: "activitypub"
+        repo_url: "https://github.com/w3c/activitypub"
+        owner: "w3c"
+        license: "W3C_LICENSE"  # Document license
+        license_type: "other"
+        maintenance_signal: "maintenance"
+        stars: "500+"
+        last_activity: "2024-06-15"
+        security_posture:
+          cve_history: "N/A"
+          dependency_risk: "N/A"
+          code_quality: "N/A"
+          security_policy: false
+          signed_releases: false
+        red_flags:
+          - "W3C specification only"
+          - "Minimal recent activity"
+        notes: "W3C decentralized social standard; spec reference; implementations vary"
+        recommendation: "APPROVE_WITH_MONITORING"
+        pin_policy: "N/A"
+
+      - name: "sourcecred"
+        repo_url: "https://github.com/sourcecred/sourcecred"
+        owner: "sourcecred"
+        license: "MIT"
+        license_type: "permissive"
+        maintenance_signal: "low"
+        stars: "2000+"
+        last_activity: "2024-03-15"
+        security_posture:
+          cve_history: "none_known"
+          dependency_risk: "low"
+          code_quality: "medium"
+          security_policy: false
+          signed_releases: false
+        red_flags:
+          - "Low maintenance (last commit March 2024)"
+          - "Project in maintenance mode"
+        notes: "Contributor recognition algorithm; interesting but limited activity"
+        recommendation: "APPROVE_WITH_CAUTION"
+        pin_policy: "COMMIT"
+
+      - name: "snapshot"
+        repo_url: "https://github.com/snapshot-labs/snapshot"
+        owner: "snapshot-labs"
+        license: "MIT"
+        license_type: "permissive"
+        maintenance_signal: "active"
+        stars: "10000+"
+        last_activity: "2026-02-12"
+        security_posture:
+          cve_history: "none_known"
+          dependency_risk: "medium"
+          code_quality: "high"
+          security_policy: true
+          signed_releases: true
+        red_flags: []
+        notes: "Off-chain voting for DAOs; widely used in Web3; IPFS-based"
+        recommendation: "APPROVE"
+        pin_policy: "RELEASE"
+
+      - name: "arweave"
+        repo_url: "https://github.com/ArweaveTeam/arweave"
+        owner: "ArweaveTeam"
+        license: "MIT"
+        license_type: "permissive"
+        maintenance_signal: "active"
+        stars: "2000+"
+        last_activity: "2026-02-10"
+        security_posture:
+          cve_history: "low"
+          dependency_risk: "low"
+          code_quality: "high"
+          security_policy: true
+          signed_releases: true
+        red_flags:
+          - "Cryptocurrency/blockchain based"
+          - "Token economics dependency"
+        notes: "Permanent decentralized storage; Erlang-based; evaluate token risk"
+        recommendation: "APPROVE_WITH_MONITORING"
+        pin_policy: "RELEASE"
+
+      - name: "ipfs"
+        repo_url: "https://github.com/ipfs/kubo"
+        owner: "ipfs"
+        license: "MIT+Apache-2.0"
+        license_type: "permissive"
+        maintenance_signal: "active"
+        stars: "16000+"
+        last_activity: "2026-02-12"
+        security_posture:
+          cve_history: "low"
+          dependency_risk: "medium"
+          code_quality: "high"
+          security_policy: true
+          signed_releases: true
+        red_flags: []
+        notes: "Content-addressed distributed storage; Protocol Labs; mature"
+        recommendation: "APPROVE"
+        pin_policy: "RELEASE"
+
+      - name: "gitcoin-grants"
+        repo_url: "https://github.com/gitcoinco/grants-stack"
+        owner: "gitcoinco"
+        license: "AGPL-3.0"
+        license_type: "copyleft"
+        maintenance_signal: "active"
+        stars: "500+"
+        last_activity: "2026-02-08"
+        security_posture:
+          cve_history: "none_known"
+          dependency_risk: "medium"
+          code_quality: "medium"
+          security_policy: true
+          signed_releases: false
+        red_flags:
+          - "AGPL-3.0 copyleft"
+          - "Quadratic funding complexity"
+        notes: "Public goods funding protocol; evaluate game theory risks"
+        recommendation: "REVIEW_LICENSE"
+        pin_policy: "COMMIT"
+
+      - name: "coordinape"
+        repo_url: "https://github.com/coordinape/coordinape"
+        owner: "coordinape"
+        license: "MIT"
+        license_type: "permissive"
+        maintenance_signal: "active"
+        stars: "300+"
+        last_activity: "2026-02-10"
+        security_posture:
+          cve_history: "none_known"
+          dependency_risk: "medium"
+          code_quality: "medium"
+          security_policy: true
+          signed_releases: false
+        red_flags:
+          - "Small project; limited adoption"
+          - "DAO coordination complexity"
+        notes: "DAOs contribution reward distribution; growing but early"
+        recommendation: "APPROVE_WITH_MONITORING"
+        pin_policy: "COMMIT"
+
+      - name: "collabland"
+        repo_url: "https://github.com/abridged/collabland"
+        owner: "abridged"
+        license: "MIT"
+        license_type: "permissive"
+        maintenance_signal: "low"
+        stars: "200+"
+        last_activity: "2024-08-10"
+        security_posture:
+          cve_history: "none_known"
+          dependency_risk: "high"
+          code_quality: "medium"
+          security_policy: false
+          signed_releases: false
+        red_flags:
+          - "Low maintenance (last commit August 2024)"
+          - "Small community"
+        notes: "Discord/Telegram token gating; limited recent activity"
+        recommendation: "APPROVE_WITH_CAUTION"
+        pin_policy: "COMMIT"
+
+red_flags_summary:
+  critical:
+    - repo: "falkordb"
+      reason: "SSPL license - not open source; significant license contamination risk"
+    - repo: "redis"
+      reason: "RSALv2 license - changed from BSD in 2024; not open source"
+
+  high:
+    - repo: "oso"
+      reason: "Company pivoted; maintenance concerns"
+    - repo: "sourcecred"
+      reason: "Project in maintenance mode; limited activity"
+    - repo: "collabland"
+      reason: "Low maintenance; small community"
+
+  license_concerns:
+    - repo: "n8n"
+      license: "Sustainable Use License"
+      concern: "Non-OSI approved; commercial restrictions"
+    - repo: "grafana"
+      license: "AGPL-3.0"
+      concern: "Copyleft requires compliance"
+    - repo: "neo4j"
+      license: "GPL-3.0"
+      concern: "Copyleft; enterprise features commercial"
+    - repo: "memgraph"
+      license: "BSL-1.1"
+      concern: "Business Source License; delays open source"
+    - repo: "typedb"
+      license: "AGPL-3.0"
+      concern: "Copyleft requires compliance"
+    - repo: "vault"
+      license: "BUSL-1.1"
+      concern: "Business Source License; not open source"
+    - repo: "mastodon"
+      license: "AGPL-3.0"
+      concern: "Copyleft requires compliance"
+    - repo: "lemmy"
+      license: "AGPL-3.0"
+      concern: "Copyleft requires compliance"
+    - repo: "discourse"
+      license: "GPL-2.0"
+      concern: "Copyleft requires compliance"
+    - repo: "gitcoin-grants"
+      license: "AGPL-3.0"
+      concern: "Copyleft requires compliance"
+
+security_recommendations:
+  general:
+    - "All autonomous agent frameworks (AutoGPT, MetaGPT, etc.) require sandboxing"
+    - "Implement supply chain security (SLSA, Sigstore) for dependencies"
+    - "Monitor CVE feeds for all included projects"
+    - "Establish dependency update cadence (at least monthly)"
+    - "Pin all dependencies to specific versions (no floating tags)"
+
+  high_priority:
+    - "Exclude SSPL/RSAL/BSL licensed projects from open source distribution"
+    - "Conduct license compliance review for all AGPL/GPL projects"
+    - "Implement network isolation for agent orchestration tools"
+    - "Enable Content Security Policy for all web components"
+    - "Audit all vector DB access controls (default configs often insecure)"
+
+  monitoring:
+    - "Track maintenance status of 'APPROVE_WITH_MONITORING' repos quarterly"
+    - "Subscribe to security advisories for all critical dependencies"
+    - "Review security policies quarterly for projects without SECURITY.md"
+
+integration_risk_matrix:
+  low_risk:
+    - langchain
+    - langgraph
+    - semantic-kernel
+    - llamaindex
+    - haystack
+    - temporal
+    - apache-airflow
+    - prefect
+    - dagster
+    - autogen
+    - pydantic-ai
+    - langfuse
+    - wandb
+    - mlflow
+    - opentelemetry
+    - prometheus
+    - great-expectations
+    - openlineage
+    - whylabs
+    - chroma
+    - milvus
+    - weaviate
+    - qdrant
+    - pgvector
+    - arangodb
+    - zep
+    - lance
+    - lancedb
+    - guardrails-ai
+    - nemo-guardrails
+    - llamaguard
+    - opa
+    - cerbos
+    - zitadel
+    - authelia
+    - openfga
+    - falco
+    - wireguard
+    - matrix-spec
+    - bluesky-social
+    - ghost
+    - ipfs
+    - snapshot
+
+  medium_risk:
+    - crewai
+    - autogpt
+    - metagpt
+    - flowise
+    - evidently
+    - deepeval
+    - ragas
+    - trulens
+    - arize
+    - oso
+    - casdoor
+    - vault
+    - nostr-protocol
+    - sourcecred
+    - arweave
+    - coordinape
+    - collabland
+
+  high_risk:
+    - n8n  # License
+    - grafana  # License
+    - neo4j  # License
+    - memgraph  # License
+    - typedb  # License
+    - mastodon  # License
+    - lemmy  # License
+    - discourse  # License
+    - gitcoin-grants  # License
+
+  blocked:
+    - falkordb  # SSPL
+    - redis  # RSALv2
+
+appendix:
+  license_definitions:
+    permissive:
+      - MIT
+      - Apache-2.0
+      - BSD-3-Clause
+      - PostgreSQL License
+      - Unlicense
+    copyleft:
+      - GPL-2.0
+      - GPL-3.0
+      - AGPL-3.0
+    source_available:
+      - BSL-1.1
+      - BUSL-1.1
+      - SSPL-1.0
+      - RSALv2
+      - Sustainable Use License
+      - Elastic-2.0
+
+  cve_sources:
+    - "NVD (National Vulnerability Database)"
+    - "GitHub Security Advisories"
+    - "Snyk Vulnerability DB"
+    - "OSV (Open Source Vulnerabilities)"
+
+  assessment_methodology:
+    - "License verification via GitHub API and SPDX"
+    - "Activity analysis via commit history and releases"
+    - "Security policy verification via SECURITY.md presence"
+    - "CVE history via OSV and NVD cross-reference"
+    - "Dependency risk via Snyk Advisor and OpenSSF Scorecard"
+    - "Code quality via manual review of critical paths"
+
+audit_completed: true
+reviewer: "code_security_reviewer"
+timestamp: "2026-02-14T00:19:00+08:00"

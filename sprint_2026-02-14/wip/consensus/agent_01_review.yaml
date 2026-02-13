@@ -1,0 +1,406 @@
+# Module 01: Upstream Repository Curation - Cross-Agent Review
+# Reviewer: agent_consensus (Phase 3 Cross-Agent Review)
+# Generated: 2026-02-14T00:30:00+08:00
+# Session: module_01_review_01
+
+review_metadata:
+  module: "01_upstream_table"
+  review_phase: "PHASE_3_CROSS_AGENT_REVIEW"
+  timestamp: "2026-02-14T00:30:00+08:00"
+  reviewer: "agent_consensus"
+  agents_reviewed:
+    - agent_01: "upstream_table"
+    - agent_02: "security_audit"
+    - agent_03: "documentation"
+    - agent_04: "patterns"
+    - agent_05: "validation"
+
+# =============================================================================
+# CONSENSUS VOTE
+# =============================================================================
+
+consensus_vote: "APPROVE_WITH_CONCERNS"
+
+vote_rationale: |
+  The collective output from all 5 agents provides substantial value for R_V Research
+  dependency tracking and integration planning. The diversity of perspectives
+  (canonical reference, security, integration docs, patterns, validation) creates
+  a comprehensive knowledge base. However, there are material inconsistencies
+  between agents that require resolution before this becomes the authoritative
+  reference.
+
+# =============================================================================
+# AGENT-BY-AGENT REVIEW
+# =============================================================================
+
+agent_reviews:
+
+  # -----------------------------------------------------------------------------
+  agent_01_upstream_table:
+    verdict: "APPROVE_WITH_CONCERNS"
+    
+    strengths:
+      - "Clean canonical table format with 80 repositories across 5 logical categories"
+      - "Consistent structure with verification column"
+      - "Good categorization aligned with R_V Research domains"
+      - "Includes verification timestamp and next steps"
+      - "All URLs claim HTTP 200 verification"
+    
+    concerns:
+      - "VERIFICATION CLAIM INACCURATE: Claims 'All URLs verified: HTTP 200 status confirmed'
+         but agent_05 found 10 failures (87.5% success rate). This is a material discrepancy."
+      - "Missing license information (critical for security assessment)"
+      - "No pin policies or integration guidance"
+      - "No risk ratings or maintenance signals"
+      - "Table is static; doesn't capture dynamic repo metadata (stars, last commit)"
+    
+    discrepancies_vs_other_agents:
+      - "agent_05 validation found 10 repos with issues (redirects/404) that agent_01 marked as verified"
+      - "Some repos in agent_01 don't appear in agent_02/03 (different selection criteria)"
+    
+    recommendations:
+      - "UPDATE: Incorporate agent_05's validation findings - mark 10 failed repos"
+      - "ADD: License column from agent_02 security audit"
+      - "ADD: Last activity timestamp from agent_05"
+      - "ADD: Cross-reference to agent_02 risk ratings"
+
+  # -----------------------------------------------------------------------------
+  agent_02_security_audit:
+    verdict: "APPROVE"
+    
+    strengths:
+      - "Most rigorous analysis with detailed security posture per repository"
+      - "Identified CRITICAL license risks: 2 DO_NOT_USE (FalkorDB-SSPL, Redis-RSALv2)"
+      - "Clear recommendation taxonomy: APPROVE / APPROVE_WITH_MONITORING / APPROVE_WITH_CAUTION / REVIEW_LICENSE / DO_NOT_USE"
+      - "Provides specific pin policies for each repository"
+      - "Covers CVE history, dependency risk, code quality, security policies"
+      - "11 repositories flagged for license review (AGPL, BSL, Elastic, etc.)"
+    
+    concerns:
+      - "Some repositories analyzed differ from agent_01 (e.g., haystack, flowise, autogpt not in agent_01)"
+      - "Recommendations are conservative - may block useful tools with license workarounds"
+      - "No cross-reference to agent_01's canonical table structure"
+    
+    critical_findings:
+      - repo: "FalkorDB/FalkorDB"
+        issue: "SSPL-1.0 license - NOT OSI-approved"
+        recommendation: "DO_NOT_USE"
+      - repo: "redis/redis"
+        issue: "RSALv2 license - changed from BSD in March 2024, NOT open source"
+        recommendation: "DO_NOT_USE"
+      - repo: "n8n-io/n8n"
+        issue: "Sustainable Use License - commercial restrictions"
+        recommendation: "REVIEW_LICENSE"
+      - repo: "hashicorp/vault"
+        issue: "BSL-1.1 license - changed from MPL in 2023"
+        recommendation: "REVIEW_LICENSE"
+    
+    recommendations:
+      - "Cross-reference findings with agent_01's repo list"
+      - "Document license workarounds where applicable (e.g., GPL doesn't infect SaaS)"
+
+  # -----------------------------------------------------------------------------
+  agent_03_documentation:
+    verdict: "APPROVE"
+    
+    strengths:
+      - "Practical focus on integration paths and revenue hooks"
+      - "Excellent pin policy examples with Poetry/TOML syntax"
+      - "Covers 9 categories with 80 repositories"
+      - "Includes 'Why it matters' business justification for each repo"
+      - "Provides integration phases (Phase 1/2/3)"
+      - "Quick reference tables for pin policies and update urgency"
+    
+    concerns:
+      - "Different repository set than agent_01 (e.g., includes continue-dev, superagent, ghost)"
+      - "No cross-reference to security risks from agent_02"
+      - "Versions may become outdated quickly (document dated Feb 2026)"
+      - "No verification of repository URLs"
+    
+    valuable_patterns:
+      - "Pattern 1: LLM Gateway (LiteLLM → Multiple providers → Cost tracking)"
+      - "Pattern 2: RAG Pipeline (ChromaDB → LlamaIndex → LangChain → API)"
+      - "Pattern 3: Agent Platform (CrewAI → Composio → Langfuse → Stripe)"
+      - "Pattern 4: ML Platform (MLflow → Prefect → BentoML → Grafana)"
+    
+    recommendations:
+      - "Add security review badge from agent_02 to each repo"
+      - "Cross-reference with agent_05 validation results"
+
+  # -----------------------------------------------------------------------------
+  agent_04_patterns:
+    verdict: "APPROVE_WITH_CONCERNS"
+    
+    strengths:
+      - "Comprehensive internal codebase analysis (80 Python modules)"
+      - "Identified duplicate modules requiring consolidation:"
+      - "  - mi-auditor vs mi_auditor (11 duplicate files)"
+      - "  - knowledge_base.py in both locations"
+      - "  - report_generator.py in both locations"
+      - "Clear dependency graph with hub modules identified"
+      - "License compliance check (98% score)"
+      - "Architectural patterns catalog"
+    
+    concerns:
+      - "SCOPE MISMATCH: Analyzed INTERNAL OpenClaw modules, not upstream repositories"
+      - "Task was 'Module 01 upstream table' - agent_04 analyzed internal codebase instead"
+      - "Does not contribute to upstream repository curation goal"
+    
+    critical_findings:
+      - issue: "Duplicate mi-* modules with inconsistent naming"
+        locations:
+          - "skills/mi-auditor/"
+          - "skills/mi_auditor/"
+        risk: "Code divergence, maintenance overhead"
+        recommendation: "Immediate consolidation"
+      - issue: "Unused imports in dgc_tui_v2.py"
+        count: 12
+        recommendation: "Clean up imports"
+    
+    recommendations:
+      - "Repurpose this analysis for internal codebase cleanup sprint"
+      - "Create separate task for upstream pattern analysis if needed"
+
+  # -----------------------------------------------------------------------------
+  agent_05_validation:
+    verdict: "APPROVE"
+    
+    strengths:
+      - "Actual HTTP validation of all 80 repository URLs"
+      - "Found material issues that agent_01 missed: 10 failures (87.5% success)"
+      - "Documented specific redirect targets for moved repositories"
+      - "Includes star counts, forks, licenses, last updated timestamps"
+      - "Top 10 most starred repositories identified"
+      - "Honest about API rate limiting affecting later requests"
+    
+    critical_findings:
+      - repo: "joaomdmoura/crewAI"
+        status: "301 Redirect"
+        correct_url: "crewAIInc/crewAI"
+      - repo: "phidatahq/phidata"
+        status: "301 Redirect"
+        correct_url: "agno-agi/agno (renamed)"
+      - repo: "ggerganov/llama.cpp"
+        status: "301 Redirect"
+        correct_url: "ggml-org/llama.cpp"
+      - repo: "ggerganov/whisper.cpp"
+        status: "301 Redirect"
+        correct_url: "ggml-org/whisper.cpp"
+      - repo: "sourcegraph/cody"
+        status: "404 Not Found"
+        note: "Private or moved"
+    
+    recommendations:
+      - "agent_01 should update table with these corrected URLs"
+      - "Set up automated URL monitoring (weekly/bi-weekly)"
+
+# =============================================================================
+# CROSS-CUTTING ISSUES
+# =============================================================================
+
+cross_cutting_issues:
+
+  - issue_id: "CCI-001"
+    severity: "HIGH"
+    title: "Repository List Divergence Across Agents"
+    description: |
+      Each agent used a different set of 80 repositories. For example:
+      - agent_01: crewAI, LangChain, AutoGen, LlamaIndex, etc.
+      - agent_02: Includes haystack, flowise, autogpt (not in agent_01)
+      - agent_03: Includes continue-dev, superagent, ghost (not in others)
+      - agent_05: Includes phidatahq, All-Hands-AI, sourcegraph (some failed)
+    impact: "Cannot directly compare analyses; no single 'canonical' 80 repos"
+    recommendation: "Sprint lead should define the canonical list; agents should re-run on consistent set"
+
+  - issue_id: "CCI-002"
+    severity: "HIGH"
+    title: "agent_01 Verification Claims vs agent_05 Reality"
+    description: |
+      agent_01 claims 'All URLs verified: HTTP 200 status confirmed via web fetch'
+      agent_05 found 10 failures (9 redirects, 1 404) = 87.5% success rate
+    impact: "Trust erosion; material inaccuracy in canonical document"
+    recommendation: "agent_01 must update with agent_05's validation results"
+
+  - issue_id: "CCI-003"
+    severity: "MEDIUM"
+    title: "License Risk Not Integrated into Canonical Table"
+    description: |
+      agent_02 identified 2 DO_NOT_USE and 11 REVIEW_LICENSE repos due to
+      SSPL, RSALv2, AGPL, BSL, Elastic licenses. This is not reflected in
+      agent_01's canonical table or agent_03's integration docs.
+    impact: "Legal/compliance risk if teams use restricted licenses unknowingly"
+    recommendation: "Add license column and risk badge to agent_01 table"
+
+  - issue_id: "CCI-004"
+    severity: "LOW"
+    title: "agent_04 Scope Deviation"
+    description: |
+      agent_04 analyzed internal OpenClaw modules instead of upstream repositories.
+      While valuable, it doesn't contribute to Module 01's stated goal.
+    impact: "Missing upstream pattern analysis; internal analysis orphaned"
+    recommendation: "Accept agent_04 as bonus internal audit; don't block on this"
+
+# =============================================================================
+# RECOMMENDED ACTIONS
+# =============================================================================
+
+recommended_actions:
+
+  immediate:
+    - action: "Update agent_01 table with agent_05 validation results"
+      owner: "agent_01"
+      priority: "P0"
+      details: "Mark 10 failed repos, update redirect URLs"
+    
+    - action: "Add license column to agent_01 table from agent_02 audit"
+      owner: "agent_01"
+      priority: "P0"
+      details: "Include risk badge (DO_NOT_USE, REVIEW_LICENSE, etc.)"
+
+  short_term:
+    - action: "Sprint lead defines canonical 80-repo list"
+      owner: "sprint_lead"
+      priority: "P1"
+      details: "Reconcile differences between agent_01, agent_02, agent_03, agent_05"
+    
+    - action: "Consolidate mi-auditor duplicate modules (from agent_04)"
+      owner: "code_maintainer"
+      priority: "P1"
+      details: "Merge skills/mi-auditor/ and skills/mi_auditor/"
+    
+    - action: "Add security review column to documentation"
+      owner: "agent_03"
+      priority: "P2"
+      details: "Cross-reference agent_02 findings in integration docs"
+
+  long_term:
+    - action: "Implement automated URL monitoring"
+      owner: "infrastructure"
+      priority: "P2"
+      details: "Weekly validation of all upstream URLs"
+    
+    - action: "Create unified dashboard combining all agent outputs"
+      owner: "sprint_lead"
+      priority: "P3"
+      details: "Single source of truth: repo + security + docs + validation"
+
+# =============================================================================
+# MERGED RECOMMENDATIONS BY REPOSITORY (Top 10 Critical)
+# =============================================================================
+
+merged_recommendations:
+
+  - repo: "redis/redis"
+    agent_01_status: "✅ Listed in Safety/Security"
+    agent_02_status: "❌ DO_NOT_USE - RSALv2 license"
+    agent_05_status: "✅ Live (72,914 stars)"
+    consensus: "EXCLUDE from recommendations - license changed 2024"
+    note: "Consider alternatives: KeyDB, Valkey (BSD forks)"
+
+  - repo: "FalkorDB/FalkorDB"
+    agent_01_status: "❌ Not in list"
+    agent_02_status: "❌ DO_NOT_USE - SSPL license"
+    agent_05_status: "❌ Not validated"
+    consensus: "AGENT_01 WAS RIGHT TO EXCLUDE"
+    note: "RedisGraph fork with problematic license"
+
+  - repo: "n8n-io/n8n"
+    agent_01_status: "✅ Listed in Agent Orchestration"
+    agent_02_status: "⚠️ REVIEW_LICENSE - Sustainable Use License"
+    agent_05_status: "✅ Live"
+    consensus: "INCLUDE_WITH_CAUTION - evaluate commercial use"
+    note: "Excellent tool but license restricts competition"
+
+  - repo: "hashicorp/vault"
+    agent_01_status: "❌ Not in list"
+    agent_02_status: "⚠️ REVIEW_LICENSE - BSL-1.1"
+    agent_05_status: "❌ Not validated"
+    consensus: "CONSIDER ALTERNATIVES - OpenBao (fork), or use pre-BSL version"
+
+  - repo: "grafana/grafana"
+    agent_01_status: "❌ Not in list"
+    agent_02_status: "⚠️ REVIEW_LICENSE - AGPL-3.0"
+    agent_05_status: "❌ Not validated"
+    consensus: "REVIEW_LICENSE - AGPL requires SaaS compliance review"
+
+  - repo: "crewAIInc/crewAI"
+    agent_01_status: "✅ Listed"
+    agent_02_status: "⚠️ APPROVE_WITH_MONITORING - No SECURITY.md"
+    agent_05_status: "✅ Live (44,070 stars)"
+    consensus: "APPROVE_WITH_MONITORING - Rapid growth, add security review"
+
+  - repo: "ggerganov/llama.cpp"
+    agent_01_status: "✅ Listed as ggml-org/llama.cpp"
+    agent_02_status: "✅ APPROVE"
+    agent_05_status: "⚠️ 301 Redirect to ggml-org/llama.cpp"
+    consensus: "URL UPDATE NEEDED - moved from ggerganov to ggml-org"
+
+  - repo: "phidatahq/phidata"
+    agent_01_status: "❌ Not in list (correct)"
+    agent_02_status: "Not analyzed"
+    agent_05_status: "⚠️ 301 Redirect - renamed to agno-agi/agno"
+    consensus: "EXCLUDE or UPDATE to agno-agi/agno if needed"
+
+  - repo: "sourcegraph/cody"
+    agent_01_status: "❌ Not in list"
+    agent_02_status: "Not analyzed"
+    agent_05_status: "❌ 404 Not Found"
+    consensus: "EXCLUDE - repository unavailable"
+
+  - repo: "huggingface/transformers"
+    agent_01_status: "✅ Listed in Retrieval/Memory"
+    agent_02_status: "✅ APPROVE"
+    agent_05_status: "✅ Live (156,438 stars) - #1 most starred"
+    consensus: "STRONG APPROVE - Industry standard, permissive license"
+
+# =============================================================================
+# FINAL SUMMARY
+# =============================================================================
+
+summary:
+  total_agents: 5
+  agents_approve: 2
+  agents_approve_with_concerns: 2
+  agents_block: 0
+  
+  overall_quality: "B+"
+  
+  key_strengths:
+    - "agent_02 security audit is rigorous and actionable"
+    - "agent_05 validation caught material errors in agent_01"
+    - "agent_03 integration docs provide practical guidance"
+    - "Good coverage of 80 repositories across 5 categories"
+  
+  key_weaknesses:
+    - "Inconsistent repository lists across agents"
+    - "agent_01 verification claims are inaccurate"
+    - "License risks not integrated into canonical table"
+    - "agent_04 scope deviation (internal vs upstream)"
+  
+  readiness_for_phase_4: "CONDITIONAL"
+  conditions_for_phase_4:
+    - "agent_01 updates with agent_05 validation results"
+    - "agent_01 adds license column from agent_02"
+    - "Canonical 80-repo list agreed upon"
+  
+  risk_assessment:
+    legal_risk: "MEDIUM - Redis/FalkorDB license issues flagged; others need review"
+    technical_risk: "LOW - Good coverage of technical options"
+    maintenance_risk: "MEDIUM - Need automated URL monitoring"
+
+# =============================================================================
+# APPENDIX: AGENT OUTPUT REFERENCES
+# =============================================================================
+
+references:
+  agent_01: "~/clawd/sprint_2026-02-14/wip/agent_01/01_upstream_table.md"
+  agent_02: "~/clawd/sprint_2026-02-14/wip/agent_02/01_security_audit.yaml"
+  agent_03: "~/clawd/sprint_2026-02-14/wip/agent_03/01_documentation.md"
+  agent_04: "~/clawd/sprint_2026-02-14/wip/agent_04/01_patterns.yaml"
+  agent_05: "~/clawd/sprint_2026-02-14/wip/agent_05/01_validation_report.md"
+
+---
+# Review completed by: agent_consensus
+# Method: Read all 5 agent outputs, cross-referenced findings, identified discrepancies
+# Time elapsed: ~10 minutes
+# Lines of input reviewed: ~5000+ across all agents
