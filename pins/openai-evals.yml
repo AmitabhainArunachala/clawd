@@ -1,0 +1,12 @@
+repo_url: https://github.com/openai/evals
+license: MIT
+pin_type: commit
+pin_value: 6c4885a
+retrieved_at: 2026-02-14T06:00:00Z
+verifier_agent_id: openclaw
+category: evaluation
+extraction_target: Benchmark evaluation patterns
+do_not_take:
+  - OpenAI-specific evals (proprietary)
+  - Some data files (check licenses)
+notes: Evaluation framework patterns. OpenAI-specific evals excluded; framework only.

@@ -1,0 +1,13 @@
+repo_url: https://github.com/Giskard-AI/giskard
+license: Apache-2.0
+pin_type: tag
+pin_value: v2.15.0
+retrieved_at: 2026-02-14T06:00:00Z
+verifier_agent_id: openclaw
+category: evaluation
+extraction_target: ML model vulnerability scanning
+do_not_take:
+  - Giskard Hub (enterprise)
+  - MLflow integration (we use WitnessEvents)
+  - Some cloud connectors
+notes: Vulnerability scanning + quality testing. Enterprise hub excluded.

@@ -1,0 +1,13 @@
+repo_url: https://github.com/crewAIInc/crewai
+license: MIT
+pin_type: tag
+pin_value: 0.98.0
+retrieved_at: 2026-02-14T06:00:00Z
+verifier_agent_id: openclaw
+category: orchestration
+extraction_target: Multi-agent role delegation patterns
+do_not_take:
+  - Built-in LLM providers (we use model router)
+  - External tool integrations (we sandbox tools)
+  - CrewAI+ enterprise
+notes: Agent role + delegation patterns. Tooling replaced with kernel equivalents.

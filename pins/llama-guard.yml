@@ -1,0 +1,12 @@
+repo_url: https://github.com/meta-llama/PurpleLlama
+license: LLAMA-2.0
+pin_type: commit
+pin_value: 24ec474
+retrieved_at: 2026-02-14T06:00:00Z
+verifier_agent_id: openclaw
+category: safety
+extraction_target: Content classification model
+do_not_take:
+  - Llama models themselves (we use our own)
+  - Some evaluation datasets
+notes: Llama Guard classifier patterns. We extract taxonomy + inference logic only.

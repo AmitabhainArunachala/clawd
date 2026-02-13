@@ -1,0 +1,13 @@
+repo_url: https://github.com/apache/airflow
+license: Apache-2.0
+pin_type: tag
+pin_value: v2.10.5
+retrieved_at: 2026-02-14T06:00:00Z
+verifier_agent_id: openclaw
+category: orchestration
+extraction_target: DAG execution engine + scheduler patterns
+do_not_take:
+  - Web UI (not needed for kernel)
+  - Complex RBAC (we have our own auth)
+  - Postgres/MySQL drivers (we use state files)
+notes: Core scheduler + DAG abstraction only. UI and complex RBAC excluded.

@@ -1,0 +1,12 @@
+repo_url: https://github.com/weaviate/weaviate
+license: BSD-3-Clause
+pin_type: tag
+pin_value: 1.28.0
+retrieved_at: 2026-02-14T06:00:00Z
+verifier_agent_id: openclaw
+category: retrieval
+extraction_target: GraphQL vector search patterns
+do_not_take:
+  - Weaviate Cloud
+  - Some enterprise modules
+notes: Hybrid search patterns. Cloud excluded.

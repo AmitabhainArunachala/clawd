@@ -1,0 +1,12 @@
+repo_url: https://github.com/farcasterxyz/protocol
+license: MIT
+pin_type: tag
+pin_value: v2024.11
+retrieved_at: 2026-02-14T06:00:00Z
+verifier_agent_id: openclaw
+category: social
+extraction_target: Decentralized social graph primitives
+do_not_take:
+  - Farcaster apps (Warpcast, etc.)
+  - Some proprietary hubs
+notes: Social graph protocol. App-layer excluded; protocol only.

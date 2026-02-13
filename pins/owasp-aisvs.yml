@@ -1,0 +1,11 @@
+repo_url: https://github.com/OWASP/AISVS
+license: CC-BY-SA
+pin_type: tag
+pin_value: v1.0
+retrieved_at: 2026-02-14T06:00:00Z
+verifier_agent_id: openclaw
+category: safety
+extraction_target: Security verification standard
+do_not_take:
+  - N/A (standard document)
+notes: AI security verification requirements. Document standard, not code.

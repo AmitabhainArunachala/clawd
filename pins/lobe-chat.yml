@@ -1,0 +1,12 @@
+repo_url: https://github.com/lobehub/lobe-chat
+license: MIT
+pin_type: tag
+pin_value: v1.49.0
+retrieved_at: 2026-02-14T06:00:00Z
+verifier_agent_id: openclaw
+category: social
+extraction_target: Multi-model chat interface
+do_not_take:
+  - Some cloud sync features
+  - Built-in commercial providers (we route)
+notes: Multi-model chat UI patterns. Cloud sync excluded.

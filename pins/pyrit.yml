@@ -1,0 +1,12 @@
+repo_url: https://github.com/Azure/PyRIT
+license: MIT
+pin_type: tag
+pin_value: v0.6.0
+retrieved_at: 2026-02-14T06:00:00Z
+verifier_agent_id: openclaw
+category: safety
+extraction_target: Automated red teaming framework
+do_not_take:
+  - Azure-specific integrations
+  - Some cloud-based scoring
+notes: Red teaming orchestration. Azure-specific parts excluded.

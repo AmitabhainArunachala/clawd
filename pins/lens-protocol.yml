@@ -1,0 +1,12 @@
+repo_url: https://github.com/lens-protocol
+license: MIT
+pin_type: tag
+pin_value: v2.0.0
+retrieved_at: 2026-02-14T06:00:00Z
+verifier_agent_id: openclaw
+category: social
+extraction_target: Modular social reputation
+do_not_take:
+  - Lens client implementations
+  - Some paid features
+notes: Reputation + content primitives. Client implementations excluded.

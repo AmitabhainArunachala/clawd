@@ -1,0 +1,13 @@
+repo_url: https://github.com/neo4j/neo4j
+license: GPL-3.0
+pin_type: tag
+pin_value: 5.26.0
+retrieved_at: 2026-02-14T06:00:00Z
+verifier_agent_id: openclaw
+category: retrieval
+extraction_target: Graph relationship primitives
+do_not_take:
+  - Neo4j Enterprise (proprietary)
+  - Bloom visualization
+  - Some advanced analytics
+notes: Graph primitives only (community edition). Enterprise features excluded.

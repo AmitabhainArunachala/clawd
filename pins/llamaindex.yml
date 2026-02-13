@@ -1,0 +1,13 @@
+repo_url: https://github.com/run-llama/llama_index
+license: MIT
+pin_type: tag
+pin_value: v0.12.0
+retrieved_at: 2026-02-14T06:00:00Z
+verifier_agent_id: openclaw
+category: retrieval
+extraction_target: Retrieval augmentation patterns
+do_not_take:
+  - LlamaParse (proprietary)
+  - Some cloud integrations
+  - Heavy visualization
+notes: RAG patterns + indexing. Proprietary components excluded.

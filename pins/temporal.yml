@@ -1,0 +1,13 @@
+repo_url: https://github.com/temporalio/temporal
+license: MIT
+pin_type: tag
+pin_value: v1.31.0
+retrieved_at: 2026-02-14T06:00:00Z
+verifier_agent_id: openclaw
+category: orchestration
+extraction_target: Durable execution workflow primitives
+do_not_take:
+  - Web UI (Temporal Cloud)
+  - Advanced auth (we use kernel auth)
+  - Cassandra/Elasticsearch deps
+notes: Core durable execution engine. Heavy infra deps excluded; we use lightweight adapters.

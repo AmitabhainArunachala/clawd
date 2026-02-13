@@ -1,0 +1,12 @@
+repo_url: https://github.com/mem0ai/mem0
+license: Apache-2.0
+pin_type: tag
+pin_value: v1.0.0
+retrieved_at: 2026-02-14T06:00:00Z
+verifier_agent_id: openclaw
+category: retrieval
+extraction_target: Long-term memory layer abstractions
+do_not_take:
+  - Mem0 Cloud
+  - Some hosted embeddings
+notes: Memory layer abstractions. Cloud excluded; we add cryptographic verification.

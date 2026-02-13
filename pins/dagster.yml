@@ -1,0 +1,13 @@
+repo_url: https://github.com/dagster-io/dagster
+license: Apache-2.0
+pin_type: tag
+pin_value: 1.9.0
+retrieved_at: 2026-02-14T06:00:00Z
+verifier_agent_id: openclaw
+category: orchestration
+extraction_target: Data pipeline abstractions + lineage
+do_not_take:
+  - Dagster UI
+  - Dagster Cloud
+  - DBT integration (we have our own transforms)
+notes: Pipeline abstractions and asset tracking. UI/cloud excluded.

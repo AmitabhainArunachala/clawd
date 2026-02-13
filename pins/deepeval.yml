@@ -1,0 +1,12 @@
+repo_url: https://github.com/confident-ai/deepeval
+license: MIT
+pin_type: tag
+pin_value: v1.5.0
+retrieved_at: 2026-02-14T06:00:00Z
+verifier_agent_id: openclaw
+category: evaluation
+extraction_target: LLM evaluation metrics (Pytest-style)
+do_not_take:
+  - Cloud dashboard (Confident AI)
+  - Some LLM provider integrations (we route)
+notes: Pytest-style test framework. Cloud components excluded.

@@ -1,0 +1,13 @@
+repo_url: https://github.com/milvus-io/milvus
+license: Apache-2.0
+pin_type: tag
+pin_value: v2.5.0
+retrieved_at: 2026-02-14T06:00:00Z
+verifier_agent_id: openclaw
+category: retrieval
+extraction_target: Scalable vector database engine
+do_not_take:
+  - Milvus Cloud (Zilliz)
+  - Complex K8s operators
+  - Attu UI (we use kernel interfaces)
+notes: Distributed vector engine. Cloud/K8s complexity excluded.

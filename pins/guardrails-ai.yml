@@ -1,0 +1,12 @@
+repo_url: https://github.com/guardrails-ai/guardrails
+license: Apache-2.0
+pin_type: tag
+pin_value: 0.6.0
+retrieved_at: 2026-02-14T06:00:00Z
+verifier_agent_id: openclaw
+category: safety
+extraction_target: Structured output validation
+do_not_take:
+  - Guardrails Cloud
+  - Some proprietary validators
+notes: Validation framework + XML-based guards. Cloud excluded.

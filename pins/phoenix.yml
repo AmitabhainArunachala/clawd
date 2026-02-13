@@ -1,0 +1,13 @@
+repo_url: https://github.com/Arize-ai/phoenix
+license: Apache-2.0
+pin_type: tag
+pin_value: 7.0.0
+retrieved_at: 2026-02-14T06:00:00Z
+verifier_agent_id: openclaw
+category: evaluation
+extraction_target: LLM tracing + eval observability
+do_not_take:
+  - Phoenix Cloud
+  - Heavy visualization (we use diffs)
+  - Some enterprise connectors
+notes: Tracing + eval hooks. Cloud excluded; we use WitnessEvents not traces.

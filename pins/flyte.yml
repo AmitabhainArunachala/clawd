@@ -1,0 +1,13 @@
+repo_url: https://github.com/flyteorg/flyte
+license: Apache-2.0
+pin_type: tag
+pin_value: v1.13.0
+retrieved_at: 2026-02-14T06:00:00Z
+verifier_agent_id: openclaw
+category: orchestration
+extraction_target: ML workflow type system + caching
+do_not_take:
+  - Flyte Console
+  - Flytekit plugins (most)
+  - Kubernetes operator (we use simpler orchestration)
+notes: Type-safe workflow patterns + memoization. K8s complexity excluded.

@@ -1,0 +1,12 @@
+repo_url: https://github.com/huginn/huginn
+license: MIT
+pin_type: tag
+pin_value: v1.1.0
+retrieved_at: 2026-02-14T06:00:00Z
+verifier_agent_id: openclaw
+category: social
+extraction_target: Agent event automation patterns
+do_not_take:
+  - Ruby-specific web UI (we rewrite)
+  - Some legacy integrations
+notes: Event-driven agent patterns. Ruby implementation excluded; patterns extracted.

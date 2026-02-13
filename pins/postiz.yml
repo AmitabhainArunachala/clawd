@@ -1,0 +1,12 @@
+repo_url: https://github.com/gitroomhq/postiz-app
+license: MIT
+pin_type: tag
+pin_value: v0.1.0
+retrieved_at: 2026-02-14T06:00:00Z
+verifier_agent_id: openclaw
+category: social
+extraction_target: Social content scheduling
+do_not_take:
+  - Postiz Cloud
+  - Some analytics features
+notes: Content scheduling + multi-platform posting. Cloud excluded.

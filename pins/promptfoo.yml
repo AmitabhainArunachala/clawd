@@ -1,0 +1,13 @@
+repo_url: https://github.com/promptfoo/promptfoo
+license: MIT
+pin_type: tag
+pin_value: 0.119.13
+retrieved_at: 2026-02-14T06:00:00Z
+verifier_agent_id: openclaw
+category: evaluation
+extraction_target: Falsifiable LLM test harness + red teaming
+do_not_take:
+  - Cloud UI (we use WitnessEvents)
+  - Built-in caching (we use content-addressed)
+  - Some cloud-specific eval providers
+notes: Core testing DSL + assertions. Cloud components excluded; kernel logging replaces UI.

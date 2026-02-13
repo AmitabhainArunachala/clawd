@@ -1,0 +1,13 @@
+repo_url: https://github.com/PrefectHQ/prefect
+license: Apache-2.0
+pin_type: tag
+pin_value: 3.2.0
+retrieved_at: 2026-02-14T06:00:00Z
+verifier_agent_id: openclaw
+category: orchestration
+extraction_target: Python-native task orchestration DSL
+do_not_take:
+  - Cloud UI (Prefect Cloud)
+  - Enterprise features
+  - SQLite backend (we use WitnessEvent logging)
+notes: Python-first orchestration patterns. Cloud/enterprise excluded.

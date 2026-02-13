@@ -1,0 +1,12 @@
+repo_url: https://github.com/Trusted-AI/adversarial-robustness-toolbox
+license: MIT
+pin_type: tag
+pin_value: 1.19.0
+retrieved_at: 2026-02-14T06:00:00Z
+verifier_agent_id: openclaw
+category: safety
+extraction_target: Adversarial attack detection
+do_not_take:
+  - Some legacy classifier integrations
+  - Jupyter notebook examples
+notes: Attack detection algorithms. Classifier-agnostic parts only.

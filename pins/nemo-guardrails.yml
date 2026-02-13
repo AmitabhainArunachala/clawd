@@ -1,0 +1,12 @@
+repo_url: https://github.com/NVIDIA/NeMo-Guardrails
+license: Apache-2.0
+pin_type: tag
+pin_value: v0.10.0
+retrieved_at: 2026-02-14T06:00:00Z
+verifier_agent_id: openclaw
+category: safety
+extraction_target: Programmable dialog control
+do_not_take:
+  - NeMo LLM dependencies (we use model router)
+  - Some proprietary rails
+notes: Colang + policy rails. NeMo-specific parts excluded.

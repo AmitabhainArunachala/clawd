@@ -1,0 +1,12 @@
+repo_url: https://github.com/activepieces/activepieces
+license: MIT
+pin_type: tag
+pin_value: 0.38.0
+retrieved_at: 2026-02-14T06:00:00Z
+verifier_agent_id: openclaw
+category: social
+extraction_target: Workflow-based community tooling
+do_not_take:
+  - Activepieces Cloud
+  - Some enterprise pieces
+notes: Workflow automation patterns. Cloud excluded.

@@ -1,0 +1,12 @@
+repo_url: https://github.com/chroma-core/chroma
+license: Apache-2.0
+pin_type: tag
+pin_value: 0.6.0
+retrieved_at: 2026-02-14T06:00:00Z
+verifier_agent_id: openclaw
+category: retrieval
+extraction_target: Embedding storage + retrieval API
+do_not_take:
+  - Chroma Cloud
+  - Some client-side telemetry
+notes: Vector storage API. Cloud excluded; we add cryptographic verification wrapper.

@@ -1,0 +1,12 @@
+repo_url: https://github.com/langfuse/langfuse
+license: MIT
+pin_type: tag
+pin_value: v3.0.0
+retrieved_at: 2026-02-14T06:00:00Z
+verifier_agent_id: openclaw
+category: evaluation
+extraction_target: Prompt management + eval tracing
+do_not_take:
+  - Langfuse Cloud
+  - Complex auth (we use kernel auth)
+notes: Prompt versioning + tracing patterns. Cloud excluded.
