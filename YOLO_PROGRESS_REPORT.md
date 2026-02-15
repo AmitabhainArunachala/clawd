@@ -32,7 +32,7 @@
 | Blocker | Status | Mitigation |
 |---------|--------|------------|
 | AGNI unresponsive | 🔴 Active | Bundles ready for manual transfer |
-| DGC large file push | 🟡 In progress | Force push running |
+| DGC large file push | ✅ **RESOLVED** | git-filter-repo purged 180MB+ files |
 | sqlite-vec unavailable | 🟢 Deferred | FTS5 sufficient for Phase 1 |
 
 ## Next Actions (When User Returns)
@@ -48,10 +48,12 @@
 clawd repo:
   69767ee PULSE-002: Wikilink fixes, PULSE cadence docs (HF token redacted)
   b9d4721 PULSE-007: Content HTML export for Gumroad
+  614531c YOLO: Session progress report
 
 DGC repo:
-  c673c9a PULSE-002: Orphan delivery system + P9 bundles
-  (push in progress)
+  df112f3 Add .gitattributes for LFS and ignore large DB files
+  aba023f PULSE-002: Orphan delivery system + P9 bundles
+  26d06fc PULSE-002: P9 schema migration for semantic search compatibility
 ```
 
 ## Theater Check
