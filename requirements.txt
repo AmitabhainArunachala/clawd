@@ -25,3 +25,7 @@ bandit>=1.7,<2.0
 
 # Type checking support
 types-setuptools>=69.0
+
+# P9 Semantic Search
+sentence-transformers>=3.0.0
+sqlite-vec>=0.1.0

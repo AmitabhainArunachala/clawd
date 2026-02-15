@@ -172,13 +172,35 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
-# CORS
+# CORS - SECURITY FIX: Explicit origins only
+# WARNING: Never use allow_origins=["*"] with allow_credentials=True
+# This creates a CSRF vulnerability
+import os
+
+# Load allowed origins from environment or use safe defaults
+DEFAULT_ORIGINS = [
+    "http://localhost:5173",  # Vite dev server
+    "http://localhost:3000",  # Common React dev server
+    "http://127.0.0.1:5173",
+    "http://127.0.0.1:3000",
+]
+
+# Production origins should be set via CORS_ORIGINS env var
+# Format: comma-separated list, e.g.:
+# CORS_ORIGINS="https://app.example.com,https://admin.example.com"
+cors_origins_env = os.getenv("CORS_ORIGINS")
+if cors_origins_env:
+    allowed_origins = [origin.strip() for origin in cors_origins_env.split(",")]
+else:
+    allowed_origins = DEFAULT_ORIGINS
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Configure for production
+    allow_origins=allowed_origins,
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allow_headers=["Authorization", "Content-Type", "X-Requested-With"],
+    max_age=600,  # Cache preflight for 10 minutes
 )
 
 

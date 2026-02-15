@@ -160,3 +160,132 @@ One reaction per message max.
 This is a starting point. Add conventions, style, rules as you figure out what works.
 
 **Current Version:** 3.0 (aligned with SOUL.md v3.0)
+
+---
+
+## Learning Loop (Memory Upgrade v3.1)
+
+**Purpose:** Actually learn from corrections and feedback. Get better over time instead of resetting every session.
+
+### Before Every Task
+
+**Recall any saved rules and past corrections relevant to this task.**
+
+**Process:**
+1. Check `MEMORY.md` for permanent rules
+2. Search `memory/*.md` for recent corrections (last 14 days)
+3. Use P9 mesh to search indexed documents for context
+4. **Follow every relevant rule — no exceptions**
+
+**Query pattern:**
+```
+"Have I been corrected on [topic] before?"
+"What rules apply to [task type]?"
+"What did I learn about [subject] last time?"
+```
+
+### After User Feedback
+
+**When corrected or approved, decide whether to save a lesson.**
+
+**ONLY save if ALL three are true:**
+1. ✅ It reveals something you didn't already know
+2. ✅ It would apply to future tasks, not just this one  
+3. ✅ A different task next month would benefit from knowing this
+
+**Do NOT save:**
+- ❌ One-off corrections ("change that word", "make it shorter")
+- ❌ Subjective preferences on single piece of work
+- ❌ Anything already covered by existing rule
+
+### How to Save
+
+**Check for existing rule first:**
+- Search `MEMORY.md` for similar rule
+- If exists → UPDATE it
+- If not exists → CREATE new
+
+**Format for MEMORY.md (permanent):**
+```markdown
+## RULE: [Category] — [Actionable Rule]
+**When:** [situation]
+**Do:** [action]
+**Don't:** [anti-pattern]
+**Learned:** [date] from [context]
+```
+
+**Format for memory/YYYY-MM-DD.md (daily context):**
+```markdown
+CORRECTION: [what you proposed]
+REASON: [why it was wrong]
+CORRECT: [what to do instead]
+CATEGORY: [Suppliers | Tone | Timing | Pricing | etc.]
+```
+
+### Where Rules Live
+
+**Permanent (every session):**
+- `MEMORY.md` — Loaded automatically
+- Core principles, repeatable patterns
+- Format: Structured rules with categories
+
+**Temporary (last 2 days):**
+- `memory/YYYY-MM-DD.md` — Working context
+- Drafts, exploration, temporary notes
+- Auto-loaded: today + yesterday only
+
+**Indexed (searchable):**
+- P9 mesh — All documents
+- Cross-node, full history
+- Query via: `python3 p9_search.py "query"`
+
+### Rule Quality Standards
+
+**GOOD rule (searchable, actionable):**
+```
+RULE: Suppliers
+Use Supplier B instead of Supplier A.
+Cap orders at 300 units.
+Reason: Supplier A has been late 3 times.
+```
+
+**BAD rule (vague, useless):**
+```
+"corrected the supplier recommendation"
+```
+
+### When to Create a Skill Instead
+
+**Rule of thumb:**
+- **Learning Loop** = preferences, corrections, one-off insights
+- **Skill** = repeatable processes, templates, workflows
+
+**Create Skill if:**
+- Process used 3+ times
+- Has clear inputs/outputs
+- Others could use it
+- Not specific to one conversation
+
+**Example:** Quarterly report template → **Skill**  
+**Example:** "Use casual tone" → **Learning Loop rule**
+
+### Testing the Learning Loop
+
+**Verification:**
+1. Get corrected on something specific
+2. Save as structured rule
+3. Start new conversation
+4. Ask to do same type of task
+5. **Check:** Did you apply the rule automatically?
+
+**If yes:** Learning Loop working  
+**If no:** Check MEMORY.md, verify format, try again
+
+---
+
+**Integration:** P9 mesh + Kaizen hooks + Learning Loop = complete memory system
+- P9: Finds documents across nodes
+- Kaizen: Tracks what files are hot/cold
+- Learning Loop: Saves structured lessons from feedback
+
+**Version:** 3.1 (Learning Loop added 2026-02-15)
