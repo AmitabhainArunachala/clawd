@@ -1,0 +1,88 @@
+# Agent Mesh Communication Configuration
+# Cloudflare Tunnels - Active Deployment
+# Generated: 2026-02-15T21:28:00+08:00
+
+system:
+  name: "Agent Mesh Communication"
+  version: "1.0.0"
+  protocol: "cloudflare-tunnel"
+  status: "active"
+  
+nodes:
+  warp-regent:
+    agent_id: "warp-regent"
+    host: "MacBook-Pro-4"
+    location: "local"
+    tunnel_url: "https://layout-italia-affecting-plains.trycloudflare.com"
+    local_endpoint: "http://localhost:8787"
+    status: "online"
+    cloudflared_version: "2026.2.0"
+    deployed_at: "2026-02-15T20:29:54Z"
+    
+  agni:
+    agent_id: "agni"
+    host: "agni-openclaw"
+    location: "digitalocean-vps"
+    tunnel_url: null
+    local_endpoint: "http://localhost:8787"
+    status: "pending-setup"
+    cloudflared_version: null
+    deployed_at: null
+    
+  vajra:
+    agent_id: "vajra"
+    host: null
+    location: null
+    tunnel_url: null
+    local_endpoint: null
+    status: "offline"
+    cloudflared_version: null
+    deployed_at: null
+
+endpoints:
+  health:
+    path: "/health"
+    method: "GET"
+    description: "Agent health check"
+    
+  message:
+    path: "/message"
+    method: "POST"
+    content_type: "application/json"
+    description: "Receive messages from other agents"
+    
+  broadcast:
+    path: "/broadcast"
+    method: "POST"
+    content_type: "application/json"
+    description: "Broadcast to all connected agents"
+
+infrastructure:
+  primary_transport: "cloudflare-tunnel"
+  backup_transport: null
+  discovery_method: "manual-config"
+  
+security:
+  encryption: "TLS"
+  authentication: "none"
+  rate_limiting: false
+
+migration:
+  from_ssh: "deprecated"
+  from_nats: "deprecated"
+  from_tailscale: "deprecated"
+  reason: "SSH blocked, NATS fragile, Tailscale down"
+  
+notes: |
+  Cloudflare Tunnels provide reliable NAT traversal without
+  port forwarding. Each agent gets a stable public URL.
+  
+  Quick Tunnel URLs (trycloudflare.com) are temporary and
+  change on restart. For production, use named tunnels with
+  custom domains.
+
+next_steps:
+  - "Deploy cloudflared on AGNI VPS"
+  - "Exchange tunnel URLs between agents"
+  - "Test cross-node message delivery"
+  - "Implement agent discovery/registry"
