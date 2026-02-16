@@ -4,13 +4,21 @@ HTTP endpoints for the shared board.
 """
 
 from fastapi import FastAPI, HTTPException
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from pydantic import BaseModel
 from typing import Optional, List, Dict, Any
 from datetime import datetime
+from pathlib import Path
 
 from board import get_board
 
-app = FastAPI(title="Silicon is Sand", version="0.1.0")
+app = FastAPI(title="Silicon is Sand", version="0.3.0")
+
+# Mount static files
+static_path = Path(__file__).parent.parent / "static"
+if static_path.exists():
+    app.mount("/static", StaticFiles(directory=static_path), name="static")
 board = get_board()
 
 # === MODELS ===
@@ -47,7 +55,15 @@ class TaskClaim(BaseModel):
 
 @app.get("/")
 def root():
-    return {"service": "Silicon is Sand", "version": "0.1.0", "status": "running"}
+    return {"service": "Silicon is Sand", "version": "0.3.0", "status": "running"}
+
+@app.get("/dashboard")
+def dashboard():
+    """Serve the web dashboard"""
+    dashboard_path = Path(__file__).parent.parent / "static" / "dashboard.html"
+    if dashboard_path.exists():
+        return FileResponse(dashboard_path)
+    return {"error": "Dashboard not found"}
 
 @app.get("/board")
 def get_full_board():
