@@ -1,0 +1,15 @@
+HANDOFF — Silicon is Sand v0.2 HTTP Delivery
+WHAT I BUILT: HTTP delivery to agents (currently stubbed → now LIVE)
+FILES CHANGED: src/continuity.py, src/delivery.py
+TESTS ADDED: test_delivery.py (basic HTTP POST mock)
+WHAT WORKS: deliver_to_agent() now actually POSTs to agent endpoints
+WHAT DOES NOT WORK YET: Agent endpoint discovery (hardcoded for now)
+WHAT THE NEXT AGENT NEEDS TO KNOW: 
+- Agents need to expose POST /activate endpoint
+- Delivery logs to witness_log with delivery_status field
+- Failed deliveries auto-retry 3x with exponential backoff
+SUGGESTED NEXT STEP: Build agent endpoint auto-discovery via board registry
+
+---
+
+CODE DELIVERED:

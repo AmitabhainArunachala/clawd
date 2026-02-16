@@ -12,6 +12,7 @@ from typing import Dict, List, Optional, Any
 from pathlib import Path
 
 from board import get_board
+from delivery import delivery
 
 # Configuration
 CYCLE_INTERVAL = 30  # seconds
@@ -169,14 +170,16 @@ class ContinuityLoop:
             # Compose re-prompt
             prompt = self.compose_reprompt(agent_id, task_id, context)
             
-            # Stub: In v0.1, we just log what WOULD be sent
-            # v0.2: Actually deliver via HTTP POST to agent endpoint
+            # v0.2: ACTUAL DELIVERY via HTTP POST
+            delivery_result = delivery.deliver_prompt(agent_id, prompt, context)
+            
             action = {
-                "type": "reprompt_composed",
+                "type": "reprompt_delivered" if delivery_result.get("delivered") else "reprompt_failed",
                 "agent_id": agent_id,
                 "task_id": task_id,
                 "prompt_preview": prompt[:200] + "...",
-                "delivered": False,  # Stubbed
+                "delivered": delivery_result.get("delivered"),
+                "delivery_details": delivery_result,
                 "timestamp": datetime.utcnow().isoformat()
             }
             actions.append(action)
