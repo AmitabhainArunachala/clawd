@@ -66,15 +66,15 @@ class SharedBoard:
                 WHERE agent_id = ?
             """, (status, current_task, datetime.utcnow().isoformat(), agent_id))
     
-    def log_agent_output(self, agent_id: str, summary: str, artifact_path: Optional[str] = None):
+    def log_agent_output(self, agent_id: str, summary: str, artifact_path: Optional[str] = None, dgc_score: Optional[float] = None):
         """Log agent output and update their last_output fields"""
         output_id = f"{agent_id}_{datetime.utcnow().strftime('%Y%m%d_%H%M%S')}"
         with self._connect() as conn:
             # Insert output log
             conn.execute("""
-                INSERT INTO output_log (output_id, agent_id, summary, artifact_path)
-                VALUES (?, ?, ?, ?)
-            """, (output_id, agent_id, summary, artifact_path))
+                INSERT INTO output_log (output_id, agent_id, summary, artifact_path, dgc_score)
+                VALUES (?, ?, ?, ?, ?)
+            """, (output_id, agent_id, summary, artifact_path, dgc_score))
             # Update agent last_output fields
             conn.execute("""
                 UPDATE agent_registry 
