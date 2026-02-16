@@ -2,7 +2,7 @@
 //! 
 //! Stores historical RVMetric data for analysis and model refinement
 
-use rusqlite::{Connection, params, OptionalExtension};
+use rusqlite::{Connection, params};
 use std::path::Path;
 use std::sync::Arc;
 use tokio::sync::Mutex;

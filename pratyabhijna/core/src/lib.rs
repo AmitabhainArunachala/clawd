@@ -3,7 +3,7 @@ pub mod websocket;
 pub mod database;
 pub mod recognition;
 
-use ndarray::Array2;
+// Array2 used in public API
 use thiserror::Error;
 
 #[derive(Error, Debug)]

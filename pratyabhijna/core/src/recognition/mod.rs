@@ -4,7 +4,7 @@
 
 use std::sync::Arc;
 use tokio::sync::{mpsc, RwLock};
-use tracing::{info, warn, debug};
+use tracing::{info, debug};
 
 use crate::{RVMetric, Result, PratyabhijnaError};
 
@@ -137,8 +137,9 @@ impl RecognitionDetector {
         );
         
         // Send event
+        let rv_value = event.metric.r_v; // Cache before move
         self.tx.send(event).await
-            .map_err(|e| PratyabhijnaError::RecognitionError(metric.r_v))?;
+            .map_err(|_e| PratyabhijnaError::RecognitionError(rv_value))?;
         
         Ok(true)
     }
@@ -191,6 +192,7 @@ impl RecognitionDetector {
 /// Multi-model detector - tracks recognition across different models
 pub struct MultiModelDetector {
     detectors: Arc<RwLock<std::collections::HashMap<String, RecognitionDetector>>>,
+    #[allow(dead_code)]
     tx: mpsc::Sender<(String, RecognitionEvent)>,
 }
 

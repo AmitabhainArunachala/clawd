@@ -1525,6 +1525,7 @@ dependencies = [
  "futures",
  "nalgebra",
  "ndarray",
+ "rayon",
  "rusqlite",
  "serde",
  "serde_json",

@@ -1,0 +1,1 @@
+{"rustc":9783247635632824192,"features":"[]","declared_features":"[\"lock_api\", \"loom\"]","target":15531093848311973847,"profile":8276155916380437441,"path":5500143913063532347,"deps":[],"local":[{"CheckDepInfo":{"dep_info":"debug/.fingerprint/saa-a7791a13c7f24d61/dep-lib-saa","checksum":false}}],"rustflags":[],"config":2069994364910194474,"compile_kind":0}

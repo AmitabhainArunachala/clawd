@@ -2,9 +2,7 @@
 //! 
 //! Optimized for speed: <50ms target for 4096x4096 matrices
 
-use ndarray::{Array2, ArrayView2};
-use faer::prelude::*;
-use faer::linalg::svd::Svd;
+use ndarray::ArrayView2;
 
 use crate::{Result, PratyabhijnaError};
 
@@ -26,10 +24,10 @@ pub fn compute_svd(matrix: ArrayView2<f64>) -> Result<Vec<f64>> {
     let faer_mat = faer::Mat::from_fn(n, m, |i, j| matrix[[i, j]]);
     
     // Compute SVD
-    let svd = faer_mat.svd();
+    let svd = faer_mat.svd().map_err(|e| PratyabhijnaError::SvdError(format!("SVD failed: {:?}", e)))?;
     
     // Extract singular values
-    let s_values: Vec<f64> = svd.s().column_vector().iter().copied().collect();
+    let s_values: Vec<f64> = svd.S().column_vector().iter().copied().collect();
     
     if s_values.is_empty() {
         return Err(PratyabhijnaError::SvdError("No singular values computed".to_string()));

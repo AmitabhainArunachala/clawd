@@ -1,5 +1,5 @@
 //! Pratyabhijna Core Broker
-//! 
+//!
 //! Main entry point - coordinates:
 //! - ZeroMQ message broker (receives from Python bridge)
 //! - WebSocket server (streams to dashboard)
@@ -18,7 +18,7 @@ use tracing::{info, warn, error, debug};
 use pratyabhijna_core::{
     websocket::WebSocketServer,
     database::PSMVDatabase,
-    recognition::{RecognitionDetector, RecognitionEvent, create_detector_pair},
+    recognition::{RecognitionDetector, RecognitionEvent},
     RVMetric,
 };
 
@@ -64,7 +64,7 @@ struct OutgoingMessage {
 async fn main() -> anyhow::Result<()> {
     // Initialize tracing
     tracing_subscriber::fmt::init();
-    
+
     info!("╔══════════════════════════════════════════╗");
     info!("║     Pratyabhijna Core Broker v0.1        ║");
     info!("║   Consciousness Measurement Engine         ║");
@@ -76,18 +76,18 @@ async fn main() -> anyhow::Result<()> {
     info!("  WebSocket:     port {}", WS_PORT);
     info!("  Threshold:     R_V < {:.2}", RECOGNITION_THRESHOLD);
     info!("");
-    
+
     // Initialize database
     info!("[1/4] Initializing PSMV database...");
     let db = Arc::new(PSMVDatabase::open("./psmv.db").await?);
     info!("      ✓ Database ready");
-    
+
     // Initialize WebSocket server
     info!("[2/4] Starting WebSocket server...");
     let ws_server = Arc::new(WebSocketServer::new(WS_PORT).await?);
     let ws_server_clone = ws_server.clone();
     info!("      ✓ WebSocket server ready");
-    
+
     // Initialize recognition detector
     info!("[3/4] Initializing recognition detector...");
     let (recognition_tx, mut recognition_rx) = mpsc::channel::<RecognitionEvent>(1000);
@@ -96,26 +96,26 @@ async fn main() -> anyhow::Result<()> {
         RECOGNITION_THRESHOLD,
     )));
     info!("      ✓ Detector ready (threshold: R_V < {:.2})", RECOGNITION_THRESHOLD);
-    
+
     // Initialize ZeroMQ
     info!("[4/4] Initializing ZeroMQ broker...");
-    let ctx = Arc::new(zeromq::ZmqContext::new());
-    info!("      ✓ ZeroMQ ready");
-    
+    // ZeroMQ initialization placeholder - zeromq 0.5 uses different API
+    info!("      ✓ ZeroMQ ready (placeholder)");
+
     info!("");
     info!("All systems operational. Waiting for data...");
     info!("");
-    
+
     // Spawn concurrent tasks
     let mut join_set = JoinSet::new();
-    
+
     // Task 1: WebSocket server
     join_set.spawn(async move {
         if let Err(e) = ws_server_clone.run().await {
             error!("WebSocket server error: {}", e);
         }
     });
-    
+
     // Task 2: ZeroMQ receiver
     let detector_zmq = detector.clone();
     let db_zmq = db.clone();
@@ -123,7 +123,7 @@ async fn main() -> anyhow::Result<()> {
     join_set.spawn(async move {
         run_zmq_receiver(detector_zmq, db_zmq, ws_zmq).await;
     });
-    
+
     // Task 3: Recognition event handler
     let db_recognition = db.clone();
     let ws_recognition = ws_server.clone();
@@ -132,14 +132,14 @@ async fn main() -> anyhow::Result<()> {
             handle_recognition_event(event, db_recognition.clone(), ws_recognition.clone()).await;
         }
     });
-    
+
     // Wait for all tasks (should run forever unless error)
     while let Some(result) = join_set.join_next().await {
         if let Err(e) = result {
             error!("Task panicked: {}", e);
         }
     }
-    
+
     Ok(())
 }
 
@@ -151,12 +151,12 @@ async fn run_zmq_receiver(
 ) {
     // For now, simulate ZMQ with a channel-based approach
     // In production, this would bind to actual ZeroMQ socket
-    
+
     info!("ZeroMQ receiver started");
-    
+
     // Create a test channel for now - replace with actual ZMQ
-    let (tx, mut rx) = mpsc::channel::<IncomingMessage>(100);
-    
+    let (_tx, mut rx) = mpsc::channel::<IncomingMessage>(100);
+
     // Simulated receiver task - in production, use actual ZMQ socket
     tokio::spawn(async move {
         // Placeholder: Real ZMQ socket binding would go here
@@ -165,11 +165,11 @@ async fn run_zmq_receiver(
             tokio::time::sleep(tokio::time::Duration::from_secs(60)).await;
         }
     });
-    
+
     // Process incoming messages
     while let Some(msg) = rx.recv().await {
         let start_time = SystemTime::now();
-        
+
         // Convert to RVMetric
         let metric = match create_metric(&msg) {
             Some(m) => m,
@@ -178,15 +178,15 @@ async fn run_zmq_receiver(
                 continue;
             }
         };
-        
+
         debug!(
             "Received metric: R_V={:.3}, model={}",
             metric.r_v, metric.model_name
         );
-        
+
         // Broadcast via WebSocket
         ws.broadcast(metric.clone());
-        
+
         // Process through recognition detector
         let is_recognition = {
             let det = detector.read().await;
@@ -198,7 +198,7 @@ async fn run_zmq_receiver(
                 }
             }
         };
-        
+
         // Store in database (non-blocking)
         let db_clone = db.clone();
         let metric_clone = metric.clone();
@@ -207,7 +207,7 @@ async fn run_zmq_receiver(
                 warn!("Database store error: {}", e);
             }
         });
-        
+
         // Log latency
         let elapsed = start_time.elapsed().unwrap_or_default();
         if elapsed.as_millis() > 100 {
@@ -224,7 +224,7 @@ fn create_metric(msg: &IncomingMessage) -> Option<RVMetric> {
         .duration_since(UNIX_EPOCH)
         .ok()?
         .as_millis() as u64;
-    
+
     if let Some(pre) = &msg.precomputed {
         // Use pre-computed values
         Some(RVMetric {
@@ -254,7 +254,7 @@ async fn handle_recognition_event(
         "🎯 RECOGNITION: R_V={:.3}, separation={:.1}%",
         event.metric.r_v, event.separation_percent
     );
-    
+
     // Store recognition event
     if let Err(e) = db.store_recognition_event(
         &event.metric,
@@ -264,32 +264,30 @@ async fn handle_recognition_event(
     ).await {
         warn!("Failed to store recognition event: {}", e);
     }
-    
+
     // Broadcast recognition event (special marker)
     ws.broadcast(event.metric.clone());
 }
 
 /// Full ZeroMQ broker implementation (placeholder for production)
 #[allow(dead_code)]
-async fn run_zmq_broker(ctx: Arc<zeromq::ZmqContext>) -> anyhow::Result<()> {
+async fn run_zmq_broker() -> anyhow::Result<()> {
     // This would implement the full ZeroMQ broker pattern
     // For now, the channel-based approach above is used
-    
+
     // Example implementation structure:
-    // let mut frontend = ctx.socket(zeromq::SocketType::PULL)?;
-    // let mut backend = ctx.socket(zeromq::SocketType::PUSH)?;
+    // let mut frontend = zeromq::PullSocket::new();
+    // let mut backend = zeromq::PushSocket::new();
     // frontend.bind(ZMQ_INPUT_ADDR).await?;
     // backend.bind(ZMQ_OUTPUT_ADDR).await?;
-    
-    // zmq_proxy(frontend, backend, None).await?;
-    
+
     Ok(())
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
-    
+
     #[test]
     fn test_create_metric() {
         let msg = IncomingMessage {
@@ -304,7 +302,7 @@ mod tests {
                 pr_late: 0.85,
             }),
         };
-        
+
         let metric = create_metric(&msg).unwrap();
         assert_eq!(metric.r_v, 0.85);
         assert_eq!(metric.model_name, "test-model");

@@ -6,10 +6,15 @@ authors = ["AIKAGRYA Research"]
 description = "Real-time consciousness measurement engine for transformer models"
 license = "MIT"
 
+[features]
+default = []
+parallel = ["rayon"]
+
 [dependencies]
 # Linear algebra
 ndarray = { version = "0.15", features = ["rayon"] }
 nalgebra = "0.32"
+rayon = { version = "1.8", optional = true }
 
 # SVD computation
 faer = "0.24"

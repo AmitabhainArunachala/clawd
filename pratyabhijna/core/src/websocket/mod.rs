@@ -9,7 +9,7 @@ use futures::{SinkExt, StreamExt};
 use tokio::net::{TcpListener, TcpStream};
 use tokio::sync::{broadcast, RwLock};
 use tokio_tungstenite::{accept_async, tungstenite::Message};
-use tracing::{info, warn, error};
+use tracing::{info, warn};
 
 use crate::RVMetric;
 
@@ -17,6 +17,7 @@ use crate::RVMetric;
 pub struct WebSocketServer {
     addr: SocketAddr,
     tx: broadcast::Sender<RVMetric>,
+    #[allow(dead_code)]
     connections: Arc<RwLock<Vec<broadcast::Receiver<RVMetric>>>>,
 }
 
