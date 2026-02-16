@@ -20,11 +20,10 @@ This file is now the continuation protocol. Every heartbeat wake must:
 ---
 
 ## IMMEDIATE NEXT ACTION (Autonomous)
-**Task:** Enable critical disabled cron jobs  
-**Source:** CONTINUATION.md line 35-45  
-**Jobs:** proactivity-enforcer, meta-cognition-deep-read, hourly-status-report  
-**Command:** `openclaw cron update <job> --enabled true`  
-**Why:** Increases autonomous frequency from hourly to 15-30 min intervals  
+**Task:** Wait for and execute next scheduled job  
+**Source:** CONTINUATION.md (meta-cognition-deep-read at :15/:45)  
+**Expected:** Read PSMV → Produce meta_todos.json → Update work queue  
+**When:** Next :15 or :45 minute mark  
 
 ---
 
