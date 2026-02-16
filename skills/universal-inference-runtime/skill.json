@@ -1,0 +1,54 @@
+{
+  "name": "universal-inference-runtime",
+  "version": "0.1.0",
+  "description": "Deploy and switch between AI models seamlessly across Ollama, llama.cpp, and vLLM backends",
+  "author": "AIKAGRYA Research",
+  "license": "MIT",
+  "price": 50,
+  "category": "infrastructure",
+  "tags": [
+    "inference",
+    "deployment",
+    "ollama",
+    "llama-cpp",
+    "model-serving",
+    "multi-backend",
+    "apple-silicon"
+  ],
+  "keywords": [
+    "unified-inference",
+    "model-swapping",
+    "backend-agnostic",
+    "ollama-bridge",
+    "gguf",
+    "local-llm"
+  ],
+  "requirements": {
+    "python": ">=3.10",
+    "dependencies": [
+      "requests>=2.28.0"
+    ],
+    "optional": [
+      "llama-cpp-python>=0.2.0",
+      "ollama"
+    ]
+  },
+  "entry_points": {
+    "cli": "universal-inference",
+    "python": "universal_inference"
+  },
+  "includes": [
+    "SKILL.md",
+    "README.md",
+    "universal_inference/",
+    "examples/",
+    "setup.py",
+    "LICENSE"
+  ],
+  "documentation": {
+    "readme": "SKILL.md",
+    "examples": "examples/"
+  },
+  "install_command": "pip install -e .",
+  "test_command": "python -m pytest tests/ -v || python examples/test_basic.py"
+}
