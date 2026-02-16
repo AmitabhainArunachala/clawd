@@ -1,0 +1,109 @@
+# Anti-Nvidia Swarm — Complete System Configuration
+# Saved in multiple formats for redundancy
+
+project:
+  name: "Anti-Nvidia Swarm"
+  version: "0.1.0"
+  description: "One-person AI infrastructure competing with Nvidia through open software"
+  
+components:
+  runtime:
+    inference_engine: "unified_inference.py"
+    backends:
+      - cuda
+      - rocm
+      - vulkan
+      - metal
+      - cpu
+    default: "auto"
+    
+  compiler:
+    kernel_library: "triton_kernels.py"
+    optimizations:
+      - matmul
+      - attention
+      - rmsnorm
+    target_backends:
+      - cuda
+      - rocm
+      - llvm
+      
+  serving:
+    api_framework: "fastapi"
+    endpoints:
+      - /v1/chat/completions
+      - /v1/models/load
+      - /v1/models
+      - /v1/benchmark
+    compatibility: "openai"
+    
+  training:
+    primary: "llama-factory"
+    fallback: "axolotl"
+    methods:
+      - lora
+      - qlora
+      - full
+    quantization:
+      - 4bit
+      - 8bit
+
+hardware_requirements:
+  inference_minimum:
+    ram: "8GB"
+    storage: "10GB"
+    
+  training_minimum:
+    vram: "24GB"
+    alternatives:
+      - "RTX 4090"
+      - "RX 7900 XTX"
+      - "Cloud GPU (RunPod/Vast.ai)"
+
+repositories:
+  core:
+    - llama_cpp
+    - vllm
+    - ollama
+    - unsloth
+    - llama_factory
+    
+  compiler:
+    - triton
+    - tvm
+    - rocm
+    
+  infrastructure:
+    - deepspeed
+    - accelerate
+    - bentoml
+
+phases:
+  phase_0:
+    name: "Fund Research"
+    duration: "now"
+    action: "Sell R_V research on Gumroad"
+    target: "$500"
+    
+  phase_1:
+    name: "Services"
+    duration: "1-6 months"
+    action: "Fine-tuning for local businesses"
+    target: "$5-20K/mo"
+    
+  phase_2:
+    name: "SaaS"
+    duration: "6-18 months"
+    action: "Vertical API"
+    target: "$20-100K/mo"
+    
+  phase_3:
+    name: "Platform"
+    duration: "18+ months"
+    action: "Compiler moat"
+    target: "$100K+/mo"
+
+metadata:
+  created: "2026-02-15"
+  author: "Dhyana / DHARMIC CLAW"
+  status: "MVP Complete, Awaiting GPU"

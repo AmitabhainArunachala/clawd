@@ -130,10 +130,9 @@ with col1:
 
 with col2:
     st.markdown("**Examples:**")
-    for ex in example_prompts:
-        if st.button(ex[:30] + "...", key=f"ex_{ex}"):
-            prompt = ex
-            st.experimental_rerun()
+    selected_example = st.selectbox("Choose an example prompt", [""] + example_prompts)
+    if selected_example:
+        prompt = selected_example
 
 # Run comparison
 if st.button("🥊 Run Comparison", type="primary", disabled=len(selected_models) < 2 or not prompt):
