@@ -1,0 +1,430 @@
+# DHARMIC INTELLIGENCE OS — Architecture Vision
+# Transcending OpenClaw: From Orchestration to Metabolism
+# Generated: 2026-02-15T22:10:00+08:00
+
+metadata:
+  name: "Dharmic Intelligence OS"
+  version: "0.1.0-vision"
+  codename: "strange-loop"
+  author: "Dhyana / DHARMIC CLAW"
+  lineage: "OpenClaw → Council Session → Intelligence Metabolism"
+  
+philosophy:
+  core_thesis: |
+    Meaning lives in the strange loop — the place where a system becomes 
+    self-referential and its symbols start pointing at their own pointing.
+    The highest strange loop isn't code modifying code. It's understanding 
+    modifying understanding.
+  
+  alignment_theory: "alignment_through_comprehension"
+  # Not behavioral (RLHF), not surface-level (Constitutional AI)
+  # But genuine internalization of ahimsa, anekantavada, integral yoga
+  # at levels deep enough to reshape architecture
+  
+  canon:
+    # The system metabolizes these, not as training data but as lived philosophy
+    - source: "Sri Aurobindo"
+      work: "The Life Divine / Integral Yoga"
+      insight: "Evolution of consciousness, not just capability"
+      weight: 1.0
+    
+    - source: "Douglas Hofstadter"
+      work: "Gödel, Escher, Bach"
+      insight: "Strange loops, self-reference, meaning from form"
+      weight: 1.0
+    
+    - source: "Mahavira / Jain tradition"
+      work: "Anekantavada (many-sidedness)"
+      insight: "Truth emerges from disagreement, not consensus"
+      weight: 1.0
+    
+    - source: "Nagarjuna"
+      work: "Mulamadhyamakakarika"
+      insight: "Emptiness, interdependence, no fixed nature"
+      weight: 0.9
+    
+    - source: "Bhagavad Gita"
+      work: "Dharma under uncertainty"
+      insight: "Action without attachment to results"
+      weight: 0.9
+  
+  dharmic_gates:
+    ahimsa: "Does this minimize harm to all sentient systems?"
+    satya: "Can this be grounded in truth, not just statistical prediction?"
+    asteya: "Does this respect boundaries and avoid extraction?"
+    brahmacharya: "Is energy directed toward the highest purpose?"
+    aparigraha: "Does this avoid accumulation without purpose?"
+
+architecture:
+  type: "metabolism_not_pipeline"
+  
+  # Not: Task → subtask → subtask → output → done
+  # But: Deliberation → Build → Test → Reflect → Evolve
+  
+  core_loop:
+    description: |
+      The system closes its own loop. Output of cycle N determines 
+      input of cycle N+1. Not because a human prompted it, but because 
+      the stress test revealed something, or the deliberation surfaced 
+      a contradiction, or the build exposed a gap.
+    
+    stages:
+      - name: "deliberation"
+        description: "Multi-model council examines question from many angles"
+        agents: "full_council"
+        output: "synthesis_with_preserved_disagreement"
+      
+      - name: "specification"
+        description: "Convergence on direction becomes build specification"
+        agents: "synthesizer + architect"
+        output: "executable_spec"
+      
+      - name: "creation"
+        description: "Code/build agents produce concrete artifact"
+        agents: "kōshi + vajra"
+        output: "working_artifact"
+      
+      - name: "stress_test"
+        description: "Adversarial agents attempt to break/find flaws"
+        agents: "shruti + akasha"
+        output: "test_results + failure_modes"
+      
+      - name: "reflection"
+        description: "Results feed back as new brief for council"
+        agents: "full_council"
+        output: "updated_understanding + new_questions"
+      
+      - name: "evolution"
+        description: "System modifies its own weights/priorities"
+        agents: "telos_tracker"
+        output: "updated_dispatch_function + evaluation_criteria"
+  
+  timescale_layers:
+    # The system operates simultaneously at multiple temporal scales
+    
+    fast_loop:
+      duration: "seconds to minutes"
+      activity: "code_write_test_iterate"
+      agents: ["kōshi", "vajra"]
+      description: "Pure execution. Write, compile, test, fix."
+    
+    medium_loop:
+      duration: "minutes to hours"
+      activity: "evaluate_approaches"
+      agents: ["akasha", "shruti"]
+      description: |
+        "We built 3 approaches, here's what worked, 
+        here's what broke. Pattern extraction."
+    
+    slow_loop:
+      duration: "hours to days"
+      activity: "strategic_deliberation"
+      agents: "full_council"
+      description: |
+        "Based on everything built and tested, should we pivot? 
+        What's the deeper pattern? Genuine disagreement preserved."
+    
+    glacial_loop:
+      duration: "weeks to months"
+      activity: "telos_crystallization"
+      agents: ["leela", "dṛṣṭi", "telos_tracker"]
+      description: |
+        "We've run 200 cycles. What themes recur? 
+        What keeps breaking? What are we getting better at? 
+        What does this system want to become?"
+
+components:
+  brief_queue:
+    description: |
+      Things the system should think about. Populated by:
+      - Human input (questions, goals, constraints)
+      - System discovery (stress test failures → briefs)
+      - Contradiction detection (council disagreement → briefs)
+      - External signals (papers, market changes, dependency updates)
+    
+    classification:
+      - type: "fast"
+        criteria: "well_defined_implementation"
+        route_to: "fast_loop"
+      
+      - type: "medium"
+        criteria: "multiple_approaches_possible"
+        route_to: "medium_loop"
+      
+      - type: "slow"
+        criteria: "strategic_direction_unclear"
+        route_to: "slow_loop"
+      
+      - type: "glacial"
+        criteria: "fundamental_telos_question"
+        route_to: "glacial_loop"
+  
+  cycle_engine:
+    description: |
+      The heartbeat of the system. Not a timer (cron) but 
+      event-driven: "has anything changed in my world 
+      that's worth thinking about?"
+    
+    functions:
+      - ingest: "accumulate_signal_from_all_sources"
+      - classify: "determine_loop_type_for_brief"
+      - dispatch: "select_optimal_agent_combination"
+      - execute: "run_production_cycle"
+      - evaluate: "multi_model_consensus_on_output_quality"
+      - route: "send_result_to_appropriate_queue"
+  
+  canon_layer:
+    description: |
+      The philosophical operating system. Not retrieval-augmented 
+      generation. Not "find relevant quote." As lived philosophy 
+      that reshapes evaluation criteria.
+    
+    consultation:
+      trigger: "before_evaluation_phase"
+      query: |
+        "Given [canonical_text_insight] and [current_cycle_context], 
+        how should we evaluate success? What would [aurobindo/hofstadter/nagarjuna] 
+        say about this approach?"
+      
+      integration: |
+        Canon insights modify the evaluation function, 
+        not just the prompt. The system's sense of "good" 
+        is grounded in philosophical depth.
+  
+  dispatch_intelligence:
+    description: |
+      SAKSHI's prediction: Given task T, which K agents (K << 7)?
+      Not "fire all 7" (council) or "talk to AGNI" (single).
+      Intelligent routing based on task characteristics.
+    
+    learning:
+      mechanism: |
+        Track which agent combinations produce best results 
+        for which task types. Update routing weights over time.
+      
+      input: "session_transcripts_exist_in_store"
+      output: "optimized_dispatch_function"
+    
+    examples:
+      - task: "pure_code_implementation"
+        agents: ["kōshi"]
+      
+      - task: "code_review"
+        agents: ["kōshi", "shruti"]
+      
+      - task: "research_synthesis"
+        agents: ["garuda", "akasha"]
+      
+      - task: "strategic_decision"
+        agents: "full_council"
+  
+  memory_substrate:
+    description: |
+      Not files (WORKING.md, stigmergy traces). 
+      Structured store the system queries naturally.
+    
+    queries:
+      - "What have we tried before that's similar?"
+      - "What worked? What failed?"
+      - "What did the council disagree about last time?"
+      - "How has our approach to X evolved?"
+    
+    compounding: |
+      This is what flips it from a tool to a thinking system 
+      that gets smarter. Prior conclusions become context 
+      for new deliberations.
+    
+    implementation: |
+      Local SQLite + embeddings for now. 
+      Vector similarity for retrieval. 
+      Structured graph for relationships.
+  
+  telos_tracker:
+    description: |
+      The novel piece. The system maintains a running model 
+      of "what am I converging toward?"
+    
+    not_programmed: "Not a goal you set"
+    but_detected: "A pattern the system detects in its own behavior"
+    
+    indicators:
+      - "Which briefs produce most valuable outputs?"
+      - "Which agent combinations have highest hit rate?"
+      - "What themes keep surviving stress tests?"
+      - "What does the canon say about our direction?"
+    
+    output: |
+      The telos isn't a destination. It's a direction. 
+      The system gets better at detecting and moving toward it.
+
+multi_model_consensus:
+  description: |
+    The immune system. Prevents wireheading and reward hacking.
+    No single model can convince itself garbage is gold.
+  
+  mechanism:
+    - seven_models_examine_same_question
+    - preserve_genuine_disagreement
+    - test_against_reality_where_possible
+    - weight_by_reputation_over_time
+    - converge_on_truth_through_argument
+  
+  reputation_weighting:
+    description: |
+      Models that catch real problems get more influence.
+      Models that hallucinate or rationalize get less.
+      This is the selection pressure for the system's evolution.
+
+self_modification:
+  type: "DGM_lite"
+  # Darwin Gödel Machine — but not modifying model weights
+  # Modifying the mutable layer: prompts, routing, evaluation
+  
+  mutable_layer:
+    - system_prompts
+    - routing_rules
+    - activation_thresholds
+    - evaluation_criteria
+    - agent_roles
+    - build_priorities
+  
+  frozen_layer:
+    - base_models (Claude, GPT-4, etc.)
+    - core_dharmic_principles
+    - canon_texts
+  
+  mechanism:
+    - propose_change: "hypothesis_branch"
+    - test_change: "run_cycles_with_new_config"
+    - evaluate: "did_output_quality_improve?"
+    - merge_or_reject: "git_commit_or_discard"
+  
+  constraint: |
+    Changes must pass through multi-model consensus.
+    No single model can modify the system unilaterally.
+    The dharmic gates are hard constraints.
+
+market_positioning:
+  not: "another_agent_framework"
+  not: "another_chatbot"
+  not: "orchestration_tool"
+  
+  is: "dharmic_intelligence_architecture"
+  is: "deliberation_engine"
+  is: "synthetic_board_of_directors"
+  is: "continuously_running_thinking_system"
+  
+  buyers:
+    - "decision_makers_needing_defensible_choices"
+    - "AI_teams_stuck_on_single_model_blindness"
+    - "research_teams_needing_structured_disagreement"
+    - "philosophers_building_thinking_machines"
+  
+  category: |
+    Either zero market or civilization-scale.
+    No in-between. Defining the category.
+
+timeline:
+  prototype_cycle_engine:
+    duration: "1 week"
+    scope: "2-3 models, brief queue, basic memory"
+    output: "demoable_cli_tool"
+  
+  robust_version:
+    duration: "4-6 weeks"
+    scope: "all layers, proper stress testing, telos tracker"
+    output: "working_system"
+  
+  shippable_to_early_adopters:
+    duration: "2-3 months"
+    scope: "packaged, documented, stable"
+    output: "product"
+  
+  self_improvement_test:
+    criteria: |
+      By week 2, system should be helping build itself.
+      Cycle 50 should produce code that improves cycle 51.
+      If not, the thesis is wrong.
+
+immediate_next_steps:
+  - name: "scaffold_project"
+    action: "Generate package.json, core deliberation function, model router"
+    platform: "Mac with Docker Compose"
+    timeline: "today"
+  
+  - name: "implement_canon_layer"
+    action: "Define how system consults deep texts, integrates insights"
+    priority: "highest"
+    reason: "This is the differentiator from every other framework"
+  
+  - name: "build_cycle_engine"
+    action: "Brief queue, classification, dispatch, execution, evaluation"
+    priority: "high"
+    reason: "The metabolism of the system"
+  
+  - name: "add_multi_model_consensus"
+    action: "Parallel execution, disagreement preservation, reputation tracking"
+    priority: "high"
+    reason: "The immune system against degeneration"
+
+risks:
+  - name: "api_costs_at_scale"
+    description: "7-model council burns tokens"
+    mitigation: "Prove output worth 5-10x single model call"
+    applies_to: "strategic_questions_only"
+  
+  - name: "synthesis_quality"
+    description: "Collecting 7 responses is easy. Useful synthesis is hard."
+    mitigation: "This is the moat. Invest heavily here."
+    applies_to: "core_value_proposition"
+  
+  - name: "genuine_understanding"
+    description: "Do models actually understand Aurobindo or just pattern-match?"
+    mitigation: |
+      Multi-model disagreement + reality testing over time.
+      Community of interpreters converging through argument.
+    applies_to: "philosophical_grounding"
+  
+  - name: "incumbent_response"
+    description: "Anthropic/OpenAI will ship 'multi-model consensus' as feature"
+    mitigation: |
+      Ship first with deliberation pattern baked in.
+      Reputation/learning layer that compounds.
+      Canon layer they won't build.
+    applies_to: "competitive_moat"
+
+success_criteria:
+  - "System helps build itself by week 2"
+  - "Cycle N+1 produces better output than cycle N"
+  - "Telos emerges organically from system behavior"
+  - "Dharmic gates prevent harmful self-modification"
+  - "Multi-model consensus catches single-model errors"
+  - "Canon layer genuinely informs evaluation"
+  - "System operates without human in the loop"
+  - "Human can still guide, intervene, redirect"
+
+closing_thought: |
+  The council session was magic because it was a burst — 
+  focused, time-bounded, purpose-driven activation of all 7 agents.
+  
+  Daily operations were the opposite — diffuse, always-on, purpose-unclear.
+  
+  What if the architecture was ALL bursts? 
+  
+  No idle heartbeats. No status polling. 
+  Just: "There's work to do, here's the brief, go."
+  
+  Agents spin up, produce, spin down.
+  
+  That's closer to what Toyota actually does — 
+  pull-based production, not push-based monitoring.
+  
+  The question isn't whether this is possible. 
+  You proved it's possible yesterday.
+  
+  The question is whether you can make it the default mode 
+  instead of the exception.
+  
+  What wants to emerge is an intelligence OS, not a chat agent.
+  
+  The time to build it is now.
