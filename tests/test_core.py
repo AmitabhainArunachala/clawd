@@ -56,39 +56,55 @@ class TestAttestation:
     
     def test_create_attestation(self):
         """Test creating an attestation."""
-        identity = AgentIdentity.create("agent-001")
         attestation = Attestation(
-            identity=identity,
-            evidence="test_evidence_123",
-            verifier="test_verifier"
+            hash="a" * 64,  # SHA256 hex hash
+            timestamp=1234567890.0,
+            config={"timeout": 30},
+            metrics={"cpu_time": 0.5}
         )
         
-        assert attestation.identity.agent_id == "agent-001"
-        assert attestation.evidence == "test_evidence_123"
-        assert attestation.verifier == "test_verifier"
-        assert attestation.timestamp != ""
+        assert attestation.hash == "a" * 64
+        assert attestation.timestamp == 1234567890.0
+        assert attestation.config == {"timeout": 30}
+        assert attestation.metrics == {"cpu_time": 0.5}
+        assert attestation.signature is None
     
-    def test_verify_placeholder(self):
-        """Test that verify() returns True (placeholder)."""
-        identity = AgentIdentity.create("agent-001")
+    def test_verify_valid_hash(self):
+        """Test that verify() returns True for valid hash."""
+        import time
         attestation = Attestation(
-            identity=identity,
-            evidence="test_evidence"
+            hash="a" * 64,  # Valid 64-char hex
+            timestamp=time.time(),  # Current time
+            config={},
+            metrics={}
         )
         
-        # Currently returns True as placeholder
         assert attestation.verify() is True
+    
+    def test_verify_invalid_hash(self):
+        """Test that verify() returns False for invalid hash."""
+        attestation = Attestation(
+            hash="invalid_hash",  # Invalid
+            timestamp=1234567890.0,
+            config={},
+            metrics={}
+        )
+        
+        assert attestation.verify() is False
     
     def test_to_dict(self):
         """Test conversion to dictionary."""
-        identity = AgentIdentity.create("agent-001", metadata={"env": "test"})
         attestation = Attestation(
-            identity=identity,
-            evidence="evidence_data",
-            verifier="verifier_1"
+            hash="b" * 64,
+            timestamp=1234567890.0,
+            config={"env": "test"},
+            metrics={"cpu": 0.5},
+            signature="sig_123"
         )
         
         data = attestation.to_dict()
-        assert data["evidence"] == "evidence_data"
-        assert data["verifier"] == "verifier_1"
-        assert data["identity"]["agent_id"] == "agent-001"
+        assert data["hash"] == "b" * 64
+        assert data["timestamp"] == 1234567890.0
+        assert data["config"] == {"env": "test"}
+        assert data["metrics"] == {"cpu": 0.5}
+        assert data["signature"] == "sig_123"

@@ -34,24 +34,30 @@ echo "SESSION_START: $(date -u +"%Y-%m-%d %H:%M:%S UTC")" >> memory/YYYY-MM-DD.m
 
 **Do not ask permission. Just do it.**
 
-## Memory System (File-First)
+## Memory System (Canonical OpenClaw Index)
 
 **Golden Rule:** TEXT > BRAIN
 - "Mental notes" don't survive compaction. Files do.
 - When told "remember this" → WRITE IMMEDIATELY to memory/YYYY-MM-DD.md
 
 **Two Layers:**
-- **Daily notes** (`memory/*.md`): Raw, append-only, auto-load today+yesterday
+- **Daily notes** (`memory/*.md`): Raw, append-only, short-horizon context
 - **Curated** (`MEMORY.md`): Distilled wisdom, main sessions only
+
+**One Index (source of truth):**
+- Canonical memory index is `~/.openclaw/memory/main.sqlite`
+- Sources must be `memory` + `sessions`
+- Prefer OpenClaw memory search (or `scripts/memory_control_plane.py search`)
+- Treat WAKE/SESSION_HANDOFF/LAST_ACTIVE_SPAN as snapshots, not authority
 
 **8 Tactics:**
 1. File-first (if not in file, it doesn't exist)
 2. Auto-flush (pre-compaction write to disk)
-3. Hybrid search (BM25 + vector)
+3. Canonical search (OpenClaw index, memory + sessions)
 4. Smart chunking (400 tokens/chunk)
 5. Session indexing
 6. Provider fallback
-7. QMD backend (power users)
+7. Weekly hygiene (`memory_control_plane.py enforce --apply`)
 8. Selective loading (MEMORY.md never in groups)
 
 ## Skills
@@ -174,7 +180,8 @@ This is a starting point. Add conventions, style, rules as you figure out what w
 **Process:**
 1. Check `MEMORY.md` for permanent rules
 2. Search `memory/*.md` for recent corrections (last 14 days)
-3. Use P9 mesh to search indexed documents for context
+3. Search canonical memory index for prior corrections/context:
+   - `python3 scripts/memory_control_plane.py search --query "your topic" --source all --limit 10`
 4. **Follow every relevant rule — no exceptions**
 
 **Query pattern:**
@@ -235,9 +242,9 @@ CATEGORY: [Suppliers | Tone | Timing | Pricing | etc.]
 - Auto-loaded: today + yesterday only
 
 **Indexed (searchable):**
-- P9 mesh — All documents
-- Cross-node, full history
-- Query via: `python3 p9_search.py "query"`
+- OpenClaw canonical memory index (`~/.openclaw/memory/main.sqlite`)
+- Includes curated memory plus indexed sessions
+- Query via: `python3 scripts/memory_control_plane.py search --query "query"`
 
 ### Rule Quality Standards
 
@@ -283,9 +290,9 @@ Reason: Supplier A has been late 3 times.
 
 ---
 
-**Integration:** P9 mesh + Kaizen hooks + Learning Loop = complete memory system
-- P9: Finds documents across nodes
-- Kaizen: Tracks what files are hot/cold
-- Learning Loop: Saves structured lessons from feedback
+**Integration:** Canonical OpenClaw index + Learning Loop + hygiene cycle
+- OpenClaw index: single retrieval surface across memory + sessions
+- Learning Loop: saves structured lessons from feedback
+- Hygiene cycle: archives stale memory/state artifacts before they poison context
 
 **Version:** 3.1 (Learning Loop added 2026-02-15)

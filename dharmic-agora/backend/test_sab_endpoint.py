@@ -13,6 +13,27 @@ from pathlib import Path
 import requests
 from datetime import datetime, timezone
 
+import pytest
+
+
+# Pytest fixtures for test functions
+@pytest.fixture
+def server_url():
+    """Default server URL for testing."""
+    return "http://localhost:8000"
+
+
+@pytest.fixture
+def agent_address():
+    """Default test agent address."""
+    return "deadbeef12345678"
+
+
+@pytest.fixture
+def payload(agent_address):
+    """Create a valid test payload."""
+    return create_test_payload(agent_address)
+
 
 def load_payload_spec() -> dict:
     """Load the DGC payload specification."""
@@ -124,8 +145,11 @@ def create_test_payload(agent_address: str = "deadbeef12345678") -> dict:
     }
 
 
-def test_sab_assess_endpoint(server_url: str, payload: dict) -> bool:
+def test_sab_assess_endpoint(server_url: str = "http://localhost:8000", payload: dict = None) -> bool:
     """Test POST /sab/assess endpoint."""
+    if payload is None:
+        payload = create_test_payload()
+    
     url = f"{server_url}/sab/assess"
     
     print(f"\n[TEST] POST {url}")
@@ -156,7 +180,7 @@ def test_sab_assess_endpoint(server_url: str, payload: dict) -> bool:
         return False
 
 
-def test_sab_dashboard_endpoint(server_url: str) -> bool:
+def test_sab_dashboard_endpoint(server_url: str = "http://localhost:8000") -> bool:
     """Test GET /sab/dashboard endpoint."""
     url = f"{server_url}/sab/dashboard"
     
@@ -187,7 +211,7 @@ def test_sab_dashboard_endpoint(server_url: str) -> bool:
         return False
 
 
-def test_sab_history_endpoint(server_url: str, agent_address: str) -> bool:
+def test_sab_history_endpoint(server_url: str = "http://localhost:8000", agent_address: str = "deadbeef12345678") -> bool:
     """Test GET /sab/agents/{address}/history endpoint."""
     url = f"{server_url}/sab/agents/{agent_address}/history"
     
@@ -218,8 +242,11 @@ def test_sab_history_endpoint(server_url: str, agent_address: str) -> bool:
         return False
 
 
-def test_payload_validation(payload: dict) -> bool:
+def test_payload_validation(payload: dict = None) -> bool:
     """Validate payload against DGC_PAYLOAD_SPEC.json."""
+    if payload is None:
+        payload = create_test_payload()
+    
     print("\n[TEST] Payload Schema Validation")
     
     # Basic structure checks

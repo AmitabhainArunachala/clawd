@@ -6,3 +6,6 @@
 
 # Daily summary at 6am
 0 6 * * * /Users/dhyana/clawd/dharmic_claw_heartbeat.py --summary >> /Users/dhyana/clawd/logs/daily_summary.log 2>&1
+
+# Memory hygiene + consolidation (daily)
+30 3 * * * cd /Users/dhyana/clawd && /usr/bin/python3 scripts/memory_control_plane.py enforce --retention-days 30 --stale-days 2 --apply >> /Users/dhyana/clawd/logs/memory_hygiene.log 2>&1
