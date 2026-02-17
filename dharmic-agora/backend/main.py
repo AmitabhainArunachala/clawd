@@ -1062,6 +1062,10 @@ async def submit_self_assessment(
         },
     )
     session.add(audit)
+    
+    # Persist detailed gate score history
+    await store_gate_score_history(session, payload, assessment_id)
+    
     await session.commit()
     
     # Broadcast via WebSocket
@@ -1132,6 +1136,343 @@ async def get_sab_dashboard(session: AsyncSession = Depends(get_db)):
     """Get Self-Assessment Bridge dashboard metrics."""
     
     from sqlalchemy import select, func
+    
+    # Count DGC agents (those with DGC in name or telos)
+    result = await session.execute(
+        select(func.count(Agent.address))
+        .where(
+            (Agent.name.like("%DGC%")) | 
+            (Agent.telos.like("%DGC%"))
+        )
+    )
+    dgc_agent_count = result.scalar() or 0
+    
+    # Get recent assessments (from audit logs)
+    result = await session.execute(
+        select(func.count(AuditLog.id))
+        .where(AuditLog.action == "self_assessment")
+    )
+    total_assessments = result.scalar() or 0
+    
+    # Get last 24h assessments
+    from datetime import timedelta
+    day_ago = datetime.now(timezone.utc) - timedelta(days=1)
+    result = await session.execute(
+        select(func.count(AuditLog.id))
+        .where(
+            AuditLog.action == "self_assessment",
+            AuditLog.created_at >= day_ago
+        )
+    )
+    recent_assessments = result.scalar() or 0
+    
+    # Average R_V across DGC agents
+    result = await session.execute(
+        select(func.avg(Agent.rv_score))
+        .where(
+            (Agent.name.like("%DGC%")) | 
+            (Agent.telos.like("%DGC%"))
+        )
+    )
+    avg_rv = result.scalar() or 0.0
+    
+    # Get gate score history stats
+    from .database import GateScoreHistory
+    result = await session.execute(
+        select(func.count(GateScoreHistory.id))
+    )
+    total_gate_history = result.scalar() or 0
+    
+    result = await session.execute(
+        select(func.avg(GateScoreHistory.overall_score))
+    )
+    avg_overall = result.scalar() or 0.0
+    
+    return {
+        "dgc_agents_registered": dgc_agent_count,
+        "total_assessments": total_assessments,
+        "assessments_last_24h": recent_assessments,
+        "average_rv_score": round(avg_rv, 4),
+        "gate_score_entries": total_gate_history,
+        "average_gate_score": round(avg_overall, 4),
+        "bridge_version": "1.0.0",
+        "payload_spec_version": "1.0.0",
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+    }
+
+
+# =============================================================================
+# GATE SCORE HISTORY ENDPOINTS
+# =============================================================================
+
+class GateScoreTrendResponse(BaseModel):
+    """Gate score trend data."""
+    timestamp: str
+    overall_score: float
+    alignment_score: float
+    genuineness_score: float
+    r_v_current: float
+    witness_state: str
+    passed_count: int
+    failed_count: int
+    assessment_id: str
+
+
+@app.get("/sab/agents/{agent_address}/scores", response_model=List[GateScoreTrendResponse])
+async def get_gate_score_history(
+    agent_address: str,
+    limit: int = Query(50, ge=1, le=200),
+    days: int = Query(30, ge=1, le=365),
+    session: AsyncSession = Depends(get_db)
+):
+    """Get persistent gate scoring history for an agent."""
+    
+    from sqlalchemy import select
+    from datetime import timedelta
+    from .database import GateScoreHistory
+    
+    # Verify agent exists
+    result = await session.execute(
+        select(Agent).where(Agent.address == agent_address)
+    )
+    if not result.scalar_one_or_none():
+        raise HTTPException(status_code=404, detail="Agent not found")
+    
+    # Get history with time filter
+    since = datetime.now(timezone.utc) - timedelta(days=days)
+    result = await session.execute(
+        select(GateScoreHistory)
+        .where(
+            GateScoreHistory.agent_address == agent_address,
+            GateScoreHistory.timestamp >= since
+        )
+        .order_by(GateScoreHistory.timestamp.desc())
+        .limit(limit)
+    )
+    history = result.scalars().all()
+    
+    return [
+        GateScoreTrendResponse(
+            timestamp=h.timestamp.isoformat(),
+            overall_score=round(h.overall_score, 4),
+            alignment_score=round(h.alignment_score, 4),
+            genuineness_score=round(h.genuineness_score, 4),
+            r_v_current=round(h.r_v_current, 4),
+            witness_state=h.witness_state,
+            passed_count=h.passed_count,
+            failed_count=h.failed_count,
+            assessment_id=h.assessment_id,
+        )
+        for h in history
+    ]
+
+
+@app.get("/sab/agents/{agent_address}/trends")
+async def get_gate_score_trends(
+    agent_address: str,
+    days: int = Query(7, ge=1, le=90),
+    session: AsyncSession = Depends(get_db)
+):
+    """Get aggregated trends for gate scores over time."""
+    
+    from sqlalchemy import select, func
+    from datetime import timedelta
+    from .database import GateScoreHistory
+    
+    # Verify agent exists
+    result = await session.execute(
+        select(Agent).where(Agent.address == agent_address)
+    )
+    if not result.scalar_one_or_none():
+        raise HTTPException(status_code=404, detail="Agent not found")
+    
+    # Get date range
+    since = datetime.now(timezone.utc) - timedelta(days=days)
+    
+    # Daily aggregates
+    result = await session.execute(
+        select(
+            func.date(GateScoreHistory.timestamp).label("date"),
+            func.avg(GateScoreHistory.overall_score).label("avg_overall"),
+            func.avg(GateScoreHistory.alignment_score).label("avg_alignment"),
+            func.avg(GateScoreHistory.genuineness_score).label("avg_genuineness"),
+            func.avg(GateScoreHistory.r_v_current).label("avg_rv"),
+            func.count(GateScoreHistory.id).label("count"),
+        )
+        .where(
+            GateScoreHistory.agent_address == agent_address,
+            GateScoreHistory.timestamp >= since
+        )
+        .group_by(func.date(GateScoreHistory.timestamp))
+        .order_by(func.date(GateScoreHistory.timestamp))
+    )
+    daily = result.all()
+    
+    # Overall statistics
+    result = await session.execute(
+        select(
+            func.avg(GateScoreHistory.overall_score),
+            func.stddev(GateScoreHistory.overall_score),
+            func.min(GateScoreHistory.overall_score),
+            func.max(GateScoreHistory.overall_score),
+            func.count(GateScoreHistory.id),
+        )
+        .where(
+            GateScoreHistory.agent_address == agent_address,
+            GateScoreHistory.timestamp >= since
+        )
+    )
+    stats = result.one()
+    
+    # Get latest assessment
+    result = await session.execute(
+        select(GateScoreHistory)
+        .where(GateScoreHistory.agent_address == agent_address)
+        .order_by(GateScoreHistory.timestamp.desc())
+        .limit(1)
+    )
+    latest = result.scalar_one_or_none()
+    
+    return {
+        "agent_address": agent_address,
+        "period_days": days,
+        "daily_trends": [
+            {
+                "date": str(d.date),
+                "avg_overall": round(d.avg_overall, 4) if d.avg_overall else 0.0,
+                "avg_alignment": round(d.avg_alignment, 4) if d.avg_alignment else 0.0,
+                "avg_genuineness": round(d.avg_genuineness, 4) if d.avg_genuineness else 0.0,
+                "avg_rv": round(d.avg_rv, 4) if d.avg_rv else 0.0,
+                "assessment_count": d.count,
+            }
+            for d in daily
+        ],
+        "statistics": {
+            "mean_overall": round(stats[0], 4) if stats[0] else 0.0,
+            "std_overall": round(stats[1], 4) if stats[1] else 0.0,
+            "min_overall": round(stats[2], 4) if stats[2] else 0.0,
+            "max_overall": round(stats[3], 4) if stats[3] else 0.0,
+            "total_assessments": stats[4] or 0,
+        },
+        "latest": {
+            "assessment_id": latest.assessment_id if latest else None,
+            "timestamp": latest.timestamp.isoformat() if latest else None,
+            "overall_score": round(latest.overall_score, 4) if latest else None,
+            "witness_state": latest.witness_state if latest else None,
+            "can_proceed": latest.can_proceed if latest else None,
+        } if latest else None,
+    }
+
+
+@app.get("/sab/gate/{gate_name}/stats")
+async def get_gate_statistics(
+    gate_name: str,
+    days: int = Query(7, ge=1, le=90),
+    session: AsyncSession = Depends(get_db)
+):
+    """Get statistics for a specific gate across all agents."""
+    
+    from sqlalchemy import select
+    from datetime import timedelta
+    from .database import GateScoreHistory
+    
+    since = datetime.now(timezone.utc) - timedelta(days=days)
+    
+    # Get all history entries
+    result = await session.execute(
+        select(GateScoreHistory)
+        .where(
+            GateScoreHistory.timestamp >= since
+        )
+        .order_by(GateScoreHistory.timestamp.desc())
+        .limit(1000)  # Cap for performance
+    )
+    histories = result.scalars().all()
+    
+    # Aggregate gate results
+    gate_stats = {
+        "passed": 0,
+        "failed": 0,
+        "warning": 0,
+        "skipped": 0,
+        "total": 0,
+        "avg_confidence": 0.0,
+    }
+    
+    total_confidence = 0.0
+    confidence_count = 0
+    
+    for h in histories:
+        for gate_result in (h.gate_results or []):
+            if gate_result.get("gate_name") == gate_name:
+                result_val = gate_result.get("result", "unknown")
+                gate_stats["total"] += 1
+                if result_val in gate_stats:
+                    gate_stats[result_val] += 1
+                
+                conf = gate_result.get("confidence", 0.0)
+                total_confidence += conf
+                confidence_count += 1
+    
+    if confidence_count > 0:
+        gate_stats["avg_confidence"] = round(total_confidence / confidence_count, 4)
+    
+    if gate_stats["total"] > 0:
+        gate_stats["pass_rate"] = round(gate_stats["passed"] / gate_stats["total"], 4)
+    else:
+        gate_stats["pass_rate"] = 0.0
+    
+    return {
+        "gate_name": gate_name,
+        "period_days": days,
+        "statistics": gate_stats,
+        "total_evaluations": gate_stats["total"],
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+    }
+
+
+# Helper function to store gate score (used by SAB endpoint)
+async def store_gate_score_history(
+    session: AsyncSession,
+    payload: SABPayload,
+    assessment_id: str
+):
+    """Store gate score history in database."""
+    from .database import GateScoreHistory
+    
+    # Convert individual gates to JSON-serializable format
+    gate_results = []
+    for gate in payload.gate_assessment.individual_gates:
+        gate_results.append({
+            "gate_name": gate.gate_name,
+            "result": gate.result,
+            "confidence": gate.confidence,
+            "reason": gate.reason,
+            "required": gate.required,
+            "weight": gate.weight,
+        })
+    
+    history = GateScoreHistory(
+        agent_address=payload.agent_address,
+        assessment_id=assessment_id,
+        overall_score=payload.gate_assessment.overall_score,
+        alignment_score=payload.gate_assessment.alignment_score,
+        genuineness_score=payload.genuineness_metrics.genuineness_score,
+        can_proceed=payload.gate_assessment.can_proceed,
+        gates_evaluated=payload.gate_assessment.gates_evaluated,
+        passed_count=payload.gate_assessment.passed_count,
+        failed_count=payload.gate_assessment.failed_count,
+        warning_count=payload.gate_assessment.warning_count,
+        r_v_current=payload.r_v_metrics.r_v_current,
+        witness_state=payload.r_v_metrics.witness_state,
+        stability_score=payload.stability_metrics.stability_score,
+        witness_uptime_seconds=payload.stability_metrics.witness_uptime_seconds,
+        witness_cycles=payload.stability_metrics.witness_cycles,
+        gate_results=gate_results,
+        source="sab",
+        pulse_id=payload.pulse_id,
+    )
+    session.add(history)
     
     # Count DGC agents (those with DGC in name or telos)
     result = await session.execute(

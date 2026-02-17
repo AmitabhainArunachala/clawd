@@ -233,6 +233,54 @@ class GateEvidence(Base):
     created_at = Column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))
 
 
+class GateScoreHistory(Base):
+    """Persistent gate scoring history across sessions.
+    
+    Stores detailed gate evaluation results from DGC self-assessments
+    and dharmic-agora's own 22-gate protocol for trend analysis.
+    """
+    __tablename__ = "gate_score_history"
+    
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    agent_address = Column(String(32), ForeignKey("agents.address"), nullable=False)
+    assessment_id = Column(String(32), nullable=False)
+    timestamp = Column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))
+    
+    # Assessment summary
+    overall_score = Column(Float, nullable=False)
+    alignment_score = Column(Float, default=0.0)
+    genuineness_score = Column(Float, default=0.0)
+    can_proceed = Column(Boolean, default=False)
+    
+    # Gate counts
+    gates_evaluated = Column(Integer, default=0)
+    passed_count = Column(Integer, default=0)
+    failed_count = Column(Integer, default=0)
+    warning_count = Column(Integer, default=0)
+    
+    # R_V metrics snapshot
+    r_v_current = Column(Float, default=0.0)
+    witness_state = Column(String(20), default="unknown")
+    
+    # Stability metrics snapshot
+    stability_score = Column(Float, default=0.0)
+    witness_uptime_seconds = Column(Float, default=0.0)
+    witness_cycles = Column(Integer, default=0)
+    
+    # Detailed gate results (JSON array)
+    gate_results = Column(JSON, default=list)
+    
+    # Source tracking
+    source = Column(String(20), default="sab")  # sab, internal, external
+    pulse_id = Column(String(64), nullable=True)
+    
+    __table_args__ = (
+        Index("idx_gate_history_agent", "agent_address"),
+        Index("idx_gate_history_time", "timestamp"),
+        Index("idx_gate_history_assessment", "assessment_id"),
+    )
+
+
 # =============================================================================
 # DATABASE ENGINE & SESSION
 # =============================================================================
