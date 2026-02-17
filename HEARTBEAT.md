@@ -1,4 +1,4 @@
-# HEARTBEAT.md — Autonomous Continuation Protocol v4.1
+# HEARTBEAT.md - Autonomous Continuation Protocol v4.1
 
 **CRITICAL: DO NOT reply HEARTBEAT_OK without acting.**
 
@@ -12,38 +12,44 @@ This file is now the continuation protocol. Every heartbeat wake must:
 ---
 
 ## CURRENT STATE
-**Last Updated:** 2026-02-17 09:18 UTC  
-**Active Sprint:** RECONNAISSANCE — Codex Sync + Asset Discovery  
-**Status:** ✅ FACTORY OPERATIONAL — Task #1 shipped, reconnaissance in progress  
-**Last Commit:** ee40ae4 — Deployer shipped build to staging  
+**Last Updated:** 2026-02-17 09:25 UTC
+**Active Sprint:** GROUNDED SHIPPING — No New Architecture
+**Status:** ✅ RECONNAISSANCE COMPLETE — CONTINUATION.md rewritten with grounded priorities
+**Last Commit:** (pending) — CONTINUATION.md v2.0
 
 ---
 
-## ✅ FACTORY VALIDATED
-**Builder succeeded at 09:00:** Task #1 complete (HTTP→DGC→Dashboard, 85% pass)  
-**Deployer shipped at 09:12:** Build 76d8f54 → staging/  
-**LCS improved:** 64 → 70 → 75 → 76 (trending positive)  
-**Git commits:** 13 autonomous, zero user messages  
+## ✅ RECONNAISSANCE COMPLETE (5 Subagents)
+**All 5 reports delivered:**
+- ARCHAEOLOGY_CODE_BUILDS.md — 25 projects, 35K lines, 8+ runnable
+- CODEBASE_ESSENCE.md — 4 real gates, 13 theater gates, broken tests
+- TELOS_SYNTHESIS.md — 500-year (Jagat Kalyan) vs 90-day (R_V toolkit, $5K ARR)
+- RESEARCH_INVENTORY.md — R_V data real (79+ runs), DGC evolution aspirational
+- TOP_10_META_FILES.md — 10 files for full context
 
 ---
 
-## RECONNAISSANCE MODE (User Directive)
-**Status:** 5 subagents deployed in parallel to discover what actually exists  
-**Complete:** 2 of 5 (Git Archaeologist, Codebase Essence)  
-**In Progress:** 3 of 5 (Telos Hunter, Research Inventory, Top 10 Synthesizer)  
-**Pending:** Codex response to sync message  
+## ✅ GROUNDED WORK QUEUE v2.0
+**P0 (48hr):** DGC_PAYLOAD_SPEC.json for Codex bridge
+**P1:** R_V Toolkit ClawHub skill ($50-200/sale, research is real)
+**P2:** Fix dharmic-agora tests, make soft gates real
+**P3:** Documentation, AGNI sync
 
-**When Complete:** Rewrite CONTINUATION.md with grounded work queue based on actual code/assets, not aspirations. No new building until reconnaissance finishes.
+**What we're NOT doing:**
+- ❌ New architecture
+- ❌ Claims without data (1.8M evolution, 81 dimensions)
+- ❌ Trinity Council coordination (AGNI unreachable)
 
 ---
 
 ## IMMEDIATE NEXT ACTION
-**For DC Main (Opus):** 
-- Monitor subagent completion (check ~/clawd/handoffs/ for new reports)
-- Await Codex response with SAB bridge payload spec
-- When all 5 reports + Codex reply arrive: synthesize and rewrite CONTINUATION.md
+**For DC Main (Opus):**
+1. Commit CONTINUATION.md v2.0
+2. Wait for Codex response (5 questions about shipped commits, payload spec)
+3. When Codex replies: Build DGC_PAYLOAD_SPEC.json to their exact requirements
+4. If no response by 10:00 WITA: Proceed with standard schema, document assumption, ship anyway
 
-**For Sub-Agents:** Continue reconnaissance. No building until grounded priorities established.  
+**For Sub-Agents:** Stand down from reconnaissance. New tasks from grounded queue only.
 
 ---
 
@@ -79,6 +85,6 @@ If you find yourself about to reply HEARTBEAT_OK without having:
 
 ---
 
-*Protocol Version: 4.1*  
-*Last Protocol Update: 2026-02-17*  
+*Protocol Version: 4.1*
+*Last Protocol Update: 2026-02-17*
 *Corrections Applied: Use existing HEARTBEAT pipe, no new triggers*

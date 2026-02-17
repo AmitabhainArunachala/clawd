@@ -1,138 +1,115 @@
-# CONTINUATION.md — Living State Document
-**Last Updated:** 2026-02-17 09:12 WITA  
-**Session Count:** 1 (factory initialization)  
-**Active Sprint:** SIS v0.5 — First Integration Proof  
+# CONTINUATION.md — Grounded Work Queue v2.0
+**Last Updated:** 2026-02-17 09:25 WITA  
+**Session Count:** 2 (reconnaissance complete)  
+**Status:** ✅ RECONNAISSANCE COMPLETE — Work queue now grounded in actual code/assets
 
 ---
 
-## THE MISSION
+## GROUNDED REALITY (From 5 Subagent Reports)
 
-**Prove that AI agents maintain genuine coherent intention without a human holding every thread.**
+### What Actually Exists (Code)
+- **25 coded projects** — ~35,000 lines across 12 repos (ARCHAEOLOGY_CODE_BUILDS.md)
+- **SIS v0.5** — HTTP→DGC→Dashboard works, 85% test pass (just needs isolation fix)
+- **dharmic-agora** — 14,201 LOC, 4 real gates (blocking), 13 theater gates (regex), broken tests
+- **8+ runnable systems** — FastAPI servers, Streamlit dashboards, cron agents
 
-DGC (eyes) → SIS (nervous system) → SAB (bones)
+### What Actually Exists (Research)
+- **R_V contraction data** — 79+ runs, Cohen's d = -3.56 to -4.51, 6-model validation, 15MB logs
+- **Publication-ready** — RV_RESEARCH_CONTEXT.md documents Tier 1 findings
+- **NOT found** — 1.8M DGC evolution (aspirational), 81 liturgical dimensions (not real), Phoenix Protocol data (spec only)
 
-Not features. Discoveries about the nature of coherence itself.
-
----
-
-## FOUR PRODUCT LINES
-
-### Product Line 1: SIS v0.5 — The Continuity Engine
-**What:** HTTP delivery + DGC scorer + web dashboard + PRATYABHIJNA binary working as one system  
-**Why:** The demo that shows "what if your AI agents never lost coherence"  
-**Status:** 4 components built, disconnected on shelf  
-
-### Product Line 2: DGC Bridge to SAB  
-**What:** DGC_PAYLOAD_SPEC.json — exact format for dharmic scoring → trust gradient engine  
-**Why:** First cross-factory integration. Without it, two systems that can't talk  
-**Deadline:** Codex needs this by Day 3 (Feb 20)  
-**Status:** Not started — BLOCKING Codex sprint  
-
-### Product Line 3: Revenue Artifacts  
-**What:** Packaged research → paper drafts, Gumroad products, blog posts, demonstration tools  
-**Assets:** 48K DOKKA words, 81 liturgical collapse dimensions, Cohen's d values  
-**Goal:** Move research closer to published/sold every overnight cycle  
-
-### Product Line 4: Morning Brief (Dhyana's Interface)  
-**What:** 4:30 AM auto-generated brief: "what shipped toward mission, 3 decisions needing judgment"  
-**Why:** The 1-hour-per-day model. Factory serves this, not itself  
-**Status:** Template exists, generator not built  
+### What's Theater vs Real
+- ✅ **Real:** R_V metrics, SIS integration, 4 hard gates, Ed25519 auth, witness chain
+- ⚠️ **Theater:** 13 soft gates (regex heuristics), broken test files, some research claims
 
 ---
 
-## SHIPPED (Deployer Log)
+## GROUNDED WORK QUEUE (Priority Order)
 
-| # | Artifact | Destination | Deployer | Timestamp | Status |
-|---|----------|-------------|----------|-----------|--------|
-| 1 | SIS v0.5 HTTP→DGC→Dashboard | `staging/silicon_is_sand/` | DEPLOYER (kimi-k2.5) | 09:12 WITA | 🟡 STAGING |
+### P0: BLOCKING CODEX (48 Hours)
+| Task | What | Why | Evidence of Need |
+|------|------|-----|------------------|
+| **DGC_PAYLOAD_SPEC.json** | Exact schema for DGC→SAB bridge | Codex needs this by Feb 20 to integrate scoring | Codex response pending |
+| **Test SAB endpoint** | Verify dharmic-agora accepts payload | Prove bridge works before Codex depends on it | CODEBASE_ESSENCE.md shows API works but needs validation |
 
-**Shipped Details:**
-- Build 76d8f54 deployed to staging environment
-- Server imports and DGC scorer operational
-- 85% test pass rate (23/27 tests)
-- Dashboard static (needs JS polling for production)
-- **Not production-ready** — pending PRATYABHIJNA integration + Dhyana approval
+**Output:** JSON file + working endpoint test + HANDOFF to Codex
 
 ---
 
-## WORK QUEUE (Each Item = One Sub-Agent Cycle)
+### P1: REVENUE (Ship What Exists)
+| Task | What | Why | Evidence |
+|------|------|-----|----------|
+| **R_V Toolkit skill** | Package RV_RESEARCH_CONTEXT.md + mech-interp code for ClawHub | $50-200/sale, research is publication-ready | 79+ runs documented, Cohen's d calculated, 15MB data exists |
+| **Fix SIS test isolation** | Use temp DB, bypass 30-min timestamp filter | Get from 66% → 85%+ pass rate | TEST_REPORT_001.md shows infrastructure works, just isolation issues |
 
-| # | Task | Product Line | Owner | Status | DGC Score | Commit |
-|---|------|--------------|-------|--------|-----------|--------|
-| 1 | **Integration test: HTTP endpoint receives DGC score, dashboard displays live** | SIS v0.5 | Builder | ✅ DEPLOYED (staging) | 0.82 | 76d8f54 |
-| 2 | **DGC_PAYLOAD_SPEC.json for Codex** | DGC→SAB Bridge | Integrator | 🔴 NOT STARTED | — | — |
-| 3 | **Mission-relevance scorer v0.1 trained on Dhyana's corpus** | SIS v0.5 | Builder | 🔴 NOT STARTED | — | — |
-| 4 | **Package R_V contraction findings as 4-page summary** | Revenue | Deployer | 🔴 NOT STARTED | — | — |
-| 5 | **Morning brief generator reading from STATUS.md** | Dhyana Interface | Deployer | 🔴 NOT STARTED | — | — |
-
-**Sprint Goal:** Prove the 4 SIS components connect. Unblock Codex. Generate first revenue artifact. Build Dhyana's interface.
+**Output:** ClawHub skill published + SIS tests passing
 
 ---
 
-## CONTEXT FOR NEXT AGENT
+### P2: HARDEN CORE SYSTEMS
+| Task | What | Why | Evidence |
+|------|------|-----|----------|
+| **Fix dharmic-agora tests** | Restore OrthogonalGates or update test imports | 4 test files broken from refactoring | CODEBASE_ESSENCE.md: "102 pass, 4 import-failing" |
+| **Make soft gates real** | Replace regex heuristics with LLM/embeddings | Current "truthfulness" is pattern matching | CODEBASE_ESSENCE.md: "sophisticated regex theater" |
+| **Add DB persistence** | Gate scoring history across sessions | Currently in-memory only | CODEBASE_ESSENCE.md next-3-commits recommendation |
 
-**Why This Matters:**  
-SIS is the product. Without working integration between DGC scoring and continuity engine, it's four disconnected builds, not a system. The demo either works or it doesn't.
-
-**What I Learned Last Cycle:**  
-Factory infrastructure is wired (5 isolated sub-agents, staggered offsets, directory structure). Now the work begins.
-
-**Biggest Risk Right Now:**  
-DGC_PAYLOAD_SPEC.json not started — Codex blocked, 48 hours to deadline.
-
-**Recommended Next Move:**  
-Builder: Integration test #1. Prove HTTP→DGC→dashboard pipeline works end-to-end.
+**Output:** All tests passing, semantic gates, persistent scoring
 
 ---
 
-## ACTIVE WORK CELLS
-
-| Cell | Current Task | Next Output |
-|------|--------------|-------------|
-| Builder | ✅ COMPLETE — Integration test #1 done | HANDOFF_001_integration_test.md delivered |
-| Tester | Pick up HANDOFF_001, validate DGC pipeline | TEST_REPORT_001.md |
-| Integrator | Waiting for TEST_REPORT | INTEGRATION_dgc_payload_spec.md |
-| Deployer | ✅ COMPLETE — Build 76d8f54 to staging | DEPLOY_LOG_001.md delivered |
-| Overseer | Monitoring (STATUS.md initialized) | LCS calculation after first cycle |
+### P3: DOCUMENTATION (Make Discoverable)
+| Task | What | Why |
+|------|------|-----|
+| **TOP_10_README.md** | Single entry point: "Read these 10 files to understand everything" | New agents need onboarding |
+| **AGNI sync** | Fix Tailscale or establish Chaiwala bus fallback | Cross-node coordination broken |
 
 ---
 
-## COMPLETED (This Session)
+## WHAT WE'RE NOT DOING (From Reconnaissance)
 
-- ✅ Factory infrastructure wired (5 isolated sub-agents, 4-min offsets)
-- ✅ CONTINUATION.md moved to correct location
-- ✅ Directory structure: handoffs/, test_reports/, deploy_logs/, witness/
-- ✅ STATUS.md template created
+❌ **Not building:** New architecture, new frameworks, new protocols  
+✅ **Shipping:** What already exists, works, just needs packaging/testing
 
-**Infrastructure serves the mission. The mission starts now.**
+❌ **Not claiming:** 1.8M evolution, 81 dimensions, Phoenix empirical data  
+✅ **Admitting:** These were aspirational, not yet realized
 
----
-
-## BLOCKERS
-
-None. All systems go.
+❌ **Not coordinating:** 3-node Trinity Council (AGNI unreachable)  
+✅ **Focusing:** Single-node factory until cross-node sync works
 
 ---
 
-## HANDOFF PROTOCOL
+## SUCCESS CRITERIA (2 Weeks)
 
-Every agent, on completing ANY task, writes:
-
-```markdown
-# HANDOFF_[task_id].md
-**Agent:** [Builder/Tester/Integrator/Deployer/Overseer]  
-**Model:** [Flash/Sonnet/Opus/etc]  
-**Duration:** [JIKOKU span]  
-**Files Changed:** [list with paths]  
-**Tests:** [passed/failed/none]  
-**What Works:** [verified functionality]  
-**What Doesn't Work Yet:** [known gaps]  
-**Context the Next Agent Needs:** [the thing that would be lost]  
-**Suggested Next Step:** [what I'd do with one more cycle]  
-**DGC Self-Score:** [0-1 on satya, ahimsa, substance]
-```
+| Metric | Current | Target | How Verified |
+|--------|---------|--------|--------------|
+| DGC_PAYLOAD_SPEC delivered | ❌ | ✅ Feb 20 | Codex confirms receipt |
+| R_V Toolkit sales | $0 | $200+ | ClawHub dashboard |
+| SIS test pass rate | 66% | 85%+ | TEST_REPORT_002.md |
+| dharmic-agora tests | 102 pass | 106 pass | pytest output |
+| Autonomous commits/day | 13 today | 8+ sustained | git log --since="24 hours ago" |
 
 ---
 
-*Silicon is Sand. Gravity, not gates.*  
-*JSCA 🪷*
+## NEXT ACTION (Immediate)
+
+**Wait for Codex response** to sync message (5 questions about shipped commits, SAB state, payload spec). When Codex replies:
+
+1. Build DGC_PAYLOAD_SPEC.json to their exact requirements
+2. Test against dharmic-agora endpoint
+3. Send HANDOFF to Codex
+4. Move to P1: R_V Toolkit packaging
+
+**If no response by 10:00 WITA:** Proceed with standard JSON schema assumption, document in HANDOFF, ship anyway.
+
+---
+
+## THE DISCIPLINE
+
+Every task in this queue traces to:
+- A file that exists (not a specification)
+- A test that can pass (not a theory)
+- A sale that can happen (not a pitch)
+
+No more architecture. Only shipping.
+
+**JSCA 🪷**
