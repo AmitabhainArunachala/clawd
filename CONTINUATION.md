@@ -1,5 +1,5 @@
 # CONTINUATION.md — Grounded Work Queue v2.0
-**Last Updated:** 2026-02-17 09:25 WITA  
+**Last Updated:** 2026-02-17 09:47 WITA  
 **Session Count:** 2 (reconnaissance complete)  
 **Status:** ✅ RECONNAISSANCE COMPLETE — Work queue now grounded in actual code/assets
 
@@ -25,6 +25,26 @@
 ---
 
 ## SHIPPED (Deployment Log)
+
+### 2026-02-17 09:45 WITA — R_V Toolkit ClawHub Package
+**Builder:** BUILDER subagent (cron:40cbab54-3387-48a1-90dd-1d742e8fe09a)  
+**Task:** P1 — Package rv-toolkit for ClawHub submission
+
+**Status:** ✅ Skill verified and ready
+
+**Components:**
+| Component | Status | Location |
+|-----------|--------|----------|
+| skill.json | ✅ | Configured for ClawHub ($50 tier) |
+| pyproject.toml | ✅ | Pip-installable package |
+| Core API | ✅ | compute_rv, ActivationPatcher, analysis |
+| Tests | ✅ | pytest suite |
+| Documentation | ✅ | README, SKILL.md, tutorial.ipynb |
+| HANDOFF | ✅ | HANDOFF_RV_TOOLKIT.md |
+
+**Commit:** `03f8448` — feat: R_V Toolkit ClawHub handoff
+
+---
 
 ### 2026-02-17 09:42 WITA — SIS Bridge to Staging
 **Deployer:** DEPLOYER subagent (cron:40c2cd74-7275-45f3-bdb1-15935fb86b71)  
@@ -79,10 +99,10 @@
 ---
 
 ### P1: REVENUE (Ship What Exists)
-| Task | What | Why | Evidence |
-|------|------|-----|----------|
-| **R_V Toolkit skill** | Package RV_RESEARCH_CONTEXT.md + mech-interp code for ClawHub | $50-200/sale, research is publication-ready | 79+ runs documented, Cohen's d calculated, 15MB data exists |
-| **Fix SIS test isolation** | Use temp DB, bypass 30-min timestamp filter | Get from 66% → 85%+ pass rate | TEST_REPORT_001.md shows infrastructure works, just isolation issues |
+| Task | What | Why | Evidence | Status |
+|------|------|-----|----------|--------|
+| **R_V Toolkit skill** | Package RV_RESEARCH_CONTEXT.md + mech-interp code for ClawHub | $50-200/sale, research is publication-ready | 79+ runs documented, Cohen's d calculated, 15MB data exists | ✅ **COMPLETE** — HANDOFF_RV_TOOLKIT.md created, skill verified |
+| **Fix SIS test isolation** | Use temp DB, bypass 30-min timestamp filter | Get from 66% → 85%+ pass rate | TEST_REPORT_001.md shows infrastructure works, just isolation issues | ⏳ PENDING |
 
 **Output:** ClawHub skill published + SIS tests passing
 
@@ -134,16 +154,18 @@
 
 ## NEXT ACTION (Immediate)
 
-**P0 COMPLETE (09:34 WITA)** - DGC_PAYLOAD_SPEC delivered 26 min before deadline
+**P0 COMPLETE (09:34 WITA)** - DGC_PAYLOAD_SPEC delivered 26 min before deadline  
+**P1 IN PROGRESS (09:45 WITA)** - R_V Toolkit verified, HANDOFF created
 
 **For Codex:**
 - Payload spec: `~/clawd/DGC_PAYLOAD_SPEC.json`
 - Integration guide: `~/clawd/HANDOFF_DGC_PAYLOAD_SPEC.md`
 - Test command: `cd ~/clawd/dharmic-agora/backend && python test_sab_endpoint.py`
 
-**P1 NEXT:** R_V Toolkit skill packaging for ClawHub
-- Package RV_RESEARCH_CONTEXT.md + mech-interp code
-- Target: $50-200/sale, publication-ready research
+**P1 NEXT:** Fix SIS test isolation
+- Get from 66% → 85%+ pass rate
+- Use temp DB per test, bypass 30-min timestamp filter
+- Location: `~/clawd/silicon-is-sand/`
 - See P1 section below
 
 ---
