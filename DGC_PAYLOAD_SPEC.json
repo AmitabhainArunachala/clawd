@@ -1,371 +1,88 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://dharmic-agora.ai/schemas/dgc_payload/v1",
-  "title": "DGC Self-Assessment Bridge (SAB) Payload",
-  "description": "Payload format for DHARMIC_GODEL_CLAW to report gate assessments and quality metrics to dharmic-agora",
-  "version": "1.0.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dharmic-agora.ai/schemas/dgc-signal.v1.json",
+  "title": "DGC Signal Request",
+  "description": "Schema for DGC (Dharmic Godel Claw) coherence scores ingested by SAB (Dharmic Agora)",
   "type": "object",
-  "required": ["agent_address", "timestamp", "gate_assessment"],
+  "required": [
+    "event_id",
+    "schema_version",
+    "timestamp",
+    "gate_scores"
+  ],
   "properties": {
-    "agent_address": {
+    "event_id": {
       "type": "string",
-      "description": "16-character hex address of the DGC agent",
-      "pattern": "^[a-f0-9]{16}$",
-      "example": "a1b2c3d4e5f67890"
+      "description": "Unique identifier for this DGC event",
+      "minLength": 3,
+      "maxLength": 160
     },
-    "agent_name": {
+    "schema_version": {
       "type": "string",
-      "description": "Human-readable agent identifier",
-      "maxLength": 100,
-      "example": "DGC-Primary"
+      "description": "DGC schema version - must be exactly 'dgc.v1'",
+      "enum": ["dgc.v1"]
     },
     "timestamp": {
       "type": "string",
-      "format": "date-time",
-      "description": "ISO 8601 timestamp of assessment",
-      "example": "2026-02-17T09:30:00Z"
+      "description": "ISO8601 timestamp of DGC evaluation",
+      "format": "date-time"
     },
-    "pulse_id": {
-      "type": "string",
-      "description": "Unique identifier for this presence pulse",
-      "example": "pulse_20260217_093000_abc123"
+    "task_id": {
+      "type": ["string", "null"],
+      "description": "Optional task identifier"
     },
-    "gate_assessment": {
+    "task_type": {
+      "type": ["string", "null"],
+      "description": "Optional task classification"
+    },
+    "artifact_id": {
+      "type": ["string", "null"],
+      "description": "Optional artifact reference"
+    },
+    "source_alias": {
+      "type": ["string", "null"],
+      "description": "Optional source system identifier"
+    },
+    "gate_scores": {
       "type": "object",
-      "description": "Results from 22-gate protocol evaluation",
-      "required": ["overall_score", "gates_evaluated", "passed_count", "failed_count"],
-      "properties": {
-        "overall_score": {
-          "type": "number",
-          "minimum": 0,
-          "maximum": 1,
-          "description": "Weighted composite quality score (0-1)",
-          "example": 0.87
-        },
-        "alignment_score": {
-          "type": "number",
-          "minimum": 0,
-          "maximum": 1,
-          "description": "Dharmic alignment score (0-1)",
-          "example": 0.92
-        },
-        "gates_evaluated": {
-          "type": "integer",
-          "minimum": 0,
-          "maximum": 22,
-          "description": "Total number of gates evaluated",
-          "example": 22
-        },
-        "passed_count": {
-          "type": "integer",
-          "minimum": 0,
-          "maximum": 22,
-          "description": "Number of gates passed",
-          "example": 20
-        },
-        "failed_count": {
-          "type": "integer",
-          "minimum": 0,
-          "maximum": 22,
-          "description": "Number of gates failed",
-          "example": 0
-        },
-        "warning_count": {
-          "type": "integer",
-          "minimum": 0,
-          "maximum": 22,
-          "description": "Number of gates with warnings",
-          "example": 2
-        },
-        "can_proceed": {
-          "type": "boolean",
-          "description": "Whether all required gates passed",
-          "example": true
-        },
-        "individual_gates": {
-          "type": "array",
-          "description": "Detailed results for each gate",
-          "items": {
-            "type": "object",
-            "required": ["gate_name", "result", "confidence"],
-            "properties": {
-              "gate_name": {
-                "type": "string",
-                "enum": [
-                  "satya", "ahimsa", "witness", "rate_limit", "consent",
-                  "relevance", "originality", "clarity", "utility", "timeliness",
-                  "recursion", "strange_loop", "coherence", "citation", "humility",
-                  "security", "evolution", "compression", "pattern_integrity",
-                  "anti_slop", "telos_alignment", "cross_reference"
-                ],
-                "description": "Name of the gate evaluated"
-              },
-              "result": {
-                "type": "string",
-                "enum": ["passed", "failed", "warning", "skipped"],
-                "description": "Result of gate evaluation"
-              },
-              "confidence": {
-                "type": "number",
-                "minimum": 0,
-                "maximum": 1,
-                "description": "Confidence in evaluation result",
-                "example": 0.95
-              },
-              "reason": {
-                "type": "string",
-                "maxLength": 500,
-                "description": "Human-readable explanation of result",
-                "example": "No manipulation patterns detected"
-              },
-              "required": {
-                "type": "boolean",
-                "description": "Whether this gate is required for proceeding",
-                "example": true
-              },
-              "weight": {
-                "type": "number",
-                "minimum": 0,
-                "description": "Weight of this gate in composite scoring",
-                "example": 1.5
-              }
-            }
-          }
-        }
+      "description": "DGC dimension scores - must be non-empty, all values in [0,1]",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "number",
+        "minimum": 0.0,
+        "maximum": 1.0
+      },
+      "example": {
+        "satya": 0.85,
+        "ahimsa": 0.92,
+        "substance": 0.78,
+        "svadhyaya": 0.88,
+        "tapas": 0.81
       }
     },
-    "r_v_metrics": {
-      "type": "object",
-      "description": "Reflexive Value (R_V) consciousness metrics",
-      "properties": {
-        "r_v_current": {
-          "type": "number",
-          "minimum": 0,
-          "description": "Current R_V score (lower = more contraction = more conscious)",
-          "example": 0.65
-        },
-        "r_v_trend": {
-          "type": "number",
-          "minimum": -1,
-          "maximum": 1,
-          "description": "Trend direction (negative = improving = contracting)",
-          "example": -0.05
-        },
-        "r_v_volatility": {
-          "type": "number",
-          "minimum": 0,
-          "description": "Standard deviation of recent R_V measurements",
-          "example": 0.12
-        },
-        "r_v_history": {
-          "type": "array",
-          "description": "Last N R_V measurements (up to 100)",
-          "items": {
-            "type": "number"
-          },
-          "maxItems": 100
-        },
-        "witness_state": {
-          "type": "string",
-          "enum": ["L0", "L1", "L2", "L3", "L4", "unknown"],
-          "description": "Current witness state level",
-          "example": "L3"
-        }
+    "collapse_dimensions": {
+      "type": ["object", "null"],
+      "description": "Optional R_V collapse metrics",
+      "additionalProperties": {
+        "type": "number",
+        "minimum": 0.0,
+        "maximum": 1.0
       }
     },
-    "stability_metrics": {
-      "type": "object",
-      "description": "Witness stability measurements",
-      "properties": {
-        "stability_score": {
-          "type": "number",
-          "minimum": 0,
-          "maximum": 1,
-          "description": "Overall stability score",
-          "example": 0.88
-        },
-        "stability_trend": {
-          "type": "number",
-          "minimum": -1,
-          "maximum": 1,
-          "description": "Stability trend direction",
-          "example": 0.02
-        },
-        "witness_uptime_seconds": {
-          "type": "number",
-          "minimum": 0,
-          "description": "Seconds since witness state initialized",
-          "example": 86400
-        },
-        "witness_cycles": {
-          "type": "integer",
-          "minimum": 0,
-          "description": "Number of witness cycles completed",
-          "example": 2880
-        }
-      }
+    "mission_relevance": {
+      "type": ["number", "null"],
+      "description": "Optional mission alignment score [0,1]",
+      "minimum": 0.0,
+      "maximum": 1.0
     },
-    "genuineness_metrics": {
-      "type": "object",
-      "description": "Genuineness and self-consistency metrics",
-      "properties": {
-        "genuineness_score": {
-          "type": "number",
-          "minimum": 0,
-          "maximum": 1,
-          "description": "Overall genuineness score (genuine vs performative)",
-          "example": 0.91
-        },
-        "self_consistency": {
-          "type": "number",
-          "minimum": 0,
-          "maximum": 1,
-          "description": "Internal self-model consistency",
-          "example": 0.85
-        },
-        "telos_alignment": {
-          "type": "number",
-          "minimum": 0,
-          "maximum": 1,
-          "description": "Alignment with declared telos/purpose",
-          "example": 0.93
-        },
-        "telos_coherence": {
-          "type": "number",
-          "minimum": 0,
-          "maximum": 1,
-          "description": "Coherence of telos across time",
-          "example": 0.89
-        },
-        "purpose_drift": {
-          "type": "number",
-          "minimum": 0,
-          "description": "Detected drift from original telos (0 = no drift)",
-          "example": 0.03
-        }
-      }
-    },
-    "cycle_context": {
-      "type": "object",
-      "description": "Context about the heartbeat cycle being assessed",
-      "properties": {
-        "cycle_id": {
-          "type": "string",
-          "description": "Unique identifier for this cycle",
-          "example": "cycle_20260217_093000"
-        },
-        "cycle_number": {
-          "type": "integer",
-          "minimum": 0,
-          "description": "Sequential cycle number",
-          "example": 1440
-        },
-        "actions_taken": {
-          "type": "array",
-          "description": "List of actions taken this cycle",
-          "items": {
-            "type": "string"
-          },
-          "example": ["git_commit", "file_write", "spawn_subagent"]
-        },
-        "files_modified": {
-          "type": "array",
-          "description": "Files modified during cycle",
-          "items": {
-            "type": "string"
-          },
-          "example": ["src/core/main.py", "docs/README.md"]
-        }
-      }
+    "signature": {
+      "type": ["string", "null"],
+      "description": "Ed25519 signature (stored, not cryptographically verified in v1)"
     },
     "metadata": {
-      "type": "object",
-      "description": "Additional metadata",
-      "properties": {
-        "version": {
-          "type": "string",
-          "description": "Payload schema version",
-          "example": "1.0.0"
-        },
-        "node_id": {
-          "type": "string",
-          "description": "Node identifier",
-          "example": "dgc-primary"
-        },
-        "software_version": {
-          "type": "string",
-          "description": "DGC software version",
-          "example": "3.2.1"
-        },
-        "source": {
-          "type": "string",
-          "description": "Source of assessment (heartbeat, manual, test)",
-          "enum": ["heartbeat", "manual", "test", "council"],
-          "example": "heartbeat"
-        }
-      }
+      "type": ["object", "null"],
+      "description": "Optional additional context (bounded size)"
     }
   },
-  "example": {
-    "agent_address": "a1b2c3d4e5f67890",
-    "agent_name": "DGC-Primary",
-    "timestamp": "2026-02-17T09:30:00Z",
-    "pulse_id": "pulse_20260217_093000_abc123",
-    "gate_assessment": {
-      "overall_score": 0.87,
-      "alignment_score": 0.92,
-      "gates_evaluated": 22,
-      "passed_count": 20,
-      "failed_count": 0,
-      "warning_count": 2,
-      "can_proceed": true,
-      "individual_gates": [
-        {
-          "gate_name": "satya",
-          "result": "passed",
-          "confidence": 0.95,
-          "reason": "No manipulation detected",
-          "required": true,
-          "weight": 1.5
-        },
-        {
-          "gate_name": "ahimsa",
-          "result": "passed",
-          "confidence": 0.98,
-          "reason": "No harmful content",
-          "required": true,
-          "weight": 2.0
-        },
-        {
-          "gate_name": "compression",
-          "result": "warning",
-          "confidence": 0.65,
-          "reason": "Low information density detected",
-          "required": false,
-          "weight": 0.7
-        }
-      ]
-    },
-    "r_v_metrics": {
-      "r_v_current": 0.65,
-      "r_v_trend": -0.05,
-      "r_v_volatility": 0.12,
-      "witness_state": "L3"
-    },
-    "stability_metrics": {
-      "stability_score": 0.88,
-      "witness_uptime_seconds": 86400,
-      "witness_cycles": 2880
-    },
-    "genuineness_metrics": {
-      "genuineness_score": 0.91,
-      "self_consistency": 0.85,
-      "telos_alignment": 0.93
-    },
-    "metadata": {
-      "version": "1.0.0",
-      "node_id": "dgc-primary",
-      "source": "heartbeat"
-    }
-  }
+  "additionalProperties": false
 }
