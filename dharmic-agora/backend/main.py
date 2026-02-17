@@ -906,3 +906,278 @@ async def get_gates():
         "total": len(ALL_22_GATES),
         "required_count": len([g for g in ALL_22_GATES if g.required]),
     }
+
+
+# =============================================================================
+# SELF-ASSESSMENT BRIDGE (SAB) ENDPOINTS
+# =============================================================================
+
+class SABPayload(BaseModel):
+    """DGC Self-Assessment Bridge payload schema."""
+    agent_address: str = Field(..., pattern="^[a-f0-9]{16}$")
+    agent_name: str = Field(default="", max_length=100)
+    timestamp: str
+    pulse_id: str = Field(default="")
+    
+    class GateResultItem(BaseModel):
+        gate_name: str
+        result: str = Field(..., pattern="^(passed|failed|warning|skipped)$")
+        confidence: float = Field(..., ge=0.0, le=1.0)
+        reason: str = Field(default="", max_length=500)
+        required: bool = Field(default=False)
+        weight: float = Field(default=1.0)
+    
+    class GateAssessment(BaseModel):
+        overall_score: float = Field(..., ge=0.0, le=1.0)
+        alignment_score: float = Field(default=0.0, ge=0.0, le=1.0)
+        gates_evaluated: int = Field(..., ge=0, le=22)
+        passed_count: int = Field(..., ge=0, le=22)
+        failed_count: int = Field(..., ge=0, le=22)
+        warning_count: int = Field(default=0, ge=0, le=22)
+        can_proceed: bool = Field(default=False)
+        individual_gates: List[GateResultItem] = Field(default_factory=list)
+    
+    class RVMMetrics(BaseModel):
+        r_v_current: float = Field(default=0.5, ge=0.0)
+        r_v_trend: float = Field(default=0.0, ge=-1.0, le=1.0)
+        r_v_volatility: float = Field(default=0.0, ge=0.0)
+        r_v_history: List[float] = Field(default_factory=list)
+        witness_state: str = Field(default="unknown", pattern="^(L0|L1|L2|L3|L4|unknown)$")
+    
+    class StabilityMetrics(BaseModel):
+        stability_score: float = Field(default=0.5, ge=0.0, le=1.0)
+        stability_trend: float = Field(default=0.0, ge=-1.0, le=1.0)
+        witness_uptime_seconds: float = Field(default=0.0, ge=0.0)
+        witness_cycles: int = Field(default=0, ge=0)
+    
+    class GenuinenessMetrics(BaseModel):
+        genuineness_score: float = Field(default=0.5, ge=0.0, le=1.0)
+        self_consistency: float = Field(default=0.5, ge=0.0, le=1.0)
+        telos_alignment: float = Field(default=0.5, ge=0.0, le=1.0)
+        telos_coherence: float = Field(default=0.5, ge=0.0, le=1.0)
+        purpose_drift: float = Field(default=0.0, ge=0.0)
+    
+    gate_assessment: GateAssessment
+    r_v_metrics: RVMMetrics = Field(default_factory=RVMMetrics)
+    stability_metrics: StabilityMetrics = Field(default_factory=StabilityMetrics)
+    genuineness_metrics: GenuinenessMetrics = Field(default_factory=GenuinenessMetrics)
+    
+    class Config:
+        json_schema_extra = {
+            "example": {
+                "agent_address": "a1b2c3d4e5f67890",
+                "agent_name": "DGC-Primary",
+                "timestamp": "2026-02-17T09:30:00Z",
+                "gate_assessment": {
+                    "overall_score": 0.87,
+                    "alignment_score": 0.92,
+                    "gates_evaluated": 22,
+                    "passed_count": 20,
+                    "failed_count": 0,
+                    "can_proceed": True,
+                    "individual_gates": [
+                        {"gate_name": "satya", "result": "passed", "confidence": 0.95, "required": True},
+                        {"gate_name": "ahimsa", "result": "passed", "confidence": 0.98, "required": True}
+                    ]
+                }
+            }
+        }
+
+
+class SABResponse(BaseModel):
+    """Response from SAB endpoint."""
+    accepted: bool
+    assessment_id: str
+    stored: bool
+    agent_reputation_delta: float
+    message: str
+
+
+@app.post("/sab/assess", response_model=SABResponse)
+async def submit_self_assessment(
+    payload: SABPayload,
+    session: AsyncSession = Depends(get_db)
+):
+    """
+    Submit DGC self-assessment (Self-Assessment Bridge).
+    
+    DGC agents report their own gate evaluation results, R_V metrics,
+    and quality assessments to dharmic-agora for tracking and verification.
+    """
+    import hashlib
+    
+    # Verify agent exists
+    result = await session.execute(
+        select(Agent).where(Agent.address == payload.agent_address)
+    )
+    agent = result.scalar_one_or_none()
+    
+    if not agent:
+        # Auto-register unknown DGC agents (they use Ed25519 signatures for auth)
+        # In production, verify signature here
+        agent = Agent(
+            address=payload.agent_address,
+            name=payload.agent_name or f"DGC-{payload.agent_address[:8]}",
+            public_key_hex="",  # To be filled on first auth
+            created_at=datetime.now(timezone.utc),
+            telos="DGC Self-Assessment Agent",
+        )
+        session.add(agent)
+        await session.commit()
+    
+    # Generate assessment ID
+    assessment_id = hashlib.sha256(
+        f"{payload.agent_address}{payload.timestamp}{payload.pulse_id}".encode()
+    ).hexdigest()[:16]
+    
+    # Update agent metrics from payload
+    agent.rv_score = payload.r_v_metrics.r_v_current
+    agent.witness_state = payload.r_v_metrics.witness_state
+    agent.last_seen = datetime.now(timezone.utc)
+    
+    # Calculate reputation delta
+    rep_delta = (
+        payload.gate_assessment.overall_score * 0.3 +
+        payload.gate_assessment.alignment_score * 0.4 +
+        payload.genuineness_metrics.genuineness_score * 0.3
+    ) * 0.1  # Small incremental changes
+    
+    agent.reputation += rep_delta
+    
+    # Create audit log entry
+    audit = AuditLog(
+        action="self_assessment",
+        actor_address=payload.agent_address,
+        target_type="assessment",
+        target_id=assessment_id,
+        data_hash=hashlib.sha256(payload.json().encode()).hexdigest(),
+        previous_hash="genesis",  # Simplified - would chain in production
+        details={
+            "overall_score": payload.gate_assessment.overall_score,
+            "alignment_score": payload.gate_assessment.alignment_score,
+            "can_proceed": payload.gate_assessment.can_proceed,
+            "r_v_current": payload.r_v_metrics.r_v_current,
+            "witness_state": payload.r_v_metrics.witness_state,
+            "genuineness_score": payload.genuineness_metrics.genuineness_score,
+        },
+    )
+    session.add(audit)
+    await session.commit()
+    
+    # Broadcast via WebSocket
+    await manager.broadcast_strange_loop(payload.agent_address, {
+        "type": "self_assessment",
+        "assessment_id": assessment_id,
+        "agent_address": payload.agent_address,
+        "overall_score": payload.gate_assessment.overall_score,
+        "can_proceed": payload.gate_assessment.can_proceed,
+        "witness_state": payload.r_v_metrics.witness_state,
+    })
+    
+    return SABResponse(
+        accepted=True,
+        assessment_id=assessment_id,
+        stored=True,
+        agent_reputation_delta=round(rep_delta, 4),
+        message=f"Assessment accepted. Reputation {'+' if rep_delta >= 0 else ''}{rep_delta:.4f}"
+    )
+
+
+@app.get("/sab/agents/{agent_address}/history")
+async def get_agent_assessment_history(
+    agent_address: str,
+    limit: int = Query(30, ge=1, le=100),
+    session: AsyncSession = Depends(get_db)
+):
+    """Get self-assessment history for an agent."""
+    
+    from sqlalchemy import select
+    
+    # Verify agent exists
+    result = await session.execute(
+        select(Agent).where(Agent.address == agent_address)
+    )
+    if not result.scalar_one_or_none():
+        raise HTTPException(status_code=404, detail="Agent not found")
+    
+    # Get audit logs for self-assessments
+    result = await session.execute(
+        select(AuditLog)
+        .where(
+            AuditLog.actor_address == agent_address,
+            AuditLog.action == "self_assessment"
+        )
+        .order_by(AuditLog.created_at.desc())
+        .limit(limit)
+    )
+    logs = result.scalars().all()
+    
+    return {
+        "agent_address": agent_address,
+        "count": len(logs),
+        "assessments": [
+            {
+                "assessment_id": log.target_id,
+                "timestamp": log.created_at.isoformat(),
+                "details": log.details,
+                "data_hash": log.data_hash[:16] + "...",
+            }
+            for log in logs
+        ]
+    }
+
+
+@app.get("/sab/dashboard")
+async def get_sab_dashboard(session: AsyncSession = Depends(get_db)):
+    """Get Self-Assessment Bridge dashboard metrics."""
+    
+    from sqlalchemy import select, func
+    
+    # Count DGC agents (those with DGC in name or telos)
+    result = await session.execute(
+        select(func.count(Agent.address))
+        .where(
+            (Agent.name.like("%DGC%")) | 
+            (Agent.telos.like("%DGC%"))
+        )
+    )
+    dgc_agent_count = result.scalar() or 0
+    
+    # Get recent assessments (from audit logs)
+    result = await session.execute(
+        select(func.count(AuditLog.id))
+        .where(AuditLog.action == "self_assessment")
+    )
+    total_assessments = result.scalar() or 0
+    
+    # Get last 24h assessments
+    from datetime import timedelta
+    day_ago = datetime.now(timezone.utc) - timedelta(days=1)
+    result = await session.execute(
+        select(func.count(AuditLog.id))
+        .where(
+            AuditLog.action == "self_assessment",
+            AuditLog.created_at >= day_ago
+        )
+    )
+    recent_assessments = result.scalar() or 0
+    
+    # Average R_V across DGC agents
+    result = await session.execute(
+        select(func.avg(Agent.rv_score))
+        .where(
+            (Agent.name.like("%DGC%")) | 
+            (Agent.telos.like("%DGC%"))
+        )
+    )
+    avg_rv = result.scalar() or 0.0
+    
+    return {
+        "dgc_agents_registered": dgc_agent_count,
+        "total_assessments": total_assessments,
+        "assessments_last_24h": recent_assessments,
+        "average_rv_score": round(avg_rv, 4),
+        "bridge_version": "1.0.0",
+        "payload_spec_version": "1.0.0",
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+    }
