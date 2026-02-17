@@ -6,11 +6,18 @@ POST /board/outputs/{id}/score
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 
-from board import get_board
 from dgc_scorer import scorer
 
 router = APIRouter(prefix="/board/outputs", tags=["dgc"])
-board = get_board()
+
+# Board will be imported from server to avoid circular imports
+# This is set when server.py includes the router
+board = None
+
+def set_board(board_instance):
+    """Called by server.py to provide the board instance"""
+    global board
+    board = board_instance
 
 class ScoreResponse(BaseModel):
     output_id: str
@@ -21,6 +28,9 @@ class ScoreResponse(BaseModel):
 @router.post("/{output_id}/score")
 def score_output(output_id: str):
     """Score an existing output with DGC"""
+    if board is None:
+        raise HTTPException(status_code=500, detail="Board not initialized")
+    
     # Get output from board
     with board._connect() as conn:
         row = conn.execute(
@@ -59,6 +69,9 @@ def score_output(output_id: str):
 @router.get("/scores/recent")
 def recent_scores(limit: int = 10):
     """Get recently scored outputs"""
+    if board is None:
+        raise HTTPException(status_code=500, detail="Board not initialized")
+    
     with board._connect() as conn:
         rows = conn.execute("""
             SELECT output_id, agent_id, summary, dgc_score, timestamp

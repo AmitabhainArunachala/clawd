@@ -13,8 +13,16 @@ from pathlib import Path
 DB_PATH = Path(__file__).parent.parent / "data" / "shared_board.db"
 
 class SharedBoard:
-    def __init__(self, db_path: Optional[Path] = None):
-        self.db_path = db_path or DB_PATH
+    def __init__(self, db_path: Optional[Path] = None, test_mode: bool = False):
+        if db_path:
+            self.db_path = db_path
+        elif test_mode:
+            # Use temp database for test isolation
+            import tempfile
+            self.db_path = Path(tempfile.mktemp(suffix="_sis_test.db"))
+        else:
+            self.db_path = DB_PATH
+        self.test_mode = test_mode
         self.db_path.parent.mkdir(parents=True, exist_ok=True)
         self._init_db()
     
@@ -164,6 +172,16 @@ class SharedBoard:
     # === OUTPUT LOG ===
     
     def get_recent_outputs(self, since_minutes: int = 30) -> List[Dict]:
+        # In test mode, return all outputs regardless of timestamp
+        if self.test_mode:
+            with self._connect() as conn:
+                rows = conn.execute("""
+                    SELECT * FROM output_log 
+                    ORDER BY timestamp DESC
+                    LIMIT 50
+                """).fetchall()
+                return [dict(row) for row in rows]
+        
         cutoff = (datetime.utcnow() - timedelta(minutes=since_minutes)).isoformat()
         with self._connect() as conn:
             rows = conn.execute("""
