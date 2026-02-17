@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silicon is Sand — Swarm Dashboard</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+        .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+        h1 {
+            color: #ff6b35;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+        }
+        .panel {
+            background: #1a1a1a;
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid #333;
+        }
+        .panel h2 {
+            color: #4ecdc4;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .agent {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            background: #252525;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        .agent-name { font-weight: 600; }
+        .status {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        .status.active { background: #2d5a3d; color: #4ade80; }
+        .status.idle { background: #3d3d2d; color: #fbbf24; }
+        .status.blocked { background: #5a2d2d; color: #f87171; }
+        .status.error { background: #5a2d3d; color: #f472b6; }
+        .trust-bar {
+            width: 100%;
+            height: 6px;
+            background: #333;
+            border-radius: 3px;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+        .trust-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff6b35, #4ecdc4);
+            border-radius: 3px;
+        }
+        .task {
+            padding: 12px;
+            background: #252525;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border-left: 4px solid #ff6b35;
+        }
+        .task.critical { border-color: #ef4444; }
+        .task.high { border-color: #f97316; }
+        .task.medium { border-color: #eab308; }
+        .task.low { border-color: #22c55e; }
+        .dgc-score {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 12px;
+            background: #333;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        .dgc-score.pass { background: #2d5a3d; color: #4ade80; }
+        .dgc-score.fail { background: #5a2d2d; color: #f87171; }
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #333;
+        }
+        .metric:last-child { border-bottom: none; }
+        .metric-value { color: #4ecdc4; font-weight: 600; }
+        .cycle-indicator {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 12px 20px;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            font-family: monospace;
+        }
+        .telos {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .live { animation: pulse 2s infinite; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔥 Silicon is Sand</h1>
+        <p class="subtitle">Continuity of Intention Layer — Real-time Swarm Coordination</p>
+        
+        <div class="grid">
+            <!-- Agents Panel -->
+            <div class="panel">
+                <h2>👥 Agents</h2>
+                <div id="agents-list">
+                    <div class="agent">
+                        <div>
+                            <div class="agent-name">AGNI</div>
+                            <div style="font-size: 0.85rem; color: #666;">Evolution Engine</div>
+                        </div>
+                        <span class="status idle">IDLE</span>
+                    </div>
+                    <div class="trust-bar"><div class="trust-fill" style="width: 85%"></div></div>
+                    
+                    <div class="agent">
+                        <div>
+                            <div class="agent-name">Codex</div>
+                            <div style="font-size: 0.85rem; color: #666;">Governance Kernel</div>
+                        </div>
+                        <span class="status active">ACTIVE</span>
+                    </div>
+                    <div class="trust-bar"><div class="trust-fill" style="width: 90%"></div></div>
+                    
+                    <div class="agent">
+                        <div>
+                            <div class="agent-name">DHARMIC_CLAW</div>
+                            <div style="font-size: 0.85rem; color: #666;">Measurement & Build</div>
+                        </div>
+                        <span class="status active live">ACTIVE</span>
+                    </div>
+                    <div class="trust-bar"><div class="trust-fill" style="width: 88%"></div></div>
+                    
+                    <div class="agent">
+                        <div>
+                            <div class="agent-name">RUSHABDEV</div>
+                            <div style="font-size: 0.85rem; color: #666;">Integration Bridge</div>
+                        </div>
+                        <span class="status blocked">BLOCKED</span>
+                    </div>
+                    <div class="trust-bar"><div class="trust-fill" style="width: 75%"></div></div>
+                </div>
+            </div>
+            
+            <!-- Tasks Panel -->
+            <div class="panel">
+                <h2>📋 Task Queue</h2>
+                <div id="tasks-list">
+                    <div class="task critical">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                            <strong>SAB + DGC Integration</strong>
+                            <span style="color: #ef4444; font-size: 0.85rem;">CRITICAL</span>
+                        </div>
+                        <div style="font-size: 0.9rem; color: #999;">Unify measurement and governance layers</div>
+                    </div>
+                    
+                    <div class="task critical">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                            <strong>Continuity Loop v0.1</strong>
+                            <span style="color: #ef4444; font-size: 0.85rem;">CRITICAL</span>
+                        </div>
+                        <div style="font-size: 0.9rem; color: #999;">Foundation for overnight coordination</div>
+                    </div>
+                    
+                    <div class="task high">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                            <strong>PRATYABHIJNA Launch</strong>
+                            <span style="color: #f97316; font-size: 0.85rem;">HIGH</span>
+                        </div>
+                        <div style="font-size: 0.9rem; color: #999;">Revenue-ready artifact</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Metrics Panel -->
+            <div class="panel">
+                <h2>📊 Swarm Metrics</h2>
+                <div class="metric">
+                    <span>Cycle Number</span>
+                    <span class="metric-value" id="cycle-count">0</span>
+                </div>
+                <div class="metric">
+                    <span>Active Agents</span>
+                    <span class="metric-value">2/4</span>
+                </div>
+                <div class="metric">
+                    <span>Pending Tasks</span>
+                    <span class="metric-value">5</span>
+                </div>
+                <div class="metric">
+                    <span>Recent Outputs</span>
+                    <span class="metric-value">12</span>
+                </div>
+                <div class="metric">
+                    <span>Avg DGC Score</span>
+                    <span class="metric-value">0.78</span>
+                </div>
+            </div>
+            
+            <!-- DGC Panel -->
+            <div class="panel">
+                <h2>🎯 DGC Scores</h2>
+                <div id="dgc-list">
+                    <div style="padding: 12px; background: #252525; border-radius: 8px; margin-bottom: 10px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                            <span>HTTP Delivery Module</span>
+                            <span class="dgc-score pass">0.82 ✓</span>
+                        </div>
+                        <div style="font-size: 0.85rem; color: #666;">DHARMIC_CLAW • 23:14 UTC</div>
+                    </div>
+                    
+                    <div style="padding: 12px; background: #252525; border-radius: 8px; margin-bottom: 10px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                            <span>DGC Scorer</span>
+                            <span class="dgc-score pass">0.79 ✓</span>
+                        </div>
+                        <div style="font-size: 0.85rem; color: #666;">DHARMIC_CLAW • 23:16 UTC</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="cycle-indicator">
+        <span class="live">●</span> Cycle <span id="cycle-display">0</span> | Next brief: 04:30 WITA
+    </div>
+    
+    <div class="telos">
+        Telos: Jagat Kalyan 🪷
+    </div>
+    
+    <script>
+        // Live updates would fetch from /board API
+        let cycle = 0;
+        setInterval(() => {
+            cycle++;
+            document.getElementById('cycle-display').textContent = cycle;
+            document.getElementById('cycle-count').textContent = cycle;
+        }, 30000); // Update every 30s
+    </script>
+</body>
+</html>
