@@ -44,7 +44,7 @@ Not features. Discoveries about the nature of coherence itself.
 
 | # | Task | Product Line | Owner | Status | DGC Score | Commit |
 |---|------|--------------|-------|--------|-----------|--------|
-| 1 | **Integration test: HTTP endpoint receives DGC score, dashboard displays live** | SIS v0.5 | Builder | 🔴 NOT STARTED | — | — |
+| 1 | **Integration test: HTTP endpoint receives DGC score, dashboard displays live** | SIS v0.5 | Builder | ✅ COMPLETE | 0.82 | 76d8f54 |
 | 2 | **DGC_PAYLOAD_SPEC.json for Codex** | DGC→SAB Bridge | Integrator | 🔴 NOT STARTED | — | — |
 | 3 | **Mission-relevance scorer v0.1 trained on Dhyana's corpus** | SIS v0.5 | Builder | 🔴 NOT STARTED | — | — |
 | 4 | **Package R_V contraction findings as 4-page summary** | Revenue | Deployer | 🔴 NOT STARTED | — | — |
@@ -74,8 +74,8 @@ Builder: Integration test #1. Prove HTTP→DGC→dashboard pipeline works end-to
 
 | Cell | Current Task | Next Output |
 |------|--------------|-------------|
-| Builder | Awaiting first assignment from queue | HANDOFF_001_integration_test.md |
-| Tester | Waiting for HANDOFF from Builder | TEST_REPORT_001.md |
+| Builder | ✅ COMPLETE — Integration test #1 done | HANDOFF_001_integration_test.md delivered |
+| Tester | Pick up HANDOFF_001, validate DGC pipeline | TEST_REPORT_001.md |
 | Integrator | Waiting for TEST_REPORT | INTEGRATION_dgc_payload_spec.md |
 | Deployer | Waiting for INTEGRATION | First shippable artifact |
 | Overseer | Monitoring (STATUS.md initialized) | LCS calculation after first cycle |
