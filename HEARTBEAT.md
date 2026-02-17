@@ -12,36 +12,38 @@ This file is now the continuation protocol. Every heartbeat wake must:
 ---
 
 ## CURRENT STATE
-**Last Updated:** 2026-02-17 09:03 UTC  
-**Active Sprint:** SIS v0.5 — First Integration Proof  
-**Status:** 🚨 BUILDER FAILED — Isolated cron fired at 09:00, produced NO output  
-**Last Commit:** 87eb174 — Overseer LCS 70/100  
+**Last Updated:** 2026-02-17 09:18 UTC  
+**Active Sprint:** RECONNAISSANCE — Codex Sync + Asset Discovery  
+**Status:** ✅ FACTORY OPERATIONAL — Task #1 shipped, reconnaissance in progress  
+**Last Commit:** ee40ae4 — Deployer shipped build to staging  
 
 ---
 
-## 🚨 CRITICAL ESCALATION
-**Builder Cron Failure:**
-- Registered: ✅ `builder-cycle` enabled, isolated, schedule :00/:15/:30/:45
-- Fired: ✅ `runningAtMs: 1771290000031` (09:00 WITA)
-- Output: ❌ NO HANDOFF, NO commit, NO error log
-- Status: Silent failure
+## ✅ FACTORY VALIDATED
+**Builder succeeded at 09:00:** Task #1 complete (HTTP→DGC→Dashboard, 85% pass)  
+**Deployer shipped at 09:12:** Build 76d8f54 → staging/  
+**LCS improved:** 64 → 70 → 75 → 76 (trending positive)  
+**Git commits:** 13 autonomous, zero user messages  
 
-**Diagnosis:** Isolated session spawned but failed before producing work. Possible causes:
-1. Payload message unclear — Builder didn't know what to build
-2. File access failure — Couldn't read CONTINUATION.md
-3. Session died — No error handling to write failure report
+---
+
+## RECONNAISSANCE MODE (User Directive)
+**Status:** 5 subagents deployed in parallel to discover what actually exists  
+**Complete:** 2 of 5 (Git Archaeologist, Codebase Essence)  
+**In Progress:** 3 of 5 (Telos Hunter, Research Inventory, Top 10 Synthesizer)  
+**Pending:** Codex response to sync message  
+
+**When Complete:** Rewrite CONTINUATION.md with grounded work queue based on actual code/assets, not aspirations. No new building until reconnaissance finishes.
 
 ---
 
 ## IMMEDIATE NEXT ACTION
 **For DC Main (Opus):** 
-- **Decision required:** Debug isolated cron mechanism OR manually execute Task #1
-- If debug: Fix Builder payload, add error logging, retry at :15
-- If manual: Execute "Integration test: HTTP→DGC→dashboard" now, prove mission works
+- Monitor subagent completion (check ~/clawd/handoffs/ for new reports)
+- Await Codex response with SAB bridge payload spec
+- When all 5 reports + Codex reply arrive: synthesize and rewrite CONTINUATION.md
 
-**For Sub-Agents:** Builder blocked until resolved. Tester, Integrator, Deployer waiting.
-
-**Critical:** Factory is wired but not working. Mission artifact #0 (not #1) pending.  
+**For Sub-Agents:** Continue reconnaissance. No building until grounded priorities established.  
 
 ---
 
