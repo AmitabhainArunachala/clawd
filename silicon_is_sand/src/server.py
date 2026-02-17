@@ -12,8 +12,13 @@ from datetime import datetime
 from pathlib import Path
 
 from board import get_board
+from dgc_scorer import scorer
 
 app = FastAPI(title="Silicon is Sand", version="0.3.0")
+
+# Include DGC routes
+from dgc_routes import router as dgc_router
+app.include_router(dgc_router)
 
 # Mount static files
 static_path = Path(__file__).parent.parent / "static"
