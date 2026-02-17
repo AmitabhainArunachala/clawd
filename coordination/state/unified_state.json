@@ -1,0 +1,77 @@
+{
+  "takt_id": 1,
+  "timestamp": "2026-02-17T00:02:40.333377+00:00",
+  "cascade_latency_ms": 16019,
+  "shakti_mode": "Maheshwari",
+  "subsystems": {
+    "mmk": {
+      "status": "ok",
+      "latency_ms": 0,
+      "agents": 3,
+      "alerts": 0,
+      "timestamp": "2026-02-17T00:02:40.331877+00:00"
+    },
+    "openclaw": {
+      "status": "ok",
+      "latency_ms": 0,
+      "work_queue_size": 0,
+      "cell_health": {
+        "research": {
+          "cell": "research",
+          "shakti_mode": "Maheshwari",
+          "wip": 0,
+          "limit": 3,
+          "last_output": null,
+          "active_projects": [],
+          "quality_gate_passes": 0,
+          "quality_gate_fails": 0
+        },
+        "build": {
+          "cell": "build",
+          "shakti_mode": "Mahakali",
+          "wip": 0,
+          "limit": 5,
+          "last_output": "2026-02-17T00:02:36.382574+00:00",
+          "test_failures": 0,
+          "failure_duration": 0,
+          "last_test_run": "2026-02-17T00:02:36.383667+00:00",
+          "quality_gate": "unknown",
+          "failure_start": null
+        },
+        "ship": {
+          "cell": "ship",
+          "shakti_mode": "Mahalakshmi",
+          "wip": 0,
+          "limit": 2,
+          "last_output": null,
+          "bootstraps_shipped": [],
+          "revenue_pipeline": {
+            "shipped_count": 0,
+            "target_week_1": 100,
+            "target_month_1": 1000,
+            "target_month_6": 10000,
+            "progress_week_1": 0.0
+          },
+          "queue_depth": 6
+        }
+      },
+      "timestamp": "2026-02-17T00:02:40.332335+00:00"
+    },
+    "trishula": {
+      "status": "ok",
+      "latency_ms": 1,
+      "pending_messages": 510,
+      "last_router_run": null,
+      "timestamp": "2026-02-17T00:02:40.333220+00:00"
+    }
+  },
+  "overall_health": "healthy",
+  "alerts": [],
+  "next_actions": [
+    {
+      "priority": "medium",
+      "action": "clear_trishula_queue",
+      "pending": 510
+    }
+  ]
+}

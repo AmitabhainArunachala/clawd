@@ -1,0 +1,16 @@
+{
+  "cell": "ship",
+  "shakti_mode": "Mahalakshmi",
+  "wip": 0,
+  "limit": 2,
+  "last_output": null,
+  "bootstraps_shipped": [],
+  "revenue_pipeline": {
+    "shipped_count": 0,
+    "target_week_1": 100,
+    "target_month_1": 1000,
+    "target_month_6": 10000,
+    "progress_week_1": 0.0
+  },
+  "queue_depth": 6
+}

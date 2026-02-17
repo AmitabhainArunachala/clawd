@@ -1,0 +1,35 @@
+[
+  {
+    "id": "research_1771286548",
+    "cell": "research",
+    "level": "red",
+    "reasons": [
+      "stale for nanm",
+      "CRITICAL: stale for nanh"
+    ],
+    "timestamp": "2026-02-17T00:02:28.395364+00:00",
+    "acknowledged": false
+  },
+  {
+    "id": "build_1771286548",
+    "cell": "build",
+    "level": "red",
+    "reasons": [
+      "stale for nanm",
+      "CRITICAL: stale for nanh"
+    ],
+    "timestamp": "2026-02-17T00:02:28.395377+00:00",
+    "acknowledged": false
+  },
+  {
+    "id": "ship_1771286548",
+    "cell": "ship",
+    "level": "red",
+    "reasons": [
+      "stale for nanm",
+      "CRITICAL: stale for nanh"
+    ],
+    "timestamp": "2026-02-17T00:02:28.395383+00:00",
+    "acknowledged": false
+  }
+]

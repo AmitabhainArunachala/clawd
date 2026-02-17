@@ -1,0 +1,101 @@
+# ═════════════════════════════════════════════════════════════════════════════
+# OPENCLAW TOYOTA PRODUCTION SYSTEM — Master Crontab
+# Version: 1.0 | Date: 2026-02-17 | Architect: System Design Subagent
+# ═════════════════════════════════════════════════════════════════════════════
+#
+# PRINCIPLES:
+#   - 15 jobs, staggered timing, zero overlap
+#   - 4 work cells with WIP limits
+#   - Andon escalation with visual board
+#   - Kaizen loop for continuous improvement
+#
+# INSTALL: crontab /Users/dhyana/clawd/coordination/crontab.master
+# VERIFY: ./coordination/verify_schedule.py
+# ═════════════════════════════════════════════════════════════════════════════
+
+# ─────────────────────────────────────────────────────────────────────────────
+# TIER 1: CONTINUOUS (Every minute)
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Job 1: TAKT MASTER — The heartbeat of the entire system
+* * * * * /Users/dhyana/clawd/coordination/takt_master.py >> /Users/dhyana/clawd/logs/takt.log 2>&1
+
+# ─────────────────────────────────────────────────────────────────────────────
+# TIER 2: HIGH FREQUENCY (Every 5 minutes, staggered)
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Job 2: MMK POLL — Agent health and status (offset 0)
+*/5 * * * * /Users/dhyana/META_META_KNOWER/pipeline/poll_all.py >> /Users/dhyana/META_META_KNOWER/logs/poll.log 2>&1
+
+# Job 3: TRISHULA MAC ROUTER — Message routing (offset 1)
+1,6,11,16,21,26,31,36,41,46,51,56 * * * * cd /Users/dhyana/trishula && TRISHULA_AGENT=mac /usr/bin/python3 router.py >> log/cron.log 2>&1
+
+# Job 4: DGC CI PULSE — Build cell monitoring (offset 2)
+2,7,12,17,22,27,32,37,42,47,52,57 * * * * /Users/dhyana/clawd/coordination/cell_build.py >> /Users/dhyana/clawd/logs/build.log 2>&1
+
+# Job 5: SHIP READINESS CHECK — Ship cell monitoring (offset 3)
+3,8,13,18,23,28,33,38,43,48,53,58 * * * * /Users/dhyana/clawd/coordination/cell_ship.py >> /Users/dhyana/clawd/logs/ship.log 2>&1
+
+# ─────────────────────────────────────────────────────────────────────────────
+# TIER 3: MEDIUM FREQUENCY (Every 10 minutes, staggered)
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Job 6: MMK ALERT CHECK — Alert evaluation (offset 2)
+2,12,22,32,42,52 * * * * /Users/dhyana/META_META_KNOWER/pipeline/alert_check.py >> /Users/dhyana/META_META_KNOWER/logs/alert.log 2>&1
+
+# Job 7: TRISHULA DASHBOARD — Unified dashboard (offset 5)
+5,15,25,35,45,55 * * * * cd /Users/dhyana/trishula && /usr/bin/python3 dashboard.py >> log/cron.log 2>&1
+
+# ─────────────────────────────────────────────────────────────────────────────
+# TIER 4: STANDARD FREQUENCY (Every 15 minutes)
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Job 8: RESEARCH PULSE — arXiv/insight ingestion (offset 0)
+*/15 * * * * /Users/dhyana/clawd/coordination/cell_research.py >> /Users/dhyana/clawd/logs/research.log 2>&1
+
+# Job 9: OPENCLAW HEARTBEAT — Core system pulse (offset 7)
+7,22,37,52 * * * * /Users/dhyana/clawd/coordination/heartbeat_cascade.py >> /Users/dhyana/clawd/logs/heartbeat.log 2>&1
+
+# ─────────────────────────────────────────────────────────────────────────────
+# TIER 5: HOURLY (Every hour, staggered)
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Job 10: ANDON BOARD UPDATE — Visual escalation board (offset 5)
+5 * * * * /Users/dhyana/clawd/coordination/andon_board.py --update >> /Users/dhyana/clawd/logs/andon.log 2>&1
+
+# Job 11: PIPELINE ESCALATION — Auto-escalate stale items (offset 10)
+10 * * * * /Users/dhyana/META_META_KNOWER/pipeline/orchestrator.py escalate >> /Users/dhyana/META_META_KNOWER/logs/orchestrator.log 2>&1
+
+# Job 12: TRISHULA REVIEW — Hourly accountability (offset 0)
+0 * * * * cd /Users/dhyana/trishula && /usr/bin/python3 review.py >> log/review.log 2>&1
+
+# ─────────────────────────────────────────────────────────────────────────────
+# TIER 6: PERIODIC (Every 4 hours)
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Job 13: VPS SYNC — Remote state synchronization
+0 */4 * * * /Users/dhyana/META_META_KNOWER/pipeline/sync_vps.sh >> /Users/dhyana/META_META_KNOWER/logs/sync.log 2>&1
+
+# ─────────────────────────────────────────────────────────────────────────────
+# TIER 7: DAILY (Specific times)
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Job 14: WAKE SYNC — Morning brief and sync (06:00 WITA = 22:00 UTC)
+0 22 * * * /Users/dhyana/clawd/coordination/wake_sync.py >> /Users/dhyana/clawd/logs/wake.log 2>&1
+
+# Job 15: NIGHT BRIEF — Evening review and prep (21:00 WITA = 13:00 UTC)
+0 13 * * * /Users/dhyana/clawd/coordination/night_brief.py >> /Users/dhyana/clawd/logs/night.log 2>&1
+
+# ─────────────────────────────────────────────────────────────────────────────
+# MAINTENANCE (Weekly)
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Weekly Kaizen Review — Continuous improvement (Sunday 20:00)
+0 20 * * 0 /Users/dhyana/clawd/coordination/kaizen_review.py >> /Users/dhyana/clawd/logs/kaizen.log 2>&1
+
+# Log rotation — Keep logs manageable (Daily midnight)
+0 0 * * * cd /Users/dhyana/clawd/logs && for f in *.log; do [ -f "$f" ] && tail -10000 "$f" > "$f.tmp" && mv "$f.tmp" "$f"; done
+
+# ═════════════════════════════════════════════════════════════════════════════
+# END OF CRONTAB
+# ═════════════════════════════════════════════════════════════════════════════

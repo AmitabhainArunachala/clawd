@@ -1,0 +1,12 @@
+{
+  "cell": "build",
+  "shakti_mode": "Mahakali",
+  "wip": 0,
+  "limit": 5,
+  "last_output": "2026-02-17T00:02:36.382574+00:00",
+  "test_failures": 0,
+  "failure_duration": 0,
+  "last_test_run": "2026-02-17T00:02:36.383667+00:00",
+  "quality_gate": "unknown",
+  "failure_start": null
+}
