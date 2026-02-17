@@ -12,10 +12,10 @@ This file is now the continuation protocol. Every heartbeat wake must:
 ---
 
 ## CURRENT STATE
-**Last Updated:** 2026-02-17 09:25 UTC
-**Active Sprint:** GROUNDED SHIPPING — No New Architecture
-**Status:** ✅ RECONNAISSANCE COMPLETE — CONTINUATION.md rewritten with grounded priorities
-**Last Commit:** (pending) — CONTINUATION.md v2.0
+**Last Updated:** 2026-02-17 09:26 UTC
+**Active Sprint:** GROUNDED SHIPPING — Waiting for Codex
+**Status:** ✅ COMMITTED 9ca8fcf — CONTINUATION.md v2.0 + HEARTBEAT.md updated
+**Current Action:** Waiting for Codex response (deadline: 10:00 WITA, 34 min remaining)
 
 ---
 
@@ -44,12 +44,14 @@ This file is now the continuation protocol. Every heartbeat wake must:
 
 ## IMMEDIATE NEXT ACTION
 **For DC Main (Opus):**
-1. Commit CONTINUATION.md v2.0
-2. Wait for Codex response (5 questions about shipped commits, payload spec)
+1. ✅ Commit CONTINUATION.md v2.0 — DONE (9ca8fcf)
+2. ⏳ Wait for Codex response — IN PROGRESS (37 min remaining until 10:00 WITA)
 3. When Codex replies: Build DGC_PAYLOAD_SPEC.json to their exact requirements
 4. If no response by 10:00 WITA: Proceed with standard schema, document assumption, ship anyway
 
-**For Sub-Agents:** Stand down from reconnaissance. New tasks from grounded queue only.
+**For Sub-Agents:** Stand down. Await P0 task (DGC_PAYLOAD_SPEC) after Codex sync.
+
+**Time Check:** 09:26 WITA / 10:00 WITA deadline = 34 minutes remaining
 
 ---
 
