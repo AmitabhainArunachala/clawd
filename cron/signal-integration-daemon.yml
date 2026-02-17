@@ -1,0 +1,91 @@
+# Signal Detection & Integration Cron
+# Continuous meta-cognitive layer for filesystem-wide connection tracking
+
+id: signal-integration-daemon
+name: Signal Integration Daemon
+schedule:
+  kind: cron
+  expr: "0 */4 * * *"  # Every 4 hours
+  tz: Asia/Makassar
+
+sessionTarget: isolated
+payload:
+  kind: agentTurn
+  message: |
+    SIGNAL INTEGRATION CYCLE — ~/ full filesystem scan
+    
+    MISSION: Traverse entire home directory, detect signals, map connections,
+    build YAML backlink network, identify production-ready assets.
+    
+    PHASE 1: DISCOVERY (scan all files)
+    - Find all .py, .md, .yaml, .json, .rs, .go, .js, .ts files
+    - Skip: node_modules, .venv, __pycache__, .git, tmp, cache
+    - For each file: extract key signals (imports, headings, concepts)
+    
+    PHASE 2: CONNECTION MAPPING
+    - Build reference graph: which files import/reference which
+    - Find cross-directory connections
+    - Identify theme clusters (consciousness, R_V, dharmic, swarm, etc.)
+    
+    PHASE 3: YML BACKLINK GENERATION
+    - Create/update ~/signal_network/[hash].meta.yml for each file
+    - Schema:
+      file_path: "~/clawd/dharmic-agora/backend/main.py"
+      file_hash: "sha256:..."
+      file_size: 48578
+      last_modified: "2026-02-17T11:02:00Z"
+      extracted_concepts:
+        - "FastAPI"
+        - "22-gate verification"
+        - "Ed25519 auth"
+        - "R_V metrics"
+      references_to:
+        - "~/clawd/dharmic-agora/backend/gates_22.py"
+        - "~/clawd/dharmic-agora/backend/rv_metrics.py"
+      referenced_by:
+        - "~/clawd/dharmic-agora/backend/test_sab_endpoint.py"
+      theme_clusters:
+        - "dharmic-agora"
+        - "production-backend"
+        - "authentication"
+      loose_ends:
+        - "TODO: Add semantic gate evaluation"
+      production_readiness_score: 0.85
+      suggested_next_action: "Integrate semantic gates from gates_semantic.py"
+    
+    PHASE 4: THEME CLUSTER DETECTION
+    - Group files by semantic similarity
+    - Cross-reference with 7 Expressions:
+      * Research (R_V, mechanistic interpretability)
+      * Protocols (Phoenix, Trinity)
+      * TELOS AI (consumer product)
+      * Eigenswarm (self-authoring)
+      * Dharmic-Agora (quality gates)
+      * Content Engine (publication)
+      * Jagat Kalyan (planetary)
+    
+    PHASE 5: LOOSE END DETECTION
+    - Find TODOs without completion dates
+    - Find files referencing non-existent targets
+    - Find empty directories
+    - Find duplicate content across locations
+    
+    PHASE 6: PRODUCTION QUEUE GENERATION
+    - Score each file: readiness × importance × connection_strength
+    - Generate ~/signal_network/PRODUCTION_QUEUE.json
+    - Top 20 files for next production cycle
+    
+    PHASE 7: INTEGRATION REPORT
+    - Write ~/signal_network/INTEGRATION_REPORT_[timestamp].md
+    - Include: hubs, orphans, themes, loose ends, recommendations
+    
+    OUTPUT:
+    - ~/signal_network/ directory populated with .meta.yml files
+    - ~/signal_network/PRODUCTION_QUEUE.json
+    - ~/signal_network/INTEGRATION_REPORT_[timestamp].md
+    - Git commit: "signal-integration: [N] files indexed, [M] connections mapped"
+    
+    HANDOFF: Write ~/signal_network/HANDOFF_SIGNAL_CYCLE_[timestamp].md
+
+cleanup: keep
+enabled: true
