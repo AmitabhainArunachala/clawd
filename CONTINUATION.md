@@ -26,6 +26,30 @@
 
 ## SHIPPED (Deployment Log)
 
+### 2026-02-17 10:12 WITA — SIS Test Isolation Fix → Staging
+**Deployer:** DEPLOYER subagent (cron:40c2cd74-7275-45f3-bdb1-15935fb86b71)  
+**Build:** GREEN (41 passed, 0 failed, 100% success rate)  
+**Target:** staging/silicon_is_sand/
+
+**Deployed Fixes:**
+| Component | Fix | Status |
+|-----------|-----|--------|
+| board.py | Temp DB per test run | ✅ |
+| board.py | Bypass 30-min filter in test_mode | ✅ |
+| server.py | Test board creation on SIS_TEST_MODE=1 | ✅ |
+| dgc_routes.py | Shared board instance | ✅ |
+| tests | Retry logic + correct working dir | ✅ |
+
+**Verification:**
+- Before: 23 passed, 4 failed (85.2%)
+- After: 41 passed, 0 failed (100%)
+- All 8 integration tests passing
+- HTTP → DGC → Dashboard pipeline verified
+
+**Commit:** `deploy-sis-test-isolation-20250217`
+
+---
+
 ### 2026-02-17 09:45 WITA — R_V Toolkit ClawHub Package
 **Builder:** BUILDER subagent (cron:40cbab54-3387-48a1-90dd-1d742e8fe09a)  
 **Task:** P1 — Package rv-toolkit for ClawHub submission

@@ -3,6 +3,7 @@ Silicon is Sand — FastAPI Server
 HTTP endpoints for the shared board.
 """
 
+import os
 from fastapi import FastAPI, HTTPException
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
@@ -11,20 +12,32 @@ from typing import Optional, List, Dict, Any
 from datetime import datetime
 from pathlib import Path
 
-from board import get_board
+from board import SharedBoard
 from dgc_scorer import scorer
 
 app = FastAPI(title="Silicon is Sand", version="0.3.0")
 
+# Check for test mode
+TEST_MODE = os.environ.get("SIS_TEST_MODE") == "1"
+
 # Include DGC routes
-from dgc_routes import router as dgc_router
+from dgc_routes import router as dgc_router, set_board
 app.include_router(dgc_router)
 
 # Mount static files
 static_path = Path(__file__).parent.parent / "static"
 if static_path.exists():
     app.mount("/static", StaticFiles(directory=static_path), name="static")
-board = get_board()
+
+# Create board instance (test mode uses fresh instance)
+if TEST_MODE:
+    board = SharedBoard(test_mode=True)
+else:
+    from board import get_board
+    board = get_board()
+
+# Pass board to DGC routes
+set_board(board)
 
 # === MODELS ===
 
@@ -157,7 +170,9 @@ def health_check():
         "status": "healthy",
         "timestamp": datetime.utcnow().isoformat(),
         "agents_registered": len(board.get_all_agents()),
-        "pending_tasks": len(board.get_pending_tasks())
+        "pending_tasks": len(board.get_pending_tasks()),
+        "test_mode": TEST_MODE,
+        "db_path": str(board.db_path)
     }
 
 if __name__ == "__main__":

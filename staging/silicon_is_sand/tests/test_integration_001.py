@@ -51,23 +51,33 @@ class SISIntegrationTest:
         env = os.environ.copy()
         env["SIS_TEST_MODE"] = "1"
         
+        # Run from project root (parent of tests/)
+        project_root = Path(__file__).parent.parent
+        
         self.server_process = subprocess.Popen(
             [sys.executable, "src/server.py"],
-            cwd=Path(__file__).parent,
+            cwd=project_root,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             env=env
         )
         # Wait for server to start
-        time.sleep(2)
+        time.sleep(3)
         
-        try:
-            resp = requests.get(f"{BASE_URL}/health", timeout=5)
-            check(resp.status_code == 200, "Server health check")
-            return True
-        except Exception as e:
-            log(f"Server failed to start: {e}", Colors.RED)
-            return False
+        # Retry health check a few times
+        for attempt in range(5):
+            try:
+                resp = requests.get(f"{BASE_URL}/health", timeout=5)
+                if resp.status_code == 200:
+                    check(True, "Server health check")
+                    return True
+            except Exception:
+                if attempt < 4:
+                    time.sleep(1)
+                    continue
+        
+        log(f"Server failed to start after retries", Colors.RED)
+        return False
 
     def stop_server(self):
         """Stop the server"""
