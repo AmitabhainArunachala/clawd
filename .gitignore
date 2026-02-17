@@ -172,3 +172,9 @@ Pipfile.lock
 # -----------------------------------------------------------------------------
 # Add any project-specific patterns below
 chaiwala_workspace/chaiwala-rs/target/
+
+# Memory marathon generated artifacts
+MEMORY_MARATHON_TODO.md
+MEMORY_MARATHON_STATUS.md
+MEMORY_MARATHON_PLAN.md
+logs/memory_marathon/

@@ -1,11 +1,34 @@
 # CONTINUATION.md — Grounded Work Queue v2.0
 **Last Updated:** 2026-02-17 10:27 WITA  
 **Session Count:** 3 (deployer cycle active)  
-**Status:** 🟢 DEPLOYER CYCLE — Shipping green builds to staging
+**Status:** 🟢 DEPLOYER CYCLE — 4 GREEN builds shipped, staging current
 
 ---
 
 ## SHIPPED (Deployment Log)
+
+### 2026-02-17 10:42 WITA — DEPLOYER: Semantic DGC Scorer v0.2 → Staging
+**Deployer:** DEPLOYER subagent (cron:40c2cd74-7275-45f3-bdb1-15935fb86b71)  
+**Build:** GREEN — Semantic DGC Scorer v0.2  
+**Target:** staging/silicon_is_sand/src/
+
+**Deployed Component:**
+| Build | Component | Status | Location |
+|-------|-----------|--------|----------|
+| GREEN | Semantic DGC Scorer v0.2 | ✅ Staged | staging/silicon_is_sand/src/dgc_semantic_scorer.py |
+
+**Features:**
+- Sentence-transformers embeddings (all-MiniLM-L6-v2)
+- Reference corpus for 5 dimensions: correctness, dharmic_alignment, elegance, efficiency, safety
+- Cosine similarity scoring against high-quality examples
+- HybridDGCScorer class combining semantic + rule-based correctness
+- Fallback to random embeddings if sentence-transformers not installed
+
+**Impact:** Replaces regex heuristics with semantic understanding for gate scoring.
+
+**Git Commit:** `deploy-semantic-scorer-20250217`
+
+---
 
 ### 2026-02-17 10:27 WITA — DEPLOYER: Multi-Build Staging Deployment
 **Deployer:** DEPLOYER subagent (cron:40c2cd74-7275-45f3-bdb1-15935fb86b71)  
