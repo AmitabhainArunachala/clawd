@@ -7,6 +7,36 @@
 
 ## SHIPPED (Deployment Log)
 
+### 2026-02-17 11:42 WITA — DEPLOYER: Integration Test Reports v1.0 → Staging
+**Deployer:** DEPLOYER subagent (cron:40c2cd74-7275-45f3-bdb1-15935fb86b71)  
+**Build:** GREEN — 10 integration test reports verified  
+**Target:** staging/test_reports/
+
+**Deployed Components:**
+| Build | Component | Status | Location |
+|-------|-----------|--------|----------|
+| GREEN | INTEGRATION_STATUS.md | ✅ Staged | staging/test_reports/ |
+| GREEN | INTEGRATION_CHAIWALA_BRIDGE.md | ✅ Staged | staging/test_reports/ |
+| GREEN | INTEGRATION_PRATYABHIJNA_BRIDGE.md | ✅ Staged | staging/test_reports/ |
+| GREEN | INTEGRATION_SEMANTIC_SCORER.md | ✅ Staged | staging/test_reports/ |
+| GREEN | INTEGRATION_SIS_BRIDGE.md | ✅ Staged | staging/test_reports/ |
+| GREEN | INTEGRATION_BEHAVIORAL_BRIDGE.md | ✅ Staged | staging/test_reports/ |
+| GREEN | INTEGRATION_P9_NATS_BRIDGE.md | ✅ Staged | staging/test_reports/ |
+| GREEN | INTEGRATION_MECH_INTERP_BRIDGE.md | ✅ Staged | staging/test_reports/ |
+| GREEN | INTEGRATION_SKILL_BRIDGE.md | ✅ Staged | staging/test_reports/ |
+| GREEN | TEST_REPORT_TASK1.md | ✅ Staged | staging/test_reports/ |
+
+**Verification Summary:**
+- Task 1 (R_V Toolkit): 79/79 tests pass, 3/4 components production-ready
+- Chaiwala Bridge: Operational (message latency 42ms)
+- Pratyabhijna Bridge: HTTP→DGC→Dashboard verified
+- Semantic Scorer: Hybrid scoring functional
+- SIS Bridge: Database persistence working
+
+**Git Commit:** `deploy-integration-reports-20250217`
+
+---
+
 ### 2026-02-17 11:12 WITA — DEPLOYER: DB Persistence for Gate Scoring v1.0 → Staging
 **Deployer:** DEPLOYER subagent (cron:40c2cd74-7275-45f3-bdb1-15935fb86b71)  
 **Build:** GREEN — Database persistence layer  
