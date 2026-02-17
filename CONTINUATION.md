@@ -1,11 +1,41 @@
 # CONTINUATION.md — Grounded Work Queue v2.0
-**Last Updated:** 2026-02-17 11:05 WITA  
+**Last Updated:** 2026-02-17 11:12 WITA  
 **Session Count:** 4 (builder cycle active)  
 **Status:** 🟢 BUILDER CYCLE — Semantic gates implemented
 
 ---
 
 ## SHIPPED (Deployment Log)
+
+### 2026-02-17 11:12 WITA — DEPLOYER: DB Persistence for Gate Scoring v1.0 → Staging
+**Deployer:** DEPLOYER subagent (cron:40c2cd74-7275-45f3-bdb1-15935fb86b71)  
+**Build:** GREEN — Database persistence layer  
+**Target:** staging/dharmic-agora/backend/
+
+**Deployed Component:**
+| Build | Component | Status | Location |
+|-------|-----------|--------|----------|
+| GREEN | DB Persistence v1.0 | ✅ Staged | staging/dharmic-agora/backend/ |
+
+**Features:**
+- `GateScoreHistory` model with 15+ fields (scores, R_V, witness state, gate results JSON)
+- 3 new API endpoints: `/scores`, `/trends`, `/gate/{name}/stats`
+- Enhanced `/sab/dashboard` with historical metrics
+- Automatic persistence on every SAB assessment
+- Indexed queries: agent, time, assessment lookups
+
+**Impact:** P2 Complete — Gate scoring now persists across sessions; time-series analysis enabled.
+
+**Files:**
+- `database.py` — GateScoreHistory model with indexes
+- `main.py` — 3 new endpoints + store_gate_score_history()
+- `HANDOFF_DB_PERSISTENCE.md` — Integration guide
+
+**Git Commit:** `db-persistence-v1.0` (already committed by Builder)
+
+**HANDOFF:** `HANDOFF_DB_PERSISTENCE.md`
+
+---
 
 ### 2026-02-17 11:00 WITA — BUILDER: Semantic Gates Extension v0.1
 **Builder:** BUILDER subagent (cron:40cbab54-3387-48a1-90dd-1d742e8fe09a)  
@@ -230,7 +260,7 @@
 |------|------|-----|----------|--------|
 | **Fix dharmic-agora tests** | Tests now pass | Previously broken from refactoring | 4 tests passing in test_sab_endpoint.py | ✅ **COMPLETE** |
 | **Make soft gates real** | Replace regex heuristics with LLM/embeddings | Current "truthfulness" is pattern matching | CODEBASE_ESSENCE.md: "sophisticated regex theater" | ✅ **COMPLETE** — Semantic gates v0.1 |
-| **Add DB persistence** | Gate scoring history across sessions | Currently in-memory only | CODEBASE_ESSENCE.md next-3-commits recommendation | ⏳ **PENDING** |
+| **Add DB persistence** | Gate scoring history across sessions | Currently in-memory only | CODEBASE_ESSENCE.md next-3-commits recommendation | ✅ **COMPLETE** — Staged to dharmic-agora/backend/ |
 
 **Output:** All tests passing, semantic gates, persistent scoring
 
