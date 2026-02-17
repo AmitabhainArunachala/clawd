@@ -124,8 +124,8 @@
 
 ---
 
-### 9. RECONNAISSANCE_5X.md — What Actually Exists
-**Path:** `~/clawd/ARCHAEOLOGY_CODE_BUILDS.md`  
+### 9. ARCHAEOLOGY_CODE_BUILDS.md — What Actually Exists
+**Path:** `~/clawd/handoffs/ARCHAEOLOGY_CODE_BUILDS.md`  
 **Why ninth:** Ground truth inventory.
 
 **Key findings:**
@@ -164,7 +164,7 @@
 | Memory Tactics | `~/clawd/skills/openclaw-memory-tactics/SKILL.md` | Memory system DNA |
 | DGC Spec | `~/clawd/DGC_PAYLOAD_SPEC.json` | Integration schema |
 | HEARTBEAT.md | `~/clawd/HEARTBEAT.md` | Autonomous protocol |
-| Archaeology | `~/clawd/ARCHAEOLOGY_CODE_BUILDS.md` | Code inventory |
+| Archaeology | `~/clawd/handoffs/ARCHAEOLOGY_CODE_BUILDS.md` | Code inventory |
 | R_V Toolkit | `~/clawd/products/rv-toolkit-gumroad/README.md` | Revenue asset |
 
 ---
