@@ -1,0 +1,60 @@
+{
+  "name": "rv-toolkit",
+  "version": "0.1.0",
+  "description": "Representational Volume (R_V) metrics for measuring geometric signatures of recursive self-reference in transformers",
+  "author": "AIKAGRYA Research",
+  "license": "MIT",
+  "price": 50,
+  "category": "research-tool",
+  "tags": [
+    "mechanistic-interpretability",
+    "transformers",
+    "consciousness",
+    "geometry",
+    "activation-patching",
+    "research-tool",
+    "ai-safety"
+  ],
+  "keywords": [
+    "R_V",
+    "representational-volume",
+    "recursive-self-reference",
+    "transformer-interpretability",
+    "value-space",
+    "geometric-contraction"
+  ],
+  "requirements": {
+    "python": ">=3.10",
+    "dependencies": [
+      "torch>=2.0.0",
+      "numpy>=1.24.0",
+      "scipy>=1.10.0",
+      "pandas>=2.0.0",
+      "tqdm>=4.65.0"
+    ],
+    "optional": [
+      "transformers>=4.35.0",
+      "accelerate>=0.24.0"
+    ]
+  },
+  "entry_points": {
+    "cli": "rv-toolkit",
+    "python": "rv_toolkit"
+  },
+  "includes": [
+    "README.md",
+    "SKILL.md",
+    "tutorial.ipynb",
+    "examples/",
+    "rv_toolkit/",
+    "pyproject.toml",
+    "LICENSE"
+  ],
+  "documentation": {
+    "readme": "README.md",
+    "tutorial": "tutorial.ipynb",
+    "examples": "examples/"
+  },
+  "test_command": "pytest tests/ -v",
+  "install_command": "pip install -e ."
+}
