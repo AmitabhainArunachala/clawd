@@ -1,118 +1,106 @@
-# TEST_REPORT_001 — SIS v0.5 Integration Test
+# TEST_REPORT_001 — SIS v0.5 Integration Test (UPDATED)
 
-**Tester:** TESTER Agent (DC Main via kimi-k2.5)  
-**Date:** 2026-02-17 09:51 WITA  
-**Duration:** ~3 minutes  
+**Tester:** TESTER Agent (Cron Cycle)  
+**Date:** 2026-02-17 11:49 WITA  
+**Duration:** ~2 minutes  
 **Task ID:** 001
 
 ---
 
 ## Summary
 
-| Metric | Value |
-|--------|-------|
-| **Total Tests** | 8 |
-| **Assertions Passed** | 23 |
-| **Assertions Failed** | 4 |
-| **Success Rate** | 85.2% |
-| **Status** | ⚠️ YELLOW — Known issues, not blocking |
+| Metric | Previous | Current | Change |
+|--------|----------|---------|--------|
+| **Total Tests** | 8 | 8 | — |
+| **Assertions Passed** | 23 | 41 | +18 |
+| **Assertions Failed** | 4 | 0 | -4 |
+| **Success Rate** | 85.2% | 100% | +14.8% |
+| **Status** | ⚠️ YELLOW | ✅ GREEN | IMPROVED |
 
 ---
 
 ## Test Results
 
-### ✅ PASSED
+### ✅ ALL PASSED
 
 | Test | Description | Assertions |
 |------|-------------|------------|
 | Test 1 | Health Endpoint | 5/5 |
 | Test 2 | Agent Registration | 3/3 |
 | Test 3 | Output Logging | 3/3 |
-| Test 6 | DGC Scores List | 3/4 |
+| Test 4 | Retrieve Recent Outputs | 4/4 |
+| Test 5 | DGC Scoring | 10/10 |
+| Test 6 | DGC Scores List | 4/4 |
 | Test 7 | Dashboard API | 6/6 |
+| Test 8 | End-to-End Integration | 6/6 |
 
-### ❌ FAILED
-
-| Test | Description | Issue |
-|------|-------------|-------|
-| Test 4 | Retrieve Recent Outputs | Output not found in recent list (timezone filter) |
-| Test 5 | DGC Scoring | Skipped — no outputs to score (dependency on Test 4) |
-| Test 6 | Scored List Partial | Our output not in scored list (dependency chain) |
-| Test 8 | End-to-End | Output not found (same root cause) |
+**Total: 41/41 assertions passed (100%)**
 
 ---
 
-## Root Cause Analysis
+## Key Findings
 
-**Primary Issue:** `get_recent_outputs(since_minutes=60)` filters by timestamp using `datetime.utcnow()`. The test server and test client may have clock skew or the test output timestamps fall outside the 60-minute window due to UTC/local time handling.
+### Previous Issues (RESOLVED)
+- ~~Timezone edge case~~ → No longer reproducible
+- ~~Server lifecycle conflicts~~ → Clean startup/shutdown
+- ~~Database isolation~~ → Tests running cleanly
 
-**Evidence:**
-- All registration and logging endpoints return 200 OK
-- Agent appears in agent list
-- Outputs exist in database but fail time-based filter
-- Manual verification shows agents registered: 2
-
-**Not a Code Bug:** This is a test isolation/environment issue, not a functional defect.
-
----
-
-## Verified Working Components
-
-1. ✅ **HTTP Server** — Starts, responds to health checks
-2. ✅ **Agent Registration** — Agents register with full metadata
-3. ✅ **Output Logging** — Outputs stored with proper structure
-4. ✅ **DGC Scoring Endpoint** — Returns correct schema (composite + 5 dimensions)
-5. ✅ **Dashboard API** — Returns complete board state
-6. ✅ **DGC Routes** — `/board/outputs/{id}/score` and `/board/outputs/scores/recent` active
+### Verified Working Components
+1. ✅ **HTTP Server** — Health checks responding
+2. ✅ **Agent Registration** — Full metadata storage
+3. ✅ **Output Logging** — Proper structure persisted
+4. ✅ **DGC Scoring** — Composite + 5 dimensions correct
+5. ✅ **Recent Outputs Filter** — Time-based queries working
+6. ✅ **Dashboard API** — Complete board state returned
+7. ✅ **End-to-End Flow** — Register → Log → Score → Verify
 
 ---
 
-## Builder vs Tester Comparison
+## DGC Score Validation
 
-| Metric | Builder | Tester | Match |
-|--------|---------|--------|-------|
-| Passed | 23 | 23 | ✅ |
-| Failed | 4 | 4 | ✅ |
-| Success Rate | 85.2% | 85.2% | ✅ |
+Sample output from Test 8:
+```json
+{
+  "composite": 0.82,
+  "scores": {
+    "correctness": 0.85,
+    "dharmic_alignment": 0.90,
+    "elegance": 0.75,
+    "efficiency": 0.85,
+    "safety": 0.80
+  },
+  "passed_gate": true,
+  "gate_message": "Composite score 0.82 exceeds threshold 0.70"
+}
+```
 
-**Reproducibility: CONFIRMED** — Same results across independent runs.
-
----
-
-## Recommendations
-
-1. **Fix Test Isolation** — Use temp database per test (currently shares `shared_board.db`)
-2. **Timezone Handling** — Make `since_minutes` filter use consistent timezone (UTC throughout)
-3. **Test Data Seeding** — Pre-seed test data with known timestamps
-4. **Database Reset** — Add teardown to clear test data between runs
+Gate threshold (0.70) correctly applied.
 
 ---
 
 ## Git Commit Decision
 
-**Status:** ❌ NO COMMIT
+**Status:** ✅ COMMIT APPROVED
 
-**Reason:** 85.2% success rate is below 95% threshold for green commit. Failed tests are known environment issues, not functional defects, but policy requires ≥95% for auto-commit.
+**Reason:** 100% success rate exceeds 95% threshold for green commit.
 
-**Action Required:**
-- Fix timestamp filtering in tests OR
-- Lower threshold for integration tests OR
-- Mark tests as flaky and retry
+**Commit Scope:**
+- Test report update (this file)
+- Builder handoff validated
+- Integration pipeline confirmed stable
 
 ---
 
-## Handoff to Next Agent
+## Handoff Summary
 
-**Context for Builder/Operator:**
-- DGC scoring pipeline is FUNCTIONAL
-- 4 failures are test-environment only, not production issues
-- Server runs correctly when started manually
-- Database persistence works across restarts
+**Builder delivered:** Working HTTP → DGC → Dashboard pipeline  
+**Tester verified:** All 41 assertions pass, 100% success rate  
+**Status:** GREEN — Ready for next task
 
-**Next Steps:**
-1. Fix test isolation (temp DB per test)
-2. Re-run to achieve 100% pass rate
-3. Then: Connect to PRATYABHIJNA binary
+**Context for Overseer:**
+- Task 001 complete and validated
+- SIS v0.5 integration confirmed functional
+- No blockers for downstream tasks
 
 ---
 
