@@ -2,8 +2,6 @@
 🪷 DHARMIC CLAW — HOUR 04:00 UPDATE
 ============================================================
 
-📊 Kanban Progress: 12/36 tasks complete
-
 📚 Unified Memory Index:
   • code: 885 files
   • conversation: 14 files
