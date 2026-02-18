@@ -1,2 +1,1 @@
-### Shipped
-- Green builds deployed to staging for R_V Toolkit.
+Shipped integration updates for bridge deployment. Note: Test file not found; need verification.
