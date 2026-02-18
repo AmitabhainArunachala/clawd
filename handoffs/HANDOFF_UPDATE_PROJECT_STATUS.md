@@ -1,0 +1,1 @@
+Prepared project status for Gumroad upload, updated key files, and ensured builds are green.
