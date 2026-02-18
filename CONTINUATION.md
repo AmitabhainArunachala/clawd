@@ -1,1 +1,1 @@
-**Shipped:** Integrated current green builds based on INTEGRATION_2026-02-18.md. Test files verification required.
+**Shipped**: Integration for 2026-02-18 — Test files missing. Correct paths for successful builds.
