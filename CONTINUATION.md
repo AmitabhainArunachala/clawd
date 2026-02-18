@@ -1,1 +1,1 @@
-**Shipped:** Integrated R_V Toolkit Package. All systems operational except Discord messaging.
+Shipped R_V Toolkit green build to staging on February 18, 2026.
