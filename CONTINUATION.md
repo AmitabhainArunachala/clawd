@@ -1,1 +1,1 @@
-Shipped: No P0 tasks found, integration successful.
+**Shipped:** Green builds deployed according to INTEGRATION_2026-02-18.md.
