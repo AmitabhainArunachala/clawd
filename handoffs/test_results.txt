@@ -1,0 +1,90 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.14.2, pytest-9.0.2, pluggy-1.6.0 -- /opt/homebrew/opt/python@3.14/bin/python3.14
+cachedir: .pytest_cache
+rootdir: /Users/dhyana/clawd
+configfile: pyproject.toml
+testpaths: tests
+plugins: anyio-4.12.1
+collecting ... collected 54 items
+
+tests/test_agni_chaiwala_bridge.py::TestBridgeMessage::test_message_creation PASSED [  1%]
+tests/test_agni_chaiwala_bridge.py::TestBridgeMessage::test_message_serialization PASSED [  3%]
+tests/test_agni_chaiwala_bridge.py::TestBridgeMessage::test_message_signature PASSED [  5%]
+tests/test_agni_chaiwala_bridge.py::TestBridgeMessage::test_message_expiration PASSED [  7%]
+tests/test_agni_chaiwala_bridge.py::TestAgniChaiwalaBridge::test_bridge_initialization PASSED [  9%]
+tests/test_agni_chaiwala_bridge.py::TestAgniChaiwalaBridge::test_create_message PASSED [ 11%]
+tests/test_agni_chaiwala_bridge.py::TestAgniChaiwalaBridge::test_state_persistence PASSED [ 12%]
+tests/test_agni_chaiwala_bridge.py::TestAgniChaiwalaBridge::test_heartbeat_sends_message PASSED [ 14%]
+tests/test_agni_chaiwala_bridge.py::TestAgniChaiwalaBridge::test_command_with_tracking PASSED [ 16%]
+tests/test_agni_chaiwala_bridge.py::TestAgniChaiwalaBridge::test_node_online_detection PASSED [ 18%]
+tests/test_agni_chaiwala_bridge.py::TestAgniChaiwalaBridge::test_handle_heartbeat PASSED [ 20%]
+tests/test_agni_chaiwala_bridge.py::TestAgniChaiwalaBridge::test_handle_status_response PASSED [ 22%]
+tests/test_agni_chaiwala_bridge.py::TestAgniChaiwalaBridge::test_command_whitelist PASSED [ 24%]
+tests/test_agni_chaiwala_bridge.py::TestAgniChaiwalaBridge::test_replay_protection PASSED [ 25%]
+tests/test_agni_chaiwala_bridge.py::TestDiscordIntegration::test_send_to_discord FAILED [ 27%]
+tests/test_agni_chaiwala_bridge.py::TestDiscordIntegration::test_poll_discord FAILED [ 29%]
+tests/test_chaiwala.py::TestChaiwalaMessage::test_message_creation PASSED [ 31%]
+tests/test_chaiwala.py::TestChaiwalaMessage::test_message_from_row PASSED [ 33%]
+tests/test_chaiwala.py::TestChaiwalaBusInitialization::test_bus_creation PASSED [ 35%]
+tests/test_chaiwala.py::TestChaiwalaBusInitialization::test_default_db_path PASSED [ 37%]
+tests/test_chaiwala.py::TestChaiwalaBusInitialization::test_db_directory_created PASSED [ 38%]
+tests/test_chaiwala.py::TestChaiwalaBusInitialization::test_invalid_db_path PASSED [ 40%]
+tests/test_chaiwala.py::TestChaiwalaBusSend::test_send_basic_message PASSED [ 42%]
+tests/test_chaiwala.py::TestChaiwalaBusSend::test_send_with_subject PASSED [ 44%]
+tests/test_chaiwala.py::TestChaiwalaBusSend::test_send_with_priority PASSED [ 46%]
+tests/test_chaiwala.py::TestChaiwalaBusSend::test_send_invalid_priority PASSED [ 48%]
+tests/test_chaiwala.py::TestChaiwalaBusSend::test_send_json_message PASSED [ 50%]
+tests/test_chaiwala.py::TestChaiwalaBusSend::test_send_json_invalid_payload PASSED [ 51%]
+tests/test_chaiwala.py::TestChaiwalaBusReceive::test_receive_empty PASSED [ 53%]
+tests/test_chaiwala.py::TestChaiwalaBusReceive::test_receive_message PASSED [ 55%]
+tests/test_chaiwala.py::TestChaiwalaBusReceive::test_receive_only_unread PASSED [ 57%]
+tests/test_chaiwala.py::TestChaiwalaBusReceive::test_receive_limit PASSED [ 59%]
+tests/test_chaiwala.py::TestChaiwalaBusReceive::test_receive_json PASSED [ 61%]
+tests/test_chaiwala.py::TestChaiwalaBusReceive::test_receive_json_non_json PASSED [ 62%]
+tests/test_chaiwala.py::TestChaiwalaBusStatus::test_get_status PASSED    [ 64%]
+tests/test_chaiwala.py::TestChaiwalaBusStatus::test_status_after_send PASSED [ 66%]
+tests/test_chaiwala.py::TestChaiwalaBusStatus::test_list_agents PASSED   [ 68%]
+tests/test_chaiwala.py::TestChaiwalaBusStatus::test_list_agents_with_filter PASSED [ 70%]
+tests/test_chaiwala.py::TestChaiwalaBusDelete::test_delete_message PASSED [ 72%]
+tests/test_chaiwala.py::TestChaiwalaBusDelete::test_delete_nonexistent PASSED [ 74%]
+tests/test_chaiwala.py::TestErrorHandling::test_database_error_on_init PASSED [ 75%]
+tests/test_core.py::TestAgentIdentity::test_create_basic_identity PASSED [ 77%]
+tests/test_core.py::TestAgentIdentity::test_create_with_metadata PASSED  [ 79%]
+tests/test_core.py::TestAgentIdentity::test_create_invalid_agent_id PASSED [ 81%]
+tests/test_core.py::TestAgentIdentity::test_to_dict PASSED               [ 83%]
+tests/test_core.py::TestAgentIdentity::test_frozen_dataclass PASSED      [ 85%]
+tests/test_core.py::TestAttestation::test_create_attestation PASSED      [ 87%]
+tests/test_core.py::TestAttestation::test_verify_valid_hash PASSED       [ 88%]
+tests/test_core.py::TestAttestation::test_verify_invalid_hash PASSED     [ 90%]
+tests/test_core.py::TestAttestation::test_to_dict PASSED                 [ 92%]
+tests/test_memory_marathon.py::test_compute_metrics_healthy PASSED       [ 94%]
+tests/test_memory_marathon.py::test_compute_metrics_degraded_with_split_brain_and_stale_state PASSED [ 96%]
+tests/test_memory_marathon.py::test_generate_todos_prioritizes_recall_and_split_brain PASSED [ 98%]
+tests/test_memory_marathon.py::test_read_queries_deduplicates_and_ignores_comments PASSED [100%]
+
+=================================== FAILURES ===================================
+_________________ TestDiscordIntegration.test_send_to_discord __________________
+tests/test_agni_chaiwala_bridge.py:289: in test_send_to_discord
+    assert result is True
+E   assert False is True
+---------------------------- Captured stdout setup -----------------------------
+🌉 AGNI Chaiwala Bridge initialized
+   Node: test-node
+   Bridge channel: 
+   State file: /Users/dhyana/.openclaw/agni_bridge_test-node.json
+----------------------------- Captured stdout call -----------------------------
+⚠️ Discord not configured, would send: test
+___________________ TestDiscordIntegration.test_poll_discord ___________________
+tests/test_agni_chaiwala_bridge.py:320: in test_poll_discord
+    assert len(messages) == 1
+E   assert 0 == 1
+E    +  where 0 = len([])
+---------------------------- Captured stdout setup -----------------------------
+🌉 AGNI Chaiwala Bridge initialized
+   Node: test-node
+   Bridge channel: 
+   State file: /Users/dhyana/.openclaw/agni_bridge_test-node.json
+=========================== short test summary info ============================
+FAILED tests/test_agni_chaiwala_bridge.py::TestDiscordIntegration::test_send_to_discord
+FAILED tests/test_agni_chaiwala_bridge.py::TestDiscordIntegration::test_poll_discord
+========================= 2 failed, 52 passed in 0.20s =========================
