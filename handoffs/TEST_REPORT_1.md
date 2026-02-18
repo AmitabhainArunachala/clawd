@@ -1,7 +1,21 @@
-# Test Report: Integrated R_V Toolkit Package
+# TEST REPORT 1
 
-## Summary
-The tests for the R_V Toolkit integration were executed. Unfortunately, the tests did not pass.
+### Summary:
+- Total tests run: 54
+- Passed: 52
+- Failed: 2
 
-## Exit Code
-An exit code of 1 indicates that there were failures during the test execution.
+### Error Details:
+1. **test_send_to_discord**
+   - Result: Failed
+   - Reason: Discord not configured; would have sent a test message.
+
+2. **test_poll_discord**
+   - Result: Failed
+   - Reason: No messages received from Discord.
+
+### Next Steps:
+- Configure Discord for testing.
+- Investigate the failure in message polling.
+
+**Report Generated on:** February 18, 2026.
