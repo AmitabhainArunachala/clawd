@@ -1,1 +1,1 @@
-No P0 tasks were found during the test cycle. Integration check complete.
+No P0 tasks were found during the test cycle. Integration status has been updated.
