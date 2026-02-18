@@ -23,7 +23,7 @@ import numpy as np
 import torch
 from transformers import PreTrainedModel, PreTrainedTokenizer
 
-from ..core.hooks import capture_v_projection
+from rv_toolkit.hooks import capture_v_projection
 
 logger = logging.getLogger(__name__)
 
