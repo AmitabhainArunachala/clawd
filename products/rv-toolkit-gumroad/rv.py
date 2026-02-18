@@ -20,7 +20,8 @@ import logging
 from typing import Optional
 
 import numpy as np
-import torch
+# Defer PyTorch import to avoid OpenMP conflict (Bridge 2)
+# import torch - Moved inside functions
 from transformers import PreTrainedModel, PreTrainedTokenizer
 
 from rv_toolkit.hooks import capture_v_projection
@@ -32,6 +33,8 @@ def participation_ratio(
     v_tensor: Optional[torch.Tensor],
     window_size: int = 16,
 ) -> float:
+    # Deferred PyTorch import (Bridge 2)
+    import torch
     """
     Compute Participation Ratio (PR) from V-projection tensor.
     
@@ -136,6 +139,7 @@ def compute_rv_with_components(
 
     # Tokenize with explicit max_length (measurement contract: 512 tokens max)
     # This ensures consistent measurement across prompts and prevents silent truncation drift
+    import torch
     MAX_LENGTH = 512
     enc = tokenizer(text, return_tensors="pt", truncation=True, max_length=MAX_LENGTH).to(device)
 

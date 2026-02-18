@@ -24,7 +24,7 @@ Usage:
 
 __version__ = "0.1.0"
 
-from .metrics import (
+from rv_toolkit.metrics import (
     compute_rv,
     compute_participation_ratio,
     compute_effective_rank,
@@ -32,20 +32,20 @@ from .metrics import (
     RVResult,
 )
 
-from .patching import (
+from rv_toolkit.patching import (
     ActivationPatcher,
     PatchingResult,
     ControlCondition,
 )
 
-from .analysis import (
+from rv_toolkit.analysis import (
     compute_transfer_efficiency,
     compute_effect_size,
     run_statistical_tests,
     AnalysisResult,
 )
 
-from .prompts import (
+from rv_toolkit.prompts import (
     RECURSIVE_PROMPTS,
     BASELINE_PROMPTS,
     get_prompt_pairs,

@@ -7,7 +7,8 @@ in the participation ratio of value activations at late integration layers.
 
 from dataclasses import dataclass
 from typing import Optional, Tuple, Union
-import torch
+# Defer PyTorch import to avoid OpenMP runtime conflict
+# import torch - MOVED INSIDE FUNCTIONS
 import numpy as np
 
 
@@ -84,7 +85,7 @@ def compute_effective_rank(singular_values: np.ndarray) -> float:
 
 
 def compute_rv(
-    v_tensor: torch.Tensor,
+    v_tensor,  # Type hint removed to defer torch import
     window_size: int = 16,
     return_components: bool = False,
 ) -> Union[float, RVResult]:
@@ -109,6 +110,9 @@ def compute_rv(
         >>> rv = compute_rv(v, window_size=16)
         >>> print(f"R_V = {rv:.4f}")
     """
+    # Defer PyTorch import to avoid OpenMP conflict
+    import torch
+    
     if v_tensor is None:
         return np.nan if not return_components else RVResult(np.nan, np.nan, np.array([]))
     

@@ -17,10 +17,10 @@ from typing import Optional
 import numpy as np
 import torch
 
-from . import __version__
-from .metrics import compute_rv, compute_participation_ratio, RVResult
-from .analysis import compute_effect_size, run_statistical_tests
-from .prompts import RECURSIVE_PROMPTS, BASELINE_PROMPTS, get_prompt_pairs
+from rv_toolkit import __version__
+from rv_toolkit.metrics import compute_rv, compute_participation_ratio, RVResult
+from rv_toolkit.analysis import compute_effect_size, run_statistical_tests
+from rv_toolkit.prompts import RECURSIVE_PROMPTS, BASELINE_PROMPTS, get_prompt_pairs
 
 
 def main():

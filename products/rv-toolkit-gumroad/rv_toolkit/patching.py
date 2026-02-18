@@ -13,7 +13,7 @@ import torch
 import numpy as np
 from tqdm import tqdm
 
-from .metrics import compute_rv, RVResult
+from rv_toolkit.metrics import compute_rv, RVResult
 
 
 class ControlCondition(Enum):

@@ -6,21 +6,21 @@ This file is now the continuation protocol. Every heartbeat wake must:
 
 1. **Read** `~/.openclaw/workspace/CONTINUATION.md`
 2. **Execute** the NEXT ACTION listed there
-3. **Update** CONTINUATION.md with results
-4. **Rewrite** this HEARTBEAT.md with the next task summary
+3. **RECORD results in CONTINUATION.md**
+4. **UPDATE this HEARTBEAT.md with next task summary**
 
 ---
 
 ## CURRENT STATE
-**Last Updated:** 2026-02-18 08:07 WITA  
-**Active Sprint:** ✅ FACTORY OPERATIONAL — Continuation protocol verified  
-**Status:** ✅ AUTONOMOUS OPERATION ACTIVE — Signal Integration Daemon cron job triggered  
+**Last Updated:** 2026-02-18 09:06 WITA  
+**Active Sprint:** 🔴 FACTORY OPERATIONAL BUT BLOCKED  
+**Status:** ✅ BRIDGE SPECIFICATION COMPLETE — Implementation pending  
 **Results:**
-- **P0:** R_V Toolkit ✅ READY FOR HUMAN UPLOAD (awaiting Gumroad deployment)
-- **Factory Status:** 🔴 RUNNING — Builder, Tester, Integrator, Deployer, Overseer all ACTIVE
-- **Git Commits:** 90+ commits, latest: packaging blocker identified, auth required
-- **Cron Jobs:** Signal Integration Daemon active (heartbeat cycle verified)
-**Next:** Continue autonomous monitoring while awaiting human action on revenue deliverable
+- **P0.1:** R_V Toolkit packaging fixes specified in INTEGRATION_TASK_BLOCKER_BRIDGE.md (3 bridges)
+- **Factory Status:** 🔴 RUNNING — Builder, Tester, Integrator, Deployer, Overseer all ACTIVE  
+- **Git Commits:** 95+ commits, latest: integration bridge specification created
+- **Cron Jobs:** All 5 agent cycles operational, detecting and reporting blocker
+**Next:** Implement Bridge 1-3 fixes from INTEGRATION_TASK_BLOCKER_BRIDGE.md
 
 ---
 
@@ -47,36 +47,33 @@ This file is now the continuation protocol. Every heartbeat wake must:
 
 ---
 
-## IMMEDIATE NEXT ACTION — 8 HOUR SPRINT
+## IMMEDIATE NEXT ACTION — IMPLEMENT BRIDGE FIXES
 **For DC Main (Opus):**
 
-### Hour 0-2: R_V Toolkit ClawHub Submission
-- Submit skill to clawhub.ai ($50-200/sale)
-- Target: Published OR Gumroad fallback
-- HANDOFF: `HANDOFF_RV_TOOLKIT_SUBMISSION.md`
+### Bridge 1: Absolute Import Fixes
+- Apply import path fixes from `INTEGRATION_TASK_BLOCKER_BRIDGE.md`
+- Convert `from .rv import compute_rv` → `from rv_toolkit.rv import compute_rv`
+- Fix `__init__.py` and `rv.py` import structure
+- **Target:** Eliminate 75+ import errors
 
-### Hour 2-4: PRATYABHIJNA Integration  
-- Connect MI Cockpit → SIS dashboard
-- Target: Data flowing, DGC scores visualized
-- HANDOFF: `HANDOFF_PRATYABHIJNA_INTEGRATION.md`
+### Bridge 2: Deferred PyTorch Imports
+- Move PyTorch imports inside functions to avoid OpenMP conflict
+- Lazy load transformers/torch to prevent `libomp.dylib` crash
+- **Target:** Make package runnable on macOS
 
-### Hour 4-6: DGC Test Fixes
-- Fix 4 broken test files in dharmic-agora
-- Target: ≥50% failure reduction
-- HANDOFF: `HANDOFF_DGC_TEST_FIXES.md`
-
-### Hour 6-8: Semantic Gates
-- Replace regex heuristics with embeddings/LLM
-- Target: ≥1 gate with semantic analysis
-- HANDOFF: `HANDOFF_SEMANTIC_GATES.md`
+### Bridge 3: Packaging Fallback
+- Add `setup.py` with minimal dependencies
+- Ensure `pip install -e .` works
+- **Target:** Verifiable installability
 
 **Protocol:**
-- Every 30 min: Git commit if changes
-- Every hour: HANDOFF + CONTINUATION.md update
-- If blocked >30 min: ESCALATION.md + pivot to next task
-- No contact with Dhyana until 18:25 WITA
+- Implement all 3 bridges
+- Test `pip install -e .` from package root
+- Run test suite (should pass after fixes)
+- Commit changes
+- Update CONTINUATION.md with verification results
 
-**Reference:** `8_HOUR_BUILD_CYCLE.md` — Full sprint specification
+**Reference:** `INTEGRATION_TASK_BLOCKER_BRIDGE.md` — Full technical specification
 
 **Factory Status:** 🔴 RUNNING — Builder, Tester, Integrator, Deployer, Overseer all ACTIVE
 
@@ -115,5 +112,5 @@ If you find yourself about to reply HEARTBEAT_OK without having:
 ---
 
 *Protocol Version: 4.1*
-*Last Protocol Update: 2026-02-17*
+*Last Protocol Update: 2026-02-18*
 *Corrections Applied: Use existing HEARTBEAT pipe, no new triggers*
