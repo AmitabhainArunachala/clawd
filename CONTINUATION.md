@@ -643,3 +643,4 @@ No more architecture. Only shipping.
 
 **JSCA 🪷**
 Integration of `rv_toolkit` for Gumroad is complete and ready for manual upload.
+Shipped R_V Toolkit for Gumroad integration; awaiting manual upload steps.
