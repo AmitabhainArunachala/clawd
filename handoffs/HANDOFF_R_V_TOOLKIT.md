@@ -1,12 +1,7 @@
-# HANDOFF: R_V Toolkit Green Build
+## HANDOFF: R_V Toolkit Build
 
-## Date: February 18, 2026
-### Summary:
-Shipped the R_V Toolkit green build to staging as part of the builder cycle.
+**Task ID:** R_V Toolkit
+**Date:** February 18, 2026
+**Status:** Shipped to staging
 
-### Changes Made:
-- 2 files modified, with a total of 15 insertions and 25 deletions.
-
-### Next Steps:
-- Monitor staging for any issues.
-- Prepare for production roll-out.
+Details of the build and next steps are documented here.
