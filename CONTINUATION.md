@@ -1,2 +1,1 @@
-### Shipped
-- Deployed green builds to staging based on the integration checks from February 18, 2026.
+**Shipped Section Update**: Green builds deployed to staging on February 18, 2026.
