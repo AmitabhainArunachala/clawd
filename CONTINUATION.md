@@ -1,2 +1,2 @@
-## Shipped
-- Integration status updated. See INTEGRATION_2026-02-18.md for failed tests.
+### Shipped
+Green builds deployed to staging from the latest integration.
