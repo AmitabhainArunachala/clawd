@@ -1,17 +1,11 @@
-# Test Report for [task_id]
-
-## Summary
-- Tests executed: 54
-- Passed: 52
-- Failed: 2
-
-## Failed Tests
-1. **test_send_to_discord**: Discord not configured, expected a send action that didn't occur.
-2. **test_poll_discord**: No messages found when one was expected.
-
-### Conclusion
-Several tests passed, but failures indicate a configuration issue with Discord integration.
-
-## Next Steps
-- Review Discord integration settings.
-- Fix issues in test setup to ensure that Discord is properly configured for future tests.
+## Test Report
+**Task ID:** [task_id]  
+**Date:** February 19, 2026  
+**Outcome:** 2 tests failed, 52 passed.  
+  
+**Details:**  
+- **Failed Tests:**  
+  - `tests/test_agni_chaiwala_bridge.py::TestDiscordIntegration::test_send_to_discord`  
+  - `tests/test_agni_chaiwala_bridge.py::TestDiscordIntegration::test_poll_discord`  
+  
+These failures are related to Discord integration, indicating a configuration issue that needs to be addressed.
